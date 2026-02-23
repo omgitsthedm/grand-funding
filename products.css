@@ -1,0 +1,405 @@
+/* ===================================
+   PRODUCTS / LOANS PAGE STYLES
+   Cinematic Noir skin (keeps structure; improves clarity).
+   =================================== */
+
+.products-hero {
+  background: radial-gradient(80% 60% at 18% 22%, rgba(79, 227, 210, 0.16), transparent 60%),
+              radial-gradient(70% 50% at 82% 28%, rgba(240, 178, 107, 0.12), transparent 62%),
+              linear-gradient(180deg, rgba(7, 8, 11, 0.95), rgba(13, 17, 23, 0.60));
+  color: var(--text-dark);
+  padding: var(--spacing-xl) 0;
+  text-align: center;
+}
+
+.products-hero h1 {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.08;
+}
+
+.products-hero p {
+  font-size: 1.15rem;
+  color: var(--text-medium);
+  max-width: 70ch;
+  margin: 0 auto;
+}
+
+.products-container {
+  padding: var(--spacing-xl) 0;
+}
+
+.product-section {
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.25rem, 2.4vw, 2rem);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.product-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  text-align: center;
+}
+
+.product-header h2 {
+  font-size: 2rem;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.product-tag {
+  background: rgba(240, 178, 107, 0.14);
+  color: var(--text-dark);
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 800;
+  border: 1px solid rgba(240, 178, 107, 0.28);
+}
+
+.product-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.product-description h3,
+.product-info h3 {
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-md);
+  font-size: 1.35rem;
+}
+
+.product-description p,
+.product-description li,
+.product-info p,
+.product-description li,
+.product-info li {
+  color: var(--text-medium);
+  line-height: 1.8;
+}
+
+.product-description ul,
+.product-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.product-description li,
+.product-info li {
+  margin-bottom: var(--spacing-sm);
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.product-description li::before,
+.product-info li::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234FE3D2' d='M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0;
+}
+
+.rate-info {
+  background: rgba(0,0,0,0.24);
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.rate-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.rate-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.rate-label { color: var(--text-light); font-weight: 750; }
+.rate-value { color: var(--text-dark); font-weight: 900; }
+
+.apply-section {
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+}
+
+.apply-section h2 {
+  color: var(--text-dark);
+  font-size: 2.35rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.apply-section p {
+  color: var(--text-medium);
+  max-width: 70ch;
+  margin: 0 auto var(--spacing-lg) auto;
+  font-size: 1.1rem;
+}
+
+.apply-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.apply-buttons .btn {
+  min-width: 200px;
+}
+
+.glossary-box {
+  margin-top: var(--spacing-lg);
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+}
+
+.glossary-box h4 {
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+.glossary-box p {
+  color: var(--text-medium);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .product-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .product-details {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .product-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .products-hero h1 {
+    font-size: 2rem;
+  }
+}
+
+
+/* Ensure glossary definitions look clean */
+.product-description dl {
+  margin: var(--spacing-md) 0 0;
+}
+.product-description dt {
+  font-weight: 850;
+  color: var(--text-dark);
+  margin-top: 0.9rem;
+}
+.product-description dd {
+  margin: 0.35rem 0 0;
+  color: var(--text-medium);
+  line-height: 1.75;
+}
+
+/* Right-column CTA card */
+.product-cta {
+  display: flex;
+  justify-content: center;
+  align-self: start;
+}
+.product-cta .cta-card {
+  width: 100%;
+  max-width: 380px;
+  background: rgba(0,0,0,0.24);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+}
+.product-cta .cta-card h3 {
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-sm);
+}
+.product-cta .cta-card p {
+  color: var(--text-medium);
+  line-height: 1.7;
+}
+.product-cta .cta-actions {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.product-cta .cta-actions .btn {
+  width: 100%;
+}
+
+/* Make the right-column CTA feel intentional (not full-height). */
+@media (min-width: 901px) {
+  .product-cta {
+    position: sticky;
+    top: 120px;
+  }
+}
+
+@media (max-width: 900px) {
+  .product-cta {
+    position: static;
+  }
+}
+
+/* ===================================
+   Functional Glossary (search + filters)
+   =================================== */
+
+.glossary-section {
+  padding: var(--spacing-xl) 0;
+}
+
+.glossary-controls {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.9rem;
+  align-items: start;
+  justify-items: center;
+}
+
+.glossary-search {
+  width: 100%;
+  max-width: 640px;
+}
+
+.glossary-search input[type="search"] {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.25);
+  color: var(--text-dark);
+  outline: none;
+}
+
+.glossary-search input[type="search"]::placeholder {
+  color: rgba(237,246,249,0.66);
+}
+
+.glossary-panels {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.glossary-panel {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.glossary-panel > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1rem 1.1rem;
+  font-weight: 900;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.18));
+}
+
+.glossary-panel > summary::-webkit-details-marker { display: none; }
+
+.glossary-panel > summary::after {
+  content: "+";
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--text-dark);
+}
+
+.glossary-panel[open] > summary::after {
+  content: "−";
+}
+
+.glossary-items {
+  padding: 0.9rem 1.1rem 1.1rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.glossary-entry {
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem 0.85rem;
+}
+
+.glossary-entry > summary {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 850;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.glossary-entry > summary::-webkit-details-marker { display: none; }
+
+.glossary-entry > summary::after {
+  content: "▾";
+  color: rgba(237,246,249,0.9);
+}
+
+.glossary-entry[open] > summary::after {
+  content: "▴";
+}
+
+.glossary-entry p {
+  margin: 0.55rem 0 0;
+  color: var(--text-medium);
+  line-height: 1.75;
+}
+
+.glossary-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 1.2rem 1rem;
+  border-radius: var(--radius-xl);
+  border: 1px dashed rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.18);
+  color: var(--text-medium);
+}
+
+@media (max-width: 920px) {
+  .glossary-panels {
+    grid-template-columns: 1fr;
+  }
+}

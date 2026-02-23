@@ -1,0 +1,95 @@
+/* ===================================
+   GRAND FUNDING V3 - MAIN STYLESHEET
+   Mobile-First | Premium Design | SEO Optimized
+   =================================== */
+
+/* ===================================
+   GRAND FUNDING - GLOBAL DESIGN SYSTEM
+   Palette: Ocean Pearl Delight
+   Goal: warm, modern, premium, welcoming
+   =================================== */
+
+/* ===================================
+   GRAND FUNDING - GLOBAL DESIGN SYSTEM
+   Palette: Ocean Pearl Delight
+   Intent: premium, warm, modern, welcoming
+   =================================== */
+
+:root {
+  /* Brand base: Midnight Ember (premium dark + warm highlights) */
+  --brand-bg0: #070A0F;
+  --brand-bg1: #0B1220;
+  --brand-surface: rgba(255, 255, 255, 0.06);
+  --brand-surface-2: rgba(255, 255, 255, 0.10);
+  --brand-line: rgba(255, 255, 255, 0.12);
+
+  /* Spotlight whites */
+  --brand-spot: #F7FAFF;
+  --brand-ice: rgba(247, 250, 255, 0.82);
+
+  /* Accents */
+  --brand-teal: #2DD4BF;
+  --brand-teal-deep: #0EA5A0;
+  --brand-ember: #E29578;
+  --brand-ember-deep: #CB7055;
+
+  /* Semantic tokens */
+  --primary-color: var(--brand-teal);
+  --primary-dark: var(--brand-teal-deep);
+  --primary-light: rgba(45, 212, 191, 0.78);
+
+  --accent-warm: var(--brand-ember);
+  --accent-warm-deep: var(--brand-ember-deep);
+  --accent-soft: rgba(226, 149, 120, 0.16);
+  --accent-cool: rgba(45, 212, 191, 0.14);
+
+  /* Surfaces */
+  --bg: var(--brand-bg0);
+  --surface: var(--brand-surface-2);
+  --surface-soft: var(--brand-surface);
+  --border: var(--brand-line);
+
+  /* Text */
+  --text-dark: var(--brand-spot);
+  --text-medium: rgba(247, 250, 255, 0.76);
+  --text-light: rgba(247, 250, 255, 0.56);
+
+  /* Spotlight panels (use sparingly) */
+  --panel-bg: rgba(247, 250, 255, 0.94);
+  --panel-text: #0B1220;
+  --panel-muted: rgba(11, 18, 32, 0.72);
+
+  /* Legacy tokens used in older page CSS (kept for compatibility) */
+  --black: var(--text-dark);
+  --white: var(--brand-spot);
+  --gray-dark: var(--text-medium);
+  --gray-med: var(--text-light);
+  --gray-light: var(--surface-soft);
+  --accent: var(--accent-warm);
+
+  /* Spacing scale */
+  --spacing-2xs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1.25rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3.5rem;
+  --spacing-2xl: 5rem;
+
+  /* Shadows (premium dark) */
+  --shadow-sm: 0 2px 16px rgba(0, 0, 0, 0.32);
+  --shadow-md: 0 14px 40px rgba(0, 0, 0, 0.48);
+  --shadow-lg: 0 22px 64px rgba(0, 0, 0, 0.58);
+  --shadow-xl: 0 34px 92px rgba(0, 0, 0, 0.66);
+
+  /* Radius */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-base: 0.28s var(--ease-out);
+  --transition-slow: 0.55s var(--ease-out);
+}

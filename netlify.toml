@@ -57,6 +57,16 @@
   to = "/thanks.html"
   status = 200
 
+[[redirects]]
+  from = "/funded-deals"
+  to = "/funded-deals.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners"
+  to = "/partners.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -65,6 +75,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-ancestors 'none';"
 
 # Cache versioned assets (CSS/JS use ?v= query strings)
 [[headers]]

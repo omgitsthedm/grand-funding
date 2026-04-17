@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core Pages -->
   <url>
     <loc>https://www.grandfundingllc.com/</loc>
     <changefreq>weekly</changefreq>
@@ -12,6 +13,11 @@
   </url>
   <url>
     <loc>https://www.grandfundingllc.com/about.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/funded-deals</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -35,6 +41,65 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+  <!-- Phase B: Location + Scenario Money Pages -->
+  <url>
+    <loc>https://www.grandfundingllc.com/arizona-hard-money-lender</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/phoenix-hard-money-lender</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/scottsdale-hard-money-lender</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/california-hard-money-lender</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/san-diego-hard-money-lender</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/los-angeles-hard-money-lender</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/fix-and-flip-loans-arizona</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/bridge-loans-arizona</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/construction-loans-arizona</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/second-position-loans-arizona</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/cash-out-refinance-investors-arizona</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Blog Posts — Original -->
   <url>
     <loc>https://www.grandfundingllc.com/posts/benefits-of-real-estate-investing-in-an-llc.html</loc>
     <changefreq>monthly</changefreq>
@@ -74,5 +139,34 @@
     <loc>https://www.grandfundingllc.com/posts/when-rates-decrease-opportunity-increases.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+
+  <!-- Phase D: Paid Search LPs + Partners -->
+  <url>
+    <loc>https://www.grandfundingllc.com/partners</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog Posts — Phase C (Deal-Intent) -->
+  <url>
+    <loc>https://www.grandfundingllc.com/posts/how-to-fund-a-fix-and-flip-in-arizona.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/posts/arizona-bridge-loan-guide-real-estate-investors.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/posts/cash-out-refi-vs-second-position-loan-arizona.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/posts/how-fast-can-you-close-hard-money-loan-arizona.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
   </url>
 </urlset>

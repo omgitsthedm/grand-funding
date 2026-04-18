@@ -56,6 +56,26 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Legal / Compliance -->
+  <url>
+    <loc>https://www.grandfundingllc.com/privacy</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/terms</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.grandfundingllc.com/disclosures</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <!-- Scenario Money Pages -->
   <url>
     <loc>https://www.grandfundingllc.com/fix-and-flip-loans-arizona</loc>

@@ -165,14 +165,22 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     const progressBar = document.querySelector('.scroll-progress__bar');
     let ticking = false;
 
+    // Cache scrollable height once to avoid forced reflow on every scroll event.
+    // Read BEFORE any writes so layout is still valid (no style invalidation yet).
+    const doc = document.documentElement;
+    let scrollableHeight = Math.max(1, doc.scrollHeight - doc.clientHeight);
+    window.addEventListener('resize', () => {
+        scrollableHeight = Math.max(1, doc.scrollHeight - doc.clientHeight);
+    }, { passive: true });
+
     const onScroll = () => {
         const y = window.scrollY || 0;
+        // Write class state
         if (headerEl) headerEl.classList.toggle('is-scrolled', y > 8);
         if (navbarEl) navbarEl.classList.toggle('is-scrolled', y > 8);
+        // Write progress bar using cached scrollableHeight — no layout read after write
         if (progressBar) {
-            const doc = document.documentElement;
-            const scrollable = Math.max(1, doc.scrollHeight - doc.clientHeight);
-            progressBar.style.width = Math.min(100, Math.max(0, (y / scrollable) * 100)).toFixed(2) + '%';
+            progressBar.style.width = Math.min(100, Math.max(0, (y / scrollableHeight) * 100)).toFixed(2) + '%';
         }
     };
 

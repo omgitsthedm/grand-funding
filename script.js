@@ -187,10 +187,10 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
         ticking = true;
         requestAnimationFrame(() => { onScroll(); ticking = false; });
     }, { passive: true });
-
-    // Defer initial call to rAF so the browser settles layout after the
-    // scroll-reveal class writes that ran earlier in this script.
-    requestAnimationFrame(onScroll);
+    // No initial onScroll() call: at page load scroll is 0 so progress bar
+    // is correctly 0% and header has no scroll state. Avoids forced reflow
+    // caused by reading scrollHeight after reveal-class writes (premium.js
+    // DOMContentLoaded) have invalidated layout.
 })();
 
 // ---- Products page glossary: search + category filters ----

@@ -67,12 +67,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 /* ===== Hide old footer-logo img completely, use wordmark instead ===== */
 .footer-brand .footer-logo{display:none}
 
-/* ===== Refined Footer — organized grid + glass license band ===== */
-.footer{padding:5rem 0 2rem !important;background:linear-gradient(180deg,transparent 0%,rgba(255,255,255,.02) 100%) !important;border-top:1px solid rgba(255,255,255,.06) !important;position:relative !important}
-.footer::before{content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:min(520px,70%);height:1px;background:linear-gradient(90deg,transparent,rgba(79,227,210,.35) 30%,rgba(240,178,107,.35) 70%,transparent);pointer-events:none}
+/* ===== Premium Footer v2 — typography-led, inline horizontal rows ===== */
+.footer{padding:3.5rem 0 1.75rem !important;background:linear-gradient(180deg,transparent 0%,rgba(79,227,210,.015) 100%) !important;border:none !important;position:relative !important;font-family:'Inter',-apple-system,system-ui,sans-serif}
+.footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(460px,60%);height:1px;background:linear-gradient(90deg,transparent,rgba(79,227,210,.4) 35%,rgba(240,178,107,.4) 65%,transparent);pointer-events:none}
 .footer>.container{max-width:1240px}
 .footer .footer-main,.footer .footer-main--clean,.footer-grid{display:grid !important;grid-template-columns:1.5fr 1fr 1fr 1fr !important;gap:3rem !important;align-items:start !important;margin:0 0 3rem !important}
-.footer-brand{display:flex;flex-direction:column;gap:1rem;max-width:320px}
+.footer-brand{display:flex;flex-direction:column;gap:1rem;max-width:320px;text-align:left}
 .footer-brand .footer-wordmark{margin-bottom:.25rem}
 .footer-brand .footer-tagline{color:var(--muted,#7A8090);font-size:.92rem;line-height:1.55;margin:0}
 .footer-brand .footer-contact{display:flex !important;flex-direction:column !important;gap:.5rem !important;margin:.5rem 0 .25rem !important;font-size:.95rem !important;align-items:flex-start !important}
@@ -130,6 +130,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .footer-meta{flex-direction:column;align-items:flex-start}
   .footer-legal-links{gap:1rem}
 }
+
+/* ===== Hero kicker/tagline (page-level label above H1) ===== */
+.hero-tagline,.apply-kicker,.page-kicker{display:inline-block;color:var(--primary,#4FE3D2);font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.75rem;font-family:'Poppins',-apple-system,sans-serif}
+
+/* ===== Back-to-top spacing: clear sticky CTA on mobile ===== */
+@media(max-width:820px){.back-to-top{bottom:80px}}
+
+/* ===== Mobile nav: ensure touch targets ≥44px ===== */
+@media(max-width:768px){.nav-list a{padding:14px !important;min-height:44px;display:flex;align-items:center;justify-content:center}}
+
+/* ===== Fun facts section: dark-theme numbers stay teal ===== */
+.theme-dark .fun-fact-number{color:var(--primary,#4FE3D2)}
+.theme-dark .fun-fact-label{color:rgba(244,247,255,.85)}
+.theme-dark .fun-fact-card{color:var(--text-dark,#F4F7FF)}
 
 /* ===== Prefers reduced motion: kill all animations ===== */
 @media (prefers-reduced-motion:reduce){

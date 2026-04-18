@@ -312,9 +312,59 @@
   line-height: 1.7;
 }
 
+.why-choose-us {
+  padding: var(--spacing-xl) 0;
+}
+
+.why-choose-us h2 {
+  text-align: center;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-dark);
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.reason-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  position: relative;
+  cursor: pointer;
+}
+
+.reason-number {
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: rgba(79, 227, 210, 0.18);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.04em;
+}
+
+.reason-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-dark);
+}
+
+.reason-card p {
+  color: var(--text-medium);
+  line-height: 1.7;
+  font-size: 0.97rem;
+}
+
 @media (max-width: 768px) {
   .about-hero { padding: var(--spacing-lg) 0; }
   .about-story h2 { font-size: 2rem; }
-  .services-grid, .values-grid { grid-template-columns: 1fr; }
+  .services-grid, .values-grid, .reasons-grid { grid-template-columns: 1fr; }
   .story-content { padding: 1.25rem; }
+  .reason-number { font-size: 2.25rem; }
 }

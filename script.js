@@ -163,34 +163,34 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     const headerEl = document.querySelector('.header');
     const navbarEl = document.querySelector('.navbar');
     const progressBar = document.querySelector('.scroll-progress__bar');
-    let ticking = false;
-
-    // Cache scrollable height once to avoid forced reflow on every scroll event.
-    // Read BEFORE any writes so layout is still valid (no style invalidation yet).
     const doc = document.documentElement;
-    let scrollableHeight = Math.max(1, doc.scrollHeight - doc.clientHeight);
-    window.addEventListener('resize', () => {
-        scrollableHeight = Math.max(1, doc.scrollHeight - doc.clientHeight);
-    }, { passive: true });
+    let ticking = false;
+    // Lazily initialized on first call so we never read scrollHeight immediately
+    // after the scroll-reveal IIFE wrote .reveal classes (avoids forced reflow).
+    let scrollableHeight = 0;
 
     const onScroll = () => {
         const y = window.scrollY || 0;
-        // Write class state
+        // Read layout FIRST — before any DOM writes — to avoid forced reflow.
+        // Lazy-init: only reads after layout is settled (first rAF or scroll event).
+        if (!scrollableHeight) scrollableHeight = Math.max(1, doc.scrollHeight - doc.clientHeight);
+        const pct = Math.min(100, Math.max(0, (y / scrollableHeight) * 100)).toFixed(2) + '%';
+        // Writes after reads
         if (headerEl) headerEl.classList.toggle('is-scrolled', y > 8);
         if (navbarEl) navbarEl.classList.toggle('is-scrolled', y > 8);
-        // Write progress bar using cached scrollableHeight — no layout read after write
-        if (progressBar) {
-            progressBar.style.width = Math.min(100, Math.max(0, (y / scrollableHeight) * 100)).toFixed(2) + '%';
-        }
+        if (progressBar) progressBar.style.width = pct;
     };
 
+    window.addEventListener('resize', () => { scrollableHeight = 0; }, { passive: true });
     window.addEventListener('scroll', () => {
         if (ticking) return;
         ticking = true;
         requestAnimationFrame(() => { onScroll(); ticking = false; });
     }, { passive: true });
 
-    onScroll();
+    // Defer initial call to rAF so the browser settles layout after the
+    // scroll-reveal class writes that ran earlier in this script.
+    requestAnimationFrame(onScroll);
 })();
 
 // ---- Products page glossary: search + category filters ----

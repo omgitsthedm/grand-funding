@@ -19,7 +19,7 @@
 |------|----------|---------|
 | 2026-01 | Dark cinematic theme | Client wanted premium/serious feel for high-net-worth investors |
 | 2026-01 | LP pages noindex | Paid search landing pages (lp-*.html) intentionally noindexed to prevent duplicate content competing with main location pages |
-| 2026-04-17 | GA4 placeholder G-XXXXXXXXXX | Client needs to provide real GA4 measurement ID — placeholder in all 37 pages ready to swap |
+| 2026-04-17 | GA4 G-K825ENLYS6 live | Real measurement ID deployed to all 37 pages |
 | 2026-04-17 | lp.css async at body end | Moved from blocking <head> to media=print async pattern on all money/LP pages |
 | 2026-04-17 | All CSS async | styles.css, blog.css, page-specific CSS moved to async body end on all pages |
 | 2026-04-17 | Google Fonts async preload | All pages use preload as=style + noscript fallback pattern |
@@ -42,13 +42,12 @@
   - sitemap.xml with all 31 indexed pages
   - FAQPage JSON-LD on index.html (6 Q&A pairs)
   - Organization schema on index.html
-  - GA4 placeholder loader on all 37 pages
+  - GA4 G-K825ENLYS6 live on all 37 pages
   - Netlify Forms with honeypot on apply + contact
   - Lighthouse scores: 97 perf / 100 a11y / 100 best practices / 100 SEO
 - **What's pending:**
-  - GA4 real measurement ID (client needs to provide G-XXXXXXXX)
   - Article OG images for blog posts (currently all use generic og-grandfunding.png)
   - Consider adding <main> landmark to about.html, faq.html, products.html
   - Consider Organization schema on all location/product pages
 - **Needs from David:**
-  - GA4 measurement ID from Logan Sullivan to replace G-XXXXXXXXXX placeholder
+  - Article OG images for blog posts (currently all use generic og-grandfunding.png)

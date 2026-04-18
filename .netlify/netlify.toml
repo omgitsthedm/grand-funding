@@ -1,16 +1,20 @@
 headersOrigin = "config"
 redirectsOrigin = "config"
-plugins = []
 
 [functions]
 
 [functions."*"]
 
+[[plugins]]
+origin = "ui"
+package = "@netlify/plugin-lighthouse"
+
+[plugins.inputs]
+
 [build]
-publish = "/Users/davidmarsh/Desktop/LiFi NYC/_Utilities/Websites/Grand Funding LLC Site/grandfundingv12"
+publish = "/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding"
 publishOrigin = "config"
 commandOrigin = "config"
-base = "/Users/davidmarsh/Desktop/LiFi NYC/_Utilities/Websites/Grand Funding LLC Site/grandfundingv12"
 command = "echo 'No build command needed - static site'"
 
 [build.environment]
@@ -34,25 +38,33 @@ for = "/*"
 X-Frame-Options = "DENY"
 X-Content-Type-Options = "nosniff"
 Referrer-Policy = "strict-origin-when-cross-origin"
-Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), serial=(), bluetooth=(), interest-cohort=(), accelerometer=(), gyroscope=(), magnetometer=()"
+Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';"
 
 [[headers]]
 for = "/*.css"
 
 [headers.values]
-Cache-Control = "public, max-age=0, must-revalidate"
+Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
 
 [[headers]]
 for = "/*.js"
 
 [headers.values]
-Cache-Control = "public, max-age=0, must-revalidate"
+Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
 
 [[headers]]
 for = "/images/*"
 
 [headers.values]
-Cache-Control = "public, max-age=31536000"
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.woff2"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[redirects]]
 from = "https://grandfundingllc.com/*"
@@ -129,7 +141,7 @@ force = false
 [[redirects]]
 from = "/contact"
 to = "/contact.html"
-status = 200.0
+status = 301.0
 force = false
 
 [redirects.query]
@@ -167,6 +179,54 @@ from = "/thanks"
 to = "/thanks.html"
 status = 200.0
 force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/funded-deals"
+to = "/funded-deals.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/partners"
+to = "/partners.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/*.md"
+to = "/404.html"
+status = 404.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/root_block.txt"
+to = "/404.html"
+status = 404.0
+force = true
 
 [redirects.query]
 

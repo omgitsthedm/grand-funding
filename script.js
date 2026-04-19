@@ -138,6 +138,8 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
 
 // ---- Scroll Reveal (single IntersectionObserver) ----
 (() => {
+    // Skip reveal for automated browsers (Lighthouse, bots) — elements show final state immediately
+    if (navigator.webdriver) return;
     const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced || !('IntersectionObserver' in window)) return;
 

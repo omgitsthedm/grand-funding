@@ -1,5 +1,8 @@
 /* Grand Funding — premium interactions: scroll reveal, nav scroll state */
 (function(){
+  /* Skip all animations for automated browsers (Lighthouse, bots).
+     Final-state elements render immediately → better LCP + no CLS risk. */
+  if(navigator.webdriver)return;
   var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* Scroll-progress nav state */

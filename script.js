@@ -106,17 +106,24 @@ document.querySelectorAll('.cta-btn, .btn-primary').forEach(el => {
 let lastScroll = 0;
 const header = document.querySelector('.header');
 if (header) {
+    let ticking = false;
     window.addEventListener('scroll', () => {
-        const y = window.pageYOffset || 0;
-        if (y <= 0) { header.classList.remove('scroll-up'); return; }
-        if (y > lastScroll && !header.classList.contains('scroll-down')) {
-            header.classList.remove('scroll-up');
-            header.classList.add('scroll-down');
-        } else if (y < lastScroll && header.classList.contains('scroll-down')) {
-            header.classList.remove('scroll-down');
-            header.classList.add('scroll-up');
-        }
-        lastScroll = y;
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            const y = window.pageYOffset || 0;
+            if (y <= 0) {
+                header.classList.remove('scroll-up');
+            } else if (y > lastScroll && !header.classList.contains('scroll-down')) {
+                header.classList.remove('scroll-up');
+                header.classList.add('scroll-down');
+            } else if (y < lastScroll && header.classList.contains('scroll-down')) {
+                header.classList.remove('scroll-down');
+                header.classList.add('scroll-up');
+            }
+            lastScroll = y;
+            ticking = false;
+        });
     }, { passive: true });
 }
 
@@ -370,9 +377,18 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
 (() => {
     const btn = document.querySelector('[data-back-to-top]');
     if (!btn) return;
-    const onScroll = () => btn.classList.toggle('is-visible', (window.scrollY || 0) > 700);
+    let ticking = false;
+    const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            btn.classList.toggle('is-visible', (window.scrollY || 0) > 700);
+            ticking = false;
+        });
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    // No initial onScroll() — scrollY is 0 at load, button already hidden.
+    // Avoids forced reflow from reading scrollY before layout settles.
     btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
 

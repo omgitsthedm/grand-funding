@@ -5,11 +5,19 @@
   /* Scroll-progress nav state */
   var header=document.querySelector('.header');
   if(header){
+    var ticking=false;
     var onScroll=function(){
-      if(window.scrollY>20){header.classList.add('scrolled');}
-      else{header.classList.remove('scrolled');}
+      /* rAF-gated: read scrollY and apply class in next frame */
+      if(ticking)return;
+      ticking=true;
+      requestAnimationFrame(function(){
+        if(window.scrollY>20){header.classList.add('scrolled');}
+        else{header.classList.remove('scrolled');}
+        ticking=false;
+      });
     };
-    onScroll();
+    /* No initial call — at page load scrollY is 0 so no 'scrolled' class needed.
+       Avoids forced reflow from reading scrollY before layout is settled. */
     window.addEventListener('scroll',onScroll,{passive:true});
   }
 

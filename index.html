@@ -281,9 +281,8 @@ main > section + section::before{
 .reason-card,.fun-fact-card,.deal-card,.story-card,
 .process-step,.contact-card,.testimonial-card,.blog-card,
 [data-premium-card]{
-  background: linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.025) 100%);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* Solid-enough bg so text reads crisp (was too translucent + causing haze) */
+  background: linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(14,16,22,.85) 100%);
   border: 1px solid var(--gf-line);
   border-radius: var(--gf-r-l);
   padding: clamp(var(--gf-s-5), 2vw, var(--gf-s-6));
@@ -301,8 +300,8 @@ main > section + section::before{
 .value-item:hover,.reason-card:hover,.deal-card:hover,
 .story-card:hover,.contact-card:hover,.blog-card:hover,
 [data-premium-card]:hover{
-  background: linear-gradient(180deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.035) 100%);
-  border-color: rgba(79,227,210,.28);
+  background: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(14,16,22,.9) 100%);
+  border-color: rgba(79,227,210,.32);
   box-shadow: var(--gf-shadow-3);
   transform: translateY(-2px);
 }

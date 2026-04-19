@@ -30,6 +30,18 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.grandfundingllc.com/"},{"@type":"ListItem","position":2,"name":"Terms of Service","item":"https://www.grandfundingllc.com/terms"}]}</script>
 <style>main>section:not(.hero):not(.trust-strip){content-visibility:auto;contain-intrinsic-size:auto 600px}.reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}.reveal.js-reveal-init:not(.is-visible){opacity:0;transform:translateY(18px)}.reveal.is-visible{opacity:1;transform:none}.reveal-stagger>*{opacity:1;transform:none;transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}.reveal-stagger.js-reveal-init:not(.is-visible)>*{opacity:0;transform:translateY(18px)}.reveal-stagger.is-visible>*{opacity:1;transform:none}.reveal-stagger.is-visible>*:nth-child(1){transition-delay:.04s}.reveal-stagger.is-visible>*:nth-child(2){transition-delay:.1s}.reveal-stagger.is-visible>*:nth-child(3){transition-delay:.16s}.reveal-stagger.is-visible>*:nth-child(4){transition-delay:.22s}.reveal-stagger.is-visible>*:nth-child(5){transition-delay:.28s}.reveal-stagger.is-visible>*:nth-child(6){transition-delay:.34s}@media(prefers-reduced-motion:reduce){.reveal,.reveal-stagger>*{opacity:1!important;transform:none!important;transition:none}}@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url('/fonts/inter.woff2') format('woff2')}@font-face{font-family:'Poppins';font-style:normal;font-weight:600;font-display:swap;src:url('/fonts/poppins-600.woff2') format('woff2')}@font-face{font-family:'Poppins';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/poppins-700.woff2') format('woff2')}@font-face{font-family:'Poppins';font-style:normal;font-weight:800;font-display:swap;src:url('/fonts/poppins-800.woff2') format('woff2')}@font-face{font-family:'Poppins';font-style:normal;font-weight:900;font-display:swap;src:url('/fonts/poppins-900.woff2') format('woff2')}.consent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9500;transform:translateY(100%)}.consent-banner.is-open{transform:translateY(0)}.brand-wordmark{display:inline-flex;align-items:baseline;gap:.45rem;text-decoration:none;font-family:'Poppins',-apple-system,sans-serif;font-weight:800;font-size:clamp(1.15rem,1.35vw,1.45rem);letter-spacing:-.012em;line-height:1;color:#F0F0EC;white-space:nowrap;cursor:pointer}.brand-wordmark .brand-mark{color:#F0F0EC}.brand-wordmark .brand-suffix{font-weight:500;font-size:.62em;color:#7A8090;letter-spacing:.16em;text-transform:uppercase}
 }
+
+/* ============================================================
+   REVEAL: SECTION WRAPPERS ALWAYS VISIBLE (cards reveal, wrappers don't)
+   ============================================================ */
+section.reveal,section.reveal-stagger,
+main>section,main>div>section,
+.blog-section,.blog-container,
+.blog-grid.reveal,.blog-grid.reveal-stagger{
+  opacity:1!important;
+  transform:none!important;
+  filter:none!important
+}
 </style>
 
 <link rel="preload" href="/styles-v2.css?v=20260424" as="style" fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/styles-v2.css?v=20260424"></noscript><link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><style data-inline="compliance">/* Compliance pages — shared layout */
@@ -147,7 +159,7 @@
 </div>
 
 <h2 id="acceptance">1. Acceptance of Terms</h2>
-<p>By accessing or using grandfundingllc.com (the "Site"), submitting a loan application, or otherwise interacting with Grand Funding LLC ("Grand Funding," "we," "us"), you agree to these Terms of Service ("Terms") and our <a href="/privacy">Privacy Policy</a>. If you do not agree, do not use the Site.</p>
+<p>By accessing or using grandfundingllc.com (the"Site"), submitting a loan application, or otherwise interacting with Grand Funding LLC ("Grand Funding,""we,""us"), you agree to these Terms of Service ("Terms") and our <a href="/privacy">Privacy Policy</a>. If you do not agree, do not use the Site.</p>
 <p>These Terms form a binding agreement between you and Grand Funding LLC, an Arizona limited liability company, NMLS ID 2466872.</p>
 
 <h2 id="not-commitment">2. Not a Commitment to Lend</h2>
@@ -179,7 +191,7 @@
 
 <h2 id="ip">6. Intellectual Property</h2>
 <p>All content on the Site — text, graphics, logos, photographs, videos, software, and page layouts — is the property of Grand Funding LLC or its licensors and is protected by United States copyright, trademark, and other intellectual property laws.</p>
-<p>"Grand Funding," "Grand Funding LLC," and related logos are trademarks of Grand Funding LLC. You may not use these marks without prior written consent.</p>
+<p>"Grand Funding,""Grand Funding LLC," and related logos are trademarks of Grand Funding LLC. You may not use these marks without prior written consent.</p>
 <p>You may view, download, and print content from the Site for your personal, non-commercial use only, provided you do not modify the content and retain all copyright and proprietary notices.</p>
 
 <h2 id="third-party">7. Third-Party Links and Services</h2>
@@ -190,13 +202,13 @@
 <ul>
 <li>Receive communications from Grand Funding electronically (email, text message, or electronic document delivery) in connection with your application and any resulting loan</li>
 <li>Transact business electronically, including executing loan documents with electronic signatures pursuant to the E-SIGN Act (15 U.S.C. &sect;&sect; 7001 et seq.)</li>
-<li>Retention and reproducibility of electronic records as satisfying any legal requirement that records be "in writing" or signed</li>
+<li>Retention and reproducibility of electronic records as satisfying any legal requirement that records be"in writing" or signed</li>
 </ul>
 <p>You may withdraw consent to electronic communications at any time by contacting us. Withdrawal of consent may require paper copies and may delay processing.</p>
 <p><strong>TCPA Consent.</strong> By submitting your phone number you consent to receive calls and text messages from Grand Funding (including autodialed and pre-recorded messages) regarding your loan inquiry, at the number you provided. Consent is not a condition of obtaining a loan. Message and data rates may apply. Reply STOP to opt out of text messages.</p>
 
 <h2 id="disclaimer">9. Disclaimer of Warranties</h2>
-<p>THE SITE AND ALL CONTENT ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, OR NON-INFRINGEMENT. GRAND FUNDING DOES NOT WARRANT THAT THE SITE WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS, NOR THAT ANY INFORMATION ON THE SITE WILL BE COMPLETE, ACCURATE, OR CURRENT.</p>
+<p>THE SITE AND ALL CONTENT ARE PROVIDED"AS IS" AND"AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, OR NON-INFRINGEMENT. GRAND FUNDING DOES NOT WARRANT THAT THE SITE WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS, NOR THAT ANY INFORMATION ON THE SITE WILL BE COMPLETE, ACCURATE, OR CURRENT.</p>
 
 <h2 id="liability">10. Limitation of Liability</h2>
 <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, GRAND FUNDING, ITS MEMBERS, MANAGERS, EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, REVENUE, DATA, OR BUSINESS OPPORTUNITIES, ARISING FROM OR RELATING TO YOUR USE OF THE SITE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. GRAND FUNDING'S AGGREGATE LIABILITY FOR ANY CLAIM ARISING FROM USE OF THE SITE SHALL NOT EXCEED ONE HUNDRED DOLLARS ($100).</p>

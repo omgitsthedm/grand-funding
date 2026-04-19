@@ -101,6 +101,12 @@ A failure on any of these pages **blocks merge with exit code 2** (higher priori
 - `/arizona-hard-money-lender.html`
 - `/fix-and-flip-loans-arizona.html`
 - `/bridge-loans-arizona.html`
+- `/blog.html` (editorial index — breaks silently if CSS missing)
+- `/funded-deals.html` (proof — breaks silently if CSS missing)
+- `/partners.html` (broken silently if CSS missing)
+- `/about.html` (trust page)
+- `/contact.html` (conversion endpoint)
+- `/apply.html` (conversion endpoint)
 
 ### Run it locally before pushing
 

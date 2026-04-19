@@ -35,7 +35,13 @@ const WATCHLIST = [
   '/phoenix-hard-money-lender.html',
   '/arizona-hard-money-lender.html',
   '/fix-and-flip-loans-arizona.html',
-  '/bridge-loans-arizona.html'
+  '/bridge-loans-arizona.html',
+  '/blog.html',
+  '/funded-deals.html',
+  '/partners.html',
+  '/about.html',
+  '/contact.html',
+  '/apply.html'
 ];
 
 // ─────────────────────────────────────────────────────────────

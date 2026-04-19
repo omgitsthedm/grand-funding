@@ -681,6 +681,8 @@ select:focus-visible,textarea:focus-visible,
   border-radius: var(--gf-r-xl)!important;
   min-height: unset!important;
 }
+/* Kill the legacy radial-gradient ::after overlay that dimmed text */
+.blog-card::before,.blog-card::after{content:none!important;display:none!important}
 .blog-card__link{display:flex;flex-direction:column;height:100%;text-decoration:none!important}
 .blog-card__image{
   width:100%!important;

@@ -397,6 +397,14 @@ select:focus-visible,textarea:focus-visible,.cta-btn:focus-visible,.btn:focus-vi
     aspect-ratio:16/10
   }
 }
+
+/* ============================================================
+   CONTENT-VISIBILITY FIX 2026-04-19 — ensure content renders
+   ============================================================ */
+/* Override global content-visibility:auto that was hiding sections */
+main>section,main>section:not(.hero):not(.trust-strip){content-visibility:visible!important;contain-intrinsic-size:unset!important}
+/* Only hide truly below-fold decorative items — none applied by default now */
+.blog-card,.blog-section,.blog-grid,.blog-container,article.blog-post{content-visibility:visible!important}
 </style>
 
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="stylesheet" href="/blog.css?v=20260422"><style data-inline="compliance">/* Compliance pages — shared layout */

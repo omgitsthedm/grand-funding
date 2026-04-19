@@ -1870,6 +1870,65 @@ aside.sticky-cta,
   align-self: start;
   height: fit-content;
 }
+
+/* ==========================================================
+   NESTED-CARD DEFEAT (hard rule, runs after everything above)
+   Any wrapper that CONTAINS an inner card-styled element
+   becomes a transparent passthrough. Prevents the "card-inside-
+   a-card" look caused by selector lists matching both layers.
+   Uses :has() — supported in Safari 15.4+, Chrome 105+.
+   ========================================================== */
+.ready-to-start:has(> .cta-card),
+.product-cta:has(> .cta-card),
+.product-cta:has(> .ready-to-start),
+.contact-card:has(> .cta-card),
+.contact-card:has(> .contact-card-inner),
+.mini-cta:has(> .cta-card),
+.sidebar-cta:has(> .cta-card),
+.apply-card:has(> .cta-card),
+.service-area-card:has(> .service-areas),
+.loan-sidebar:has(> .cta-card),
+/* Generic safety: any compact-cta wrapper that directly contains
+   another card-shaped element reverts to a bare grid cell. */
+.ready-to-start:has(> [class*="card"]),
+.product-cta:has(> [class*="card"]){
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  border-radius: 0 !important;
+  display: block !important;
+}
+.ready-to-start:has(> .cta-card)::before,
+.product-cta:has(> .cta-card)::before,
+.contact-card:has(> .contact-card-inner)::before{
+  content: none !important;
+}
+
+/* Products page: .product-cta is always a column wrapper on this
+   site — never style it as a card. Inner .cta-card is THE card. */
+.product-section .product-cta,
+.product-details .product-cta{
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  border-radius: 0 !important;
+  display: block !important;
+  align-self: start !important;
+  height: fit-content !important;
+}
+
+/* Make sure the INNER .cta-card stays full-width inside its wrapper
+   and keeps premium proportioning. */
+.product-cta > .cta-card,
+.product-details .cta-card{
+  width: 100% !important;
+  max-width: 420px !important;
+  margin: 0 auto !important;
+}
 /* === END PREMIUM SYSTEM v1 === */
 </style>
 

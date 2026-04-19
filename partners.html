@@ -1871,6 +1871,65 @@ aside.sticky-cta,
   align-self: start;
   height: fit-content;
 }
+
+/* ==========================================================
+   NESTED-CARD DEFEAT (hard rule, runs after everything above)
+   Any wrapper that CONTAINS an inner card-styled element
+   becomes a transparent passthrough. Prevents the "card-inside-
+   a-card" look caused by selector lists matching both layers.
+   Uses :has() — supported in Safari 15.4+, Chrome 105+.
+   ========================================================== */
+.ready-to-start:has(> .cta-card),
+.product-cta:has(> .cta-card),
+.product-cta:has(> .ready-to-start),
+.contact-card:has(> .cta-card),
+.contact-card:has(> .contact-card-inner),
+.mini-cta:has(> .cta-card),
+.sidebar-cta:has(> .cta-card),
+.apply-card:has(> .cta-card),
+.service-area-card:has(> .service-areas),
+.loan-sidebar:has(> .cta-card),
+/* Generic safety: any compact-cta wrapper that directly contains
+   another card-shaped element reverts to a bare grid cell. */
+.ready-to-start:has(> [class*="card"]),
+.product-cta:has(> [class*="card"]){
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  border-radius: 0 !important;
+  display: block !important;
+}
+.ready-to-start:has(> .cta-card)::before,
+.product-cta:has(> .cta-card)::before,
+.contact-card:has(> .contact-card-inner)::before{
+  content: none !important;
+}
+
+/* Products page: .product-cta is always a column wrapper on this
+   site — never style it as a card. Inner .cta-card is THE card. */
+.product-section .product-cta,
+.product-details .product-cta{
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  border-radius: 0 !important;
+  display: block !important;
+  align-self: start !important;
+  height: fit-content !important;
+}
+
+/* Make sure the INNER .cta-card stays full-width inside its wrapper
+   and keeps premium proportioning. */
+.product-cta > .cta-card,
+.product-details .cta-card{
+  width: 100% !important;
+  max-width: 420px !important;
+  margin: 0 auto !important;
+}
 /* === END PREMIUM SYSTEM v1 === */
 </style><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','functionality_storage':'granted','security_storage':'granted','wait_for_update':500});gtag('set','ads_data_redaction',true);</script><script>(function(){if(navigator.webdriver)return;gtag("js",new Date());gtag("config","G-K825ENLYS6");var _l=false;function _g(){if(_l)return;_l=true;var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-K825ENLYS6";document.head.appendChild(s);}if(window.requestIdleCallback){requestIdleCallback(_g,{timeout:4000});}else{setTimeout(_g,4000);}["click","touchstart","scroll","keydown"].forEach(function(e){document.addEventListener(e,_g,{once:true,passive:true});});}());</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Grand Funding LLC","url":"https://www.grandfundingllc.com","logo":"https://www.grandfundingllc.com/images/brand-logo-dark.webp","telephone":"+16029350371","email":"info@grandfundingllc.com","areaServed":["Arizona","California"],"legalName":"Grand Funding LLC"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","speakable":{"@type":"SpeakableSpecification","cssSelector":[".hero-content",".section-header","h1","h2"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Logan Sullivan","jobTitle":"Founder, Grand Funding LLC","url":"https://www.grandfundingllc.com/about","worksFor":{"@type":"Organization","name":"Grand Funding LLC","url":"https://www.grandfundingllc.com"},"identifier":{"@type":"PropertyValue","name":"NMLS ID","value":"2466872"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Grand Funding work with mortgage brokers and referral partners?","acceptedAnswer":{"@type":"Answer","text":"Yes. Grand Funding works with real estate agents, mortgage brokers, investors, and referral partners. Partner referrals are prioritized for fast turnaround."}},{"@type":"Question","name":"How does Grand Funding's referral program work?","acceptedAnswer":{"@type":"Answer","text":"Contact Grand Funding at (602) 935-0371 or info@grandfundingllc.com to discuss partnership opportunities. Referrals are tracked and compensated per the partnership agreement."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.grandfundingllc.com/"},{"@type":"ListItem","position":2,"name":"Partners","item":"https://www.grandfundingllc.com/partners"}]}</script>
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><style data-inline="compliance">/* Compliance pages — shared layout */

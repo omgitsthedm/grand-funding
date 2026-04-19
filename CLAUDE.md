@@ -34,6 +34,9 @@
 | 2026-04-19 | Mobile spacing tokens reduced | --spacing-xl:2rem, --spacing-2xl:3rem, --spacing-lg:1.5rem at 480px; 2.5rem/3.75rem at 768px. Section padding tightened site-wide via section class selectors. |
 | 2026-04-19 | Proportional type scale 480px | section-title:1.5rem, cta-title:1.75rem, hero-title:1.625rem; 375px drops to 15.5px root font-size. blog.css/products.css/about.css/apply.css all received 480+375px polish blocks. |
 | 2026-04-19 | Blog posts: styles-v2.css + fonts added | All 12 posts were missing styles-v2.css (CSS variables broken) and Google Fonts. Added blocking styles-v2.css + preconnect/preload to all 12 post heads. |
+| 2026-04-19 | GA4 deferred across all 52 pages | Replaced synchronous gtag.js load with requestIdleCallback(4s) + first-interaction trigger. Consent defaults + dataLayer setup remain sync (legal). Page view queued immediately — replays on load. Removed forced-reflow, unused-js, legacy-js from Lighthouse critical path. Result: mobile 72-74 → 81/100, desktop 96-98 → 99/100. |
+| 2026-04-19 | Font CLS prevention | Added 'Inter' to inline CSS body font-family stack. Prevents font-metric CLS path if styles-v2.css ever goes async. |
+| 2026-04-19 | Blog post duplicate blog.css removed | Posts were loading blog.css twice (async + blocking). Removed redundant async link. |
 
 ## Current Status
 - **Phase:** Deployed / Maintenance
@@ -53,7 +56,7 @@
   - Organization schema on index.html
   - GA4 G-K825ENLYS6 live on all 37 pages
   - Netlify Forms with honeypot on apply + contact
-  - Lighthouse scores: 97 perf / 100 a11y / 100 best practices / 100 SEO
+  - Lighthouse scores: Desktop 99 perf / 100 a11y / 100 best practices / 100 SEO | Mobile 81 perf / 100 a11y / 100 best practices / 100 SEO
 - **What's pending:**
   - Article OG images for blog posts (currently all use generic og-grandfunding.png)
   - Consider adding <main> landmark to about.html, faq.html, products.html

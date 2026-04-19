@@ -145,9 +145,14 @@ body .blog-hero-image{
    ============================================================ */
 
 /* ==========================
-   HERO BACKGROUND VIDEO
-   Show on all breakpoints (mobile included), respecting reduced-motion.
-   Overrides legacy styles-v2.css rule `@media(max-width:720px){.hero-video{display:none}}`.
+   HERO — minimal, respect existing markup
+   styles-v2.css already provides .hero-overlay as the legibility wash.
+   Our only job here:
+   1. Override legacy `@media(max-width:720px){.hero-video{display:none}}`
+      so background video plays on mobile.
+   2. Fix z-index stack so content sits ABOVE overlay:
+        video (z:0) < overlay (z:1) < content (z:2)
+   Do NOT add a second ::after overlay — that produced the grey-out.
    ========================== */
 .hero{position:relative;overflow:hidden;isolation:isolate}
 .hero-video,
@@ -161,18 +166,22 @@ body .blog-hero-image{
   object-fit:cover;
   z-index:0;
   pointer-events:none;
-  filter:saturate(1.08) contrast(1.05) brightness(.92);
+  filter:saturate(1.06) contrast(1.02) brightness(.98);
   transform:scale(1.02);
+}
+.hero .hero-overlay{
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  pointer-events:none;
 }
 .hero > .container,
 .hero .hero-content,
-.hero-overlay{position:relative;z-index:2}
-.hero::after{
-  /* Lightweight legibility wash — video reads, copy stays crisp */
-  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:
-    linear-gradient(180deg, rgba(6,7,11,.25) 0%, rgba(6,7,11,.45) 60%, rgba(6,7,11,.65) 100%),
-    radial-gradient(60% 60% at 20% 40%, rgba(6,7,11,.35), transparent 70%);
+.hero .hero-inner,
+.hero h1,
+.hero .hero-copy{
+  position:relative!important;
+  z-index:2!important;
 }
 @media (prefers-reduced-motion: reduce){
   .hero-video{display:none!important}

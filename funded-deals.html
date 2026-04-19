@@ -1702,6 +1702,185 @@ body.home main > section:first-child{
     gap: .6rem;
   }
 }
+
+/* ==========================================================
+   COMPACT CTA CARD BALANCE FIX
+   Any small CTA block ("Ready to Get Started", "Call Us",
+   "Email Us", mini-CTA sidebar, service-area pill card) used to
+   render as a wide rectangle with content hanging top-left.
+   Now: centered content, gradient anchor, consistent proportion.
+   Applies wherever these pattern classes appear — product page,
+   contact page, about page, LP pages, blog callout rails.
+   ========================================================== */
+
+.ready-to-start,
+.product-cta,
+.mini-cta,
+.cta-card,
+.call-card,
+.email-card,
+.phone-card,
+.contact-card,
+.sidebar-cta,
+.side-cta,
+.apply-cta-box,
+.apply-card,
+.service-area-card,
+.loan-sidebar,
+aside.sticky-cta,
+[data-compact-cta],
+.product-section > aside,
+.product-section .product-cta,
+.loans-sidebar-card{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: .6rem !important;
+  padding: clamp(1.5rem, 3vw, 2rem) !important;
+  min-height: clamp(200px, 28vw, 260px);
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(79,227,210,.10), transparent 65%),
+    linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(14,16,22,.9) 100%) !important;
+  border: 1px solid rgba(79,227,210,.18) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.06) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle ambient glow corner */
+.ready-to-start::before,
+.product-cta::before,
+.mini-cta::before,
+.contact-card::before,
+.apply-card::before{
+  content: "";
+  position: absolute;
+  inset: auto -30% -40% -30%;
+  height: 120%;
+  background: radial-gradient(50% 100% at 50% 0%, rgba(240,178,107,.08), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.ready-to-start > *,
+.product-cta > *,
+.mini-cta > *,
+.contact-card > *,
+.apply-card > *{ position: relative; z-index: 1; }
+
+/* Kickers inside compact CTA cards */
+.ready-to-start .kicker,
+.ready-to-start > h3,
+.ready-to-start > h4,
+.product-cta .kicker,
+.product-cta > h3,
+.contact-card .contact-card-title,
+.contact-card > h3,
+.mini-cta > h3{
+  font-size: .72rem !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase !important;
+  color: var(--gf-teal) !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+}
+
+/* Body line inside compact CTA card */
+.ready-to-start > p,
+.product-cta > p,
+.mini-cta > p,
+.contact-card > p,
+.contact-card-meta,
+.apply-card > p{
+  margin: 0 !important;
+  color: var(--gf-ink-1) !important;
+  font-size: .98rem !important;
+  line-height: 1.55 !important;
+  max-width: 32ch;
+}
+
+/* Make phone/email numbers feel premium (large, tabular, ember) */
+.contact-card a[href^="tel:"],
+.contact-card a[href^="mailto:"],
+.call-card a,
+.email-card a,
+.phone-card a{
+  display: inline-block;
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  font-variant-numeric: tabular-nums;
+  color: var(--gf-ink-0) !important;
+  letter-spacing: -.01em;
+  border-bottom: none !important;
+  padding: .25rem 0;
+}
+.contact-card a[href^="tel:"]:hover,
+.contact-card a[href^="mailto:"]:hover{
+  color: var(--gf-teal) !important;
+}
+
+/* CTA button inside these compact cards — stretches, stays centered */
+.ready-to-start .btn,
+.product-cta .btn,
+.mini-cta .btn,
+.contact-card .btn,
+.apply-card .btn,
+.sidebar-cta .btn{
+  width: 100% !important;
+  max-width: 300px !important;
+  margin: .25rem auto !important;
+  padding: .95rem 1.5rem !important;
+  font-weight: 700 !important;
+  box-shadow:
+    0 10px 30px rgba(79,227,210,.2),
+    0 0 0 1px rgba(79,227,210,.25) inset !important;
+}
+
+/* Service-area pill grid (Contact page) */
+.service-area-card,
+.service-areas{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: .75rem !important;
+  min-height: 0 !important;
+}
+.service-areas .service-pills,
+.service-areas .pills,
+.service-area-list{
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: .5rem !important;
+  margin-top: .5rem;
+}
+.service-areas .pill,
+.service-area-list .pill,
+.service-pills > *{
+  padding: .4rem .9rem !important;
+  border: 1px solid rgba(79,227,210,.22) !important;
+  border-radius: 999px !important;
+  background: rgba(79,227,210,.06) !important;
+  color: var(--gf-ink-0) !important;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+/* When a compact CTA card sits in a 2-col grid where its sibling is
+   much taller, don't stretch it to match — cap height and center in
+   the column using align-self:start so the card reads compact. */
+.product-section > aside,
+.product-section .product-cta,
+.products-grid > .product-cta,
+.contact-grid > .contact-card,
+.two-col > .sidebar-cta{
+  align-self: start;
+  height: fit-content;
+}
 /* === END PREMIUM SYSTEM v1 === */
 </style><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','functionality_storage':'granted','security_storage':'granted','wait_for_update':500});gtag('set','ads_data_redaction',true);</script><script>(function(){if(navigator.webdriver)return;gtag("js",new Date());gtag("config","G-K825ENLYS6");var _l=false;function _g(){if(_l)return;_l=true;var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-K825ENLYS6";document.head.appendChild(s);}if(window.requestIdleCallback){requestIdleCallback(_g,{timeout:4000});}else{setTimeout(_g,4000);}["click","touchstart","scroll","keydown"].forEach(function(e){document.addEventListener(e,_g,{once:true,passive:true});});}());</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Grand Funding LLC","url":"https://www.grandfundingllc.com","logo":"https://www.grandfundingllc.com/images/brand-logo-dark.webp","telephone":"+16029350371","email":"info@grandfundingllc.com","areaServed":["Arizona","California"],"legalName":"Grand Funding LLC"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","speakable":{"@type":"SpeakableSpecification","cssSelector":[".hero-content",".section-header","h1","h2"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Logan Sullivan","jobTitle":"Founder, Grand Funding LLC","url":"https://www.grandfundingllc.com/about","worksFor":{"@type":"Organization","name":"Grand Funding LLC","url":"https://www.grandfundingllc.com"},"identifier":{"@type":"PropertyValue","name":"NMLS ID","value":"2466872"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I see examples of deals Grand Funding has funded?","acceptedAnswer":{"@type":"Answer","text":"Yes. This page showcases recently funded deals with loan amounts, property types, timelines, and deal notes. Grand Funding funds fix-and-flip, bridge, construction, and cash-out refinance loans."}},{"@type":"Question","name":"How fast did these funded deals close?","acceptedAnswer":{"@type":"Answer","text":"Most deals on this page closed in 3–10 business days. Purchase and bridge loans typically close in 3–5 business days. Refinances and construction loans take 7–12 days."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Recently Funded Deals — Grand Funding LLC","url":"https://www.grandfundingllc.com/funded-deals","description":"Gallery of recently funded hard money loans in Arizona and California including fix-and-flip, bridge, and construction loans.","about":{"@type":"FinancialService","name":"Grand Funding LLC","url":"https://www.grandfundingllc.com"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.grandfundingllc.com/"},{"@type":"ListItem","position":2,"name":"Funded Deals","item":"https://www.grandfundingllc.com/funded-deals"}]}</script>
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><style data-inline="compliance">/* Compliance pages — shared layout */

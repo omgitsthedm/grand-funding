@@ -382,3 +382,26 @@
   opacity: 1;
 }
 
+/* ===================================
+   MOBILE POLISH — 2026-04-19
+   =================================== */
+@media (max-width: 480px) {
+  .blog-hero h1 { font-size: 1.625rem; }
+  .blog-hero .hero-subtitle { font-size: 0.9375rem; }
+  .blog-card__inner { padding: 14px 14px 12px; gap: 8px; }
+  .blog-card__cta { padding: 0 14px 12px; }
+  .blog-card h2 { font-size: 1.1rem; line-height: 1.25; }
+  .blog-card p { font-size: 0.875rem; }
+  .blog-card__meta { font-size: 0.8rem; gap: 6px 8px; }
+  .blog-tag { padding: 3px 8px; font-size: 0.78rem; }
+  .post-header h2 { font-size: 1.25rem; }
+  .blog-post { padding: 1rem; }
+  /* Keep Read More links auto-width — they should never be full-width */
+  .blog-card__cta a, .blog-card__cta .ghost-btn { width: auto !important; }
+}
+
+@media (max-width: 375px) {
+  .blog-card h2 { font-size: 1rem; }
+  .blog-card__inner { padding: 12px 12px 10px; }
+}
+

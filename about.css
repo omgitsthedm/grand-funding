@@ -368,3 +368,34 @@
   .story-content { padding: 1.25rem; }
   .reason-number { font-size: 2.25rem; }
 }
+
+/* ===================================
+   MOBILE POLISH — 2026-04-19
+   =================================== */
+@media (max-width: 480px) {
+  .about-hero h1 { font-size: 1.625rem; }
+  .about-hero .hero-subtitle { font-size: 0.9375rem; }
+  .about-story h2 { font-size: 1.5rem; }
+  .story-content { padding: 1rem; }
+  .about-story p { font-size: 0.9375rem; line-height: 1.7; }
+  .story-highlight { padding: 0.875rem; }
+  .story-highlight h3 { font-size: 1.1rem; }
+  .story-highlight li { font-size: 0.9rem; }
+  .story-conclusion { font-size: 1rem; }
+  .service-card { padding: 1.125rem; }
+  .service-card h3 { font-size: 1.25rem; }
+  .value-item { padding: 1rem; }
+  .value-item h3 { font-size: 1.15rem; }
+  .reason-card { padding: 1rem; }
+  .reason-number { font-size: 1.875rem; }
+  .reason-card h3 { font-size: 1.1rem; }
+  .reason-card p { font-size: 0.875rem; }
+  .meet-logan .logan-text { padding: 1rem; }
+  .meet-logan .logan-credentials li { padding: 0.625rem 0.75rem; font-size: 0.875rem; }
+  .meet-logan .contact-card { padding: 1.125rem; }
+}
+
+@media (max-width: 375px) {
+  .about-hero h1 { font-size: 1.375rem; }
+  .about-story h2 { font-size: 1.25rem; }
+}

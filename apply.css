@@ -165,3 +165,29 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ===================================
+   MOBILE POLISH — 2026-04-19
+   =================================== */
+@media (max-width: 480px) {
+  .apply-hero { padding: 2rem 0; }
+  .apply-title { font-size: clamp(1.5rem, 5vw, 2rem); }
+  .apply-subtitle { font-size: 0.9375rem; }
+  .apply-kicker { font-size: 0.78rem; padding: 6px 10px; margin-bottom: 10px; }
+  .apply-proof { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .apply-proof__item { padding: 10px 8px; }
+  .proof-num { font-size: 1rem; }
+  .proof-label { font-size: 0.78rem; }
+  .apply-card { padding: 14px; }
+  .apply-card__title { font-size: 1.2rem; }
+  .field span { font-size: 0.875rem; }
+  .field input,
+  .field select,
+  .field textarea { padding: 10px 10px; font-size: 0.9375rem; }
+  .apply-note { padding: 10px 12px; font-size: 0.875rem; }
+}
+
+@media (max-width: 375px) {
+  .apply-proof { grid-template-columns: 1fr; }
+  .apply-title { font-size: 1.375rem; }
+}

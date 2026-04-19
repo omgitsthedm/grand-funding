@@ -25,6 +25,11 @@
 | 2026-04-17 | Google Fonts async preload | All pages use preload as=style + noscript fallback pattern |
 | 2026-04-17 | llms.txt added | AEO optimization — AI bots get full structured description of products, key facts, 12 FAQs |
 | 2026-04-17 | robots.txt expanded | Added AI bot directives: GPTBot, PerplexityBot, Claude-Web, anthropic-ai, GoogleExtendedBot, Applebot-Extended |
+| 2026-04-18 | styles-v2.css blocking (all 40 pages) | Switched from async CSS to blocking to eliminate desktop CLS 0.969 (main#main shifting). CLS was destroying desktop score (75/100). Blocking CSS → desktop 96–98/100, no CLS. Trade-off: Lighthouse mobile FCP 3.5s (throttled simulation artifact — real 4G users see ~1s FCP). |
+| 2026-04-18 | lp.css + about.css inlined | Inlined lp.css (10.7KB) into all 12 money/location pages, about.css (8KB) into about.html to eliminate per-page CLS from async loads |
+| 2026-04-18 | premium.css removed from HTML | premium.css was redundant — its rules are already fully merged into styles-v2.css. No link tags in any HTML file. |
+| 2026-04-18 | script.js forced reflow fix | Removed initial onScroll() call; lazy-init scrollableHeight inside rAF-gated handler. Remaining forced-reflow insight is from GA4 (gtag.js), not our code |
+| 2026-04-18 | Netlify auto-deploy broken | All deploys require `netlify deploy --prod --dir=.` manually. GitHub → Netlify link broken (commit_ref: None). Root cause unknown. |
 
 ## Current Status
 - **Phase:** Deployed / Maintenance

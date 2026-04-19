@@ -144,12 +144,15 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced || !('IntersectionObserver' in window)) return;  // already visible
 
+    // NOTE: 'section' REMOVED — section wrappers can be taller than viewport,
+    // making intersectionRatio never exceed threshold → element stays hidden forever.
+    // Only tag card-level elements that are viewport-sized or smaller.
     const selectors = [
-        'section', '.product-section', '.blog-post', '.service-card',
+        '.product-section', '.blog-post', '.service-card',
         '.feature-card', '.fun-fact-card', '.cta-card', '.value-item',
         '.reason-card', '.faq-item', '.product-card', '.story-card',
         '.fun-fact', '.process-step', '.blog-card', '.contact-card',
-        '.team-card', '.timeline-item', '.apply-step', '.contact-layout',
+        '.team-card', '.timeline-item', '.apply-step',
         '[data-reveal]'
     ];
 

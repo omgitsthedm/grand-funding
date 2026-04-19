@@ -26,8 +26,10 @@
 
   /* Auto-tag common sections for reveal on first run */
   document.addEventListener('DOMContentLoaded',function(){
+    /* NOTE: .hero-content EXCLUDED — always above-fold, reveal animation caused
+       CLS + LCP delays (LCP element waits for opacity transition to complete). */
     var autoTargets=[
-      '.section-header','.hero-content','.story-content','.story-highlight',
+      '.section-header','.story-content','.story-highlight',
       '.featured-grid','.deals-grid','.values-grid','.reasons-grid','.services-grid',
       '.fun-facts-grid','.logan-content','.cta-content','.deals-stats',
       '.glossary-controls','.glossary-panels','.footer-main'

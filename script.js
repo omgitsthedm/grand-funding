@@ -151,7 +151,15 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     ];
 
     const els = document.querySelectorAll(selectors.join(','));
-    els.forEach(el => el.classList.add('reveal'));
+    // Skip above-fold elements: .hero, .hero-content, and the first <section>
+    // (always the hero). Reveal animation on these delays LCP and risks CLS.
+    const firstSection = document.querySelector('section');
+    els.forEach(el => {
+        if (el === firstSection) return;
+        if (el.classList.contains('hero') || el.classList.contains('hero-content')) return;
+        if (el.closest('.hero')) return;
+        el.classList.add('reveal');
+    });
 
     const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

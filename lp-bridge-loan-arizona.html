@@ -176,6 +176,153 @@ img,video,iframe{max-width:100%;height:auto}
   .header .cta-btn,.header a.cta-btn{display:none!important}
   .brand-wordmark{font-size:.95rem!important}
 }
+
+/* ============================================================
+   PREMIUM POLISH PACK 2026-04-19 — WOW-level mobile + tablet + desktop
+   Addresses: icon centering, footer collapse, hero poster visibility,
+   glass refinement, transition smoothness.
+   ============================================================ */
+
+/* ---- ICON ALIGNMENT FIX (all card variants, all sizes) ---- */
+.feature-icon,
+.service-icon,
+.product-icon,
+.reason-icon,
+.value-icon,
+.card-icon,
+.fact-icon,
+.story-icon,
+.process-icon{
+  display:flex!important;
+  margin:0 auto 1rem auto!important;        /* center the 44px icon block */
+  align-items:center;
+  justify-content:center;
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:linear-gradient(135deg,rgba(79,227,210,.18),rgba(240,178,107,.12))!important;
+  border:1px solid rgba(79,227,210,.28);
+  box-shadow:0 4px 16px rgba(79,227,210,.12),inset 0 1px 0 rgba(255,255,255,.08);
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s cubic-bezier(.2,.8,.2,1);
+}
+.feature-icon svg,.service-icon svg,.product-icon svg,
+.reason-icon svg,.value-icon svg,.card-icon svg{
+  width:24px;height:24px;color:var(--primary-color,#4FE3D2);
+}
+.feature-card:hover .feature-icon,
+.service-card:hover .service-icon,
+.product-card:hover .product-icon{
+  transform:translateY(-2px) scale(1.04);
+  box-shadow:0 8px 24px rgba(79,227,210,.2),inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+/* ---- FOOTER FIX (beat .footer .footer-main--clean !important with equal+ specificity) ---- */
+@media(max-width:768px){
+  .footer .footer-main,
+  .footer .footer-main--clean,
+  body .footer .footer-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:1.75rem!important;
+    margin-bottom:1.5rem!important;
+    text-align:left
+  }
+  .footer .footer-brand{max-width:100%!important;width:100%}
+  .footer .footer-links{width:100%;min-width:0}
+  .footer .footer-links h3,
+  .footer .footer-links h4,
+  .footer .footer-nav-title{font-size:.72rem!important;letter-spacing:.15em!important;text-transform:uppercase;color:rgba(244,247,255,.55)!important;margin-bottom:.75rem!important;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+  .footer .footer-links ul{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem}
+  .footer .footer-links li{padding:0!important;min-height:0}
+  .footer .footer-links li a{font-size:.95rem;padding:.4rem 0!important;min-height:36px;color:rgba(244,247,255,.85)!important}
+  .footer-bottom{padding-top:1.25rem!important;border-top:1px solid rgba(255,255,255,.08);margin-top:1rem!important}
+  .footer-legal-links{flex-wrap:wrap;gap:.5rem 1.25rem!important;font-size:.8rem}
+  .footer-meta{font-size:.75rem!important;color:rgba(244,247,255,.55)!important}
+  .footer-license{padding:1rem!important;margin:1rem 0!important;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+  .footer-license-verify{font-size:.78rem!important}
+}
+
+/* ---- HERO POSTER VISIBILITY (lighter overlay, better framing on mobile) ---- */
+@media(max-width:768px){
+  .hero-overlay{
+    background:linear-gradient(180deg,
+      rgba(7,8,11,.35) 0%,
+      rgba(7,8,11,.55) 35%,
+      rgba(7,8,11,.85) 100%)!important;
+  }
+  .hero-media{
+    background-position:center 30%!important;  /* Frame city skyline top portion on portrait viewport */
+    background-size:cover!important;
+  }
+  .hero-grain{opacity:.08!important}  /* Lighter grain so poster reads cleaner */
+}
+
+/* ---- PREMIUM TOUCHES: refined transitions + glass ---- */
+.feature-card,.product-card,.service-card,.value-item,.reason-card,.fun-fact-card{
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),
+             border-color .35s cubic-bezier(.2,.8,.2,1),
+             box-shadow .35s cubic-bezier(.2,.8,.2,1),
+             background .35s cubic-bezier(.2,.8,.2,1)!important;
+}
+
+/* Premium dark theme card polish */
+.theme-dark .feature-card,
+.theme-dark .product-card,
+.theme-dark .service-card,
+.theme-dark .value-item,
+.theme-dark .reason-card{
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02))!important;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.08)!important;
+  box-shadow:0 4px 20px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05)!important;
+}
+.theme-dark .feature-card:hover,
+.theme-dark .product-card:hover,
+.theme-dark .service-card:hover,
+.theme-dark .value-item:hover,
+.theme-dark .reason-card:hover{
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03))!important;
+  border-color:rgba(79,227,210,.28)!important;
+  box-shadow:0 12px 40px rgba(0,0,0,.4),0 0 0 1px rgba(79,227,210,.12),inset 0 1px 0 rgba(255,255,255,.08)!important;
+  transform:translateY(-2px);
+}
+
+/* Refined heading hierarchy */
+.theme-dark .feature-card h3,
+.theme-dark .product-card h3,
+.theme-dark .service-card h3{
+  font-weight:700!important;
+  letter-spacing:-.015em!important;
+  background:linear-gradient(180deg,#FFFFFF 0%,rgba(244,247,255,.88) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent!important;
+}
+
+/* Better visual separation between sections */
+main>section{
+  position:relative;
+}
+main>section:not(:first-child)::before{
+  content:"";
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(120px,40%);height:1px;
+  background:linear-gradient(90deg,transparent,rgba(79,227,210,.25),transparent);
+}
+
+/* Premium focus states across all interactive elements */
+a:focus-visible,button:focus-visible,input:focus-visible,
+select:focus-visible,textarea:focus-visible,.cta-btn:focus-visible,.btn:focus-visible{
+  outline:2px solid rgba(79,227,210,.6)!important;
+  outline-offset:3px!important;
+  border-radius:inherit
+}
+
+/* Smooth number count-up aesthetic */
+.stat-number,.fun-fact-number,.proof-num{
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"ss01","cv11";
+  letter-spacing:-.02em!important;
+}
 </style><meta property="og:title" content="Arizona Bridge Loans — Close in 3–5 Days | Grand Funding LLC"><meta property="og:description" content="width=device-width,initial-scale=1"><meta property="og:type" content="website"><meta property="og:url" content="https://www.grandfundingllc.com/lp-bridge-loan-arizona"><meta property="og:image" content="https://www.grandfundingllc.com/images/og-grandfunding.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://www.grandfundingllc.com/images/og-grandfunding.png"><meta name="twitter:title" content="Arizona Bridge Loans — Close in 3–5 Days | Grand Funding LLC"><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','functionality_storage':'granted','security_storage':'granted','wait_for_update':500});gtag('set','ads_data_redaction',true);</script><script>(function(){if(navigator.webdriver)return;gtag("js",new Date());gtag("config","G-K825ENLYS6");var _l=false;function _g(){if(_l)return;_l=true;var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-K825ENLYS6";document.head.appendChild(s);}if(window.requestIdleCallback){requestIdleCallback(_g,{timeout:4000});}else{setTimeout(_g,4000);}["click","touchstart","scroll","keydown"].forEach(function(e){document.addEventListener(e,_g,{once:true,passive:true});});}());</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Grand Funding LLC","url":"https://www.grandfundingllc.com","logo":"https://www.grandfundingllc.com/images/brand-logo-dark.webp","telephone":"+16029350371","email":"info@grandfundingllc.com","areaServed":["Arizona","California"],"legalName":"Grand Funding LLC"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","speakable":{"@type":"SpeakableSpecification","cssSelector":[".hero-content",".section-header","h1","h2"]}}</script>
 <link rel="preload" href="/styles-v2.css?v=20260424" as="style" fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/styles-v2.css?v=20260424"></noscript><link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><style data-inline="compliance">/* Compliance pages — shared layout */
 .compliance-hero{padding:7rem 0 3rem;border-bottom:1px solid rgba(255,255,255,.06);background:linear-gradient(180deg,rgba(79,227,210,.04),transparent)}

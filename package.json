@@ -1,0 +1,24 @@
+{
+  "name": "grand-funding-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Grand Funding LLC — premium hard money lending site. Static HTML/CSS/JS on Netlify.",
+  "type": "module",
+  "scripts": {
+    "test:premium": "node scripts/qa-premium.mjs",
+    "test:premium:watchlist": "WATCHLIST_ONLY=1 node scripts/qa-premium.mjs",
+    "test:premium:local": "BASE_URL=http://localhost:8888 node scripts/qa-premium.mjs",
+    "playwright:install": "npx playwright install --with-deps chromium"
+  },
+  "devDependencies": {
+    "playwright": "^1.45.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omgitsthedm/grand-funding.git"
+  },
+  "license": "UNLICENSED"
+}

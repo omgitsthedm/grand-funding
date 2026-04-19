@@ -1,0 +1,91 @@
+name: Premium QA
+
+# Block regressions before they reach production.
+# Source of truth: /PREMIUM_STANDARDS.md + /premium-system.css + /scripts/qa-premium.mjs
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'URL to audit (defaults to production)'
+        required: false
+        default: 'https://www.grandfundingllc.com'
+      watchlist_only:
+        description: 'Watchlist-critical pages only (fast run)'
+        required: false
+        default: 'false'
+        type: boolean
+
+concurrency:
+  group: premium-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  premium-qa:
+    name: Premium QA Merge Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Wait for Netlify deploy preview (PR only)
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "Giving Netlify ~30s to finish deploying the preview for this PR."
+          echo "For push events we audit production directly."
+          sleep 30
+
+      - name: Run Premium QA
+        env:
+          CI: 'true'
+          BASE_URL: ${{ github.event.inputs.base_url || 'https://www.grandfundingllc.com' }}
+          WATCHLIST_ONLY: ${{ github.event.inputs.watchlist_only == 'true' && '1' || '' }}
+        run: |
+          npm run test:premium
+
+      - name: Upload QA report (always)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-report-${{ github.run_id }}
+          path: scripts/qa-report.json
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Premium QA Result" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f scripts/qa-report.json ]; then
+            echo '```json' >> $GITHUB_STEP_SUMMARY
+            node -e "const r = JSON.parse(require('fs').readFileSync('scripts/qa-report.json')); console.log(JSON.stringify(r.summary, null, 2))" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            if [ "${{ job.status }}" = "failure" ]; then
+              echo "### Failures by page/breakpoint" >> $GITHUB_STEP_SUMMARY
+              echo '```json' >> $GITHUB_STEP_SUMMARY
+              node -e "const r = JSON.parse(require('fs').readFileSync('scripts/qa-report.json')); console.log(JSON.stringify(r.failures, null, 2))" >> $GITHUB_STEP_SUMMARY
+              echo '```' >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "_No report generated — QA runner crashed._" >> $GITHUB_STEP_SUMMARY
+          fi

@@ -658,18 +658,57 @@ select:focus-visible,textarea:focus-visible,
 /* ==========================
    BLOG CARD / BLOG HERO
    ========================== */
+/* ============================================================
+   BLOG CARD — AUTHORITATIVE PREMIUM BLOCK
+   Editorial cards never depend on scroll-reveal; they render visible on first paint.
+   ============================================================ */
 .blog-card{
   overflow:hidden!important;
   display:flex!important;
   flex-direction:column!important;
-  padding:0!important;  /* Image goes edge-to-edge inside card */
+  padding:0!important;
   border-radius: var(--gf-r-xl)!important;
   min-height: unset!important;
-  color: var(--gf-ink-0)!important;  /* ensure descendants inherit light */
+  color: var(--gf-ink-0)!important;
+  /* BYPASS REVEAL — blog cards must always be visible, never depend on IO */
+  opacity:1!important;
+  transform:none!important;
+  visibility:visible!important;
+  filter:none!important;
+  transition: transform var(--gf-dur) var(--gf-ease),
+              border-color var(--gf-dur) var(--gf-ease),
+              box-shadow var(--gf-dur) var(--gf-ease)!important;
 }
-.blog-card__link{color:inherit!important}
+/* Double-protection: even if .reveal/.js-reveal-init ends up on blog-card, override */
+.blog-card.reveal,.blog-card.js-reveal-init,
+.blog-card.reveal.js-reveal-init,.blog-card.reveal-stagger{
+  opacity:1!important;transform:none!important;visibility:visible!important
+}
+/* And prevent reveal IO-injected state from taking effect on any child either */
+.blog-card *,.blog-card .reveal,.blog-card .reveal-stagger{
+  opacity:1;transform:none;filter:none
+}
+.blog-card__link{color:inherit!important;opacity:1!important}
 /* Kill the legacy radial-gradient ::after overlay that dimmed text */
-.blog-card::before,.blog-card::after{content:none!important;display:none!important}
+.blog-card::before,.blog-card::after{content:none!important;display:none!important;background:none!important;opacity:0!important}
+
+/* Excerpt truncation — 3 lines max on all breakpoints, premium tight rhythm */
+.blog-card__excerpt,.blog-card p{
+  display:-webkit-box!important;
+  -webkit-line-clamp:3!important;
+  line-clamp:3;
+  -webkit-box-orient:vertical!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis;
+  max-height: calc(1.55em * 3)!important;
+  margin:0!important;
+}
+@media(max-width:480px){
+  .blog-card__excerpt,.blog-card p{
+    -webkit-line-clamp:2!important;
+    max-height: calc(1.55em * 2)!important;
+  }
+}
 .blog-card__link{display:flex;flex-direction:column;height:100%;text-decoration:none!important}
 .blog-card__image{
   width:100%!important;

@@ -1,41 +1,12 @@
 {
-  "startedAt": "2026-04-19T11:37:21.540Z",
+  "startedAt": "2026-04-19T12:03:50.366Z",
   "base": "https://www.grandfundingllc.com",
-  "failures": {
-    "iphone-se-1 /blog.html": [
-      {
-        "id": "blog-card-broken",
-        "severity": "blocker",
-        "msg": "blog-card image not loaded: https://www.grandfundingllc.com/images/og/when-rates-decrease-opportunity-increases.png"
-      }
-    ],
-    "iphone-se /blog.html": [
-      {
-        "id": "blog-card-broken",
-        "severity": "blocker",
-        "msg": "blog-card image not loaded: https://www.grandfundingllc.com/images/og/when-rates-decrease-opportunity-increases.png"
-      }
-    ],
-    "iphone-13 /blog.html": [
-      {
-        "id": "blog-card-broken",
-        "severity": "blocker",
-        "msg": "blog-card image not loaded: https://www.grandfundingllc.com/images/og/when-rates-decrease-opportunity-increases.png"
-      }
-    ],
-    "iphone-max /blog.html": [
-      {
-        "id": "blog-card-broken",
-        "severity": "blocker",
-        "msg": "blog-card image not loaded: https://www.grandfundingllc.com/images/og/when-rates-decrease-opportunity-increases.png"
-      }
-    ]
-  },
+  "failures": {},
   "summary": {
-    "totalChecks": 1519,
-    "totalFails": 4,
+    "totalChecks": 616,
+    "totalFails": 0,
     "watchlistFails": 0,
-    "uniquePageFails": 4,
-    "durationMs": 340209
+    "uniquePageFails": 0,
+    "durationMs": 114271
   }
 }

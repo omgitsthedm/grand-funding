@@ -126,6 +126,40 @@ body .blog-hero-image{
    ============================================================ */
 
 /* ==========================
+   HERO BACKGROUND VIDEO
+   Show on all breakpoints (mobile included), respecting reduced-motion.
+   Overrides legacy styles-v2.css rule `@media(max-width:720px){.hero-video{display:none}}`.
+   ========================== */
+.hero{position:relative;overflow:hidden;isolation:isolate}
+.hero-video,
+.hero .hero-video,
+.hero-media .hero-video{
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover;
+  z-index:0;
+  pointer-events:none;
+  filter:saturate(1.05) contrast(1.08) brightness(.72);
+  transform:scale(1.02);
+}
+.hero > .container,
+.hero .hero-content,
+.hero-overlay{position:relative;z-index:2}
+.hero::after{
+  /* Cinematic darken gradient so hero copy stays legible on the video */
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(6,7,11,.55) 0%, rgba(6,7,11,.78) 55%, rgba(6,7,11,.92) 100%),
+    radial-gradient(900px 600px at 20% 30%, rgba(79,227,210,.10), transparent 60%);
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-video{display:none!important}
+}
+
+/* ==========================
    DESIGN TOKENS
    ========================== */
 :root{
@@ -333,23 +367,50 @@ main > section + section::before{
    Icons ALWAYS centered above heading OR left-inline with heading.
    Never upper-left while text is centered.
    ========================== */
+.feature-card,.service-card,.product-card,.reason-card,
+.value-item,.fun-fact-card,.story-card{
+  text-align:center;
+}
+.feature-card .feature-icon,.service-card .service-icon,
+.product-card .product-icon,.reason-card .reason-icon,
+.value-item .value-icon,.fun-fact-card .fact-icon,
+.story-card .story-icon,.process-step .process-icon,
 .feature-icon,.service-icon,.product-icon,.reason-icon,
 .value-icon,.card-icon,.fact-icon,.story-icon,.process-icon,
 [data-premium-icon]{
   display:flex!important;
-  align-items:center;
-  justify-content:center;
-  margin:0 auto var(--gf-s-4)!important;
-  width:56px;
-  height:56px;
-  border-radius:16px;
-  background: var(--gf-spot-soft);
-  border:1px solid rgba(79,227,210,.28);
+  align-items:center!important;
+  justify-content:center!important;
+  margin-top:0!important;
+  margin-right:auto!important;
+  margin-bottom:var(--gf-s-4)!important;
+  margin-left:auto!important;
+  width:64px!important;
+  height:64px!important;
+  border-radius:18px!important;
+  background:
+    linear-gradient(135deg, rgba(79,227,210,.18) 0%, rgba(18,181,166,.08) 100%),
+    var(--gf-spot-soft)!important;
+  border:1px solid rgba(79,227,210,.32)!important;
   box-shadow:
-    0 4px 16px rgba(79,227,210,.12),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    0 6px 22px rgba(79,227,210,.14),
+    inset 0 1px 0 rgba(255,255,255,.10)!important;
   transition:transform var(--gf-dur) var(--gf-ease),
-             box-shadow var(--gf-dur) var(--gf-ease);
+             box-shadow var(--gf-dur) var(--gf-ease),
+             border-color var(--gf-dur) var(--gf-ease)!important;
+  float:none!important;
+  position:relative!important;
+  flex:none!important;
+}
+/* Defeat legacy per-variant gradient backgrounds (feature-icon-speed, etc.)
+   that pre-date premium system and caused icons to look empty/misaligned. */
+.feature-icon.feature-icon-speed,
+.feature-icon.feature-icon-money,
+.feature-icon.feature-icon-transparent,
+.feature-icon.feature-icon-experience{
+  background:
+    linear-gradient(135deg, rgba(79,227,210,.22) 0%, rgba(240,178,107,.10) 100%),
+    var(--gf-spot-soft)!important;
 }
 .feature-icon svg,.service-icon svg,.product-icon svg,
 .reason-icon svg,.value-icon svg,.card-icon svg,
@@ -605,13 +666,74 @@ input[type="number"],select,textarea{
     grid-column: auto!important;
     grid-row: auto!important;
   }
-  .footer .footer-links ul{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem}
-  .footer .footer-links li{padding:0!important;min-height:0}
-  .footer .footer-links li a{
-    padding:.4rem 0!important;min-height:36px;
-    color:var(--gf-ink-1)!important;
-    font-size:.95rem;
+  /* Premium mobile footer: stacked column per section (NOT flex-wrap) */
+  .footer .footer-links{text-align:left}
+  .footer .footer-links ul{
+    display:flex!important;
+    flex-direction:column!important;
+    flex-wrap:nowrap!important;
+    gap:0!important;
+    list-style:none;
+    padding:0;margin:0;
   }
+  .footer .footer-links li{
+    padding:0!important;
+    min-height:44px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+  }
+  .footer .footer-links li:last-child{border-bottom:none}
+  .footer .footer-links li a{
+    display:flex!important;
+    align-items:center;
+    padding:.75rem 0!important;
+    min-height:44px;
+    color:var(--gf-ink-1)!important;
+    font-size:1rem;
+    font-weight:500;
+    letter-spacing:-.005em;
+    text-decoration:none;
+    transition:color .18s ease, padding-left .18s ease;
+  }
+  .footer .footer-links li a:hover,
+  .footer .footer-links li a:focus-visible{
+    color:var(--gf-teal)!important;
+    padding-left:.35rem!important;
+  }
+  /* Footer brand block */
+  .footer .footer-brand{
+    text-align:center;
+    padding-bottom:var(--gf-s-5);
+    border-bottom:1px solid var(--gf-line);
+    margin-bottom:var(--gf-s-4);
+  }
+  .footer .footer-wordmark{display:inline-flex;justify-content:center;align-items:baseline;gap:.35rem}
+  .footer .footer-tagline{margin:.5rem auto .75rem;max-width:34ch;color:var(--gf-ink-2)}
+  .footer .footer-contact{
+    display:flex;flex-direction:column;align-items:center;gap:.25rem;
+    margin-bottom:var(--gf-s-4);
+  }
+  .footer .footer-contact a{color:var(--gf-ink-0);font-weight:600}
+  .footer .footer-mini-cta{display:flex;justify-content:center}
+  .footer .footer-mini-cta .btn{width:100%;max-width:320px}
+  /* Legal / license */
+  .footer .footer-license,
+  .footer .footer-bottom{
+    padding:var(--gf-s-4) var(--gf-s-5);
+    text-align:center;
+  }
+  .footer .footer-license-info{font-size:.82rem;color:var(--gf-ink-2);line-height:1.5}
+  .footer .footer-license-verify{
+    display:inline-block;margin-top:.5rem;
+    font-size:.82rem;color:var(--gf-teal);text-decoration:underline;
+  }
+  .footer .footer-legal-links{
+    display:flex;flex-wrap:wrap;justify-content:center;
+    gap:.5rem 1.25rem;margin-bottom:var(--gf-s-3);
+  }
+  .footer .footer-legal-links a{font-size:.85rem;color:var(--gf-ink-2)}
+  .footer .footer-disclaimer{font-size:.75rem;color:var(--gf-ink-3);line-height:1.55;margin-bottom:var(--gf-s-3)}
+  .footer .footer-meta p{font-size:.8rem;color:var(--gf-ink-3);margin:.25rem 0}
+  .footer .footer-credit a{color:var(--gf-ember);text-decoration:none;font-weight:600}
 }
 
 /* ==========================
@@ -870,6 +992,324 @@ select:focus-visible,textarea:focus-visible,
     radial-gradient(900px 400px at 100% 100%, rgba(240,178,107,.04), transparent 60%);
 }
 
+/* =======================================================================
+   PREMIUM INTERIOR LAYOUT — cinematic treatment for non-homepage pages
+   Applies to .lp-hero, .page-hero, and any interior .hero.
+   Do NOT touch .hero on index.html (Golden Page preserved).
+   ======================================================================= */
+
+/* ── Cinematic interior hero ──────────────────────────────────── */
+body:not(.home) main > .hero:first-child,
+body:not(.home) main > section:first-child.hero,
+.lp-hero,
+.page-hero,
+.interior-hero{
+  position: relative;
+  overflow: hidden;
+  padding: clamp(4rem, 6vw + 2rem, 7.5rem) 0 clamp(3.5rem, 4vw + 1.5rem, 5.5rem);
+  background:
+    radial-gradient(1200px 600px at 15% 0%, rgba(79,227,210,.12), transparent 55%),
+    radial-gradient(1100px 500px at 85% 20%, rgba(240,178,107,.08), transparent 60%),
+    radial-gradient(900px 700px at 50% 100%, rgba(18,181,166,.08), transparent 65%),
+    linear-gradient(180deg, #07080B 0%, #0D1117 100%);
+  isolation: isolate;
+}
+/* Slow ambient glow drift — premium "alive" feel */
+body:not(.home) main > .hero:first-child::before,
+.lp-hero::before,
+.page-hero::before,
+.interior-hero::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background:
+    radial-gradient(700px 400px at 25% 30%, rgba(79,227,210,.10), transparent 55%),
+    radial-gradient(600px 350px at 75% 70%, rgba(240,178,107,.08), transparent 60%);
+  z-index:0;
+  animation: gf-ambient-drift 22s ease-in-out infinite alternate;
+  pointer-events:none;
+  will-change:transform,opacity;
+}
+/* Subtle grain texture */
+body:not(.home) main > .hero:first-child::after,
+.lp-hero::after,
+.page-hero::after,
+.interior-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
+  opacity:.06;
+  z-index:0;
+  pointer-events:none;
+  mix-blend-mode:overlay;
+}
+.lp-hero > *, .page-hero > *, .interior-hero > *,
+body:not(.home) main > .hero:first-child > *{ position: relative; z-index:1; }
+
+@keyframes gf-ambient-drift{
+  0%   { transform: translate3d(0,0,0) scale(1); opacity:.9; }
+  50%  { transform: translate3d(-3%, 2%, 0) scale(1.04); opacity:1; }
+  100% { transform: translate3d(2%, -2%, 0) scale(1.02); opacity:.85; }
+}
+@media (prefers-reduced-motion: reduce){
+  .lp-hero::before,.page-hero::before,.interior-hero::before,
+  body:not(.home) main > .hero:first-child::before{ animation: none !important; }
+}
+
+/* ── Premium Interior H1 ──────────────────────────────────────── */
+.lp-hero h1, .page-hero h1, .interior-hero h1,
+body:not(.home) main > .hero:first-child h1,
+.premium-h1{
+  font-size: clamp(2rem, 1.2rem + 3.5vw, 4rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  font-weight: 900;
+  margin: 0 0 clamp(1rem, 1.5vw, 1.5rem);
+  background: linear-gradient(135deg,
+    #FFFFFF 0%,
+    #F4F7FF 40%,
+    rgba(79,227,210,.9) 75%,
+    rgba(240,178,107,.9) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-wrap: balance;
+}
+
+/* ── Premium Kicker — uppercase teal tag ──────────────────────── */
+.lp-hero > .container > :first-child:not(h1):not(p),
+.lp-kicker, .page-kicker, .interior-kicker, .premium-kicker{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .4rem .9rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(79,227,210,.14), rgba(240,178,107,.08));
+  border: 1px solid rgba(79,227,210,.28);
+  color: var(--gf-teal, #4FE3D2);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: clamp(.75rem, 1vw, 1rem);
+}
+
+/* Lead paragraph in interior hero */
+.lp-hero h1 + p, .page-hero h1 + p, .interior-hero h1 + p,
+body:not(.home) main > .hero:first-child h1 + p,
+.premium-lede{
+  font-size: clamp(1rem, .5vw + .95rem, 1.2rem);
+  color: rgba(244,247,255,.86);
+  line-height: 1.65;
+  max-width: 62ch;
+  margin: 0 0 clamp(1.5rem, 2vw, 2rem);
+}
+
+/* ── Readable paragraph wrapper — kill 100vw text walls ───────── */
+.premium-interior-layout main > section p,
+.interior-reader p,
+main > section > .container > p{
+  max-width: 75ch;
+}
+main > section > .container > p:not([class]):only-child{
+  margin-left:auto; margin-right:auto;
+}
+
+/* ── Premium stat strip — horizontal not vertical ─────────────── */
+.lp-hero__stats, .page-hero__stats, .interior-hero__stats,
+body:not(.home) main > .hero:first-child .hero-stats{
+  display: flex!important;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: clamp(1.5rem, 2vw, 2rem) 0;
+  padding: clamp(1rem, 1.5vw, 1.25rem);
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(14,16,22,.7));
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+}
+.lp-hero__stats > *, .page-hero__stats > *, .interior-hero__stats > *,
+body:not(.home) main > .hero:first-child .hero-stats > .stat-item{
+  flex: 1 1 140px;
+  min-width: 0;
+  text-align: left;
+  position: relative;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(79,227,210,.4);
+}
+.lp-hero__stats strong, .page-hero__stats strong, .interior-hero__stats strong,
+.lp-hero__stats b, .page-hero__stats b,
+body:not(.home) main > .hero:first-child .stat-number{
+  display: block;
+  font-size: clamp(1.35rem, 1vw + 1rem, 1.75rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #F4F7FF, #4FE3D2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  line-height: 1.1;
+}
+.lp-hero__stats small, .page-hero__stats small, .interior-hero__stats small,
+body:not(.home) main > .hero:first-child .stat-label{
+  display: block;
+  margin-top: .25rem;
+  font-size: .72rem;
+  color: rgba(244,247,255,.6);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ── Interior section rhythm — cinematic breathing ────────────── */
+body:not(.home) main > section:not(.hero):not(.lp-hero):not(.page-hero):not(.interior-hero){
+  padding-top: clamp(3rem, 4vw + 1rem, 6rem);
+  padding-bottom: clamp(3rem, 4vw + 1rem, 6rem);
+  position: relative;
+}
+body:not(.home) main > section:not(.hero):not(.lp-hero):not(.page-hero):not(.interior-hero) + section:not(.hero)::before{
+  content:"";
+  position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width: min(180px, 30%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(79,227,210,.35), transparent);
+}
+
+/* Interior section headers */
+body:not(.home) main > section:not(.hero) h2{
+  font-size: clamp(1.6rem, .8vw + 1.3rem, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  margin: 0 0 .75rem;
+}
+body:not(.home) main > section:not(.hero) h2 em,
+body:not(.home) main > section:not(.hero) h2 strong{
+  background: linear-gradient(135deg, #4FE3D2, #F0B26B);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-style: normal;
+}
+
+/* ── Premium Icon Checks — replace default list bullets ───────── */
+main > section ul:not(.nav-list):not(.footer-legal-links):not([class*="deal-clarity"]) li:not(.blog-tag):not(.trust-badge){
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: .65rem;
+  color: rgba(244,247,255,.86);
+  line-height: 1.6;
+  list-style: none;
+}
+main > section ul:not(.nav-list):not(.footer-legal-links):not([class*="deal-clarity"]) li:not(.blog-tag):not(.trust-badge)::before{
+  content:"";
+  position: absolute;
+  left: 0;
+  top: .45em;
+  width: 1.1em;
+  height: 1.1em;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234FE3D2' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(0 0 6px rgba(79,227,210,.25));
+}
+
+/* ── Scenario Card (editorial case-study treatment) ───────────── */
+.scenario-card,
+main > section .scenario,
+main > section [data-scenario]{
+  background: linear-gradient(180deg, rgba(255,255,255,.05), #0F131B);
+  border: 1px solid rgba(255,255,255,.08);
+  border-left: 3px solid rgba(79,227,210,.5);
+  border-radius: 18px;
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  margin: 1rem 0;
+  box-shadow: 0 10px 40px rgba(0,0,0,.35);
+}
+.scenario-card::before,
+.scenario-card .kicker{
+  display: inline-block;
+  font-size: .7rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(79,227,210,.85);
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+
+/* ── Staggered Reveal enhancement — 20ms concierge cascade ──── */
+.reveal-stagger > *:nth-child(1){ transition-delay: 0ms; }
+.reveal-stagger > *:nth-child(2){ transition-delay: 60ms; }
+.reveal-stagger > *:nth-child(3){ transition-delay: 120ms; }
+.reveal-stagger > *:nth-child(4){ transition-delay: 180ms; }
+.reveal-stagger > *:nth-child(5){ transition-delay: 240ms; }
+.reveal-stagger > *:nth-child(6){ transition-delay: 300ms; }
+.reveal-stagger > *:nth-child(7){ transition-delay: 360ms; }
+.reveal-stagger > *:nth-child(8){ transition-delay: 420ms; }
+
+/* Subtle header slide-up on reveal — 10px rise + fade */
+body:not(.home) .reveal:not(.is-visible){ transform: translateY(10px); opacity:0; }
+body:not(.home) .reveal.is-visible{ transform: translateY(0); opacity:1;
+  transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
+
+/* ── Border-left teal accent for emphasis blocks ───────────────── */
+blockquote,
+main > section [class*="callout"]:not(.blog-callout),
+main > section [class*="highlight"]{
+  border-left: 3px solid rgba(79,227,210,.4)!important;
+  padding: 1.25rem 1.5rem !important;
+  background: linear-gradient(90deg, rgba(79,227,210,.04), transparent 80%) !important;
+  border-radius: 0 16px 16px 0;
+  margin: 1.25rem 0;
+}
+
+/* ── Process Stepper — visual timeline ────────────────────────── */
+.process-stepper, [data-process-stepper]{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  counter-reset: step;
+  margin: 1.5rem 0;
+}
+.process-stepper > *, [data-process-stepper] > *{
+  counter-increment: step;
+  padding: 1.25rem 1.25rem 1.25rem 3.5rem;
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(14,16,22,.7));
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  position: relative;
+}
+.process-stepper > *::before, [data-process-stepper] > *::before{
+  content: counter(step);
+  position: absolute;
+  top: 1.1rem;
+  left: 1rem;
+  width: 2rem; height: 2rem;
+  border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #4FE3D2, #F0B26B);
+  color: #0B1014;
+  box-shadow: 0 4px 16px rgba(79,227,210,.3);
+}
+
+/* Mobile interior hero tightening */
+@media (max-width: 768px){
+  .lp-hero, .page-hero, .interior-hero{
+    padding: clamp(3rem, 6vw, 4rem) 0 clamp(2.5rem, 4vw, 3.5rem);
+  }
+  .lp-hero__stats > *, .page-hero__stats > *{ flex: 1 1 45%; }
+}
+@media (max-width: 480px){
+  .lp-hero__stats > *, .page-hero__stats > *{ flex: 1 1 100%; }
+}
 /* === END PREMIUM SYSTEM v1 === */
 </style><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','functionality_storage':'granted','security_storage':'granted','wait_for_update':500});gtag('set','ads_data_redaction',true);</script><script>(function(){if(navigator.webdriver)return;gtag("js",new Date());gtag("config","G-K825ENLYS6");var _l=false;function _g(){if(_l)return;_l=true;var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-K825ENLYS6";document.head.appendChild(s);}if(window.requestIdleCallback){requestIdleCallback(_g,{timeout:4000});}else{setTimeout(_g,4000);}["click","touchstart","scroll","keydown"].forEach(function(e){document.addEventListener(e,_g,{once:true,passive:true});});}());</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Grand Funding LLC","url":"https://www.grandfundingllc.com","logo":"https://www.grandfundingllc.com/images/brand-logo-dark.webp","telephone":"+16029350371","email":"info@grandfundingllc.com","areaServed":["Arizona","California"],"legalName":"Grand Funding LLC"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","speakable":{"@type":"SpeakableSpecification","cssSelector":[".hero-content",".section-header","h1","h2"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Logan Sullivan","jobTitle":"Founder, Grand Funding LLC","url":"https://www.grandfundingllc.com/about","worksFor":{"@type":"Organization","name":"Grand Funding LLC","url":"https://www.grandfundingllc.com"},"identifier":{"@type":"PropertyValue","name":"NMLS ID","value":"2466872"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Grand Funding work with mortgage brokers and referral partners?","acceptedAnswer":{"@type":"Answer","text":"Yes. Grand Funding works with real estate agents, mortgage brokers, investors, and referral partners. Partner referrals are prioritized for fast turnaround."}},{"@type":"Question","name":"How does Grand Funding's referral program work?","acceptedAnswer":{"@type":"Answer","text":"Contact Grand Funding at (602) 935-0371 or info@grandfundingllc.com to discuss partnership opportunities. Referrals are tracked and compensated per the partnership agreement."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.grandfundingllc.com/"},{"@type":"ListItem","position":2,"name":"Partners","item":"https://www.grandfundingllc.com/partners"}]}</script>
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><style data-inline="compliance">/* Compliance pages — shared layout */

@@ -570,9 +570,17 @@ input[type="number"],select,textarea{
   }
 }
 @media(max-width:768px){
-  .footer .footer-main,.footer .footer-main--clean,.footer-grid{
+  /* Nuclear specificity: html body .footer beats everything else */
+  html body .footer .footer-main,
+  html body .footer .footer-main--clean,
+  html body .footer-grid,
+  html body footer .footer-main,
+  html body footer .footer-main--clean,
+  html body footer .footer-grid{
+    display:grid!important;
     grid-template-columns: 1fr!important;
     gap: var(--gf-s-5)!important;
+    max-width:100%!important;
   }
   .footer .footer-brand{max-width:none!important}
   .footer .footer-links h3,.footer .footer-links h4,

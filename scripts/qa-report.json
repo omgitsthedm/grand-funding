@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-04-19T11:04:05.600Z",
+  "startedAt": "2026-04-19T11:17:15.546Z",
   "base": "https://www.grandfundingllc.com",
   "failures": {
     "tablet /": [
@@ -36,83 +36,13 @@
         "severity": "blocker",
         "msg": "footer 3 cols at 768px (must be 1)"
       }
-    ],
-    "laptop /": [
-      {
-        "id": "header-cta-wrap",
-        "severity": "blocker",
-        "msg": "CTA wraps to 47px tall"
-      }
-    ],
-    "laptop /phoenix-hard-money-lender.html": [
-      {
-        "id": "header-cta-wrap",
-        "severity": "blocker",
-        "msg": "CTA wraps to 47px tall"
-      }
-    ],
-    "laptop /arizona-hard-money-lender.html": [
-      {
-        "id": "header-cta-wrap",
-        "severity": "blocker",
-        "msg": "CTA wraps to 47px tall"
-      }
-    ],
-    "laptop /fix-and-flip-loans-arizona.html": [
-      {
-        "id": "header-cta-wrap",
-        "severity": "blocker",
-        "msg": "CTA wraps to 47px tall"
-      }
-    ],
-    "laptop /bridge-loans-arizona.html": [
-      {
-        "id": "header-cta-wrap",
-        "severity": "blocker",
-        "msg": "CTA wraps to 47px tall"
-      }
-    ],
-    "desktop /": [
-      {
-        "id": "header-cta-wrap",
-        "severity": "blocker",
-        "msg": "CTA wraps to 47px tall"
-      }
-    ],
-    "desktop /phoenix-hard-money-lender.html": [
-      {
-        "id": "header-cta-wrap",
-        "severity": "blocker",
-        "msg": "CTA wraps to 47px tall"
-      }
-    ],
-    "desktop /arizona-hard-money-lender.html": [
-      {
-        "id": "header-cta-wrap",
-        "severity": "blocker",
-        "msg": "CTA wraps to 47px tall"
-      }
-    ],
-    "desktop /fix-and-flip-loans-arizona.html": [
-      {
-        "id": "header-cta-wrap",
-        "severity": "blocker",
-        "msg": "CTA wraps to 47px tall"
-      }
-    ],
-    "desktop /bridge-loans-arizona.html": [
-      {
-        "id": "header-cta-wrap",
-        "severity": "blocker",
-        "msg": "CTA wraps to 47px tall"
-      }
     ]
   },
   "summary": {
     "totalChecks": 245,
-    "totalFails": 15,
-    "watchlistFails": 15,
-    "uniquePageFails": 15,
-    "durationMs": 56399
+    "totalFails": 5,
+    "watchlistFails": 5,
+    "uniquePageFails": 5,
+    "durationMs": 56558
   }
 }

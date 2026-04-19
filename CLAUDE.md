@@ -30,6 +30,10 @@
 | 2026-04-18 | premium.css removed from HTML | premium.css was redundant — its rules are already fully merged into styles-v2.css. No link tags in any HTML file. |
 | 2026-04-18 | script.js forced reflow fix | Removed initial onScroll() call; lazy-init scrollableHeight inside rAF-gated handler. Remaining forced-reflow insight is from GA4 (gtag.js), not our code |
 | 2026-04-18 | Netlify auto-deploy broken | All deploys require `netlify deploy --prod --dir=.` manually. GitHub → Netlify link broken (commit_ref: None). Root cause unknown. |
+| 2026-04-19 | Mobile polish — button scoping | Removed blanket `btn{width:100%}` at 480px; replaced with scoped full-width on hero-cta-group, cta-buttons, hero-loans-footer, apply/contact forms only. All secondary/inline buttons now auto-width. |
+| 2026-04-19 | Mobile spacing tokens reduced | --spacing-xl:2rem, --spacing-2xl:3rem, --spacing-lg:1.5rem at 480px; 2.5rem/3.75rem at 768px. Section padding tightened site-wide via section class selectors. |
+| 2026-04-19 | Proportional type scale 480px | section-title:1.5rem, cta-title:1.75rem, hero-title:1.625rem; 375px drops to 15.5px root font-size. blog.css/products.css/about.css/apply.css all received 480+375px polish blocks. |
+| 2026-04-19 | Blog posts: styles-v2.css + fonts added | All 12 posts were missing styles-v2.css (CSS variables broken) and Google Fonts. Added blocking styles-v2.css + preconnect/preload to all 12 post heads. |
 
 ## Current Status
 - **Phase:** Deployed / Maintenance

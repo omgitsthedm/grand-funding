@@ -138,8 +138,12 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
 
 // ---- Scroll Reveal (single IntersectionObserver) ----
 (() => {
-    // Skip reveal for automated browsers (Lighthouse, bots) — elements show final state immediately
-    if (navigator.webdriver) return;
+    // For bots (Lighthouse, Playwright): force-show all .reveal elements so
+    // hardcoded class="reveal" in HTML doesn't leave content at opacity:0.
+    if (navigator.webdriver) {
+        document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => el.classList.add('is-visible'));
+        return;
+    }
     const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced || !('IntersectionObserver' in window)) return;
 

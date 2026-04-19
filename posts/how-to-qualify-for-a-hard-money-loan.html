@@ -405,6 +405,19 @@ select:focus-visible,textarea:focus-visible,.cta-btn:focus-visible,.btn:focus-vi
 main>section,main>section:not(.hero):not(.trust-strip){content-visibility:visible!important;contain-intrinsic-size:unset!important}
 /* Only hide truly below-fold decorative items — none applied by default now */
 .blog-card,.blog-section,.blog-grid,.blog-container,article.blog-post{content-visibility:visible!important}
+
+/* ============================================================
+   REVEAL SAFETY 2026-04-19 — always-visible fallback via :not
+   ============================================================ */
+/* If scripting disabled, reveal elements should show (no-JS fallback) */
+@media(scripting:none){
+  .reveal,.reveal-stagger,.reveal-stagger>*{opacity:1!important;transform:none!important;filter:none!important}
+}
+/* Safety: if is-visible hasn't been added within 200ms of page load,
+   still show the element. Uses animation to add is-visible after delay. */
+.reveal:not(.is-visible){animation:force-reveal 0s linear 400ms forwards}
+.reveal-stagger:not(.is-visible){animation:force-reveal 0s linear 400ms forwards}
+@keyframes force-reveal{to{opacity:1;transform:none;filter:none}}
 </style>
 
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="stylesheet" href="/blog.css?v=20260422"><style data-inline="compliance">/* Compliance pages — shared layout */
@@ -578,7 +591,7 @@ main>section,main>section:not(.hero):not(.trust-strip){content-visibility:visibl
 
     <script src="/script.js?v=20260119" defer></script>
 <noscript></noscript>
-<div class="consent-banner" id="consent-banner" role="dialog" aria-live="polite" aria-label="Cookie consent"><div class="consent-inner"><div class="consent-text">We use cookies to improve your experience and measure marketing performance. Essential cookies are always on. You can accept all cookies or continue with essential only. See our <a href="/privacy">Privacy Policy</a>.</div><div class="consent-actions"><button class="consent-btn consent-btn--ghost" type="button" data-consent="essential">Essential only</button><button class="consent-btn consent-btn--primary" type="button" data-consent="all">Accept all</button></div></div></div><script defer src="/consent.js?v=20260422"></script><noscript></noscript><noscript></noscript><script defer src="/premium.js?v=20260422"></script>
+<div class="consent-banner" id="consent-banner" role="dialog" aria-live="polite" aria-label="Cookie consent"><div class="consent-inner"><div class="consent-text">We use cookies to improve your experience and measure marketing performance. Essential cookies are always on. You can accept all cookies or continue with essential only. See our <a href="/privacy">Privacy Policy</a>.</div><div class="consent-actions"><button class="consent-btn consent-btn--ghost" type="button" data-consent="essential">Essential only</button><button class="consent-btn consent-btn--primary" type="button" data-consent="all">Accept all</button></div></div></div><script defer src="/consent.js?v=20260422"></script><noscript></noscript><noscript></noscript><script defer src="/premium.js?v=20260425"></script>
 
 </body>
 </html>

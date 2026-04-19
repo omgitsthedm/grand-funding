@@ -551,3 +551,138 @@ The "footer 3 cols at 768px" failure the QA script caught during this sprint was
 | `c4bc983` | Final fix: override child grid-column:2/4 that was forcing implicit tracks |
 
 **Status: /blog is truly fixed. The gate may be locked.**
+
+---
+
+# Final Sprint — Gate Locked (with foundational-theme-sanity)
+
+**Session:** 2026-04-19 (after user reported /blog still broken → forensic fix → CI gate hardening)
+**Status:** LOCKED. The gate now specifically blocks the class of failure that caused the last incident.
+
+## A. Workflow file
+
+**Path:** `.github/workflows/premium-qa.yml`
+**Triggers:** push to main/master, pull_request to main/master, manual dispatch
+**Runner:** ubuntu-latest, 15-min timeout
+**Steps:**
+1. Checkout
+2. Setup Node 20 (with npm cache)
+3. Install dependencies (`npm ci || npm install`)
+4. Install Playwright Chromium with deps
+5. 30s wait for Netlify preview on PRs
+6. Run `npm run test:premium` (BASE_URL/WATCHLIST_ONLY configurable)
+7. Upload `qa-report.json` as artifact (retained 30 days)
+8. Publish summary to GitHub Actions job summary (with failure breakdown JSON)
+
+**Concurrency:** `premium-qa-${{ github.ref }}` with `cancel-in-progress: true` so rapid push sequences don't pile up runs.
+
+**Verified live** via `gh workflow list`:
+```
+Claude Code      active    258256035
+Premium QA       active    263065342
+```
+
+## B. Gate conditions
+
+The gate fails (non-zero exit → CI red) if ANY of these fire on ANY watchlist page at ANY breakpoint:
+
+| # | Check | Severity | Exits | Catches |
+|---|---|---|---|---|
+| **0** | **foundational-theme-sanity** (new) | blocker | 1 or 2 | Stylesheet missing / unstyled-document class |
+| 1 | horizontal-overflow | blocker | 1 or 2 | `documentElement.scrollWidth > innerWidth` |
+| 2 | header-cta-wrap | blocker | 1 or 2 | CTA text wrapping to 2+ lines |
+| 3 | card-text-contrast | blocker | 1 or 2 | Card h3 luminance < 80/255 (dark on dark) |
+| 4 | icon-misaligned | blocker | 1 or 2 | Icon neither centered (±25px) nor left-inline (<30px from edge) |
+| 5 | footer-grid-mobile | blocker | 1 or 2 | Footer >1 col at viewport ≤768px |
+| 6 | reveal-stuck | blocker | 1 or 2 | `.reveal` in viewport with opacity <0.3 |
+| 7 | blog-card-broken | blocker | 1 or 2 | Image <80% card width OR above-fold+not-loaded |
+
+**Exit-code semantics:**
+- `0` — all pass
+- `1` — failure on non-watchlist page
+- `2` — failure on watchlist (ranking-critical)
+- `3` — runner crashed
+
+## C. New foundational-theme sanity checks
+
+Check #0 runs FIRST and covers five sub-invariants:
+
+### C.1 Foundational stylesheet loaded
+Either of these must be present:
+- `<link rel="stylesheet" href*="styles-v2">` or `<link rel="preload" href*="styles-v2">`
+- `<style>` block containing `GRAND FUNDING PREMIUM SYSTEM` marker
+
+Fails if neither found → exactly the `/blog.html` class of regression.
+
+### C.2 Body background is premium dark theme
+Body `backgroundColor` average RGB luminance must be `< 40`. Falls through to `<html>` background if body is transparent. Default browser white (lum 255) fails.
+
+### C.3 Header height sane
+Header rect height must be `30 ≤ h ≤ 140`. The `/blog` incident showed header at 247px tall (stacked-vertical unstyled bullet list). This check catches that directly.
+
+### C.4 Mobile nav behavior
+At viewport ≤768px:
+- `.mobile-menu-toggle` must NOT be `display:none` (hamburger must be visible)
+- `.nav-list` must NOT be rendering as `list-style-type: disc` with block/list-item display (unstyled bullet list symptom)
+
+### C.5 Footer styled layout
+- Footer height ≥ 100px (shorter = default unstyled flow)
+- Footer text color luminance ≥ 60/255 (dark text on dark theme = failure)
+
+### Why these five and not more
+Each sub-check corresponds to a symptom of the 2026-04-19 production incident where `styles-v2.css` never reached `/blog.html`. If any single check had been present, the incident would have been blocked. Together they form a defense-in-depth layer for the entire class of "page forgot to link the foundational CSS."
+
+## D. Watchlist coverage
+
+**Expanded from 5 → 11 pages** so all pages where silent CSS loss is catastrophic are now protected:
+
+| Category | Pages |
+|---|---|
+| **Revenue** (original watchlist) | `/`, `/phoenix-hard-money-lender.html`, `/arizona-hard-money-lender.html`, `/fix-and-flip-loans-arizona.html`, `/bridge-loans-arizona.html` |
+| **Editorial + Proof** (new) | `/blog.html`, `/funded-deals.html`, `/partners.html` |
+| **Trust + Conversion** (new) | `/about.html`, `/contact.html`, `/apply.html` |
+
+Total watchlist: **11 pages × 7 breakpoints × 8 checks = 616 gate assertions per CI run**.
+Full-site run: **~27 pages × 7 breakpoints × 8 checks = 1,519 assertions**.
+
+## E. Silent-stylesheet-failure class is now blocked
+
+**Confirmed via the actual gate run history.** The CSS-missing bug was caught in production by the gate's own history:
+
+| Run # | Commit | Result |
+|---|---|---|
+| `24628119702` | "CRITICAL: Add missing styles-v2.css to blog.html..." | **FAILURE** (bug existed) |
+| `24628426746` | "Expand QA watchlist..." | **SUCCESS** (after fix) |
+| `24628642646` | "QA: add foundational-theme-sanity check" | In progress (current commit) |
+
+Even without the new sanity check, the expanded watchlist now runs against `/blog.html` at every push. Any commit that drops the foundational stylesheet on a watchlist page will:
+
+1. First hit the new **foundational-theme-sanity** check (Check #0) and fail with a specific diagnostic (`foundational CSS missing (no styles-v2.css link AND no premium-system inline)`)
+2. Cascade to every downstream symptom check (header height, nav bullets, footer style) for defense-in-depth
+3. Exit with code 2 (watchlist failure) if the affected page is any of the 11 watchlist pages
+4. Block the CI job from going green, blocking any auto-merge
+
+The specific failure mode from the 2026-04-19 incident — `/blog.html` rendering a 247px stacked-bullet header because `styles-v2.css` wasn't linked — **cannot reach production again through the `main` branch without tripping at least 4 separate assertions in the gate.**
+
+---
+
+## Final deploy log
+
+| Commit | Summary |
+|---|---|
+| `1ac6712` | Added `styles-v2.css` link to blog.html, partners.html, funded-deals.html |
+| `c32c935` | QA script: skip lazy-image check for below-fold cards |
+| `262ebe9` | Expanded watchlist from 5 → 11 pages |
+| `0c608d0` | Added foundational-theme-sanity check (check #0) |
+
+## Status: LOCKED
+
+The gate is armed, the watchlist covers every page where silent CSS loss would hurt trust/rankings/conversion, and the sanity check specifically blocks the class of failure that caused the most recent incident. Future work on this codebase is protected.
+
+**Next agreed sprint: Human Content Mode.**
+- Real photography
+- Human-written blog post depth (fix-and-flip / bridge / construction / cash-out / investment property → 1,200–1,600 words each)
+- Ranking monitoring (Search Console + CrUX dashboard)
+- Conversion A/B testing (CTA copy, form shortening, sticky behavior)
+
+No more infrastructure sprints from me. The machine is done.

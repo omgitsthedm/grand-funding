@@ -370,6 +370,33 @@ select:focus-visible,textarea:focus-visible,.cta-btn:focus-visible,.btn:focus-vi
   body .footer .footer-brand{max-width:100%!important;width:100%!important}
   body .footer .footer-links{width:100%!important;min-width:0!important}
 }
+
+/* ============================================================
+   BLOG HERO IMAGE 2026-04-19 — premium article hero
+   ============================================================ */
+.blog-hero-image{
+  max-width:min(1100px,92vw);
+  margin:0 auto clamp(1.5rem,4vw,2.5rem);
+  border-radius:clamp(16px,2.5vw,24px);
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 24px 72px rgba(0,0,0,.45),0 0 0 1px rgba(79,227,210,.12);
+  aspect-ratio:3/2;
+  background:linear-gradient(135deg,rgba(79,227,210,.08),rgba(240,178,107,.06));
+}
+.blog-hero-image img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s cubic-bezier(.2,.8,.2,1)
+}
+.blog-hero-image:hover img{transform:scale(1.02)}
+@media(max-width:768px){
+  .blog-hero-image{
+    max-width:calc(100vw - 2rem);
+    margin:0 1rem clamp(1.25rem,4vw,2rem);
+    border-radius:18px;
+    aspect-ratio:16/10
+  }
+}
 </style>
 
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="stylesheet" href="/blog.css?v=20260422"><style data-inline="compliance">/* Compliance pages — shared layout */
@@ -470,7 +497,7 @@ select:focus-visible,textarea:focus-visible,.cta-btn:focus-visible,.btn:focus-vi
 
       <section class="section" style="padding-top: 0;">
         <div class="container" style="max-width: 860px;">
-          <article class="blog-post" style="display:block;">
+          <figure class="blog-hero-image"><picture><source srcset="/images/og/when-rates-decrease-opportunity-increases.webp" type="image/webp"><img src="/images/og/when-rates-decrease-opportunity-increases.png" alt="When Rates Decrease Opportunity Increases" width="1200" height="800" loading="eager" fetchpriority="high"></picture></figure><article class="blog-post" style="display:block;">
             <div class="post-content">
 <h2>What Happens to Real Estate When Interest Rates Drop?</h2><h2>Why are interest rate cuts coming and what does it mean?</h2>
 <p>It's been a long time coming, but interest rate cuts are finally on the horizon, starting this September. Fannie Mae and Federal Reserve Chairman Jerome Powell both hint at this, indicating the federal funds rate could play a pivotal role.</p>

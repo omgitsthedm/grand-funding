@@ -370,6 +370,33 @@ select:focus-visible,textarea:focus-visible,.cta-btn:focus-visible,.btn:focus-vi
   body .footer .footer-brand{max-width:100%!important;width:100%!important}
   body .footer .footer-links{width:100%!important;min-width:0!important}
 }
+
+/* ============================================================
+   BLOG HERO IMAGE 2026-04-19 — premium article hero
+   ============================================================ */
+.blog-hero-image{
+  max-width:min(1100px,92vw);
+  margin:0 auto clamp(1.5rem,4vw,2.5rem);
+  border-radius:clamp(16px,2.5vw,24px);
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 24px 72px rgba(0,0,0,.45),0 0 0 1px rgba(79,227,210,.12);
+  aspect-ratio:3/2;
+  background:linear-gradient(135deg,rgba(79,227,210,.08),rgba(240,178,107,.06));
+}
+.blog-hero-image img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s cubic-bezier(.2,.8,.2,1)
+}
+.blog-hero-image:hover img{transform:scale(1.02)}
+@media(max-width:768px){
+  .blog-hero-image{
+    max-width:calc(100vw - 2rem);
+    margin:0 1rem clamp(1.25rem,4vw,2rem);
+    border-radius:18px;
+    aspect-ratio:16/10
+  }
+}
 </style>
 
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="stylesheet" href="/blog.css?v=20260422"><style data-inline="compliance">/* Compliance pages — shared layout */
@@ -470,7 +497,7 @@ select:focus-visible,textarea:focus-visible,.cta-btn:focus-visible,.btn:focus-vi
 
       <section class="section" style="padding-top: 0;">
         <div class="container" style="max-width: 860px;">
-          <article class="blog-post" style="display:block;">
+          <figure class="blog-hero-image"><picture><source srcset="/images/og/private-lending-exploring-the-impact-on-real-estate-investment.webp" type="image/webp"><img src="/images/og/private-lending-exploring-the-impact-on-real-estate-investment.png" alt="Private Lending: Exploring the Impact on Real Estate Investment" width="1200" height="800" loading="eager" fetchpriority="high"></picture></figure><article class="blog-post" style="display:block;">
             <div class="post-content">
 <p>Real estate investment often involves securing necessary capital to fund property acquisitions or developments. In recent years, private lending has emerged as a popular alternative to traditional financing options offered by banks and credit unions.</p>
 <h2>What Is Private Lending and How Does It Work?</h2><h2>What is private lending in real estate?</h2>

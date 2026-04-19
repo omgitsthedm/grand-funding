@@ -226,7 +226,12 @@ const CHECKS = [
           if (ir.width > 0 && ir.width < r.width * 0.8) {
             return `blog-card image only ${Math.round(ir.width)}px in ${Math.round(r.width)}px card`;
           }
-          if (!img.complete || img.naturalWidth === 0) {
+          // Only fail if image is eager OR above-fold (visible in viewport) AND not loaded.
+          // Lazy images below fold may legitimately be unloaded at check time.
+          const isEager = img.loading !== 'lazy';
+          const vh = window.innerHeight;
+          const aboveFold = ir.top < vh && ir.bottom > 0;
+          if ((isEager || aboveFold) && (!img.complete || img.naturalWidth === 0)) {
             return `blog-card image not loaded: ${img.currentSrc?.split('/').pop() || img.src}`;
           }
         }

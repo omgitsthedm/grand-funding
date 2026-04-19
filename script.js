@@ -138,14 +138,11 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
 
 // ---- Scroll Reveal (single IntersectionObserver) ----
 (() => {
-    // For bots (Lighthouse, Playwright): force-show all .reveal elements so
-    // hardcoded class="reveal" in HTML doesn't leave content at opacity:0.
-    if (navigator.webdriver) {
-        document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => el.classList.add('is-visible'));
-        return;
-    }
+    // CSS default for .reveal is now visible. We only hide before observing
+    // by adding .js-reveal-init. For bots/reduced-motion, don't hide at all.
+    if (navigator.webdriver) return;  // no animation for bots — already visible
     const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced || !('IntersectionObserver' in window)) return;
+    if (reduced || !('IntersectionObserver' in window)) return;  // already visible
 
     const selectors = [
         'section', '.product-section', '.blog-post', '.service-card',
@@ -164,7 +161,11 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
         if (el === firstSection) return;
         if (el.classList.contains('hero') || el.classList.contains('hero-content')) return;
         if (el.closest('.hero')) return;
-        el.classList.add('reveal');
+        el.classList.add('reveal', 'js-reveal-init');  // js-reveal-init hides via CSS until is-visible added
+    });
+    // Also mark any hardcoded .reveal / .reveal-stagger elements as init
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+        el.classList.add('js-reveal-init');
     });
 
     const io = new IntersectionObserver((entries) => {

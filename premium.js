@@ -1,16 +1,8 @@
 /* Grand Funding — premium interactions: scroll reveal, nav scroll state */
 (function(){
-  /* For automated browsers (Lighthouse, bots): skip animations BUT still
-     mark all reveal elements as visible so the page renders properly.
-     Hardcoded .reveal classes in HTML would otherwise stay at opacity:0. */
-  if(navigator.webdriver){
-    document.addEventListener('DOMContentLoaded',function(){
-      document.querySelectorAll('.reveal,.reveal-stagger').forEach(function(el){
-        el.classList.add('is-visible');
-      });
-    });
-    return;
-  }
+  /* CSS default: .reveal is VISIBLE. Only hide via .js-reveal-init when about
+     to observe. For bots/reduced-motion, don't touch — already visible. */
+  if(navigator.webdriver)return;
   var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* Scroll-progress nav state */
@@ -64,6 +56,10 @@
       });
     },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
 
-    document.querySelectorAll('.reveal,.reveal-stagger').forEach(function(el){io.observe(el);});
+    /* Mark js-reveal-init so CSS kicks in to hide before observation */
+    document.querySelectorAll('.reveal,.reveal-stagger').forEach(function(el){
+      el.classList.add('js-reveal-init');
+      io.observe(el);
+    });
   });
 })();

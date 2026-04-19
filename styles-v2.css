@@ -145,7 +145,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .footer{padding:3.5rem 0 1.75rem !important;background:linear-gradient(180deg,transparent 0%,rgba(79,227,210,.015) 100%) !important;border:none !important;position:relative !important;font-family:'Inter',-apple-system,system-ui,sans-serif}
 .footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(460px,60%);height:1px;background:linear-gradient(90deg,transparent,rgba(79,227,210,.4) 35%,rgba(240,178,107,.4) 65%,transparent);pointer-events:none}
 .footer>.container{max-width:1240px}
-.footer .footer-main,.footer .footer-main--clean,.footer-grid{display:grid !important;grid-template-columns:1.5fr 1fr 1fr 1fr !important;gap:3rem !important;align-items:start !important;margin:0 0 3rem !important}
+.footer .footer-main,.footer .footer-main--clean,.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;align-items:start;margin:0 0 3rem}
 .footer-brand{display:flex;flex-direction:column;gap:1rem;max-width:320px;text-align:left}
 .footer-brand .footer-wordmark{margin-bottom:.25rem}
 .footer-brand .footer-tagline{color:var(--muted,#7A8090);font-size:.92rem;line-height:1.55;margin:0}

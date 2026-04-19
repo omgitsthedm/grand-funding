@@ -349,6 +349,27 @@ select:focus-visible,textarea:focus-visible,.cta-btn:focus-visible,.btn:focus-vi
   font-feature-settings:"ss01","cv11";
   letter-spacing:-.02em!important;
 }
+
+/* ============================================================
+   FOOTER COLLAPSE — HIGHEST SPECIFICITY OVERRIDE (beats external !important)
+   ============================================================ */
+@media(max-width:768px){
+  body .footer .footer-main,
+  body .footer .footer-main--clean,
+  body .footer .footer-grid,
+  body footer .footer-main,
+  body footer .footer-main--clean,
+  body footer .footer-grid,
+  html body .footer-main--clean{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:1.75rem!important;
+    margin-bottom:1.5rem!important;
+    text-align:left!important
+  }
+  body .footer .footer-brand{max-width:100%!important;width:100%!important}
+  body .footer .footer-links{width:100%!important;min-width:0!important}
+}
 </style>
 
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="stylesheet" href="/blog.css?v=20260422"><style data-inline="compliance">/* Compliance pages — shared layout */

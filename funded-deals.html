@@ -334,6 +334,27 @@ select:focus-visible,textarea:focus-visible,.cta-btn:focus-visible,.btn:focus-vi
   font-feature-settings:"ss01","cv11";
   letter-spacing:-.02em!important;
 }
+
+/* ============================================================
+   FOOTER COLLAPSE — HIGHEST SPECIFICITY OVERRIDE (beats external !important)
+   ============================================================ */
+@media(max-width:768px){
+  body .footer .footer-main,
+  body .footer .footer-main--clean,
+  body .footer .footer-grid,
+  body footer .footer-main,
+  body footer .footer-main--clean,
+  body footer .footer-grid,
+  html body .footer-main--clean{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:1.75rem!important;
+    margin-bottom:1.5rem!important;
+    text-align:left!important
+  }
+  body .footer .footer-brand{max-width:100%!important;width:100%!important}
+  body .footer .footer-links{width:100%!important;min-width:0!important}
+}
 </style><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','functionality_storage':'granted','security_storage':'granted','wait_for_update':500});gtag('set','ads_data_redaction',true);</script><script>(function(){if(navigator.webdriver)return;gtag("js",new Date());gtag("config","G-K825ENLYS6");var _l=false;function _g(){if(_l)return;_l=true;var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-K825ENLYS6";document.head.appendChild(s);}if(window.requestIdleCallback){requestIdleCallback(_g,{timeout:4000});}else{setTimeout(_g,4000);}["click","touchstart","scroll","keydown"].forEach(function(e){document.addEventListener(e,_g,{once:true,passive:true});});}());</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Grand Funding LLC","url":"https://www.grandfundingllc.com","logo":"https://www.grandfundingllc.com/images/brand-logo-dark.webp","telephone":"+16029350371","email":"info@grandfundingllc.com","areaServed":["Arizona","California"],"legalName":"Grand Funding LLC"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","speakable":{"@type":"SpeakableSpecification","cssSelector":[".hero-content",".section-header","h1","h2"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Logan Sullivan","jobTitle":"Founder, Grand Funding LLC","url":"https://www.grandfundingllc.com/about","worksFor":{"@type":"Organization","name":"Grand Funding LLC","url":"https://www.grandfundingllc.com"},"identifier":{"@type":"PropertyValue","name":"NMLS ID","value":"2466872"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I see examples of deals Grand Funding has funded?","acceptedAnswer":{"@type":"Answer","text":"Yes. This page showcases recently funded deals with loan amounts, property types, timelines, and deal notes. Grand Funding funds fix-and-flip, bridge, construction, and cash-out refinance loans."}},{"@type":"Question","name":"How fast did these funded deals close?","acceptedAnswer":{"@type":"Answer","text":"Most deals on this page closed in 3–10 business days. Purchase and bridge loans typically close in 3–5 business days. Refinances and construction loans take 7–12 days."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Recently Funded Deals — Grand Funding LLC","url":"https://www.grandfundingllc.com/funded-deals","description":"Gallery of recently funded hard money loans in Arizona and California including fix-and-flip, bridge, and construction loans.","about":{"@type":"FinancialService","name":"Grand Funding LLC","url":"https://www.grandfundingllc.com"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.grandfundingllc.com/"},{"@type":"ListItem","position":2,"name":"Funded Deals","item":"https://www.grandfundingllc.com/funded-deals"}]}</script>
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><style data-inline="compliance">/* Compliance pages — shared layout */
 .compliance-hero{padding:7rem 0 3rem;border-bottom:1px solid rgba(255,255,255,.06);background:linear-gradient(180deg,rgba(79,227,210,.04),transparent)}

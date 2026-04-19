@@ -623,6 +623,18 @@ input[type="number"],select,textarea{
     border-bottom:1px solid var(--gf-line);
     margin-bottom:var(--gf-s-3)!important;
   }
+  /* Override styles-v2.css rule forcing child to span cols 2-4.
+     That rule was creating implicit grid tracks even when parent = 1fr. */
+  .footer .footer-links,
+  .footer .footer-links:nth-child(1),
+  .footer .footer-links:nth-child(2),
+  .footer .footer-links:nth-child(3),
+  .footer .footer-links:nth-child(4),
+  .footer .footer-links:nth-child(5),
+  .footer .footer-brand{
+    grid-column: auto!important;
+    grid-row: auto!important;
+  }
   .footer .footer-links ul{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem}
   .footer .footer-links li{padding:0!important;min-height:0}
   .footer .footer-links li a{

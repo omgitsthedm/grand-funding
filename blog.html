@@ -1939,6 +1939,276 @@ aside.sticky-cta,
   max-width: 420px !important;
   margin: 0 auto !important;
 }
+
+/* ==========================================================
+   LP / LOCATION PAGE COVERAGE
+   Phoenix, Arizona, Fix & Flip, Bridge, etc. use .lp-* BEM
+   classes that weren't hit by the premium card selector list.
+   Apply premium card + icon + typography treatment here.
+   ========================================================== */
+
+/* LP card base — applies to every card variant */
+.lp-why-card,
+.lp-deal-card,
+.lp-step,
+.lp-stat,
+.lp-form-card,
+.lp-faq__item,
+.deal-clarity__card,
+.explore-more__card{
+  background: linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(14,16,22,.85) 100%) !important;
+  border: 1px solid var(--gf-line) !important;
+  border-radius: var(--gf-r-l) !important;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) !important;
+  box-shadow: var(--gf-shadow-2);
+  transition: transform var(--gf-dur) var(--gf-ease),
+              border-color var(--gf-dur) var(--gf-ease),
+              box-shadow var(--gf-dur) var(--gf-ease);
+  position: relative;
+  overflow: hidden;
+}
+.lp-why-card:hover,
+.lp-deal-card:hover,
+.lp-step:hover,
+.deal-clarity__card:hover,
+.explore-more__card:hover{
+  border-color: rgba(79,227,210,.32) !important;
+  box-shadow: var(--gf-shadow-3);
+  transform: translateY(-2px);
+}
+
+/* LP card icons — centered premium squircle */
+.lp-why-card__icon,
+.lp-step__num,
+.lp-process__step .icon,
+.lp-process-card__icon,
+.deal-clarity__card__icon{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto 1rem !important;
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 16px !important;
+  background: linear-gradient(135deg, rgba(79,227,210,.18) 0%, rgba(18,181,166,.08) 100%) !important;
+  border: 1px solid rgba(79,227,210,.32) !important;
+  box-shadow:
+    0 6px 22px rgba(79,227,210,.14),
+    inset 0 1px 0 rgba(255,255,255,.10) !important;
+}
+.lp-why-card__icon svg,
+.lp-step__num svg,
+.deal-clarity__card__icon svg{ width: 26px !important; height: 26px !important; color: var(--gf-teal) !important; }
+
+/* LP card typography */
+.lp-why-card,
+.lp-deal-card,
+.lp-step,
+.deal-clarity__card,
+.explore-more__card{ text-align: center; }
+.lp-why-card__title,
+.lp-step__title,
+.lp-deal-card__location,
+.deal-clarity__card-title{
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  color: var(--gf-ink-0) !important;
+  margin: 0 0 .5rem !important;
+  letter-spacing: -.015em;
+}
+.lp-why-card__body,
+.lp-step__body,
+.lp-deal-card__note,
+.deal-clarity__card p{
+  color: var(--gf-ink-1) !important;
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
+  max-width: 44ch;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* LP grids — responsive & generous */
+.lp-why__grid,
+.lp-deals__grid,
+.lp-process__steps,
+.explore-more__grid,
+.deal-clarity__grid{
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)) !important;
+  gap: clamp(1rem, 2.5vw, 1.5rem) !important;
+  max-width: var(--gf-content-max);
+  margin: 0 auto;
+}
+
+/* LP deal cards — distinctive amount display */
+.lp-deal-card__amount{
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+  color: var(--gf-ink-0) !important;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+  margin: .25rem 0;
+}
+.lp-deal-card__tag{
+  display: inline-block;
+  padding: .2rem .6rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gf-teal);
+  background: rgba(79,227,210,.1);
+  border: 1px solid rgba(79,227,210,.25);
+  border-radius: 999px;
+}
+.lp-deal-card__meta{ color: var(--gf-ink-2) !important; font-size: .9rem; }
+.lp-deal-card__location{ font-size: 1rem !important; margin-bottom: .25rem !important; }
+
+/* LP stats row */
+.lp-hero__stats{
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+}
+.lp-stat{
+  flex: 1 1 auto;
+  min-width: 120px;
+  padding: .75rem 1rem !important;
+  text-align: left;
+  border-left: 2px solid rgba(79,227,210,.4);
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.lp-stat__num{
+  display: block;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: var(--gf-ink-0);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+}
+.lp-stat__label{
+  display: block;
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gf-ink-2);
+  margin-top: .15rem;
+}
+
+/* LP process steps — numbered circles */
+.lp-step{ position: relative; }
+.lp-step__num{
+  /* Override the icon-squircle rule when it's just a number */
+  background: linear-gradient(135deg, var(--gf-teal), var(--gf-teal-deep)) !important;
+  color: #0B1014 !important;
+  font-weight: 900 !important;
+  font-size: 1.25rem !important;
+}
+.lp-step__time{
+  display: inline-block;
+  margin-top: .5rem;
+  padding: .25rem .65rem;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--gf-ember);
+  background: rgba(240,178,107,.1);
+  border: 1px solid rgba(240,178,107,.25);
+  border-radius: 999px;
+}
+
+/* LP FAQ items — clean accordion */
+.lp-faq__item{
+  padding: 0 !important;
+  text-align: left;
+}
+.lp-faq__q,
+.lp-faq__toggle{
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 1.25rem !important;
+  background: transparent !important;
+  border: none !important;
+  color: var(--gf-ink-0) !important;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+}
+.lp-faq__a{
+  padding: 0 1.25rem 1rem !important;
+  color: var(--gf-ink-1) !important;
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+/* LP form card — cta panel on location pages */
+.lp-form-card{
+  text-align: center;
+}
+.lp-form-card__title{
+  font-size: 1.4rem !important;
+  margin: 0 0 .35rem !important;
+}
+.lp-form-card__sub{
+  color: var(--gf-ink-2) !important;
+  margin: 0 0 1rem !important;
+  font-size: .98rem;
+}
+
+/* LP CTA banner section */
+.lp-cta{
+  text-align: center;
+  padding: clamp(2rem, 4vw, 3rem) !important;
+  background: radial-gradient(120% 90% at 50% 0%, rgba(79,227,210,.10), transparent 65%),
+              linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(14,16,22,.9) 100%) !important;
+  border: 1px solid rgba(79,227,210,.18) !important;
+  border-radius: 24px !important;
+  max-width: var(--gf-content-max);
+  margin: 0 auto;
+}
+.lp-cta__title{
+  font-size: clamp(1.5rem, 3vw, 2.25rem) !important;
+  margin: 0 0 .5rem !important;
+}
+.lp-cta__sub{
+  color: var(--gf-ink-1) !important;
+  max-width: 55ch;
+  margin: 0 auto 1rem !important;
+}
+.lp-cta__btns{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+/* Kill the left-aligned section subtitle centered */
+.section-subtitle{
+  text-align: center;
+  color: var(--gf-ink-2) !important;
+  max-width: 62ch;
+  margin: 0 auto clamp(1.5rem, 3vw, 2rem) !important;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.text-center, .section-header.text-center{ text-align: center; }
+
+/* Section-title size + hierarchy */
+.section-title{
+  font-size: clamp(1.65rem, 3.5vw, 2.5rem) !important;
+  text-align: center;
+  margin: 0 auto .5rem !important;
+  max-width: 22ch;
+  line-height: 1.15 !important;
+  letter-spacing: -.02em;
+}
 /* === END PREMIUM SYSTEM v1 === */
 </style>
 

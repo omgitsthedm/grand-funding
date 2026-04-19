@@ -141,18 +141,18 @@ body .blog-hero-image{
   object-fit:cover;
   z-index:0;
   pointer-events:none;
-  filter:saturate(1.05) contrast(1.08) brightness(.72);
+  filter:saturate(1.08) contrast(1.05) brightness(.92);
   transform:scale(1.02);
 }
 .hero > .container,
 .hero .hero-content,
 .hero-overlay{position:relative;z-index:2}
 .hero::after{
-  /* Cinematic darken gradient so hero copy stays legible on the video */
+  /* Lightweight legibility wash — video reads, copy stays crisp */
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    linear-gradient(180deg, rgba(6,7,11,.55) 0%, rgba(6,7,11,.78) 55%, rgba(6,7,11,.92) 100%),
-    radial-gradient(900px 600px at 20% 30%, rgba(79,227,210,.10), transparent 60%);
+    linear-gradient(180deg, rgba(6,7,11,.25) 0%, rgba(6,7,11,.45) 60%, rgba(6,7,11,.65) 100%),
+    radial-gradient(60% 60% at 20% 40%, rgba(6,7,11,.35), transparent 70%);
 }
 @media (prefers-reduced-motion: reduce){
   .hero-video{display:none!important}
@@ -1256,10 +1256,14 @@ body:not(.home) .reveal:not(.is-visible){ transform: translateY(10px); opacity:0
 body:not(.home) .reveal.is-visible{ transform: translateY(0); opacity:1;
   transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
 
-/* ── Border-left teal accent for emphasis blocks ───────────────── */
+/* ── Border-left teal accent for emphasis blocks ─────────────────
+   Scoped narrowly: only blockquotes + elements with exact class
+   `.callout` or `.highlight`. Substring matching broke blog callouts
+   (matched blog-callout__inner / __copy / __actions).
+   ───────────────────────────────────────────────────────────────── */
 blockquote,
-main > section [class*="callout"]:not(.blog-callout),
-main > section [class*="highlight"]{
+main > section .callout,
+main > section .highlight{
   border-left: 3px solid rgba(79,227,210,.4)!important;
   padding: 1.25rem 1.5rem !important;
   background: linear-gradient(90deg, rgba(79,227,210,.04), transparent 80%) !important;
@@ -1309,6 +1313,168 @@ main > section [class*="highlight"]{
 @media (max-width: 480px){
   .lp-hero__stats > *, .page-hero__stats > *{ flex: 1 1 100%; }
 }
+
+/* ==========================================================
+   DEAD-SPACE / BALANCE FIXES (added after user screenshot audit)
+   Applies to all pages. Targets: unbalanced 2-col sections,
+   default-styled anchors in contact/value cards, stacked section
+   padding, blog callout clean-up, products page dead right col.
+   ========================================================== */
+
+/* 1. Kill default blue/underlined anchors inside any info card */
+.contact-card a,
+.value-item a,
+.footer-contact a,
+main section .contact-row a,
+main section .contact-info a,
+.work-with-logan a,
+.meet-advisor a,
+a[href^="tel:"],
+a[href^="mailto:"]{
+  color: var(--gf-teal) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(79,227,210,.25);
+  transition: color .18s ease, border-color .18s ease;
+}
+.contact-card a:hover,
+.value-item a:hover,
+a[href^="tel:"]:hover,
+a[href^="mailto:"]:hover{
+  color: var(--gf-ember) !important;
+  border-bottom-color: rgba(240,178,107,.55);
+}
+
+/* 2. Products page: "Ready to Get Started" side-card was ending
+      short, leaving a huge empty right column. Make it sticky so
+      it stays in view OR collapse the grid on shorter content. */
+.product-section .product-card,
+.product-section{ align-items: start; }
+.product-section .loan-cta-card,
+.product-section aside,
+.product-section .sidebar,
+.product-card > aside,
+.product-card .ready-to-start,
+.product-card [class*="cta"]{
+  position: sticky;
+  top: clamp(80px, 12vh, 120px);
+  align-self: start;
+}
+
+/* 3. Any 2-column interior grid where the right column is
+      shorter than the left (like Contact hero, Hard Money Loans
+      section): cap the empty-space cost by letting the row shrink
+      and centering content. */
+.two-col-hero,
+.contact-hero,
+.lp-hero__inner,
+.page-hero__inner{
+  align-items: center;
+}
+@media (max-width: 960px){
+  .two-col-hero,
+  .contact-hero,
+  .lp-hero__inner,
+  .page-hero__inner{
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
+  .two-col-hero > *:last-child:empty,
+  .contact-hero > *:last-child:empty{ display:none }
+}
+
+/* 4. Blog callout cleanup — single clean card, no nested borders.
+      premium-system + blog.css were both styling .blog-callout.
+      Normalize to one card + remove implicit border-left that was
+      bleeding in via substring class matching (now fixed above). */
+.blog-callout{
+  border-left: none !important;
+  background: linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015)) !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 18px 50px rgba(0,0,0,.35) !important;
+  padding: 0 !important;
+  margin: clamp(1.25rem, 3vw, 2rem) auto !important;
+}
+.blog-callout__inner{
+  border-left: none !important;
+  background: transparent !important;
+  padding: clamp(1.5rem, 3vw, 2.25rem) !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+.blog-callout__copy,
+.blog-callout__actions{
+  border-left: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* 5. Section padding rationalisation — we had multiple layers
+      adding 4rem/5rem/6rem on top of each other. Define a single
+      section rhythm and force it. */
+main > section,
+main > .section{
+  padding-top: clamp(3rem, 5vw, 5rem) !important;
+  padding-bottom: clamp(3rem, 5vw, 5rem) !important;
+}
+main > section + section{ margin-top: 0 !important; }
+main > .hero,
+main > section.hero,
+body.home main > section:first-child{
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 6. Kill orphaned dead space after short right columns inside
+      any `.container > .two-col` pattern */
+.container > .row,
+.container > .two-col,
+.container > .split{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
+}
+@media (max-width: 880px){
+  .container > .row,
+  .container > .two-col,
+  .container > .split{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* 7. Meet-Logan / About intro block — contact links styled + tight */
+.advisor-profile,
+.meet-advisor,
+.team-card,
+.about-advisor{
+  display: grid;
+  gap: 0.9rem;
+}
+.advisor-profile .advisor-contact,
+.meet-advisor .advisor-contact,
+.about-advisor .contact-row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.25rem;
+  justify-content: flex-start;
+  align-items: center;
+  padding: .85rem 1rem;
+  border: 1px solid var(--gf-line);
+  border-radius: 14px;
+  background: rgba(255,255,255,.025);
+  margin-top: .5rem;
+}
+
+/* 8. Remove any border-left that might accidentally render on
+      scoped card subparts (defensive) */
+.blog-callout > *,
+.product-card > *,
+.feature-card > *,
+.contact-card > *{ border-left: none !important; }
 /* === END PREMIUM SYSTEM v1 === */
 </style><meta property="og:title" content="Arizona Fix & Flip Loans — Up to 90% ARV | Grand Funding LLC"><meta property="og:description" content="width=device-width,initial-scale=1"><meta property="og:type" content="website"><meta property="og:url" content="https://www.grandfundingllc.com/lp-fix-and-flip-arizona"><meta property="og:image" content="https://www.grandfundingllc.com/images/og-grandfunding.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://www.grandfundingllc.com/images/og-grandfunding.png"><meta name="twitter:title" content="Arizona Fix & Flip Loans — Up to 90% ARV | Grand Funding LLC"><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','functionality_storage':'granted','security_storage':'granted','wait_for_update':500});gtag('set','ads_data_redaction',true);</script><script>(function(){if(navigator.webdriver)return;gtag("js",new Date());gtag("config","G-K825ENLYS6");var _l=false;function _g(){if(_l)return;_l=true;var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-K825ENLYS6";document.head.appendChild(s);}if(window.requestIdleCallback){requestIdleCallback(_g,{timeout:4000});}else{setTimeout(_g,4000);}["click","touchstart","scroll","keydown"].forEach(function(e){document.addEventListener(e,_g,{once:true,passive:true});});}());</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Grand Funding LLC","url":"https://www.grandfundingllc.com","logo":"https://www.grandfundingllc.com/images/brand-logo-dark.webp","telephone":"+16029350371","email":"info@grandfundingllc.com","areaServed":["Arizona","California"],"legalName":"Grand Funding LLC"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","speakable":{"@type":"SpeakableSpecification","cssSelector":[".hero-content",".section-header","h1","h2"]}}</script>
 <link rel="preload" href="/styles-v2.css?v=20260428" as="style" fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/styles-v2.css?v=20260428"></noscript><link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><style data-inline="compliance">/* Compliance pages — shared layout */

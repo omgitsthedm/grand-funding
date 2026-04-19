@@ -178,9 +178,16 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
                 io.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
 
-    els.forEach(el => io.observe(el));
+    // Observe BOTH the selector-list elements AND any hardcoded .reveal/.reveal-stagger
+    // elements. Previously only `els` were observed, so hardcoded reveals got
+    // `.js-reveal-init` added (hiding them) but never `.is-visible` (keeping them hidden).
+    const allReveals = new Set([
+        ...els,
+        ...document.querySelectorAll('.reveal, .reveal-stagger')
+    ]);
+    allReveals.forEach(el => io.observe(el));
 })();
 
 // ---- Header/Nav scrolled state + scroll progress ----

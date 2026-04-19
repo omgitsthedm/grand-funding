@@ -648,18 +648,116 @@ select:focus-visible,textarea:focus-visible,
 /* ==========================
    BLOG CARD / BLOG HERO
    ========================== */
-.blog-card{overflow:hidden!important;display:flex!important;flex-direction:column}
+.blog-card{
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+  padding:0!important;  /* Image goes edge-to-edge inside card */
+  border-radius: var(--gf-r-xl)!important;
+  min-height: unset!important;
+}
 .blog-card__link{display:flex;flex-direction:column;height:100%;text-decoration:none!important}
 .blog-card__image{
-  width:100%;aspect-ratio:16/10;overflow:hidden;position:relative;
+  width:100%!important;
+  max-width:100%!important;
+  aspect-ratio:16/10;
+  overflow:hidden;position:relative;display:block;
   background: var(--gf-spot-soft);
+  margin:0!important;
 }
+.blog-card__image picture{display:block;width:100%;height:100%}
 .blog-card__image img{
-  width:100%!important;height:100%!important;object-fit:cover!important;display:block;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  object-fit:cover!important;
+  display:block;
   transition:transform var(--gf-dur-slow) var(--gf-ease);
 }
 .blog-card:hover .blog-card__image img{transform:scale(1.05)}
-.blog-card__inner,.blog-card__body{padding: clamp(var(--gf-s-4), 2vw, var(--gf-s-5))!important}
+.blog-card__inner,.blog-card__body{
+  padding: clamp(var(--gf-s-4), 2vw, var(--gf-s-5))!important;
+  display:flex;flex-direction:column;gap:var(--gf-s-2);flex:1;
+}
+.blog-card__meta{color:var(--gf-ink-3);font-size:var(--gf-small);display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.blog-card__meta .tag,.blog-card .blog-tag{
+  background:var(--gf-spot-soft);
+  border:1px solid rgba(79,227,210,.28);
+  color:var(--gf-teal);
+  padding:.2rem .6rem;
+  border-radius:var(--gf-r-pill);
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.blog-card h2,.blog-card h3,.blog-card__title{
+  font-size:clamp(1.1rem, 1vw + .85rem, 1.35rem)!important;
+  margin:0!important;
+  line-height:1.25!important;
+  color:var(--gf-ink-0)!important;
+}
+.blog-card p,.blog-card__excerpt{
+  color:var(--gf-ink-1)!important;
+  font-size:.95rem!important;
+  line-height:1.55!important;
+  margin:0!important;
+}
+.blog-card__cta{margin-top:auto;padding:0 clamp(var(--gf-s-4), 2vw, var(--gf-s-5)) clamp(var(--gf-s-4), 2vw, var(--gf-s-5))!important;display:flex;justify-content:space-between;align-items:center}
+.blog-card__cta a,.blog-card__cta .ghost-btn{
+  color:var(--gf-teal)!important;
+  font-weight:700!important;
+  font-size:.95rem!important;
+  text-decoration:none!important;
+  padding:.5rem 0!important;
+  width:auto!important;
+  background:transparent!important;
+  border:none!important;
+}
+.blog-card__cta a:hover{color:var(--gf-ember)!important}
+
+/* Blog grid spacing + premium rhythm */
+.blog-grid{
+  display:grid!important;
+  grid-template-columns:repeat(auto-fill, minmax(min(340px, 100%), 1fr))!important;
+  gap: clamp(1rem, 2vw, 1.5rem)!important;
+  max-width:var(--gf-content-max)!important;
+  margin:0 auto!important;
+  padding: 0 var(--gf-s-4);
+}
+
+/* Blog callout — force dark theme, premium feel */
+.blog-callout,.blog-section .blog-callout,.blog-container .blog-callout{
+  background: linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02))!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  border-radius: var(--gf-r-xl)!important;
+  padding: clamp(var(--gf-s-5), 2.5vw, var(--gf-s-6))!important;
+  color: var(--gf-ink-0)!important;
+  box-shadow: var(--gf-shadow-2)!important;
+  margin: 0 auto clamp(var(--gf-s-5), 3vw, var(--gf-s-7))!important;
+  max-width: var(--gf-content-max);
+}
+.blog-callout h2,.blog-callout h3,.blog-callout__title,
+.blog-callout strong{color:var(--gf-ink-0)!important}
+.blog-callout p,.blog-callout li,.blog-callout__subtitle,
+.blog-callout__bullets li{color:var(--gf-ink-1)!important}
+.blog-callout a,.blog-callout__link,.blog-callout .btn{color:var(--gf-ink-0)!important}
+.blog-callout__link,.blog-callout .btn-primary{
+  background: var(--gf-spot)!important;
+  color:#0B1014!important;
+  padding:.8rem 1.25rem!important;
+  border-radius:var(--gf-r-pill)!important;
+  font-weight:700!important;
+  text-decoration:none!important;
+  border:none!important;
+}
+.blog-callout__inner{padding:0!important}
+
+/* Blog hero card */
+.blog-hero{padding: clamp(var(--gf-s-7), 4vw, var(--gf-s-9)) 0 clamp(var(--gf-s-6), 3vw, var(--gf-s-7))}
+.blog-hero h1{font-size:var(--gf-h1);margin:0 0 var(--gf-s-3)}
+.blog-hero p{color:var(--gf-ink-2);font-size:1.05rem;max-width:62ch;margin:0 auto}
+.blog-toolbar{max-width:var(--gf-content-max);margin:0 auto var(--gf-s-5);padding:0 var(--gf-s-4)}
 
 /* Blog hero image edge-to-edge on mobile, centered rounded on desktop */
 .blog-hero-image{
@@ -762,6 +860,6 @@ select:focus-visible,textarea:focus-visible,
   .consent-btn{flex:1;min-width:0}
 }
 </style></head><body><header class="lp-bar"><a class="lp-brand" href="/"><img alt="Grand Funding" src="/images/gf-logo-horizontal-light.webp" width="79" height="38" decoding="async"></a><a class="lp-phone" href="tel:6029350371"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>(602) 935-0371</a></header><a class="skip-link" href="#main">Skip to content</a><main id="main"><div class="container"><section class="lp-hero"><div class="lp-hero__inner"><div><div class="lp-kicker">Arizona Bridge Loan Specialists</div><h1 class="lp-h1">Arizona Bridge Loans — Close the Gap, Close in Days</h1><p class="lp-sub">Buy before you sell. Beat cash buyers. Rescue a deal when the bank falls through. Arizona bridge loans up to 75% LTV with 24-hour approval and 3–5 day funding.</p><ul class="lp-bullets"><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>Buy before you sell — no contingent offer required</li><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>Compete with cash — close in 3–5 days</li><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>Bank fell through? We've closed in 48-72 hours</li><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>Up to 75% LTV — no income docs, asset-based</li><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>Phoenix, Scottsdale, Tucson &amp; all of Arizona</li></ul><div class="lp-stats"><div class="lp-stat"><div class="lp-stat__num">75%</div><div class="lp-stat__label">Max LTV</div></div><div class="lp-stat"><div class="lp-stat__num">24hr</div><div class="lp-stat__label">Approval</div></div><div class="lp-stat"><div class="lp-stat__num">3–5</div><div class="lp-stat__label">Days to Fund</div></div><div class="lp-stat"><div class="lp-stat__num">$5M</div><div class="lp-stat__label">Max Loan</div></div></div></div><div class="lp-card"><div class="lp-card__title">Get Your Bridge Loan Quote Now</div><div class="lp-card__sub">Tell us the gap. We'll tell you if we can close it — and on what terms. Same day.</div><form action="/thanks.html" class="lp-form" data-netlify="true" method="POST" name="lp-bridge-loan-arizona" netlify-honeypot="bot-field"><input name="form-name" type="hidden" value="lp-bridge-loan-arizona"><p style="display:none"><label>Skip: <input name="bot-field"></label></p><label>Full Name<input autocomplete="name" name="name" placeholder="Your name" required type="text"></label><div class="lp-form__row"><label>Phone<input autocomplete="tel" name="phone" placeholder="(602) 000-0000" required type="tel"></label><label>Email<input autocomplete="email" name="email" placeholder="you@email.com" required type="email"></label></div><label>What's this bridge for?<select name="bridge_purpose" required><option value="">Select the scenario...</option><option value="buy_before_sell">Buy New Property Before Selling Existing</option><option value="beat_cash">Compete With / Replace Cash Offer</option><option value="bank_fallthrough">Bank Fell Through — Need Fast Close</option><option value="stabilization">Gap During Stabilization / Lease-Up</option><option value="other">Other</option></select></label><div class="lp-form__row"><label>Property Value<input name="property_value" placeholder="e.g. $500,000" type="text"></label><label>Loan Amount Needed<input name="loan_amount" placeholder="e.g. $350,000" type="text"></label></div><label>Property City, AZ<input name="city" placeholder="e.g. Chandler, AZ" type="text"></label><button class="lp-form__btn" type="submit">Get My Bridge Quote →</button><p class="lp-form__fine">No spam. No hard pull. Straight answers from your lender.</p></form></div></div></section></div><div class="lp-trust"><div class="container lp-trust__inner"><span class="lp-badge lp-badge--gold">NMLS #2466872</span><span class="lp-badge">AZ MLO #1048901</span><span class="lp-badge">Up to 75% LTV</span><span class="lp-badge">48-Hour Emergency Close</span><span class="lp-badge lp-badge--gold">40+ Years Lending</span><span class="lp-badge">No Income Docs</span></div></div><div class="container"><section class="lp-proof"><div class="lp-proof__grid"><div class="lp-proof-card"><div class="lp-proof-card__amount">$650,000</div><div class="lp-proof-card__meta">Scottsdale — Closed in 5 days</div><div class="lp-proof-card__note">Buy-before-sell bridge. Investor closed new acquisition, existing property sold within 60 days. No contingent offer needed.</div></div><div class="lp-proof-card"><div class="lp-proof-card__amount">$1,100,000</div><div class="lp-proof-card__meta">Los Angeles — Closed in 6 days</div><div class="lp-proof-card__note">Bank deal collapsed at day 18. Bridge replaced conventional in 6 days — deal saved.</div></div><div class="lp-proof-card"><div class="lp-proof-card__amount">$250,000</div><div class="lp-proof-card__meta">Payson, AZ — Closed in 48 hrs</div><div class="lp-proof-card__note">Motivated seller, 72-hour window. Emergency bridge funded in 48 hours on equity-rich property.</div></div></div></section></div></main><footer class="lp-footer"><div class="container"><p>Grand Funding LLC | NMLS ID: 2466872 | AZ MLO License: 1048901 | Logan Sullivan | NMLS #2466872</p><p>This is not a commitment to lend. All loans subject to credit approval.</p><p><a href="https://www.nmlsconsumeraccess.org" rel="noopener" target="_blank">NMLS Consumer Access</a> &nbsp;|&nbsp; <a href="/">grandfundingllc.com</a></p><p style="margin-top:.5rem;color:#f0b26b;opacity:.8">Designed, Hosted and Cared For by <a href="https://www.littlefightnyc.com" rel="noopener" target="_blank" style="color:#f0b26b">LittleFightNYC.com</a></p></div></footer><div class="consent-banner" id="consent-banner" role="dialog" aria-live="polite" aria-label="Cookie consent"><div class="consent-inner"><div class="consent-text">We use cookies to improve your experience and measure marketing performance. Essential cookies are always on. You can accept all cookies or continue with essential only. See our <a href="/privacy">Privacy Policy</a>.</div><div class="consent-actions"><button class="consent-btn consent-btn--ghost" type="button" data-consent="essential">Essential only</button><button class="consent-btn consent-btn--primary" type="button" data-consent="all">Accept all</button></div></div></div><script defer src="/consent.js?v=20260422"></script>
-<noscript></noscript><noscript></noscript><script defer src="/premium.js?v=20260428"></script>
+<noscript></noscript><noscript></noscript><script defer src="/premium.js?v=20260429"></script>
 
 </body></html>

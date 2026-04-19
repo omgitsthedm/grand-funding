@@ -674,18 +674,116 @@ select:focus-visible,textarea:focus-visible,
 /* ==========================
    BLOG CARD / BLOG HERO
    ========================== */
-.blog-card{overflow:hidden!important;display:flex!important;flex-direction:column}
+.blog-card{
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+  padding:0!important;  /* Image goes edge-to-edge inside card */
+  border-radius: var(--gf-r-xl)!important;
+  min-height: unset!important;
+}
 .blog-card__link{display:flex;flex-direction:column;height:100%;text-decoration:none!important}
 .blog-card__image{
-  width:100%;aspect-ratio:16/10;overflow:hidden;position:relative;
+  width:100%!important;
+  max-width:100%!important;
+  aspect-ratio:16/10;
+  overflow:hidden;position:relative;display:block;
   background: var(--gf-spot-soft);
+  margin:0!important;
 }
+.blog-card__image picture{display:block;width:100%;height:100%}
 .blog-card__image img{
-  width:100%!important;height:100%!important;object-fit:cover!important;display:block;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  object-fit:cover!important;
+  display:block;
   transition:transform var(--gf-dur-slow) var(--gf-ease);
 }
 .blog-card:hover .blog-card__image img{transform:scale(1.05)}
-.blog-card__inner,.blog-card__body{padding: clamp(var(--gf-s-4), 2vw, var(--gf-s-5))!important}
+.blog-card__inner,.blog-card__body{
+  padding: clamp(var(--gf-s-4), 2vw, var(--gf-s-5))!important;
+  display:flex;flex-direction:column;gap:var(--gf-s-2);flex:1;
+}
+.blog-card__meta{color:var(--gf-ink-3);font-size:var(--gf-small);display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.blog-card__meta .tag,.blog-card .blog-tag{
+  background:var(--gf-spot-soft);
+  border:1px solid rgba(79,227,210,.28);
+  color:var(--gf-teal);
+  padding:.2rem .6rem;
+  border-radius:var(--gf-r-pill);
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.blog-card h2,.blog-card h3,.blog-card__title{
+  font-size:clamp(1.1rem, 1vw + .85rem, 1.35rem)!important;
+  margin:0!important;
+  line-height:1.25!important;
+  color:var(--gf-ink-0)!important;
+}
+.blog-card p,.blog-card__excerpt{
+  color:var(--gf-ink-1)!important;
+  font-size:.95rem!important;
+  line-height:1.55!important;
+  margin:0!important;
+}
+.blog-card__cta{margin-top:auto;padding:0 clamp(var(--gf-s-4), 2vw, var(--gf-s-5)) clamp(var(--gf-s-4), 2vw, var(--gf-s-5))!important;display:flex;justify-content:space-between;align-items:center}
+.blog-card__cta a,.blog-card__cta .ghost-btn{
+  color:var(--gf-teal)!important;
+  font-weight:700!important;
+  font-size:.95rem!important;
+  text-decoration:none!important;
+  padding:.5rem 0!important;
+  width:auto!important;
+  background:transparent!important;
+  border:none!important;
+}
+.blog-card__cta a:hover{color:var(--gf-ember)!important}
+
+/* Blog grid spacing + premium rhythm */
+.blog-grid{
+  display:grid!important;
+  grid-template-columns:repeat(auto-fill, minmax(min(340px, 100%), 1fr))!important;
+  gap: clamp(1rem, 2vw, 1.5rem)!important;
+  max-width:var(--gf-content-max)!important;
+  margin:0 auto!important;
+  padding: 0 var(--gf-s-4);
+}
+
+/* Blog callout — force dark theme, premium feel */
+.blog-callout,.blog-section .blog-callout,.blog-container .blog-callout{
+  background: linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02))!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  border-radius: var(--gf-r-xl)!important;
+  padding: clamp(var(--gf-s-5), 2.5vw, var(--gf-s-6))!important;
+  color: var(--gf-ink-0)!important;
+  box-shadow: var(--gf-shadow-2)!important;
+  margin: 0 auto clamp(var(--gf-s-5), 3vw, var(--gf-s-7))!important;
+  max-width: var(--gf-content-max);
+}
+.blog-callout h2,.blog-callout h3,.blog-callout__title,
+.blog-callout strong{color:var(--gf-ink-0)!important}
+.blog-callout p,.blog-callout li,.blog-callout__subtitle,
+.blog-callout__bullets li{color:var(--gf-ink-1)!important}
+.blog-callout a,.blog-callout__link,.blog-callout .btn{color:var(--gf-ink-0)!important}
+.blog-callout__link,.blog-callout .btn-primary{
+  background: var(--gf-spot)!important;
+  color:#0B1014!important;
+  padding:.8rem 1.25rem!important;
+  border-radius:var(--gf-r-pill)!important;
+  font-weight:700!important;
+  text-decoration:none!important;
+  border:none!important;
+}
+.blog-callout__inner{padding:0!important}
+
+/* Blog hero card */
+.blog-hero{padding: clamp(var(--gf-s-7), 4vw, var(--gf-s-9)) 0 clamp(var(--gf-s-6), 3vw, var(--gf-s-7))}
+.blog-hero h1{font-size:var(--gf-h1);margin:0 0 var(--gf-s-3)}
+.blog-hero p{color:var(--gf-ink-2);font-size:1.05rem;max-width:62ch;margin:0 auto}
+.blog-toolbar{max-width:var(--gf-content-max);margin:0 auto var(--gf-s-5);padding:0 var(--gf-s-4)}
 
 /* Blog hero image edge-to-edge on mobile, centered rounded on desktop */
 .blog-hero-image{
@@ -898,7 +996,7 @@ select:focus-visible,textarea:focus-visible,
 
     <script src="/script.js?v=20260119" defer></script>
 <noscript></noscript>
-<div class="consent-banner" id="consent-banner" role="dialog" aria-live="polite" aria-label="Cookie consent"><div class="consent-inner"><div class="consent-text">We use cookies to improve your experience and measure marketing performance. Essential cookies are always on. You can accept all cookies or continue with essential only. See our <a href="/privacy">Privacy Policy</a>.</div><div class="consent-actions"><button class="consent-btn consent-btn--ghost" type="button" data-consent="essential">Essential only</button><button class="consent-btn consent-btn--primary" type="button" data-consent="all">Accept all</button></div></div></div><script defer src="/consent.js?v=20260422"></script><noscript></noscript><noscript></noscript><script defer src="/premium.js?v=20260428"></script>
+<div class="consent-banner" id="consent-banner" role="dialog" aria-live="polite" aria-label="Cookie consent"><div class="consent-inner"><div class="consent-text">We use cookies to improve your experience and measure marketing performance. Essential cookies are always on. You can accept all cookies or continue with essential only. See our <a href="/privacy">Privacy Policy</a>.</div><div class="consent-actions"><button class="consent-btn consent-btn--ghost" type="button" data-consent="essential">Essential only</button><button class="consent-btn consent-btn--primary" type="button" data-consent="all">Accept all</button></div></div></div><script defer src="/consent.js?v=20260422"></script><noscript></noscript><noscript></noscript><script defer src="/premium.js?v=20260429"></script>
 
 </body>
 </html>

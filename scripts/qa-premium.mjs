@@ -93,6 +93,128 @@ const BREAKPOINTS = [
 // Each returns `null` on pass or a diagnostic string on fail.
 // ─────────────────────────────────────────────────────────────
 const CHECKS = [
+  // 0. FOUNDATIONAL THEME SANITY
+  // Catches the "page forgot to load styles-v2.css" regression class —
+  // a silent failure where a page's structure is fine but the foundational
+  // stylesheet never reaches it, so header/nav/body/footer render as
+  // unstyled-document flow instead of the premium dark theme.
+  //
+  // Production-caught instance (2026-04-19): blog.html, partners.html,
+  // funded-deals.html rendered with white body, blue-underlined nav links,
+  // and 247px-tall stacked-bullet header because /styles-v2.css was never
+  // linked on those pages. The old checks (overflow, contrast, etc.) all
+  // passed because the page WASN'T broken in those specific ways — it was
+  // broken in the "no foundational CSS at all" way that downstream symptom
+  // checks can't reach. This check exists to block exactly that.
+  {
+    id: 'foundational-theme-sanity',
+    severity: 'blocker',
+    test: async p => {
+      return await p.evaluate(() => {
+        const fails = [];
+
+        // 0.a Foundational stylesheet must be loaded (link OR inlined).
+        const hasStylesV2Link = !!document.querySelector(
+          'link[rel="stylesheet"][href*="styles-v2"], link[rel="preload"][href*="styles-v2"]'
+        );
+        // Also accept inlined premium system block as foundational coverage.
+        const hasPremiumInline = !!Array.from(document.querySelectorAll('style'))
+          .find(s => s.textContent.includes('GRAND FUNDING PREMIUM SYSTEM'));
+        if (!hasStylesV2Link && !hasPremiumInline) {
+          fails.push('foundational CSS missing (no styles-v2.css link AND no premium-system inline)');
+        }
+
+        // 0.b Body background must be the premium dark theme.
+        // Acceptable: any background where average RGB luminance < 40.
+        // Unstyled default is rgb(255,255,255) — lum 255. Catches that.
+        const body = document.body;
+        const bodyBg = getComputedStyle(body).backgroundColor;
+        const bgMatch = bodyBg.match(/\d+/g);
+        if (bgMatch) {
+          const [br, bg, bb, ba] = bgMatch.map(Number);
+          const lum = (br + bg + bb) / 3;
+          const opaque = ba === undefined || ba > 0.8;
+          // If body is transparent AND html is also transparent/white, the
+          // effective background is the browser default (white).
+          if (opaque && lum > 40) {
+            fails.push(`body bg too bright: rgb(${br},${bg},${bb}) lum=${Math.round(lum)} (premium theme requires <40)`);
+          } else if (!opaque) {
+            // Body transparent — check html
+            const htmlBg = getComputedStyle(document.documentElement).backgroundColor;
+            const hm = htmlBg.match(/\d+/g);
+            if (hm) {
+              const hLum = (+hm[0] + +hm[1] + +hm[2]) / 3;
+              if (hLum > 40) fails.push(`html bg too bright: rgb(${hm[0]},${hm[1]},${hm[2]}) lum=${Math.round(hLum)}`);
+            } else {
+              fails.push('both body and html have no computable background — browser default white');
+            }
+          }
+        }
+
+        // 0.c Header must exist and render within expected height range.
+        // Unstyled nav in a <header> stacks vertically to 200+px. Premium
+        // collapsed header is 48–90px. Desktop uncollapsed is up to 120px.
+        const header = document.querySelector('header.header, header, .header');
+        if (!header) {
+          fails.push('no <header> element');
+        } else {
+          const hr = header.getBoundingClientRect();
+          if (hr.height > 140) {
+            fails.push(`header is ${Math.round(hr.height)}px tall (unstyled stacked nav symptom — max 140px)`);
+          }
+          if (hr.height < 30) {
+            fails.push(`header is ${Math.round(hr.height)}px tall (collapsed/hidden — min 30px)`);
+          }
+        }
+
+        // 0.d Mobile nav behavior — at ≤768px, either hamburger is visible
+        // OR nav-list is collapsed. The unstyled-bullet-list failure mode has
+        // nav-list display:block with list-style-type:disc visible — wrong.
+        const vw = window.innerWidth;
+        if (vw <= 768) {
+          const toggle = document.querySelector('.mobile-menu-toggle');
+          const navList = document.querySelector('.nav-list');
+          if (toggle) {
+            const td = getComputedStyle(toggle).display;
+            if (td === 'none') {
+              fails.push(`mobile-menu-toggle display:none at vw=${vw} (hamburger must show ≤768)`);
+            }
+          }
+          if (navList) {
+            const nd = getComputedStyle(navList).display;
+            const lst = getComputedStyle(navList).listStyleType;
+            // If nav-list is visible (block/flex) AND has default bullets, it's unstyled.
+            if ((nd === 'block' || nd === 'list-item') && lst === 'disc') {
+              fails.push(`nav-list is rendering as bulleted list at vw=${vw} (foundational CSS not applied)`);
+            }
+          }
+        }
+
+        // 0.e Footer must render with styled layout — not default flow with
+        // a transparent bg and default body text color.
+        const footer = document.querySelector('footer.footer, footer, .footer');
+        if (!footer) {
+          fails.push('no <footer> element');
+        } else {
+          const fr = footer.getBoundingClientRect();
+          if (fr.height < 100) {
+            fails.push(`footer is ${Math.round(fr.height)}px tall (likely unstyled — min 100px)`);
+          }
+          // Footer text color — should be light on dark theme.
+          const fcol = getComputedStyle(footer).color.match(/\d+/g);
+          if (fcol) {
+            const flum = (+fcol[0] + +fcol[1] + +fcol[2]) / 3;
+            if (flum < 60) {
+              fails.push(`footer text too dark: rgb(${fcol[0]},${fcol[1]},${fcol[2]}) lum=${Math.round(flum)} — dark-on-dark symptom`);
+            }
+          }
+        }
+
+        return fails.length ? fails.join(' | ') : null;
+      });
+    }
+  },
+
   // 1. Horizontal overflow — the premium killer on mobile.
   {
     id: 'horizontal-overflow',

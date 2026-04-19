@@ -658,15 +658,23 @@ select:focus-visible,textarea:focus-visible,
   padding:0!important;
   border-radius: var(--gf-r-xl)!important;
   min-height: unset!important;
-  color: var(--gf-ink-0)!important;
+  color: #F4F7FF!important;
+  /* SOLID dark bg — semi-transparent gradient was causing perceived dim-text haze */
+  background: #12161F!important;
+  border: 1px solid rgba(255,255,255,.08)!important;
   /* BYPASS REVEAL — blog cards must always be visible, never depend on IO */
   opacity:1!important;
   transform:none!important;
   visibility:visible!important;
   filter:none!important;
+  isolation:isolate;
   transition: transform var(--gf-dur) var(--gf-ease),
               border-color var(--gf-dur) var(--gf-ease),
               box-shadow var(--gf-dur) var(--gf-ease)!important;
+}
+.blog-card:hover{
+  background: #161B27!important;
+  border-color: rgba(79,227,210,.32)!important;
 }
 /* Double-protection: even if .reveal/.js-reveal-init ends up on blog-card, override */
 .blog-card.reveal,.blog-card.js-reveal-init,

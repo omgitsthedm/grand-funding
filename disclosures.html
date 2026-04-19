@@ -1506,6 +1506,222 @@ body.home main > section:first-child{
 .product-card > *,
 .feature-card > *,
 .contact-card > *{ border-left: none !important; }
+
+/* ==========================================================
+   EDITORIAL RHYTHM FIX — loans + about walls of text
+   Applies per-card internal spacing, subheading dividers,
+   bullet breathing room, reader-width caps.
+   ========================================================== */
+
+/* Product detail sections (products.html) — break the wall */
+.product-section{
+  padding: clamp(1.5rem, 3.5vw, 2.5rem) !important;
+  border: 1px solid var(--gf-line);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(14,16,22,.6));
+  box-shadow: var(--gf-shadow-2);
+  margin-bottom: clamp(1.25rem, 3vw, 2rem) !important;
+  display: grid;
+  gap: clamp(1rem, 2.2vw, 1.6rem);
+}
+.product-section > *{ margin: 0 !important; }
+
+/* Product section header — title + badge in a row */
+.product-section .product-header,
+.product-section > h2:first-of-type{
+  padding-bottom: clamp(.85rem, 2vw, 1.25rem);
+  border-bottom: 1px solid var(--gf-line);
+}
+.product-section h2,
+.product-section .product-title{
+  font-size: clamp(1.5rem, 3vw, 2rem) !important;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+}
+
+/* Intro paragraph reader */
+.product-section > p,
+.product-section .product-intro,
+.product-section p.lead{
+  max-width: 65ch;
+  color: var(--gf-ink-1);
+  line-height: 1.75;
+  font-size: 1.0625rem;
+}
+
+/* Key Features / Best For subheads — uppercase kickers */
+.product-section h3,
+.product-section .product-subhead{
+  font-size: .82rem !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase;
+  color: var(--gf-teal) !important;
+  font-weight: 700 !important;
+  margin: 0 0 .6rem !important;
+  padding-top: clamp(.5rem, 1vw, .85rem);
+}
+
+/* Bullet lists — generous spacing, teal checks */
+.product-section ul,
+.product-section .feature-list,
+.product-section .best-for-list{
+  list-style: none !important;
+  padding: 0 !important;
+  display: grid;
+  gap: .75rem;
+  max-width: 62ch;
+}
+.product-section ul li,
+.product-section .feature-list li,
+.product-section .best-for-list li{
+  position: relative;
+  padding-left: 1.75rem !important;
+  color: var(--gf-ink-1);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+.product-section ul li::before,
+.product-section .feature-list li::before,
+.product-section .best-for-list li::before{
+  content: "";
+  position: absolute;
+  left: 0; top: .35rem;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(79,227,210,.9), rgba(18,181,166,.25) 70%);
+  box-shadow: 0 0 0 1px rgba(79,227,210,.35), 0 0 12px rgba(79,227,210,.2);
+}
+.product-section ul li strong,
+.product-section .feature-list li strong{
+  color: var(--gf-ink-0);
+  font-weight: 700;
+  letter-spacing: -.005em;
+}
+
+/* Understanding Terms / glossary callout — clearly a sub-card */
+.product-section .glossary,
+.product-section .glossary-card,
+.product-section [class*="understanding"],
+.product-section .product-glossary{
+  margin-top: clamp(.75rem, 1.5vw, 1.25rem);
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  background: rgba(255,255,255,.025);
+  border: 1px solid var(--gf-line);
+  border-radius: 16px;
+  display: grid;
+  gap: .75rem;
+}
+.product-section .glossary h4,
+.product-section .glossary-card h4{
+  font-size: 1rem;
+  margin: 0 0 .25rem !important;
+  color: var(--gf-ink-0);
+}
+.product-section .glossary p,
+.product-section .glossary-card p{
+  font-size: .95rem;
+  line-height: 1.65;
+  color: var(--gf-ink-2);
+  max-width: 62ch;
+  margin: 0;
+}
+
+/* Sticky CTA card on the right */
+.product-section .product-cta,
+.product-section .ready-to-start,
+.product-section aside{
+  align-self: start;
+}
+
+/* About page — kill walls of text in .about-story */
+.about-story{
+  padding: clamp(1.5rem, 4vw, 2.5rem) 0;
+}
+.about-story .container,
+.about-story > .inner,
+.about-story > .reader{
+  max-width: 68ch;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+.about-story p,
+.about-story li{
+  line-height: 1.8 !important;
+  font-size: 1.0625rem;
+  color: var(--gf-ink-1);
+  max-width: 68ch;
+}
+.about-story p + p{ margin-top: 0 !important; }
+.about-story h2,
+.about-story h3{
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+}
+.about-story ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: .75rem;
+}
+.about-story ul li{
+  position: relative;
+  padding-left: 1.75rem;
+}
+.about-story ul li::before{
+  content: "";
+  position: absolute;
+  left: 0; top: .5rem;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--gf-teal);
+  box-shadow: 0 0 12px rgba(79,227,210,.35);
+}
+
+/* What We Do / Our Values / Why Choose cards — reduce cramp */
+.what-we-do .grid,
+.our-values .grid,
+.why-choose-us .grid,
+.what-we-do > .container > .grid,
+[class*="what-we-do"] [class*="grid"],
+[class*="our-values"] [class*="grid"],
+[class*="why-choose"] [class*="grid"]{
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)) !important;
+  gap: clamp(1rem, 2.5vw, 1.5rem) !important;
+}
+.what-we-do .card,
+.our-values .card,
+.why-choose-us .card,
+.what-we-do [class*="item"],
+.our-values [class*="item"],
+.why-choose-us [class*="item"]{
+  padding: clamp(1.25rem, 3vw, 1.75rem) !important;
+  text-align: center;
+}
+.what-we-do .card p,
+.our-values .card p,
+.why-choose-us .card p{
+  line-height: 1.7 !important;
+  font-size: .98rem;
+  max-width: 42ch;
+  margin: 0 auto !important;
+}
+
+/* Any long paragraph anywhere on mobile — cap line length */
+@media (max-width: 768px){
+  main p,
+  main li{
+    max-width: 62ch;
+    line-height: 1.75;
+  }
+  main section p + p{ margin-top: .85rem; }
+  main section ul,
+  main section ol{
+    display: grid;
+    gap: .6rem;
+  }
+}
 /* === END PREMIUM SYSTEM v1 === */
 </style>
 

@@ -37,6 +37,12 @@
 | 2026-04-19 | GA4 deferred across all 52 pages | Replaced synchronous gtag.js load with requestIdleCallback(4s) + first-interaction trigger. Consent defaults + dataLayer setup remain sync (legal). Page view queued immediately — replays on load. Removed forced-reflow, unused-js, legacy-js from Lighthouse critical path. Result: mobile 72-74 → 81/100, desktop 96-98 → 99/100. |
 | 2026-04-19 | Font CLS prevention | Added 'Inter' to inline CSS body font-family stack. Prevents font-metric CLS path if styles-v2.css ever goes async. |
 | 2026-04-19 | Blog post duplicate blog.css removed | Posts were loading blog.css twice (async + blocking). Removed redundant async link. |
+| 2026-04-19 | Self-hosted Google Fonts | Inter (variable) + Poppins (600/700/800/900) downloaded to /fonts/ as woff2. Removed Google Fonts preconnect + preload + css link tags. Added @font-face rules to inline CSS. Preload critical weights (inter.woff2, poppins-800.woff2). Eliminates 2 external connections. |
+| 2026-04-19 | rAF-throttled scroll handlers | Fixed forced-reflow sources in script.js (Back to top, Header Scroll Effect) and premium.js (header scroll state). All reads of window.scrollY now batched inside requestAnimationFrame. Removed synchronous onScroll() init calls. TBT improved from high to 70-130ms. |
+| 2026-04-19 | Hero excluded from .reveal animation | Removed .hero-content from premium.js autoTargets; script.js skips first <section>, .hero, .hero-content, any element inside .hero. Hero paints directly visible — faster LCP + safer CLS (async CSS can't cause reveal-based shift on hero). |
+| 2026-04-19 | .reveal CSS inlined into critical block | ~500 bytes of .reveal/.reveal-stagger/is-visible rules added to every page's inline <style>. Enables styles-v2.css to go async without CLS (async CSS arrival doesn't trigger reveal repaint since rules already applied inline). |
+| 2026-04-19 | styles-v2.css async (preload+onload) | Switched from blocking to async pattern. Net mobile gain +2-3 points. CLS stays safe due to inlined .reveal rules + hero exclusion. Compliance.css also inlined (was 1.4KB, not worth a round-trip). |
+| 2026-04-19 | FINAL stable baseline | Mobile 84 median (82-86), Desktop 99, CLS 0 mobile / 0.061 desktop, A11y/BP/SEO 100 across both. From original 72-74 mobile → 84 is +10-12 points. LCP 3.7-3.9s is Lighthouse mobile simulation ceiling (4x CPU throttle); real-world LCP ~1s. |
 
 ## Current Status
 - **Phase:** Deployed / Maintenance
@@ -56,7 +62,7 @@
   - Organization schema on index.html
   - GA4 G-K825ENLYS6 live on all 37 pages
   - Netlify Forms with honeypot on apply + contact
-  - Lighthouse scores: Desktop 99 perf / 100 a11y / 100 best practices / 100 SEO | Mobile 81 perf / 100 a11y / 100 best practices / 100 SEO
+  - Lighthouse scores: Desktop 99 perf / 100 a11y / 100 best practices / 100 SEO | Mobile 84 perf / 100 a11y / 100 best practices / 100 SEO (median of 3 runs)
 - **What's pending:**
   - Article OG images for blog posts (currently all use generic og-grandfunding.png)
   - Consider adding <main> landmark to about.html, faq.html, products.html

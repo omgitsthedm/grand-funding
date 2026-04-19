@@ -17,6 +17,37 @@ main>section,main>div>section,
   transform:none!important;
   filter:none!important
 }
+
+/* ============================================================
+   BLOG CALLOUT + CARD IMAGE FIX 2026-04-19
+   ============================================================ */
+/* Blog callout: force dark-theme styling */
+.blog-callout{
+  background:linear-gradient(135deg,rgba(79,227,210,0.1),rgba(240,178,107,0.08))!important;
+  color:var(--text-dark,#F4F7FF)!important;
+  border:1px solid rgba(255,255,255,.1)!important;
+}
+.blog-callout h3,.blog-callout h2,.blog-callout strong{color:var(--text-dark,#F4F7FF)!important}
+.blog-callout p,.blog-callout li{color:var(--text-medium,rgba(244,247,255,.85))!important}
+.blog-callout a{color:var(--primary-color,#4FE3D2)!important}
+
+/* Blog card image: force image to fill container (was overflowing at 1200px native width) */
+.blog-card__image{width:100%;overflow:hidden;display:block}
+.blog-card__image img,.blog-card__image picture,.blog-card__image picture img{
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  object-fit:cover!important;
+  display:block
+}
+.blog-card{overflow:hidden!important}
+
+/* Heading visibility — force visible for h2 in blog */
+.blog-section h2,.blog-container h2,main h2{
+  opacity:1!important;
+  transform:none!important;
+  color:var(--text-dark,#F4F7FF)
+}
 </style>
 
 <link rel="preload" href="/styles-v2.css?v=20260424" as="style" fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/styles-v2.css?v=20260424"></noscript><link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><link rel="preload" href="/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high"><style data-inline="compliance">/* Compliance pages — shared layout */

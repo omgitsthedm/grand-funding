@@ -1,48 +1,12 @@
 {
-  "startedAt": "2026-04-19T11:21:04.848Z",
+  "startedAt": "2026-04-19T11:26:44.566Z",
   "base": "https://www.grandfundingllc.com",
-  "failures": {
-    "tablet /": [
-      {
-        "id": "footer-grid-mobile",
-        "severity": "blocker",
-        "msg": "footer 3 cols at 768px (must be 1)"
-      }
-    ],
-    "tablet /phoenix-hard-money-lender.html": [
-      {
-        "id": "footer-grid-mobile",
-        "severity": "blocker",
-        "msg": "footer 3 cols at 768px (must be 1)"
-      }
-    ],
-    "tablet /arizona-hard-money-lender.html": [
-      {
-        "id": "footer-grid-mobile",
-        "severity": "blocker",
-        "msg": "footer 3 cols at 768px (must be 1)"
-      }
-    ],
-    "tablet /fix-and-flip-loans-arizona.html": [
-      {
-        "id": "footer-grid-mobile",
-        "severity": "blocker",
-        "msg": "footer 3 cols at 768px (must be 1)"
-      }
-    ],
-    "tablet /bridge-loans-arizona.html": [
-      {
-        "id": "footer-grid-mobile",
-        "severity": "blocker",
-        "msg": "footer 3 cols at 768px (must be 1)"
-      }
-    ]
-  },
+  "failures": {},
   "summary": {
     "totalChecks": 245,
-    "totalFails": 5,
-    "watchlistFails": 5,
-    "uniquePageFails": 5,
-    "durationMs": 56315
+    "totalFails": 0,
+    "watchlistFails": 0,
+    "uniquePageFails": 0,
+    "durationMs": 56714
   }
 }

@@ -2538,3 +2538,34 @@ html body main .section-nav a:hover{
 
 /* Dark-theme body-default ink so inherited colors pass WCAG */
 html body.theme-dark{ color: #F4F7FF; }
+
+/* Section-nav pills: use fully opaque solid colors for Lighthouse contrast */
+html body main .section-nav a,
+html body main nav.section-nav a{
+  color: #F4F7FF !important;
+  background: #1A1E28 !important;
+  border: 1px solid #2A3040 !important;
+}
+html body main .section-nav a:hover,
+html body main .section-nav a.is-active{
+  background: #0F2D2A !important;
+  border-color: #4FE3D2 !important;
+  color: #6FFFEF !important;
+}
+
+/* Products hero paragraph — force onto opaque darker band for contrast */
+html body section.products-hero{
+  background-color: #07080B !important;
+}
+html body section.products-hero > div.container > p,
+html body section.products-hero p{
+  color: #F4F7FF !important;
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
+/* Defensive fix for any lingering teal-on-dark h2 with inline style */
+html body section h2[style*="--primary"],
+html body main h2[style*="--primary"]{
+  color: #FFFFFF !important;
+}

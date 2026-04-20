@@ -2211,32 +2211,15 @@ aside.sticky-cta,
   text-align: center !important;
   gap: .85rem !important;
 }
-.product-card ul,
+/* Let styles-v2.css handle the check-mark bullets (SVG icon already
+   themed in teal). Don't override or we'll get a double-rendered bullet.
+   We just ensure the list stays centered visually. */
 .product-card .product-features{
-  width: 100%;
-  display: grid !important;
-  gap: .6rem !important;
-  margin: 0 !important;
+  display: inline-block;
+  text-align: left;
+  margin: 0 auto 1rem !important;
   padding: 0 !important;
   list-style: none;
-  text-align: left;
-}
-.product-card ul li{
-  display: flex;
-  align-items: flex-start;
-  gap: .5rem;
-  padding: 0 !important;
-  line-height: 1.55;
-  color: var(--gf-ink-1);
-}
-/* Teal check bullet */
-.product-card ul li::before{
-  content: "✓";
-  flex: 0 0 auto;
-  color: var(--gf-teal);
-  font-weight: 900;
-  font-size: 1rem;
-  line-height: 1.55;
 }
 /* Any inline "Details" badge-style element inside the bullet list:
    lift out of flow and position as a full-width CTA below bullets */
@@ -2306,3 +2289,44 @@ aside.sticky-cta,
   min-height: 320px;
   justify-content: flex-start;
 }
+
+/* Product card Details toggle — centered pill */
+.product-card .product-expand{
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: .75rem auto .25rem !important;
+  padding: .55rem 1.2rem !important;
+  font-size: .85rem !important;
+  font-weight: 700 !important;
+  color: var(--gf-ink-0) !important;
+  background: rgba(255,255,255,.05) !important;
+  border: 1px solid var(--gf-line) !important;
+  border-radius: 999px !important;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+  position: static !important;
+  width: auto !important;
+  min-width: 0 !important;
+}
+.product-card .product-expand:hover,
+.product-card .product-expand[aria-expanded="true"]{
+  background: rgba(79,227,210,.12) !important;
+  border-color: rgba(79,227,210,.45) !important;
+  color: var(--gf-teal) !important;
+}
+.product-card .product-expand[aria-expanded="true"]::after{ content: " −"; }
+.product-card .product-expand[aria-expanded="false"]::after{ content: " +"; color: var(--gf-teal); }
+.product-card .product-extra{
+  width: 100%;
+  margin-top: .75rem;
+  padding: 1rem;
+  text-align: left;
+  background: rgba(255,255,255,.03);
+  border-top: 1px solid var(--gf-line);
+  border-radius: 12px;
+}
+.product-card .product-extra p{ margin: 0 0 .5rem; font-size: .9rem; line-height: 1.6; color: var(--gf-ink-1); }
+.product-card .product-extra p:last-child{ margin-bottom: 0; }
+.product-card .product-extra strong{ color: var(--gf-ink-0); }
+

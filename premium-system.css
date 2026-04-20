@@ -2145,23 +2145,31 @@ aside.sticky-cta,
    solid bg, clean separation.
    ========================================================== */
 @media (max-width: 768px){
-  /* Mobile menu: script.js toggles .nav-list.active on open */
-  .nav-list{ display: none; }
-  .nav-list.active{
+  /* Mobile menu: script.js toggles .nav-list.active on open.
+     Must override styles-v2.css which sets position:absolute,
+     left:50%, transform:translateX(-50%), width:92vw. */
+  html body .header .nav-list{ display: none !important; }
+  html body .header .nav-list.active{
+    display: flex !important;
     position: fixed !important;
     top: 58px !important;
     right: 8px !important;
     left: auto !important;
+    transform: none !important;
     width: min(260px, 72vw) !important;
     max-width: 260px !important;
+    min-width: 0 !important;
     padding: .5rem 0 !important;
+    margin: 0 !important;
     background: rgba(10,12,18,.96) !important;
     backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
     border: 1px solid rgba(79,227,210,.18) !important;
     border-radius: 16px !important;
     box-shadow: 0 24px 60px rgba(0,0,0,.5) !important;
     flex-direction: column !important;
     align-items: stretch !important;
+    gap: 0 !important;
     z-index: 1000 !important;
   }
   .nav-list.active li{

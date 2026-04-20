@@ -8,7 +8,7 @@
 - **Domain:** https://www.grandfundingllc.com
 - **NMLS:** 2466872 | AZ MLO License: 1048901
 - **Contact:** (602) 935-0371 | info@grandfundingllc.com
-- **Design Style:** Dark cinematic — bg #07080B, teal #4FE3D2, ember #F0B26B; Poppins (headings) + Inter (body)
+- **Design Style:** Dark cinematic — bg #07080B, teal #4FE3D2, ember #F0B26B; DM Sans Variable (all text, subsetted to 25KB at /fonts/dm-sans-var.woff2)
 
 ## Palette
 - Name: 2026-01 — Grand Funding — Cinematic Desert Night
@@ -56,7 +56,7 @@
 
 ## Current Status
 - **Phase:** Deployed / Maintenance
-- **Last worked on:** 2026-04-17
+- **Last worked on:** 2026-04-20
 - **What's done:**
   - Full site live at https://www.grandfundingllc.com on Netlify (auto-deploy from GitHub)
   - 11 money pages (5 scenario + 6 location) with FinancialService + FAQPage schema
@@ -76,4 +76,8 @@
 - **What's pending:**
   - Consider adding <main> landmark to about.html, faq.html, products.html
   - Consider Organization schema on all location/product pages
-- **Needs from David:** (none — Logan's branded blog OG images delivered + deployed 2026-04-19)
+  - Netlify auto-deploy broken — all deploys require `netlify deploy --prod --dir=.` manually
+- **Needs from David / Logan for paid search to go live:**
+  - **Google Ads conversion IDs** — fill in `AW_ID`, `AW_LEAD_LABEL`, `AW_CALL_LABEL` in `consent.js` lines 3-5. Until real IDs are set, Google Ads bidding has no conversion signal.
+  - Google Ads campaign must have auto-tagging enabled (passes `gclid` param) — forms + sessionStorage already capture it
+  - Consider adding Google Reviews widget to LP pages once reviews accumulate

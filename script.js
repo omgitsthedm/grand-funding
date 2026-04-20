@@ -3,6 +3,41 @@
    Vanilla, zero dependencies
    =================================== */
 
+// ---- UTM + GCLID capture — reads URL params, persists via sessionStorage, populates form hidden fields ----
+// Required for paid search attribution. Run before anything else.
+(() => {
+    if (navigator.webdriver) return;
+    const UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid'];
+    const SESSION_KEY = 'gf_utm';
+    const p = new URLSearchParams(window.location.search);
+    const fresh = {};
+    UTM_KEYS.forEach(k => { const v = p.get(k); if (v) fresh[k] = v; });
+
+    let stored = {};
+    try { stored = JSON.parse(sessionStorage.getItem(SESSION_KEY) || '{}'); } catch(e) {}
+    const merged = Object.assign({}, stored, fresh);
+    if (Object.keys(fresh).length) {
+        try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(merged)); } catch(e) {}
+    }
+
+    const populate = () => {
+        document.querySelectorAll('form').forEach(form => {
+            UTM_KEYS.forEach(k => {
+                const inp = form.querySelector(`input[name="${k}"]`);
+                if (inp && !inp.value && merged[k]) inp.value = merged[k];
+            });
+            const ref = form.querySelector('input[name="referrer"]');
+            if (ref && !ref.value) ref.value = document.referrer || '';
+        });
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', populate, { once: true });
+    } else {
+        populate();
+    }
+})();
+
 // ---- Hero Video: only load on desktop (saves 3MB on mobile) ----
 (() => {
     if (window.innerWidth > 720) {

@@ -72,6 +72,19 @@ Optional:
 
 ---
 
+## Post-launch measurement + content review
+
+Two companion docs live in `/docs/`:
+
+- **[`docs/measurement-brief.md`](docs/measurement-brief.md)** — The playbook for Logan to measure whether Phases 1-3 are working. Weekly Search Console check (10 min), monthly lead-quality review (30 min), quarterly SpyFu re-check (90 min). Includes exact queries, success criteria, red flags, and when to build Phase 4.
+
+- **[`docs/logan-review-checklist.md`](docs/logan-review-checklist.md)** — Items needing Logan's eyes before content is final. Site-wide program specs (rates/LTVs/timelines), pillar-page content accuracy, city-page local-market hooks, voice review, form + Search Console verification tasks. Work through in order, batch edits back to me.
+
+Also:
+- **[`docs/audit-results.md`](docs/audit-results.md)** — Historical sprint audits from earlier cycles (Sprint 2-5).
+
+---
+
 ## Premium QA (merge gate)
 
 Every push and PR is gated by `.github/workflows/premium-qa.yml`, which runs

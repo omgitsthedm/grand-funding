@@ -54,9 +54,47 @@
 | 2026-04-19 | Blog branded images delivered + deployed | Logan delivered 12 branded OG images (1536x1024 PNG). Processed: resized to 1200x630 OG PNG (pngquant q75-90, 245-445KB), 1200x800 WebP (51-132KB), overwrote /images/og/{slug}.(png\|webp). Existing og:image + twitter:image meta tags auto-pick up new branded images. Added inline hero `<figure class="blog-hero-image">` to all 12 posts — edge-to-edge full-bleed on mobile (calc 50%-50vw), centered 1100px rounded on desktop. Blog index cards: added 16:10 thumbnail with hover zoom. This was the final "needs from Logan" item — now complete. |
 | 2026-04-19 | **FINAL STATE** | Desktop 99-100 Lighthouse (all 4 cats), Mobile 85 (LCP ceiling on throttled sim). Zero horizontal overflow on mobile. Header CTA fits 320/375/393/1440. Hero poster visible. Cards contrast-correct on dark theme. All 52 pages share same premium polish. 12 blog posts have unique branded heroes. Blog index has thumbnails. Footer 1-col mobile, 4-col desktop. All breakpoints tested via Playwright: 320/375/393/1440px. No JS-blocking for bots, graceful no-JS fallback. |
 
+## Phase roadmap (2026-04-20)
+
+**Phase 1 — COMPLETE** (commit `c9d4a94`)
+- apply.html deal-intake form: +4 pre-qualification fields (loan_amount dropdown, property_value, exit_strategy, investor_experience)
+- products.html CTA copy tightened (Get Quote → Request Bridge Terms, Start Now → Submit Your Flip)
+- partners.html copy refined (AZ → AZ+CA, $70K loan-range consistency)
+
+**Phase 2 — COMPLETE** (commit `321a8cc`)
+- 4 education pillar pages built from blog-post template:
+  - /hard-money-loan-requirements.html (977 words)
+  - /how-hard-money-loans-work.html (876 words)
+  - /hard-money-vs-conventional.html (959 words)
+  - /arv-explained.html (1040 words)
+- Article + FAQPage + BreadcrumbList + WebPage schema on each
+- Reciprocal links from 11 money/location pages + 4 blog posts
+- sitemap.xml updated
+
+**Phase 3 — COMPLETE** (commit `ab60506`)
+- 4 new city pages built from .lp-* template (phoenix-hard-money-lender.html as donor):
+  - /mesa-hard-money-lender.html (East Valley)
+  - /tucson-hard-money-lender.html (Southern AZ)
+  - /orange-county-hard-money-lender.html (Coastal + inland CA)
+  - /inland-empire-hard-money-lender.html (Riverside/SB)
+- .lp-deals block adapted to "Common investor scenarios" (illustrative, NOT fabricated funded deals) with link to /funded-deals.html for real closed loans
+- WebPage + FAQPage + BreadcrumbList + FinancialService + LocalBusiness schema (NO Article per brief)
+- Reciprocal links on 12 existing pages (9 money/city + 3 pillars)
+
+**Phase 4 — PENDING (trigger-based)**
+- Don't build until Phase 3 pages show ranking signal in Search Console
+- Candidates: Gilbert/Chandler/Glendale/Flagstaff cities, Sacramento/Santa Barbara/Palm Springs, deal calculators, competitor comparison pages, additional pillars (hard-money vs private-money, DSCR explained, 1031 bridge)
+- See /docs/measurement-brief.md for specific "when to build Phase 4" criteria
+
+## Companion docs (in /docs/)
+
+- `measurement-brief.md` — Logan's post-launch measurement playbook (weekly/monthly/quarterly Search Console + Netlify Forms review)
+- `logan-review-checklist.md` — Content accuracy review items needing Logan's confirmation (program specs, local hooks, scenarios)
+- `audit-results.md` — Historical multi-sprint audit reports
+
 ## Current Status
-- **Phase:** Deployed / Maintenance
-- **Last worked on:** 2026-04-17
+- **Phase:** Deployed / Phases 1-3 shipped
+- **Last worked on:** 2026-04-20
 - **What's done:**
   - Full site live at https://www.grandfundingllc.com on Netlify (auto-deploy from GitHub)
   - 11 money pages (5 scenario + 6 location) with FinancialService + FAQPage schema

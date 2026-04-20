@@ -2364,9 +2364,11 @@ aside.sticky-cta,
   text-shadow: none;
 }
 /* Products hero subtitle paragraph — was too dim */
-.products-hero p,
-.products-hero .subtitle{
-  color: var(--gf-ink-0) !important;
+html body .products-hero p,
+html body .products-hero .subtitle,
+html body main .products-hero p{
+  color: #F4F7FF !important;
+  opacity: 1 !important;
 }
 
 /* Footer legal links — meet WCAG touch target 24x24 min */

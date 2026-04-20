@@ -132,7 +132,7 @@ img,video,iframe,picture,svg{max-width:100%;height:auto;display:block}
    TYPOGRAPHY RHYTHM
    ========================== */
 .theme-dark h1,.theme-dark h2,.theme-dark h3,.theme-dark h4{
-  font-family:'Poppins','Poppins-fallback',-apple-system,system-ui,sans-serif;
+  font-family:'DM Sans', 'DM Sans-fallback',-apple-system,system-ui,sans-serif;
   color:var(--gf-ink-0);
   letter-spacing:-0.02em;
   line-height:1.1;
@@ -336,7 +336,7 @@ button[type="submit"]{
   gap:.5rem;
   padding: .875rem 1.5rem;
   border-radius: var(--gf-r-pill);
-  font-family:'Poppins','Poppins-fallback',-apple-system,sans-serif;
+  font-family:'DM Sans', 'DM Sans-fallback',-apple-system,sans-serif;
   font-weight:700;
   font-size:.95rem;
   letter-spacing:.01em;
@@ -1184,7 +1184,7 @@ main > section .highlight{
   width: 2rem; height: 2rem;
   border-radius: 999px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 800;
   font-size: 1rem;
   background: linear-gradient(135deg, #4FE3D2, #F0B26B);

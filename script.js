@@ -321,13 +321,14 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     if (!toggles.length) return;
 
     const setOpen = (card, isOpen) => {
-        card.classList.toggle('is-open', isOpen);
         const btn = card.querySelector('.product-expand');
         const panelId = btn?.getAttribute('aria-controls');
         const panel = panelId ? document.getElementById(panelId) : card.querySelector('.product-extra');
+        const panelHeight = panel ? panel.scrollHeight : 0; // read before any writes
+        card.classList.toggle('is-open', isOpen);
         if (btn) btn.setAttribute('aria-expanded', String(isOpen));
         if (panel) {
-            panel.style.maxHeight = isOpen ? panel.scrollHeight + 'px' : '0px';
+            panel.style.maxHeight = isOpen ? panelHeight + 'px' : '0px';
             panel.setAttribute('aria-hidden', String(!isOpen));
         }
     };

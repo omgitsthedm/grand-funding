@@ -2582,3 +2582,13 @@ html body main > section.lp-hero{
   background-color: #07080B;
   background-blend-mode: normal;
 }
+
+
+/* A11Y PASS 8 — force opaque body + html bg so Lighthouse can compute contrast
+   Root cause of persistent contrast flags: body was computing as transparent
+   in Lighthouse's headless environment, so it checked text vs white viewport
+   default. Setting html + body explicitly. */
+html{ background-color: #07080B; }
+html body{ background-color: #07080B !important; }
+html body.theme-dark{ background-color: #07080B !important; color: #F4F7FF; }
+html body main{ background-color: transparent; color: #F4F7FF; }

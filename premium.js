@@ -1,65 +1,58 @@
 /* Grand Funding — premium interactions: scroll reveal, nav scroll state */
-(function(){
-  /* CSS default: .reveal is VISIBLE. Only hide via .js-reveal-init when about
-     to observe. For bots/reduced-motion, don't touch — already visible. */
-  if(navigator.webdriver)return;
-  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!navigator.webdriver) {
+  const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-  /* Scroll-progress nav state */
-  var header=document.querySelector('.header');
-  if(header){
-    var ticking=false;
-    var onScroll=function(){
-      /* rAF-gated: read scrollY and apply class in next frame */
-      if(ticking)return;
-      ticking=true;
-      requestAnimationFrame(function(){
-        if(window.scrollY>20){header.classList.add('scrolled');}
-        else{header.classList.remove('scrolled');}
-        ticking=false;
+  // Scroll-progress nav state — rAF-gated scrollY read
+  const header = document.querySelector('.header');
+  if (header) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        header.classList.toggle('scrolled', window.scrollY > 20);
+        ticking = false;
       });
-    };
-    /* No initial call — at page load scrollY is 0 so no 'scrolled' class needed.
-       Avoids forced reflow from reading scrollY before layout is settled. */
-    window.addEventListener('scroll',onScroll,{passive:true});
+    }, { passive: true });
   }
 
-  /* Intersection-observer scroll reveal */
-  if(reduced||!('IntersectionObserver' in window))return;
-
-  /* Auto-tag common sections for reveal on first run */
-  document.addEventListener('DOMContentLoaded',function(){
-    /* NOTE: .hero-content EXCLUDED — always above-fold, reveal animation caused
-       CLS + LCP delays (LCP element waits for opacity transition to complete). */
-    var autoTargets=[
-      '.section-header','.story-content','.story-highlight',
-      '.featured-grid','.deals-grid','.values-grid','.reasons-grid','.services-grid',
-      '.fun-facts-grid','.logan-content','.cta-content','.deals-stats',
-      '.glossary-controls','.glossary-panels','.footer-main'
-    ];
-    autoTargets.forEach(function(sel){
-      document.querySelectorAll(sel).forEach(function(el){
-        if(!el.classList.contains('reveal')&&!el.classList.contains('reveal-stagger')){
-          /* Grid-like containers get staggered reveal */
-          if(/grid|stats|columns/.test(sel)) el.classList.add('reveal-stagger');
-          else el.classList.add('reveal');
+  // Intersection-observer scroll reveal — deferred to idle
+  if (!reduced && 'IntersectionObserver' in window) {
+    const initReveals = () => {
+      const autoTargets = [
+        '.section-header', '.story-content', '.story-highlight',
+        '.featured-grid', '.deals-grid', '.values-grid', '.reasons-grid', '.services-grid',
+        '.fun-facts-grid', '.logan-content', '.cta-content', '.deals-stats',
+        '.glossary-controls', '.glossary-panels', '.footer-main'
+      ];
+      for (const sel of autoTargets) {
+        for (const el of document.querySelectorAll(sel)) {
+          if (el.classList.contains('reveal') || el.classList.contains('reveal-stagger')) continue;
+          const isGrid = /grid|stats|columns/.test(sel);
+          el.classList.add(isGrid ? 'reveal-stagger' : 'reveal');
         }
-      });
-    });
+      }
 
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
+      const io = new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
           entry.target.classList.add('is-visible');
           io.unobserve(entry.target);
         }
-      });
-    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
-    /* Mark js-reveal-init so CSS kicks in to hide before observation */
-    document.querySelectorAll('.reveal,.reveal-stagger').forEach(function(el){
-      el.classList.add('js-reveal-init');
-      io.observe(el);
-    });
-  });
-})();
+      for (const el of document.querySelectorAll('.reveal,.reveal-stagger')) {
+        el.classList.add('js-reveal-init');
+        io.observe(el);
+      }
+    };
+
+    // Defer to idle so reveal setup doesn't block first paint / interactive
+    const run = () => (window.requestIdleCallback ?? window.setTimeout)(initReveals, { timeout: 500 });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run, { once: true });
+    } else {
+      run();
+    }
+  }
+}

@@ -2123,8 +2123,17 @@ aside.sticky-cta,
 @media (max-width: 768px){
   .hero-loans,
   .hero .hero-visual{ display: none !important; }
-  .hero{ padding-bottom: clamp(1.5rem, 4vw, 2.5rem); }
+  /* Reserve stable hero height so .trust-strip below doesn't shift
+     when the video/hero-loans fully paint. CLS guard. */
+  .hero{
+    min-height: 720px !important;
+    padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
+    contain: layout;
+  }
   .hero-media,
   .hero > .hero-media{ height: 100% !important; }
   .hero .hero-video{ height: 100% !important; }
+}
+@media (max-width: 430px){
+  .hero{ min-height: 680px !important; }
 }

@@ -2145,17 +2145,9 @@ aside.sticky-cta,
    solid bg, clean separation.
    ========================================================== */
 @media (max-width: 768px){
-  .nav[data-open],
-  .nav.is-open,
-  .header .nav[aria-expanded="true"],
-  .mobile-menu-toggle[aria-expanded="true"] ~ .nav,
-  .mobile-menu-toggle[aria-expanded="true"] + .nav{
-    display: flex !important;
-  }
-  /* When the mobile menu is open — solid dark drawer */
-  .header .nav.is-open,
-  .header[data-menu-open] .nav,
-  body.menu-open .nav{
+  /* Mobile menu: script.js toggles .nav-list.active on open */
+  .nav-list{ display: none; }
+  .nav-list.active{
     position: fixed !important;
     top: 58px !important;
     right: 8px !important;
@@ -2172,24 +2164,13 @@ aside.sticky-cta,
     align-items: stretch !important;
     z-index: 1000 !important;
   }
-  .header .nav.is-open .nav-list,
-  body.menu-open .nav-list{
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
+  .nav-list.active li{
+    width: 100% !important;
+    border-bottom: 1px solid rgba(255,255,255,.05);
     list-style: none;
   }
-  .header .nav.is-open .nav-list li,
-  body.menu-open .nav-list li{
-    width: 100%;
-    border-bottom: 1px solid rgba(255,255,255,.05);
-  }
-  .header .nav.is-open .nav-list li:last-child,
-  body.menu-open .nav-list li:last-child{ border-bottom: none; }
-  .header .nav.is-open .nav-list a,
-  body.menu-open .nav-list a{
+  .nav-list.active li:last-child{ border-bottom: none; }
+  .nav-list.active a{
     display: block !important;
     padding: .85rem 1.25rem !important;
     font-size: .95rem;
@@ -2198,20 +2179,11 @@ aside.sticky-cta,
     text-decoration: none !important;
     transition: background .15s ease, color .15s ease, padding-left .15s ease;
   }
-  .header .nav.is-open .nav-list a:hover,
-  .header .nav.is-open .nav-list a.active,
-  body.menu-open .nav-list a:hover,
-  body.menu-open .nav-list a.active{
+  .nav-list.active a:hover,
+  .nav-list.active a.active{
     background: rgba(79,227,210,.08) !important;
     color: var(--gf-teal) !important;
     padding-left: 1.5rem !important;
-  }
-  /* Inline CTA inside the drawer */
-  .header .nav.is-open .cta-btn,
-  body.menu-open .nav .cta-btn{
-    display: block;
-    margin: .5rem .75rem .25rem;
-    text-align: center;
   }
 }
 

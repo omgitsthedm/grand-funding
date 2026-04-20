@@ -2467,3 +2467,74 @@ html body .deal-clarity__footer .btn{
   background: currentColor;
   margin: 3px 0;
 }
+
+/* ==========================================================
+   A11Y PASS 4 — nuclear contrast overrides + touch targets
+   Lighthouse kept flagging paragraphs/kickers on specific pages
+   because page-local CSS (products/about/lp.css) has higher
+   specificity than our premium-system rules. Winning via
+   html body + class chain + !important.
+   ========================================================== */
+
+/* All flagged paragraph variants — force bright readable ink */
+html body section.products-hero p,
+html body section.about-hero p.hero-subtitle,
+html body section.about-story .story-content p,
+html body section.about-story .story-content p.story-conclusion,
+html body section.what-we-do p.section-intro,
+html body section.our-values p.values-intro,
+html body section.cta-section p,
+html body .cta-section .cta-subtitle,
+html body section.deal-clarity__header p,
+html body .deal-clarity__header p,
+html body .deal-clarity p,
+html body section[class*="clarity"] p,
+html body section[class*="hero"] p{
+  color: #E8ECF5 !important;
+  opacity: 1 !important;
+}
+
+/* Section kickers on location/LP pages — brighter teal */
+html body .section-kicker,
+html body .deal-clarity .section-kicker,
+html body .deal-clarity__header .section-kicker,
+html body [class*="clarity"] .section-kicker,
+html body .lp-hero__kicker,
+html body .page-kicker{
+  color: #6FFFEF !important;
+  font-weight: 800 !important;
+  letter-spacing: .18em !important;
+}
+
+/* Products section-nav anchor touch targets */
+html body main .section-nav{
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: .5rem !important;
+}
+html body main .section-nav a,
+html body main nav.section-nav a{
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  min-width: 44px !important;
+  padding: .6rem 1rem !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.05) !important;
+  border: 1px solid var(--gf-line) !important;
+  color: var(--gf-ink-1) !important;
+  text-decoration: none !important;
+  font-size: .9rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+html body main .section-nav a.is-active,
+html body main .section-nav a:hover{
+  background: rgba(79,227,210,.1) !important;
+  border-color: rgba(79,227,210,.3) !important;
+  color: var(--gf-teal) !important;
+}
+
+/* Dark-theme body-default ink so inherited colors pass WCAG */
+html body.theme-dark{ color: #F4F7FF; }

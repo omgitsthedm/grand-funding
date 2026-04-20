@@ -72,9 +72,21 @@ Optional:
 
 ---
 
+## Project state — complete as of 2026-04-20
+
+**Status:** ✅ Complete — all development work stopped pending measurement data. Next action is Logan's, not dev's.
+
+**Last shipped commit:** `8c6dbc9` (tag: `v1.0-2026-04-20`)
+
+**Ultraship scorecard:** 93/100 READY TO SHIP (Performance 100, Security 100, Code Quality 94, SEO 79 — SEO capped by scanner blind spots; remaining 82 findings are documented as either intentional strategy or false positives)
+
+See **[`docs/COMPLETE-2026-04-20.md`](docs/COMPLETE-2026-04-20.md)** for the full completion checkpoint with scorecard, git history, and what's intentionally NOT done.
+
 ## Post-launch measurement + content review
 
-Two companion docs live in `/docs/`:
+Three companion docs live in `/docs/`:
+
+- **[`docs/COMPLETE-2026-04-20.md`](docs/COMPLETE-2026-04-20.md)** — Dated completion checkpoint. Scorecard, full site inventory, git milestone history, handoff notes.
 
 - **[`docs/measurement-brief.md`](docs/measurement-brief.md)** — The playbook for Logan to measure whether Phases 1-3 are working. Weekly Search Console check (10 min), monthly lead-quality review (30 min), quarterly SpyFu re-check (90 min). Includes exact queries, success criteria, red flags, and when to build Phase 4.
 

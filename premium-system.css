@@ -2403,17 +2403,18 @@ html body main .products-hero p{
 }
 .brand-suffix{ color: #B8C4D6 !important; }
 
-/* Trust badges — ensure 4.5:1 on dark bg */
-.trust-badge,
-.trust-badge--gold{
+/* Trust badges — solid bg so Lighthouse can compute contrast */
+html body .trust-badge,
+html body .trust-badge--gold{
   color: #F4F7FF !important;
-  background: rgba(255,255,255,.05) !important;
-  border-color: rgba(255,255,255,.12) !important;
+  background: #161A24 !important;
+  border: 1px solid #2A3040 !important;
 }
-.trust-badge svg{ color: var(--gf-teal) !important; }
-.trust-badge--gold{
-  color: #FFE6C9 !important;
-  border-color: rgba(240,178,107,.35) !important;
+html body .trust-badge svg{ color: var(--gf-teal) !important; }
+html body .trust-badge--gold{
+  color: #FFD89A !important;
+  background: #161A24 !important;
+  border: 1px solid rgba(240,178,107,.45) !important;
 }
 
 /* Section kickers — use lighter teal for AA contrast */
@@ -2426,17 +2427,26 @@ html body main .products-hero p{
 }
 
 /* Deal clarity / explore-more / generic section header text */
-.deal-clarity h2,
-.deal-clarity__header h2,
-.explore-more h2,
-section h2:not([style]){
+html body .deal-clarity h2,
+html body .deal-clarity__header h2,
+html body .explore-more h2,
+html body section h2:not([style]){
   color: #FFFFFF !important;
 }
-.deal-clarity__header p,
-.explore-more__intro,
-.clarity-intro,
-section .section-subtitle:not([style]){
+html body .deal-clarity__header p,
+html body .explore-more__intro,
+html body .clarity-intro,
+html body section .section-subtitle:not([style]){
   color: #E5E9F2 !important;
+}
+html body .deal-clarity .section-kicker,
+html body .deal-clarity__header .section-kicker{
+  color: #6FFFEF !important;
+}
+html body .deal-clarity .btn-ghost,
+html body .deal-clarity__footer .btn{
+  color: #FFFFFF !important;
+  border-color: rgba(79,227,210,.5) !important;
 }
 
 /* Mobile menu toggle button — WCAG 24x24 min, ideally 44x44 */

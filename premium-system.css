@@ -2569,3 +2569,16 @@ html body section h2[style*="--primary"],
 html body main h2[style*="--primary"]{
   color: #FFFFFF !important;
 }
+
+
+/* A11Y PASS 7 — explicit opaque section bg so Lighthouse can compute contrast */
+html body main > section{
+  background-color: #07080B;
+}
+html body main > section.hero,
+html body main > section.products-hero,
+html body main > section.about-hero,
+html body main > section.lp-hero{
+  background-color: #07080B;
+  background-blend-mode: normal;
+}

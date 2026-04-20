@@ -2088,3 +2088,19 @@ aside.sticky-cta,
   line-height: 1.15 !important;
   letter-spacing: -.02em;
 }
+
+/* ==========================================================
+   HERO-LOANS CLS GUARD
+   Reserve height for the "Recently Funded Deals" hero panel so
+   it doesn't shift in after children render (Lighthouse mobile
+   flagged this element at CLS 0.26).
+   ========================================================== */
+.hero-visual{ min-height: 560px; }
+.hero-loans{
+  min-height: clamp(480px, 62vh, 900px);
+  contain: layout;
+}
+@media (max-width: 720px){
+  .hero-visual{ min-height: 1100px; }
+  .hero-loans{ min-height: 1050px; }
+}

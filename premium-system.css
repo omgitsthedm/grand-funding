@@ -2330,3 +2330,57 @@ aside.sticky-cta,
 .product-card .product-extra p:last-child{ margin-bottom: 0; }
 .product-card .product-extra strong{ color: var(--gf-ink-0); }
 
+
+/* ==========================================================
+   A11Y: COLOR CONTRAST + TOUCH TARGET COMPLIANCE
+   Lighthouse flagged nav links, brand suffix, hero H1, footer
+   legal links. Raising to WCAG AA (4.5:1 normal / 3:1 large).
+   ========================================================== */
+
+/* Brand suffix "LLC" — was rgba(244,247,255,.48) (too dim) */
+.brand-suffix{ color: var(--gf-ink-1) !important; }
+
+/* Primary nav — ensure all states 4.5:1+ on dark header */
+.nav-list a,
+.nav-list li a{
+  color: var(--gf-ink-0) !important;
+  opacity: 1 !important;
+}
+.nav-list a:hover,
+.nav-list a.active,
+.nav-list a[aria-current="page"]{
+  color: var(--gf-teal) !important;
+}
+
+/* Products hero H1 gradient text sometimes hits low contrast.
+   Use brighter gradient stops + add text-shadow fallback. */
+.products-hero h1,
+.white-gradient-text{
+  background: linear-gradient(135deg, #FFFFFF 0%, #F4F7FF 60%, #B8F5ED 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: none;
+}
+/* Products hero subtitle paragraph — was too dim */
+.products-hero p,
+.products-hero .subtitle{
+  color: var(--gf-ink-0) !important;
+}
+
+/* Footer legal links — meet WCAG touch target 24x24 min */
+.footer-license-verify,
+.footer-legal-links a{
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: .5rem .75rem !important;
+  color: var(--gf-ink-1) !important;
+}
+.footer-legal-links{ gap: .5rem 1rem !important; }
+.footer-legal-links a:hover{ color: var(--gf-teal) !important; }
+
+/* Any anchor inside .footer that's currently too dim */
+.footer a{ color: var(--gf-ink-1); }
+.footer a:hover{ color: var(--gf-teal); }

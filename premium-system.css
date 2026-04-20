@@ -2592,3 +2592,17 @@ html{ background-color: #07080B; }
 html body{ background-color: #07080B !important; }
 html body.theme-dark{ background-color: #07080B !important; color: #F4F7FF; }
 html body main{ background-color: transparent; color: #F4F7FF; }
+
+
+/* STICKY CTA CONTRAST — gradient bg + white text was ambiguous; use darker text */
+html body a.sticky-cta,
+html body .sticky-cta{
+  color: #0B1014 !important;
+  font-weight: 800 !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.2);
+  background: linear-gradient(135deg, #4FE3D2 0%, #F0B26B 100%) !important;
+}
+html body a.sticky-cta:hover,
+html body .sticky-cta:hover{
+  color: #0B1014 !important;
+}

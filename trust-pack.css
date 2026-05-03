@@ -13,15 +13,19 @@
 }
 .talk-to-logan__avatar{
   flex-shrink:0;
-  width:64px;height:64px;border-radius:50%;
+  width:84px;height:84px;border-radius:50%;
   background:linear-gradient(135deg,#4FE3D2,#F0B26B);
   display:flex;align-items:center;justify-content:center;
   font-family:'DM Sans',sans-serif;font-weight:900;font-size:1.5rem;color:#0B1014;
   letter-spacing:-.02em;
-  box-shadow:0 8px 24px rgba(79,227,210,.25);
-  overflow:hidden;
+  box-shadow:0 10px 28px rgba(79,227,210,.3),0 0 0 2px rgba(79,227,210,.4);
+  overflow:hidden;position:relative;
 }
-.talk-to-logan__avatar img{width:100%;height:100%;object-fit:cover}
+.talk-to-logan__avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.talk-to-logan__avatar::after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18);pointer-events:none;
+}
 .talk-to-logan__copy{flex:1;min-width:0}
 .talk-to-logan__name{font-weight:800;font-size:1.05rem;line-height:1.2;color:#F0F0EC}
 .talk-to-logan__title{font-size:.86rem;color:rgba(244,247,255,.74);margin-top:2px}
@@ -178,4 +182,133 @@
   background:linear-gradient(135deg,#4FE3D2,#7AF1E5);
   color:#0B1014;font-weight:800;text-decoration:none;
   white-space:nowrap;
+}
+
+/* ───────── Meet Logan section (about page hero) ───────── */
+.meet-logan{
+  padding:5rem 0;
+  background:linear-gradient(180deg,rgba(7,8,11,0) 0%,rgba(7,8,11,.6) 60%,rgba(7,8,11,0) 100%);
+}
+.meet-logan__inner{
+  max-width:1200px;margin:0 auto;padding:0 24px;
+  display:grid;grid-template-columns:5fr 6fr;gap:3.5rem;align-items:center;
+}
+.meet-logan__photo{
+  position:relative;border-radius:24px;overflow:hidden;
+  box-shadow:0 36px 100px rgba(0,0,0,.55),0 0 0 1px rgba(79,227,210,.18);
+  aspect-ratio:2/3;
+  background:#0a0d12;
+}
+.meet-logan__photo img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.meet-logan__photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(7,8,11,0) 30%,rgba(7,8,11,.35) 100%);
+  pointer-events:none;
+}
+.meet-logan__photo-badge{
+  position:absolute;left:18px;bottom:18px;z-index:2;
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.5rem .85rem;border-radius:999px;
+  background:rgba(11,16,20,.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.14);
+  color:#F0F0EC;font-size:.78rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.meet-logan__photo-badge::before{
+  content:"";width:7px;height:7px;border-radius:50%;
+  background:#7AF1E5;box-shadow:0 0 10px rgba(122,241,229,.7);
+}
+.meet-logan__copy{color:#F0F0EC}
+.meet-logan__kicker{
+  display:inline-block;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#4FE3D2;font-weight:700;margin-bottom:.85rem;
+}
+.meet-logan__title{
+  font-family:'DM Sans',sans-serif;font-weight:900;
+  font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.05;letter-spacing:-.025em;
+  background:linear-gradient(180deg,#F4F7FF 0%,rgba(244,247,255,.78) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:1.25rem;
+}
+.meet-logan__lede{
+  font-size:1.18rem;line-height:1.55;color:rgba(244,247,255,.86);
+  margin-bottom:1.4rem;
+}
+.meet-logan__detail{
+  font-size:1rem;line-height:1.65;color:rgba(244,247,255,.72);
+  margin-bottom:1.4rem;
+}
+.meet-logan__credentials{
+  display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:2rem;
+}
+.meet-logan__credentials li{
+  list-style:none;
+  padding:.45rem .85rem;border-radius:999px;
+  background:rgba(79,227,210,.1);border:1px solid rgba(79,227,210,.28);
+  font-size:.85rem;font-weight:700;color:#7AF1E5;
+}
+.meet-logan__cta{
+  display:flex;gap:.85rem;flex-wrap:wrap;
+}
+.meet-logan__cta .btn-primary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:1rem 1.6rem;border-radius:999px;
+  background:linear-gradient(135deg,#4FE3D2,#F0B26B);
+  color:#0B1014;font-weight:800;text-decoration:none;
+  box-shadow:0 14px 36px rgba(79,227,210,.32);
+}
+.meet-logan__cta .btn-secondary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:1rem 1.6rem;border-radius:999px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);
+  color:#F0F0EC;font-weight:700;text-decoration:none;
+}
+@media(max-width:900px){
+  .meet-logan{padding:3.5rem 0}
+  .meet-logan__inner{grid-template-columns:1fr;gap:2rem}
+  .meet-logan__photo{aspect-ratio:3/4;max-width:480px;margin:0 auto;width:100%}
+  .meet-logan__copy{text-align:center}
+  .meet-logan__credentials{justify-content:center}
+  .meet-logan__cta{justify-content:center}
+}
+
+/* ───────── Logan sidebar (apply page) ───────── */
+.logan-sidebar{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 1.1rem;border-radius:16px;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(14,16,22,.7));
+  border:1px solid rgba(79,227,210,.16);
+  box-shadow:0 14px 36px rgba(0,0,0,.32);
+  margin:0 0 1.25rem 0;
+}
+.logan-sidebar__photo{
+  flex-shrink:0;width:72px;height:96px;border-radius:14px;
+  overflow:hidden;background:#0a0d12;
+  box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+.logan-sidebar__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.logan-sidebar__copy{flex:1;min-width:0;color:#F0F0EC}
+.logan-sidebar__pulse{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;
+  color:#7AF1E5;margin-bottom:.3rem;
+}
+.logan-sidebar__pulse::before{
+  content:"";width:7px;height:7px;border-radius:50%;
+  background:#7AF1E5;box-shadow:0 0 10px rgba(122,241,229,.8);
+  animation:logan-pulse 2s ease-in-out infinite;
+}
+@keyframes logan-pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.6;transform:scale(.85)}
+}
+.logan-sidebar__name{font-weight:800;font-size:1rem;line-height:1.2}
+.logan-sidebar__role{font-size:.82rem;color:rgba(244,247,255,.7);margin-top:2px}
+.logan-sidebar__call{
+  display:inline-flex;align-items:center;gap:.35rem;
+  margin-top:.5rem;
+  font-weight:800;font-size:.92rem;color:#7AF1E5;text-decoration:none;
+  border-bottom:1px solid rgba(122,241,229,.4);padding-bottom:1px;
 }

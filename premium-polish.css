@@ -1,0 +1,450 @@
+/* === Grand Funding Premium Polish v1 (2026-05-03) ===
+   Micro-detail layer that elevates the existing brand system.
+   Loaded AFTER trust-pack.css and premium-motion.css. */
+
+/* ──────────────────────────────────────────
+   1. Typography refinement — optical sizing + letter-spacing
+   ────────────────────────────────────────── */
+html{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+body{font-feature-settings:"kern" 1,"liga" 1,"calt" 1}
+h1,h2,h3,h4,h5,h6,
+.hero-title,.section-title,.meet-logan__title,.investor-proof__title,
+.apply-title,.faq-title{
+  font-feature-settings:"kern" 1,"liga" 1,"calt" 1,"ss01" 1;
+  font-optical-sizing:auto;
+}
+
+/* Refined small-caps / kicker labels */
+.hero-loans-kicker,.investor-proof__kicker,.meet-logan__kicker,
+.apply-kicker,.section-kicker,.kicker,.eyebrow{
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.18em;
+  font-weight:700;
+  font-size:.78rem;
+  text-transform:uppercase;
+  color:#7AF1E5;
+}
+
+/* Body copy refinement */
+p,li{font-feature-settings:"kern" 1,"liga" 1}
+.hero-subtitle,.section-subtitle,.lede,
+.story-content p,.about-text p{
+  letter-spacing:-.005em;
+}
+
+/* Numbers: tabular and slightly tighter */
+.stat-number,.loan-amount,.deal-amount,
+[data-counter],.proof-num{
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1,"ss01" 1;
+  letter-spacing:-.02em;
+}
+
+/* ──────────────────────────────────────────
+   2. Refined gradient hairline dividers (replaces flat borders)
+   ────────────────────────────────────────── */
+.hairline,
+section + section,
+.section-divider{
+  position:relative;
+}
+.hairline::before,
+.section-divider::before{
+  content:"";position:absolute;left:50%;top:0;
+  width:min(80%,720px);height:1px;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent 0%,rgba(79,227,210,.32) 30%,rgba(240,178,107,.28) 70%,transparent 100%);
+}
+
+/* ──────────────────────────────────────────
+   3. Card refinement — gradient border on hover
+   ────────────────────────────────────────── */
+.investor-proof__card,
+.feature-card,.value-card,.reason-card,.product-card,
+.deal-card{
+  position:relative;
+  isolation:isolate;
+}
+.investor-proof__card::before,
+.feature-card::before,.value-card::before,
+.product-card::before,.deal-card::before{
+  content:"";position:absolute;inset:0;
+  border-radius:inherit;
+  padding:1px;
+  background:linear-gradient(135deg,rgba(79,227,210,.0) 0%,rgba(79,227,210,.4) 50%,rgba(240,178,107,.3) 100%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:0;transition:opacity .35s ease;
+  pointer-events:none;
+  z-index:1;
+}
+.investor-proof__card:hover::before,
+.feature-card:hover::before,.value-card:hover::before,
+.product-card:hover::before,.deal-card:hover::before{
+  opacity:1;
+}
+
+/* ──────────────────────────────────────────
+   4. Refined focus rings (accessibility + polish)
+   ────────────────────────────────────────── */
+*:focus-visible{
+  outline:2px solid #7AF1E5;
+  outline-offset:3px;
+  border-radius:4px;
+  transition:outline-offset .15s ease;
+}
+a:focus-visible,button:focus-visible{
+  outline-offset:4px;
+}
+input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:none; /* handled by trust-pack focus glow */
+}
+.btn:focus-visible,.cta-btn:focus-visible,
+.btn-primary:focus-visible,.btn-secondary:focus-visible,
+.sticky-dual a:focus-visible,
+.talk-to-logan__call:focus-visible{
+  outline-offset:6px;
+}
+
+/* ──────────────────────────────────────────
+   5. Button refinement — inner highlight + active state
+   ────────────────────────────────────────── */
+.btn-primary,.cta-btn,
+.sticky-dual__apply,
+.meet-logan__cta .btn-primary{
+  position:relative;
+  overflow:hidden;
+}
+.btn-primary::after,.cta-btn::after,
+.sticky-dual__apply::after,
+.meet-logan__cta .btn-primary::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 50%);
+  pointer-events:none;border-radius:inherit;
+  mix-blend-mode:overlay;opacity:.7;
+}
+
+/* Active press state */
+.btn:active,.cta-btn:active,
+.btn-primary:active,.btn-secondary:active,
+.sticky-dual a:active,.talk-to-logan__call:active{
+  transform:translateY(1px);
+  filter:brightness(.96);
+}
+
+/* ──────────────────────────────────────────
+   6. Section pacing — consistent vertical rhythm
+   ────────────────────────────────────────── */
+section{
+  padding-top:clamp(3rem,5vw,5rem);
+  padding-bottom:clamp(3rem,5vw,5rem);
+}
+.hero{padding-top:clamp(4rem,7vw,7rem)}
+.section-header{margin-bottom:clamp(2rem,4vw,3.5rem)}
+
+/* Alternating subtle background tinting */
+section:nth-of-type(even):not(.hero):not(.cta-section):not(.meet-logan):not(.investor-proof){
+  background:linear-gradient(180deg,rgba(255,255,255,.0) 0%,rgba(255,255,255,.012) 50%,rgba(255,255,255,.0) 100%);
+}
+
+/* ──────────────────────────────────────────
+   7. Glass refinement — header + dropdown menus
+   ────────────────────────────────────────── */
+.header{
+  background:rgba(7,8,11,.62) !important;
+  backdrop-filter:blur(18px) saturate(140%) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(140%) !important;
+  border-bottom:1px solid rgba(255,255,255,.06) !important;
+}
+.header.scrolled{
+  background:rgba(7,8,11,.86) !important;
+  border-bottom:1px solid rgba(79,227,210,.18) !important;
+}
+@supports not (backdrop-filter: blur(18px)){
+  .header{background:rgba(7,8,11,.95) !important}
+}
+
+/* Mobile nav menu glass */
+.nav-list{
+  background:rgba(7,8,11,.92) !important;
+  backdrop-filter:blur(20px) saturate(140%) !important;
+  -webkit-backdrop-filter:blur(20px) saturate(140%) !important;
+}
+
+/* ──────────────────────────────────────────
+   8. Refined hero stats — visual hierarchy
+   ────────────────────────────────────────── */
+.hero-stats{
+  display:flex;gap:clamp(1.5rem,4vw,3rem);
+  align-items:flex-end;
+  position:relative;
+  padding-top:1rem;
+  border-top:1px solid rgba(255,255,255,.06);
+  margin-top:1.5rem;
+}
+.stat-item{
+  position:relative;
+}
+.stat-item:not(:last-child)::after{
+  content:"";position:absolute;right:calc(-1 * clamp(.75rem,2vw,1.5rem));top:20%;bottom:20%;
+  width:1px;background:linear-gradient(180deg,transparent 0%,rgba(255,255,255,.12) 50%,transparent 100%);
+}
+.stat-number{
+  background:linear-gradient(180deg,#4FE3D2 0%,#7AF1E5 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  font-weight:900;
+}
+.stat-label{
+  font-size:.78rem;letter-spacing:.08em;
+  color:rgba(244,247,255,.72);
+  text-transform:uppercase;font-weight:600;
+}
+
+/* ──────────────────────────────────────────
+   9. Funded deals widget — refined card details
+   ────────────────────────────────────────── */
+.hero-loans{
+  border:1px solid rgba(255,255,255,.1) !important;
+  background:linear-gradient(180deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%) !important;
+  box-shadow:0 32px 90px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+.loan-card{
+  border:1px solid rgba(255,255,255,.08) !important;
+  background:linear-gradient(180deg,rgba(0,0,0,.32) 0%,rgba(0,0,0,.18) 100%) !important;
+  position:relative;
+  transition:transform .35s var(--ease-out-quint),box-shadow .35s ease,border-color .35s ease;
+}
+.loan-card:hover{
+  border-color:rgba(79,227,210,.28) !important;
+  box-shadow:0 18px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.08);
+}
+.loan-amount{
+  background:linear-gradient(180deg,#F4F7FF 0%,rgba(244,247,255,.86) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+
+/* ──────────────────────────────────────────
+   10. Form input refinement
+   ────────────────────────────────────────── */
+.form-input,
+input[type="text"],input[type="email"],input[type="tel"],
+select,textarea{
+  background:rgba(255,255,255,.04) !important;
+  border:1px solid rgba(255,255,255,.1) !important;
+  color:#F4F7FF !important;
+  padding:.85rem 1rem !important;
+  border-radius:12px !important;
+  font-size:1rem !important;
+  font-family:inherit;
+  transition:border-color .25s ease,box-shadow .25s ease,background-color .25s ease;
+}
+.form-input::placeholder,
+input::placeholder,textarea::placeholder{
+  color:rgba(244,247,255,.42);
+}
+.form-input:focus,
+input:focus,select:focus,textarea:focus{
+  background:rgba(255,255,255,.07) !important;
+  border-color:rgba(79,227,210,.6) !important;
+  box-shadow:0 0 0 3px rgba(79,227,210,.14);
+}
+.form-label{
+  font-size:.86rem;
+  font-weight:600;
+  color:rgba(244,247,255,.86);
+  letter-spacing:.01em;
+}
+
+/* ──────────────────────────────────────────
+   11. Refined badge / pill detail
+   ────────────────────────────────────────── */
+.loan-badge,.pill,.badge,
+.meet-logan__credentials li,
+.hero-badge{
+  position:relative;
+  letter-spacing:.04em;
+  font-feature-settings:"ss01" 1;
+}
+.hero-badge{
+  background:linear-gradient(135deg,rgba(79,227,210,.16),rgba(240,178,107,.08)) !important;
+  border:1px solid rgba(79,227,210,.3) !important;
+  box-shadow:0 4px 18px rgba(79,227,210,.18),inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* ──────────────────────────────────────────
+   12. Refined footer
+   ────────────────────────────────────────── */
+.footer{
+  background:linear-gradient(180deg,rgba(7,8,11,0) 0%,rgba(13,17,23,.6) 30%,#0a0d12 100%) !important;
+  border-top:1px solid rgba(255,255,255,.06);
+  padding-top:5rem !important;
+}
+.footer-nav-title{
+  font-size:.75rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#7AF1E5 !important;
+  font-weight:700;
+  margin-bottom:1rem;
+}
+.footer-links a{
+  transition:color .2s ease,padding-left .25s ease;
+}
+.footer-links a:hover{
+  color:#7AF1E5 !important;
+  padding-left:4px;
+}
+.footer-tagline{
+  color:rgba(244,247,255,.72);
+  font-size:.95rem;
+  line-height:1.5;
+}
+.footer-disclaimer{
+  font-size:.78rem;
+  line-height:1.6;
+  color:rgba(244,247,255,.5);
+}
+.footer-credit{
+  color:rgba(244,247,255,.55) !important;
+}
+.footer-credit a{
+  color:rgba(122,241,229,.78) !important;
+  text-decoration:none;
+}
+.footer-credit a:hover{
+  color:#7AF1E5 !important;
+}
+
+/* ──────────────────────────────────────────
+   13. Refined CTA section (the bottom-of-page conversion bar)
+   ────────────────────────────────────────── */
+.cta-section,.cta-banner{
+  position:relative;
+  background:linear-gradient(135deg,rgba(79,227,210,.12) 0%,rgba(240,178,107,.06) 100%) !important;
+  border:1px solid rgba(79,227,210,.18);
+  border-radius:24px;
+  margin:0 auto;
+  max-width:1100px;
+  padding:clamp(2.5rem,5vw,4rem) clamp(1.5rem,4vw,3rem);
+  overflow:hidden;
+}
+.cta-section::before,.cta-banner::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(60% 80% at 50% 0%,rgba(79,227,210,.16),transparent 70%);
+  pointer-events:none;
+}
+
+/* ──────────────────────────────────────────
+   14. Image polish — subtle inner shadow on photos
+   ────────────────────────────────────────── */
+.meet-logan__photo,
+.logan-sidebar__photo,
+.blog-hero-image,
+.deal-photo,figure img{
+  position:relative;
+}
+.meet-logan__photo::before,
+.logan-sidebar__photo::before{
+  content:"";position:absolute;inset:0;
+  border-radius:inherit;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+  pointer-events:none;z-index:1;
+}
+
+/* ──────────────────────────────────────────
+   15. Improved touch targets on mobile (44x44 minimum)
+   ────────────────────────────────────────── */
+@media (max-width:768px){
+  a,button,.btn,.cta-btn,
+  .nav-list a,.footer-links a,
+  input[type="checkbox"],input[type="radio"],
+  .faq-question,.mobile-menu-toggle{
+    min-height:44px;
+  }
+  .nav-list a,.footer-links a{
+    padding-top:.6rem;padding-bottom:.6rem;
+  }
+}
+
+/* ──────────────────────────────────────────
+   16. Selection refinement
+   ────────────────────────────────────────── */
+::selection{
+  background:rgba(79,227,210,.4);
+  color:#0B1014;
+}
+::-moz-selection{
+  background:rgba(79,227,210,.4);
+  color:#0B1014;
+}
+
+/* ──────────────────────────────────────────
+   17. Scroll progress bar polish
+   ────────────────────────────────────────── */
+.scroll-progress__bar{
+  background:linear-gradient(90deg,#4FE3D2 0%,#7AF1E5 50%,#F0B26B 100%) !important;
+  box-shadow:0 0 12px rgba(79,227,210,.6);
+}
+
+/* ──────────────────────────────────────────
+   18. Refined back-to-top button
+   ────────────────────────────────────────── */
+.back-to-top{
+  background:rgba(244,247,255,.92) !important;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(13,17,23,.1) !important;
+  box-shadow:0 12px 36px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.4) !important;
+  transition:transform .25s var(--ease-out-quart),background-color .2s ease;
+}
+.back-to-top:hover{
+  background:#fff !important;
+  transform:translateY(-2px);
+}
+
+/* ──────────────────────────────────────────
+   19. Hero loans-footer (the bottom of funded-deals widget) refinement
+   ────────────────────────────────────────── */
+.hero-loans-footer{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:1rem;margin-top:1rem !important;
+}
+
+/* ──────────────────────────────────────────
+   20. Investor-proof testimonial card — refined attribution
+   ────────────────────────────────────────── */
+.investor-proof__attribution{
+  border-top:1px solid rgba(255,255,255,.08) !important;
+}
+.investor-proof__avatar{
+  box-shadow:0 4px 14px rgba(79,227,210,.22),0 0 0 2px rgba(79,227,210,.3);
+}
+
+/* ──────────────────────────────────────────
+   21. Disclaimer + fineprint refinement
+   ────────────────────────────────────────── */
+.fineprint,.form-fineprint,
+.apply-form__fineprint{
+  font-size:.8rem;
+  line-height:1.5;
+  color:rgba(244,247,255,.5);
+}
+
+/* ──────────────────────────────────────────
+   22. Anchor offset for sticky header on jump links
+   ────────────────────────────────────────── */
+:target{scroll-margin-top:88px}
+
+/* ──────────────────────────────────────────
+   23. Print stylesheet (cards print legibly if anyone hits Print)
+   ────────────────────────────────────────── */
+@media print{
+  .header,.sticky-dual,.back-to-top,.consent-banner,.bg-pattern{display:none !important}
+  body{background:#fff !important;color:#000 !important}
+  *{color-adjust:exact !important;-webkit-print-color-adjust:exact !important}
+}

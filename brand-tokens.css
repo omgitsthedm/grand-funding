@@ -1,0 +1,114 @@
+/* === Grand Funding LLC — Brand Tokens v1 (2026-05-03) ===
+   Direction A · Variant 1 Arched.
+   Per HANDOFF.md from claude.ai/design. */
+
+:root {
+  /* Brand palette */
+  --gf-teal:    #4FE3D2;
+  --gf-ink:     #0B1014;
+  --gf-paper:   #F4F1EA;
+  --gf-ember:   #F0B26B;
+  --gf-fog:     #9AA3AB;
+
+  /* Surfaces */
+  --gf-surface-dark:  #0B1014;
+  --gf-surface-mid:   #1A2026;
+  --gf-surface-light: #F4F1EA;
+
+  /* Borders / dividers */
+  --gf-border-on-dark:  rgba(255,255,255,0.08);
+  --gf-border-on-light: rgba(11,16,20,0.10);
+
+  /* Typography */
+  --gf-font-sans: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --gf-font-mono: "DM Mono", ui-monospace, monospace;
+
+  /* Type scale */
+  --gf-text-xs:   12px;
+  --gf-text-sm:   14px;
+  --gf-text-base: 16px;
+  --gf-text-lg:   18px;
+  --gf-text-xl:   24px;
+  --gf-text-2xl:  32px;
+  --gf-text-3xl:  48px;
+  --gf-text-4xl:  64px;
+  --gf-text-display: 96px;
+
+  /* Tracking */
+  --gf-tracking-tight:  -0.025em;
+  --gf-tracking-snug:   -0.02em;
+  --gf-tracking-normal: 0;
+  --gf-tracking-wide:   0.04em;
+  --gf-tracking-mono:   0.08em;
+
+  /* Radii */
+  --gf-radius-sm: 4px;
+  --gf-radius-md: 6px;
+  --gf-radius-lg: 12px;
+}
+
+/* ───────── Brand lockup (header) ───────── */
+.brand-lockup{
+  display:inline-flex;align-items:center;
+  gap:.55rem;
+  text-decoration:none;
+  color:#F4F1EA;
+  white-space:nowrap;
+  line-height:1;
+}
+.brand-lockup__mark{
+  display:inline-block;
+  width:32px;height:32px;flex-shrink:0;
+  color:#4FE3D2;
+}
+.brand-lockup__mark svg{display:block;width:100%;height:100%}
+.brand-lockup__wordmark{
+  display:inline-flex;align-items:baseline;
+  font-family:'DM Sans',-apple-system,system-ui,sans-serif;
+  font-weight:800;
+  font-size:clamp(1.05rem,1.35vw,1.3rem);
+  letter-spacing:-.02em;
+  color:#F4F1EA;
+}
+.brand-lockup__pipe{
+  display:inline-block;
+  width:1px;height:.62em;
+  background:currentColor;opacity:.32;
+  margin:0 .42em;
+  transform:translateY(.04em);
+}
+.brand-lockup__suffix{
+  font-weight:500;
+  font-size:.62em;
+  letter-spacing:.04em;
+  opacity:.7;
+  text-transform:uppercase;
+}
+.brand-lockup:hover .brand-lockup__mark{opacity:.92}
+.brand-lockup:hover{color:#F4F1EA}
+@media(max-width:480px){
+  .brand-lockup{gap:.45rem}
+  .brand-lockup__mark{width:28px;height:28px}
+  .brand-lockup__wordmark{font-size:1.02rem}
+}
+
+/* ───────── Footer wordmark mirrors lockup ───────── */
+.footer-wordmark{
+  display:inline-flex;align-items:center;
+  gap:.55rem;
+  text-decoration:none;
+  color:#F4F1EA;
+  white-space:nowrap;
+  line-height:1;
+}
+.footer-wordmark .brand-lockup__mark{width:36px;height:36px;color:#4FE3D2}
+.footer-wordmark .brand-mark{
+  font-family:'DM Sans',sans-serif;font-weight:800;
+  font-size:1.18rem;letter-spacing:-.02em;color:#F4F1EA;
+}
+.footer-wordmark .brand-suffix{
+  font-weight:500;font-size:.7em;letter-spacing:.04em;
+  opacity:.7;text-transform:uppercase;color:#F4F1EA;
+  margin-left:.25rem;padding-left:.5rem;
+  border-left:1px solid rgba(244,241,234,.32);
+}

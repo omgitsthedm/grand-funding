@@ -40,7 +40,7 @@
 }
 
 /* Cookie consent banner */
-.consent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9500;background:rgba(7,8,11,.98);border-top:1px solid rgba(79,227,210,.25);padding:1.25rem 1.5rem;box-shadow:0 -10px 40px rgba(0,0,0,.45);backdrop-filter:blur(12px);transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.consent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9500;background:rgba(7,8,11,.98);border-top:1px solid rgba(79,227,210,.25);padding:1.25rem 1.5rem;box-shadow:0 -10px 40px rgba(0,0,0,.45);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
 .consent-banner.is-open{transform:translateY(0)}
 .consent-inner{max-width:1200px;margin:0 auto;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
 .consent-text{flex:1;min-width:260px;color:var(--text,#f0f0ec);font-size:.9rem;line-height:1.55}

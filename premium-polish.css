@@ -642,11 +642,16 @@ a[href^="tel:"].header-phone{
 }
 
 /* ──────────────────────────────────────────
-   32. LP / money page responsive grid (the inlined CSS on
-   arizona-hard-money-lender.html and similar pages was missing
-   the 900px breakpoint that collapses .lp-hero__grid to 1 column,
-   causing the form card to overflow off-screen on mobile)
+   32. LP / money page responsive grid (forced display:grid because
+   inlined CSS sets inline-flex which breaks grid-template-columns)
    ────────────────────────────────────────── */
+.lp-hero__grid{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:3rem !important;
+  align-items:start !important;
+  width:100% !important;
+}
 @media (max-width: 900px) {
   .lp-hero__grid {
     grid-template-columns: 1fr !important;

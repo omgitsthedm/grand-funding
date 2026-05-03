@@ -600,3 +600,43 @@ main a:not([class]):not(.btn):not(.cta-btn):hover{
   color:#F4F7FF;
   text-decoration-color:#F4F7FF;
 }
+
+/* ──────────────────────────────────────────
+   31. tel: link override — beats inline a[href^="tel:"] rule
+   The inline <style> rule sets color:var(--gf-teal) !important on
+   ALL tel: links, breaking buttons that should have dark text.
+   We need same-specificity selectors to override.
+   ────────────────────────────────────────── */
+a[href^="tel:"].talk-to-logan__call,
+a[href^="tel:"].sticky-dual__apply,
+.meet-logan__cta a.btn-primary[href^="tel:"],
+.hero-cta-group a.btn-primary[href^="tel:"],
+.hero-buttons a.btn-primary[href^="tel:"],
+.cta-buttons a.btn-primary[href^="tel:"],
+a[href^="tel:"].btn-primary,
+a[href^="tel:"].btn-primary-large,
+a[href^="tel:"].cta-btn,
+.logan-strip a.logan-strip__call[href^="tel:"]{
+  color:#0B1014 !important;
+  border-bottom:none !important;
+  text-decoration:none !important;
+  font-weight:800 !important;
+}
+
+/* sticky-dual call (pill on left): keep teal text on dark glass */
+a[href^="tel:"].sticky-dual__call{
+  color:#7AF1E5 !important;
+  border-bottom:none !important;
+}
+
+/* logan-sidebar call link: keep teal small link */
+a[href^="tel:"].logan-sidebar__call{
+  color:#7AF1E5 !important;
+  border-bottom:1px solid rgba(122,241,229,.4) !important;
+}
+
+/* header phone link: keep teal */
+a[href^="tel:"].header-phone{
+  color:#7AF1E5 !important;
+  border-bottom:none !important;
+}

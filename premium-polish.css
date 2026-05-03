@@ -640,3 +640,40 @@ a[href^="tel:"].header-phone{
   color:#7AF1E5 !important;
   border-bottom:none !important;
 }
+
+/* ──────────────────────────────────────────
+   32. LP / money page responsive grid (the inlined CSS on
+   arizona-hard-money-lender.html and similar pages was missing
+   the 900px breakpoint that collapses .lp-hero__grid to 1 column,
+   causing the form card to overflow off-screen on mobile)
+   ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .lp-hero__grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .lp-form-card {
+    margin-top: 0 !important;
+    width: 100% !important;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .lp-process__steps {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .lp-process__steps::before { display: none !important; }
+}
+@media (max-width: 600px) {
+  .lp-hero { padding: 3.5rem 0 3rem !important; }
+  .lp-hero__stats { gap: 1.5rem !important; }
+  .lp-hero__ctas { flex-direction: column !important; }
+  .lp-hero__ctas .btn { width: 100% !important; justify-content: center !important; }
+  .lp-form__row { grid-template-columns: 1fr !important; }
+  .lp-why__grid { grid-template-columns: 1fr 1fr !important; }
+  .lp-deals__grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 420px) {
+  .lp-why__grid { grid-template-columns: 1fr !important; }
+}

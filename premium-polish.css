@@ -448,3 +448,155 @@ input:focus,select:focus,textarea:focus{
   body{background:#fff !important;color:#000 !important}
   *{color-adjust:exact !important;-webkit-print-color-adjust:exact !important}
 }
+
+/* ──────────────────────────────────────────
+   24. CRITICAL CONTRAST FIXES (2026-05-03 v2)
+   Buttons with light gradients need DARK text.
+   ────────────────────────────────────────── */
+
+/* All primary CTAs that sit on teal/ember gradient: dark text, max contrast */
+.btn-primary,
+.btn-primary-large,
+.cta-btn,
+.btn.btn-primary,
+.btn-lg.btn-primary,
+.cta-buttons .btn-primary,
+.meet-logan__cta .btn-primary,
+.sticky-dual__apply,
+.talk-to-logan__call,
+button[type="submit"],
+.contact-form button[type="submit"],
+.apply-form button[type="submit"],
+input[type="submit"]{
+  color:#0B1014 !important;
+  font-weight:800 !important;
+  text-shadow:0 1px 0 rgba(255,255,255,.18);
+  background:linear-gradient(135deg,#4FE3D2 0%,#F0B26B 100%) !important;
+  border:none !important;
+}
+.btn-primary:hover,
+.btn-primary-large:hover,
+.cta-btn:hover,
+.cta-buttons .btn-primary:hover,
+.meet-logan__cta .btn-primary:hover,
+.sticky-dual__apply:hover,
+.talk-to-logan__call:hover,
+button[type="submit"]:hover{
+  color:#0B1014 !important;
+  filter:brightness(1.06) saturate(1.05);
+}
+
+/* Secondary buttons (outline) — keep light text but improve border */
+.btn-secondary,
+.btn.btn-secondary{
+  background:rgba(255,255,255,.04) !important;
+  color:#F4F7FF !important;
+  border:1px solid rgba(244,247,255,.22) !important;
+  font-weight:700 !important;
+}
+.btn-secondary:hover{
+  background:rgba(79,227,210,.1) !important;
+  border-color:rgba(79,227,210,.4) !important;
+  color:#F4F7FF !important;
+}
+
+/* ──────────────────────────────────────────
+   25. RELATED READING aside — proper link colors
+   ────────────────────────────────────────── */
+aside[data-orphan-link]{
+  padding:1.5rem 1.75rem !important;
+}
+aside[data-orphan-link] ul{
+  list-style:none !important;
+  padding-left:0 !important;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:.6rem 1.5rem;
+}
+aside[data-orphan-link] li{
+  position:relative;
+  padding-left:1rem;
+}
+aside[data-orphan-link] li::before{
+  content:"→";
+  position:absolute;left:0;top:0;
+  color:#4FE3D2;
+  font-weight:800;
+}
+aside[data-orphan-link] a{
+  color:#7AF1E5 !important;
+  text-decoration:none !important;
+  font-weight:600 !important;
+  transition:color .25s ease,padding-left .25s ease;
+  background-image:linear-gradient(rgba(122,241,229,.4),rgba(122,241,229,.4));
+  background-size:0 1px;
+  background-position:0 100%;
+  background-repeat:no-repeat;
+}
+aside[data-orphan-link] a:hover{
+  color:#F4F7FF !important;
+  background-size:100% 1px;
+}
+aside[data-orphan-link] a:visited{
+  color:#7AF1E5 !important;
+}
+
+/* ──────────────────────────────────────────
+   26. Hero CTA group — ensure text is readable
+   ────────────────────────────────────────── */
+.hero-cta-group .btn-primary,
+.hero-buttons .btn-primary{
+  color:#0B1014 !important;
+}
+.hero-cta-group .btn-secondary,
+.hero-buttons .btn-secondary{
+  color:#F4F7FF !important;
+  background:rgba(7,8,11,.45) !important;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(244,247,255,.25) !important;
+}
+
+/* ──────────────────────────────────────────
+   27. Form submit button (apply, contact)
+   ────────────────────────────────────────── */
+.apply-form button[type="submit"],
+.contact-form button[type="submit"]{
+  padding:1.05rem 2.25rem !important;
+  border-radius:999px !important;
+  font-size:1.05rem !important;
+  letter-spacing:.01em;
+  box-shadow:0 14px 36px rgba(79,227,210,.32) !important;
+}
+
+/* ──────────────────────────────────────────
+   28. Sticky-dual: ensure call button text is readable too
+   ────────────────────────────────────────── */
+.sticky-dual__call{
+  color:#7AF1E5 !important;
+  font-weight:800 !important;
+}
+.sticky-dual__apply{
+  color:#0B1014 !important;
+}
+
+/* ──────────────────────────────────────────
+   29. Hero badge "40+ Years of Excellence" + similar — readable text
+   ────────────────────────────────────────── */
+.hero-badge,.hero-tagline{
+  color:#7AF1E5 !important;
+}
+
+/* ──────────────────────────────────────────
+   30. Make sure all anchor links inside content default to readable color
+   ────────────────────────────────────────── */
+main a:not([class]):not(.btn):not(.cta-btn){
+  color:#7AF1E5;
+  text-decoration:underline;
+  text-decoration-color:rgba(122,241,229,.4);
+  text-underline-offset:3px;
+}
+main a:not([class]):not(.btn):not(.cta-btn):hover{
+  color:#F4F7FF;
+  text-decoration-color:#F4F7FF;
+}

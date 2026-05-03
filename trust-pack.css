@@ -1,0 +1,181 @@
+/* === Grand Funding Trust + Conversion Pack v1 (2026-05-03) === */
+
+/* ───────── Talk-to-Logan card ───────── */
+.talk-to-logan{
+  display:flex;align-items:center;gap:1.25rem;
+  padding:1.25rem 1.5rem;
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(79,227,210,.10),rgba(240,178,107,.06));
+  border:1px solid rgba(79,227,210,.24);
+  box-shadow:0 18px 50px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.06);
+  margin:0 0 1.5rem 0;
+  color:#F0F0EC;
+}
+.talk-to-logan__avatar{
+  flex-shrink:0;
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,#4FE3D2,#F0B26B);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Sans',sans-serif;font-weight:900;font-size:1.5rem;color:#0B1014;
+  letter-spacing:-.02em;
+  box-shadow:0 8px 24px rgba(79,227,210,.25);
+  overflow:hidden;
+}
+.talk-to-logan__avatar img{width:100%;height:100%;object-fit:cover}
+.talk-to-logan__copy{flex:1;min-width:0}
+.talk-to-logan__name{font-weight:800;font-size:1.05rem;line-height:1.2;color:#F0F0EC}
+.talk-to-logan__title{font-size:.86rem;color:rgba(244,247,255,.74);margin-top:2px}
+.talk-to-logan__quote{
+  font-size:.92rem;line-height:1.45;color:rgba(244,247,255,.88);
+  margin-top:.55rem;font-style:italic;
+}
+.talk-to-logan__quote::before{content:"\201C";color:#4FE3D2;font-weight:900}
+.talk-to-logan__quote::after{content:"\201D";color:#4FE3D2;font-weight:900}
+.talk-to-logan__actions{
+  display:flex;flex-direction:column;gap:.4rem;flex-shrink:0;
+}
+.talk-to-logan__call{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.6rem 1rem;border-radius:999px;
+  background:linear-gradient(135deg,#4FE3D2,#7AF1E5);
+  color:#0B1014;font-weight:800;font-size:.95rem;text-decoration:none;
+  white-space:nowrap;
+  box-shadow:0 8px 24px rgba(79,227,210,.3);
+}
+.talk-to-logan__nmls{
+  font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(244,247,255,.55);text-align:center;font-weight:600;
+}
+@media(max-width:640px){
+  .talk-to-logan{flex-direction:column;text-align:center;gap:.85rem;padding:1.25rem}
+  .talk-to-logan__copy{order:2}
+  .talk-to-logan__actions{order:3;width:100%}
+  .talk-to-logan__call{justify-content:center;width:100%;padding:.85rem 1rem;font-size:1rem}
+}
+
+/* ───────── Dual sticky CTA (mobile call + apply) ───────── */
+.sticky-dual{
+  position:fixed;left:50%;bottom:14px;transform:translateX(-50%);
+  z-index:999;display:none;
+  gap:8px;
+  width:min(94vw,520px);
+  padding:6px;
+  background:rgba(11,16,20,.86);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  box-shadow:0 22px 70px rgba(0,0,0,.56);
+}
+.sticky-dual.is-hidden{opacity:0;pointer-events:none;transition:opacity .25s}
+.sticky-dual a{
+  flex:1;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+  padding:.85rem 1rem;border-radius:999px;
+  font-weight:800;font-size:.95rem;text-decoration:none;
+  white-space:nowrap;
+}
+.sticky-dual__call{
+  background:rgba(79,227,210,.14);
+  border:1px solid rgba(79,227,210,.45);
+  color:#7AF1E5;
+}
+.sticky-dual__apply{
+  background:linear-gradient(135deg,#4FE3D2,#F0B26B);
+  color:#0B1014;
+  box-shadow:0 8px 22px rgba(79,227,210,.3);
+}
+@media(max-width:820px){
+  .sticky-dual{display:flex}
+  /* hide the legacy single sticky-cta when dual is showing */
+  .sticky-cta{display:none !important}
+  /* shift back-to-top up so it doesn't sit on top of the new dual bar */
+  .back-to-top{bottom:84px !important}
+}
+
+/* ───────── Reviews / testimonials placeholder section ───────── */
+.investor-proof{
+  padding:4rem 0;
+  background:radial-gradient(60% 80% at 50% 0%,rgba(79,227,210,.08),transparent 70%);
+}
+.investor-proof__head{text-align:center;margin-bottom:2.5rem}
+.investor-proof__kicker{
+  display:inline-block;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#4FE3D2;font-weight:700;margin-bottom:.6rem;
+}
+.investor-proof__title{
+  font-family:'DM Sans',sans-serif;font-weight:900;font-size:clamp(1.6rem,3.2vw,2.4rem);
+  letter-spacing:-.02em;color:#F0F0EC;line-height:1.15;
+}
+.investor-proof__sub{
+  margin-top:.6rem;color:rgba(244,247,255,.72);font-size:1.05rem;
+}
+.investor-proof__grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.25rem;max-width:1100px;margin:0 auto;padding:0 20px;
+}
+.investor-proof__card{
+  padding:1.6rem;border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(14,16,22,.72));
+  border:1px solid rgba(79,227,210,.16);
+  box-shadow:0 18px 48px rgba(0,0,0,.34);
+}
+.investor-proof__stars{color:#F0B26B;font-size:1.05rem;letter-spacing:.05em;margin-bottom:.85rem}
+.investor-proof__quote{
+  font-size:1rem;line-height:1.55;color:rgba(244,247,255,.92);
+}
+.investor-proof__attribution{
+  margin-top:1rem;display:flex;align-items:center;gap:.7rem;
+  padding-top:.85rem;border-top:1px solid rgba(255,255,255,.08);
+}
+.investor-proof__avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,#4FE3D2,#F0B26B);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:#0B1014;font-weight:900;font-size:.85rem;
+}
+.investor-proof__name{font-weight:800;color:#F0F0EC;font-size:.92rem}
+.investor-proof__role{font-size:.78rem;color:rgba(244,247,255,.64)}
+.investor-proof__cta{
+  text-align:center;margin-top:2.25rem;
+}
+.investor-proof__cta a{
+  display:inline-flex;align-items:center;gap:.5rem;
+  color:#4FE3D2;font-weight:800;text-decoration:none;
+  border-bottom:1px solid rgba(79,227,210,.4);padding-bottom:2px;
+}
+
+/* ───────── Header phone CTA (desktop + tablet) ───────── */
+.header-phone{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-weight:700;font-size:.95rem;
+  color:#7AF1E5;text-decoration:none;
+  padding:.4rem .8rem;border-radius:10px;
+  margin-right:.6rem;
+  white-space:nowrap;
+  transition:background .2s;
+}
+.header-phone:hover{background:rgba(79,227,210,.1)}
+.header-phone svg{width:14px;height:14px}
+@media(max-width:768px){
+  .header-phone{display:none} /* mobile uses sticky-dual instead */
+}
+
+/* ───────── Logan-call CTA inline (for use on money pages) ───────── */
+.logan-strip{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1rem 1.5rem;
+  margin:1.5rem 0;
+  background:linear-gradient(135deg,rgba(79,227,210,.12),rgba(240,178,107,.08));
+  border:1px solid rgba(79,227,210,.24);
+  border-radius:14px;
+  flex-wrap:wrap;
+}
+.logan-strip__text{font-weight:700;color:#F0F0EC}
+.logan-strip__text span{color:#7AF1E5}
+.logan-strip__call{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.7rem 1.1rem;border-radius:999px;
+  background:linear-gradient(135deg,#4FE3D2,#7AF1E5);
+  color:#0B1014;font-weight:800;text-decoration:none;
+  white-space:nowrap;
+}

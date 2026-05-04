@@ -53,10 +53,23 @@
 | 2026-04-19 | Reveal logic inverted (visible by default) | `.reveal` defaulted to opacity:0 which left hardcoded section wrappers stuck hidden when IO couldn't fire (intersection ratio < threshold for 13k-px tall sections). New: `.reveal` = opacity:1 default. JS adds `.js-reveal-init` to activate hiding; IO adds `.is-visible` to animate in. Fail-safe: no JS / bot = element visible from first paint. Also removed 'section' from reveal selector list — only card-level elements animate. |
 | 2026-04-19 | Blog branded images delivered + deployed | Logan delivered 12 branded OG images (1536x1024 PNG). Processed: resized to 1200x630 OG PNG (pngquant q75-90, 245-445KB), 1200x800 WebP (51-132KB), overwrote /images/og/{slug}.(png\|webp). Existing og:image + twitter:image meta tags auto-pick up new branded images. Added inline hero `<figure class="blog-hero-image">` to all 12 posts — edge-to-edge full-bleed on mobile (calc 50%-50vw), centered 1100px rounded on desktop. Blog index cards: added 16:10 thumbnail with hover zoom. This was the final "needs from Logan" item — now complete. |
 | 2026-04-19 | **FINAL STATE** | Desktop 99-100 Lighthouse (all 4 cats), Mobile 85 (LCP ceiling on throttled sim). Zero horizontal overflow on mobile. Header CTA fits 320/375/393/1440. Hero poster visible. Cards contrast-correct on dark theme. All 52 pages share same premium polish. 12 blog posts have unique branded heroes. Blog index has thumbnails. Footer 1-col mobile, 4-col desktop. All breakpoints tested via Playwright: 320/375/393/1440px. No JS-blocking for bots, graceful no-JS fallback. |
+| 2026-05-03 | Universal engagement block sitewide (51 pages) | 3-tier conversion block (4 trust pills / Logan strip with photo+quote+dual CTA / 3 next-steps cards) injected on all info pages. Skips index, thanks pages, legal, 404, GSC stub. CSS in conversion-tools.css with auto-fit grids for desktop/tablet/mobile. |
+| 2026-05-03 | Thanks pages rebuilt | thanks.html + thanks-contact.html went 63 → 700+ words. Pulse-dot status, 3-step timeline, Logan mini-card, 4-card resource grid (ARV glossary, walkthrough, comparisons, funded deals). Form submitters no longer hit dead end. |
+| 2026-05-03 | 28 SEO pages shipped | 15 loan×city programmatic + 4 city hub + 6 glossary (DefinedTerm schema) + 3 comparison guides. All cross-linked via footer + sitemap + lastmod 2026-05-03. |
+| 2026-05-03 | 4 blog posts + press page | Phoenix fix-flip underwriting, bridge-vs-cashout, why-banks-say-no, ARV step-by-step. Press page with media kit. All BlogPosting + Person schema. |
+| 2026-05-03 | E-E-A-T expansion | Logan Person schema (NMLS, license, expertise, sameAs) expanded to full E-E-A-T standard across 63 pages. |
+| 2026-05-03 | Realistic stats swap | Removed unverifiable 1500/$350M/48hr/98% claims. New: 40+ Years, $5M Max, 24hr, 3-5 Day. Eliminates regulatory risk. |
+| 2026-05-03 | Counter animation fix | Counters now read data-to attribute instead of parsing textContent. Was showing 0 site-wide. premium-motion.js v2 deployed. |
+| 2026-05-03 | Footer rebuild | 5-col desktop / 3-col tablet / 1-col mobile. Investor Resources moved inside .footer-main grid (was rendering full-width below). |
+| 2026-05-03 | Logan-Handoff/ off-site SEO package | 9-file folder: GBP setup, review templates, 12-directory packet, 4 blog drafts, BiggerPockets guest post, 14-podcast outreach, Reddit answer library, 4 press release templates, directory tracker CSV. ~30 hours of pre-built work for Logan. |
+| 2026-05-03 | Legacy iOS Safari fix | Added -webkit-backdrop-filter prefix to compliance.css consent banner. Cosmetic completeness for iOS<18. |
+| 2026-05-03 | **CRITICAL: Form-submission bug FIXED** | Discovered ZERO form submissions had reached Netlify since site launch — all 18 forms count=0. Root cause: script.js global handler was matching `.btn-primary` submit buttons, setting type="button", and preventDefault'ing on click. Every form attempt silently scrolled to #contact. Fix: handler now skips `[type="submit"]` and elements `closest("form")`. Verified end-to-end: test submissions to contact + pre-approval forms registered in Netlify, email notification fires to Logan@grandfundingllc.com, Logan confirmed receipt. |
+| 2026-05-03 | contact.html form-name corrected | Hidden routing field said "pre-approval" instead of "contact". Now matches form's name attribute. |
+| 2026-05-03 | Sitewide email: info@ → Logan@grandfundingllc.com | 79 files updated. Netlify form notification hook updated via API. Logan@ confirmed working as primary contact. |
 
 ## Current Status
-- **Phase:** Deployed / Maintenance
-- **Last worked on:** 2026-04-20
+- **Phase:** Deployed / Live / Forms verified end-to-end
+- **Last worked on:** 2026-05-03
 - **What's done:**
   - Full site live at https://www.grandfundingllc.com on Netlify (auto-deploy from GitHub)
   - 11 money pages (5 scenario + 6 location) with FinancialService + FAQPage schema
@@ -74,10 +87,12 @@
   - Netlify Forms with honeypot on apply + contact
   - Lighthouse scores: Desktop **99-100** perf / 100 a11y / 100 best practices / 100 SEO | Mobile **85** perf / 100 a11y / 100 best practices / 100 SEO (medians of multi-run measurements)
 - **What's pending:**
-  - Consider adding <main> landmark to about.html, faq.html, products.html
-  - Consider Organization schema on all location/product pages
-  - Netlify auto-deploy broken — all deploys require `netlify deploy --prod --dir=.` manually
-- **Needs from David / Logan for paid search to go live:**
-  - **Google Ads conversion IDs** — fill in `AW_ID`, `AW_LEAD_LABEL`, `AW_CALL_LABEL` in `consent.js` lines 3-5. Until real IDs are set, Google Ads bidding has no conversion signal.
+  - Netlify auto-deploy broken — all deploys require `netlify deploy --prod --dir=.` manually (low priority)
+- **Needs from Logan for paid search to go live:**
+  - **Google Ads conversion IDs** — fill in `AW_ID`, `AW_LEAD_LABEL`, `AW_CALL_LABEL` in `consent.js` lines 3-5. Step-by-step instructions sent 2026-05-03. Same-day turnaround once received.
   - Google Ads campaign must have auto-tagging enabled (passes `gclid` param) — forms + sessionStorage already capture it
   - Consider adding Google Reviews widget to LP pages once reviews accumulate
+- **Forms verification (2026-05-03):**
+  - Test submissions confirmed in Netlify dashboard
+  - Logan confirmed both test emails arrived at Logan@grandfundingllc.com
+  - End-to-end pipeline operational

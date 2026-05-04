@@ -227,7 +227,7 @@ Version 2 is ready for immediate deployment to:
 **Logan Sullivan**
 Grand Funding LLC
 - Phone: (602) 935-0371
-- Email: info@grandfundingllc.com
+- Email: Logan@grandfundingllc.com
 - NMLS ID: 2466872
 - AZ MLO License: 1048901
 

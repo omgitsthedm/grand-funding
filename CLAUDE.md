@@ -7,7 +7,7 @@
 - **Location/Service Area:** Arizona (Phoenix, Scottsdale, Tempe, Mesa, Gilbert, Chandler, Tucson) + California (LA, San Diego, statewide)
 - **Domain:** https://www.grandfundingllc.com
 - **NMLS:** 2466872 | AZ MLO License: 1048901
-- **Contact:** (602) 935-0371 | info@grandfundingllc.com
+- **Contact:** (602) 935-0371 | Logan@grandfundingllc.com
 - **Design Style:** Dark cinematic — bg #07080B, teal #4FE3D2, ember #F0B26B; DM Sans Variable (all text, subsetted to 25KB at /fonts/dm-sans-var.woff2)
 
 ## Palette

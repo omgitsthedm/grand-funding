@@ -51,7 +51,7 @@ Netlify Forms can email submissions, but the email recipient is configured in Ne
 In Netlify:
 1. Site settings -> Forms -> Enable form detection
 2. Forms -> `pre-approval` -> Notifications
-3. Add **Email notification** -> enter the receiving email (ex: `info@grandfundingllc.com`)
+3. Add **Email notification** -> enter the receiving email (ex: `Logan@grandfundingllc.com`)
 
 Optional:
 - Enable spam filtering and keep the honeypot field (`bot-field`) in the code.

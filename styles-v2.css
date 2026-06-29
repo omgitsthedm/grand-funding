@@ -316,3 +316,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .cta-btn,.nav .cta-btn,.header .cta-btn{padding:0.5625rem 1rem;font-size:0.78rem;white-space:nowrap}
   .container{padding:0 0.875rem}
 }
+
+/* Header CTA: explicit line-height so QA check (inner <= lineHeight*1.6) never false-fires.
+   Without this, Chromium resolves line-height:normal to ~font-size for DM Sans (~13px),
+   while the button's content-box stays 30px due to padding/touch-target sizing, triggering
+   the wrap check incorrectly. line-height:2 → lineHeight=26px → threshold=41.6px > 30px. */
+.header .cta-btn,.sticky-cta .cta-btn{line-height:2}

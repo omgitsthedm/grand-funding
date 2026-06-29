@@ -259,7 +259,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .btn-sm,.btn-secondary-sm{padding:0.5625rem 1.125rem;font-size:0.8125rem;width:auto!important}
 
   /* Header nav button stays compact */
-  .nav .cta-btn,.header .cta-btn,.sticky-cta .cta-btn{width:auto!important;padding:0.625rem 1.125rem;font-size:0.8125rem}
+  .nav .cta-btn,.header .cta-btn,.sticky-cta .cta-btn{width:auto!important;padding:0.625rem 1.125rem;font-size:0.8125rem;white-space:nowrap}
 
   /* Page-hero headings */
   .page-hero h1,.about-hero h1,.products-hero h1,.contact-hero h1,.faq-hero h1,.blog-hero h1{font-size:1.625rem;line-height:1.15}
@@ -313,6 +313,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 /* --- 375px: tiny phone refinement --- */
 @media (max-width:375px) {
   .btn,.btn-lg{padding:0.6875rem 1.25rem;font-size:0.875rem}
-  .cta-btn,.nav .cta-btn,.header .cta-btn{padding:0.5625rem 1rem;font-size:0.78rem}
+  .cta-btn,.nav .cta-btn,.header .cta-btn{padding:0.5625rem 1rem;font-size:0.78rem;white-space:nowrap}
   .container{padding:0 0.875rem}
 }

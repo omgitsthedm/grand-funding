@@ -46,17 +46,22 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Wait for Netlify deploy preview (PR only)
-        if: github.event_name == 'pull_request'
+      - name: Set BASE_URL (local server for PRs, production for pushes)
         run: |
-          echo "Giving Netlify ~30s to finish deploying the preview for this PR."
-          echo "For push events we audit production directly."
-          sleep 30
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "PR build — serving site locally so CI tests branch content, not production."
+            npx --yes serve . -p 8080 &
+            sleep 5
+            echo "BASE_URL=http://localhost:8080" >> $GITHUB_ENV
+          elif [[ -n "${{ github.event.inputs.base_url }}" ]]; then
+            echo "BASE_URL=${{ github.event.inputs.base_url }}" >> $GITHUB_ENV
+          else
+            echo "BASE_URL=https://www.grandfundingllc.com" >> $GITHUB_ENV
+          fi
 
       - name: Run Premium QA
         env:
           CI: 'true'
-          BASE_URL: ${{ github.event.inputs.base_url || 'https://www.grandfundingllc.com' }}
           WATCHLIST_ONLY: ${{ github.event.inputs.watchlist_only == 'true' && '1' || '' }}
         run: |
           npm run test:premium

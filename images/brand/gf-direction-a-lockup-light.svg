@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 250" role="img" aria-labelledby="title desc">
+  <title id="title">Grand Funding Direction A logo</title>
+  <desc id="desc">Grand Funding lockup with the Direction A gradient seal and stacked white wordmark.</desc>
+  <defs>
+    <linearGradient id="gf-direction-a-lockup-grad" x1="260" y1="280" x2="750" y2="740" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00BDB5"/>
+      <stop offset="0.45" stop-color="#F0D45D"/>
+      <stop offset="1" stop-color="#D17A17"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(20 14) scale(0.22)">
+    <circle cx="500" cy="500" r="282" fill="none" stroke="#F1E8D4" stroke-width="16"/>
+    <path d="M490 324A180 180 0 1 0 490 676" fill="none" stroke="url(#gf-direction-a-lockup-grad)" stroke-linecap="square" stroke-width="42"/>
+    <rect x="406" y="447" width="138" height="34" fill="url(#gf-direction-a-lockup-grad)"/>
+    <rect x="470" y="318" width="34" height="185" fill="url(#gf-direction-a-lockup-grad)"/>
+    <rect x="470" y="479" width="34" height="248" fill="url(#gf-direction-a-lockup-grad)"/>
+    <rect x="550" y="298" width="36" height="432" fill="url(#gf-direction-a-lockup-grad)"/>
+    <rect x="550" y="298" width="158" height="38" fill="url(#gf-direction-a-lockup-grad)"/>
+    <rect x="550" y="447" width="188" height="36" fill="url(#gf-direction-a-lockup-grad)"/>
+    <rect x="610" y="521" width="30" height="168" fill="url(#gf-direction-a-lockup-grad)"/>
+    <rect x="352" y="377" width="20" height="188" fill="url(#gf-direction-a-lockup-grad)"/>
+  </g>
+  <text x="230" y="96" fill="#F8F8F5" font-family="'Plus Jakarta Sans','Avenir Next','Segoe UI',sans-serif" font-size="76" font-weight="800" letter-spacing="6">GRAND</text>
+  <text x="230" y="166" fill="#F8F8F5" font-family="'Plus Jakarta Sans','Avenir Next','Segoe UI',sans-serif" font-size="76" font-weight="800" letter-spacing="6">FUNDING</text>
+  <text x="235" y="208" fill="#F1E8D4" font-family="'Plus Jakarta Sans','Avenir Next','Segoe UI',sans-serif" font-size="24" font-weight="700" letter-spacing="8">PRIVATE</text>
+  <text x="235" y="236" fill="#F1E8D4" font-family="'Plus Jakarta Sans','Avenir Next','Segoe UI',sans-serif" font-size="24" font-weight="700" letter-spacing="8">LENDING</text>
+</svg>

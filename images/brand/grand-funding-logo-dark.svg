@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 256" role="img" aria-labelledby="title desc">
+  <title id="title">Grand Funding logo</title>
+  <desc id="desc">Primary dark-background Grand Funding logo with GF monogram and wordmark.</desc>
+  <path fill="#F8F8F5" d="M182 40c27.6 0 50 22.4 50 50v24h-42v-14c0-8.8-7.2-16-16-16H96c-8.8 0-16 7.2-16 16v56c0 8.8 7.2 16 16 16h78c8.8 0 16-7.2 16-16v-10h-42v-34h84v44c0 27.6-22.4 50-50 50H88c-35.3 0-64-28.7-64-64V104c0-35.3 28.7-64 64-64h94Z"/>
+  <path fill="#2DD4BF" d="M96 58h104v24h-72v20h56v22h-56v74H96V58Z"/>
+  <text x="282" y="104" fill="#F8F8F5" font-family="'Plus Jakarta Sans','Avenir Next','Segoe UI',sans-serif" font-size="66" font-weight="800" letter-spacing="3">GRAND</text>
+  <text x="282" y="172" fill="#F8F8F5" font-family="'Plus Jakarta Sans','Avenir Next','Segoe UI',sans-serif" font-size="66" font-weight="800" letter-spacing="3">FUNDING</text>
+  <text x="286" y="220" fill="#D4A853" font-family="'Plus Jakarta Sans','Avenir Next','Segoe UI',sans-serif" font-size="22" font-weight="700" letter-spacing="8">PRIVATE LENDING</text>
+</svg>

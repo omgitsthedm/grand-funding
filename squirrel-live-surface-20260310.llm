@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audit version="0.0.38">
+<site url="https://www.grandfundingllc.com" crawled="17" date="2026-03-10T09:09:23.677Z"/>
+<score overall="85" grade="B">
+ <cat name="Crawlability" score="95"/>
+ <cat name="Performance" score="88"/>
+ <cat name="Accessibility" score="99"/>
+ <cat name="Content" score="97"/>
+ <cat name="Security" score="83"/>
+ <cat name="Structured Data" score="89"/>
+ <cat name="URL Structure" score="98"/>
+ <cat name="Analytics" score="100"/>
+ <cat name="Core SEO" score="100"/>
+ <cat name="E-E-A-T" score="100"/>
+ <cat name="Internationalization" score="100"/>
+ <cat name="Images" score="100"/>
+ <cat name="Legal Compliance" score="100"/>
+ <cat name="Links" score="100"/>
+ <cat name="Mobile" score="100"/>
+ <cat name="Social Media" score="100"/>
+ <cat name="Video" score="100"/>
+</score>
+<summary passed="1748" warnings="104" failed="1"/>
+<issues>
+ <category name="Crawlability" errors="1" warnings="0">
+  <rule id="crawl/sitemap-valid" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/crawl/sitemap-valid">
+   7 error(s) in 7 sitemap(s)
+   Items (5/7):
+    - /sitemap_index.xml (Unknown sitemap format) [errorCount: 1, errors: [&quot;Unknown sitemap format&quot;]]
+    - /sitemap-index.xml (Unknown sitemap format) [errorCount: 1, errors: [&quot;Unknown sitemap format&quot;]]
+    - /sitemaps.xml (Unknown sitemap format) [errorCount: 1, errors: [&quot;Unknown sitemap format&quot;]]
+    - /sitemap1.xml (Unknown sitemap format) [errorCount: 1, errors: [&quot;Unknown sitemap format&quot;]]
+    - /post-sitemap.xml (Unknown sitemap format) [errorCount: 1, errors: [&quot;Unknown sitemap format&quot;]]
+  </rule>
+ </category>
+ <category name="Security" errors="0" warnings="6">
+  <rule id="security/csp" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/csp">
+   No Content-Security-Policy header
+  </rule>
+  <rule id="security/x-frame-options" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/x-frame-options">
+   No clickjacking protection
+  </rule>
+  <rule id="security/form-captcha" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/form-captcha">
+   N public form(s) without CAPTCHA
+   Pages (3): /, /apply, /contact
+   Items (3):
+    - [name=&quot;concierge-booking&quot;]
+    - [name=&quot;contact&quot;]
+    - [name=&quot;pre-approval&quot;]
+  </rule>
+  <rule id="security/http-to-https" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/http-to-https">
+   17 HTTP URL(s) redirect to HTTPS
+   Items (5/17):
+    - http://www.grandfundingllc.com/ (http://www.grandfundingllc.com/ → https://www.grandfundingllc.com/ (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https://www.grand…]
+    - http://www.grandfundingllc.com/products (http://www.grandfundingllc.com/products → https://www.grandfundingllc.com/products (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/products&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/products&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/products&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{…]
+    - http://www.grandfundingllc.com/about (http://www.grandfundingllc.com/about → https://www.grandfundingllc.com/about (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/about&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/about&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/about&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;ht…]
+    - http://www.grandfundingllc.com/blog (http://www.grandfundingllc.com/blog → https://www.grandfundingllc.com/blog (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/blog&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/blog&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/blog&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https…]
+    - http://www.grandfundingllc.com/faq (http://www.grandfundingllc.com/faq → https://www.grandfundingllc.com/faq (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/faq&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/faq&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/faq&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https://…]
+  </rule>
+ </category>
+ <category name="Content" errors="0" warnings="9">
+  <rule id="content/heading-hierarchy" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/heading-hierarchy">
+   Skipped heading levels detected
+   Pages (4): /blog, /contact, /privacy, /terms
+   Items (1):
+    - H2 -&gt; H4
+  </rule>
+  <rule id="content/keyword-stuffing" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/keyword-stuffing">
+   N word(s) may be overused
+   Pages (5): /blog, /posts/how-to-qualify-for-a-hard-money-loan, /posts/private-lending-exploring-the-impact-on-real-estate-investment, /posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans, /posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding
+   Items (5):
+    - real (&quot;real&quot; (3.0%)) [count: 14, density: 3.0172413793103448]
+    - loans (&quot;loans&quot; (3.4%)) [count: 14, density: 3.431372549019608]
+    - private (&quot;private&quot; (3.4%)) [count: 11, density: 3.3846153846153846]
+    - hard (&quot;hard&quot; (3.7%)) [count: 16, density: 3.7037037037037033]
+    - money (&quot;money&quot; (3.7%)) [count: 16, density: 3.7037037037037033]
+  </rule>
+ </category>
+ <category name="Structured Data" errors="0" warnings="4">
+  <rule id="schema/local-business" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/schema/local-business">
+   Address incomplete; LocalBusiness schema missing required properties
+   Pages (4): /, /about, /faq, /products
+   Items (3):
+    - streetAddress
+    - postalCode
+    - address
+  </rule>
+ </category>
+ <category name="Performance" errors="0" warnings="66">
+  <rule id="perf/lcp-hints" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lcp-hints">
+   N potential LCP image(s) without preload
+   Pages (5/17): /, /about, /apply, /blog, /contact
+   Items (2):
+    - /images/brand/gf-direction-a-lockup-light.svg
+    - /images/contact-hero-canal.webp
+  </rule>
+  <rule id="perf/critical-request-chains" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/critical-request-chains">
+   N critical request chain(s) found
+   Pages (5/16): /about, /apply, /blog, /contact, /faq
+   Items (5/7):
+    - CSS: /styles.css?v=20260119
+    - CSS: /premium.css?v=20260310
+    - CSS: /products.css?v=20260119
+    - CSS: /about.css?v=20260119
+    - CSS: /blog.css?v=20260119
+  </rule>
+  <rule id="perf/lazy-above-fold" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lazy-above-fold">
+   N above-fold image(s) with lazy loading
+   Pages (5/16): /, /about, /apply, /blog, /faq
+   Items (3):
+    - /images/deal-spotlight-goodyear.webp
+    - /images/deal-spotlight-arcadia.webp
+    - /images/brand/gf-direction-a-lockup-light.svg
+  </rule>
+  <rule id="perf/unminified-js" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/unminified-js">
+   3 JavaScript file(s) appear unminified
+   Pages (5/17): /, /about, /apply, /blog, /contact
+   Items (3):
+    - script.js (20.0KB, ~5.5KB savings) [reason: high newlines (2.61%), 20 comments, long variable names, formatted code, excessive whitespace]
+    - script.js (20.0KB, ~5.5KB savings) [reason: high newlines (2.61%), 20 comments, long variable names, formatted code, excessive whitespace]
+    - script.js (20.0KB, ~5.5KB savings) [reason: high newlines (2.61%), 20 comments, long variable names, formatted code, excessive whitespace]
+  </rule>
+ </category>
+ <category name="Accessibility" errors="0" warnings="15">
+  <rule id="a11y/color-contrast" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/color-contrast">
+   2 potential color contrast issue(s)
+   Pages (1): /
+   Items (2):
+    - White text (verify background): 4 instance(s)
+    - Very light text color: 4 instance(s)
+  </rule>
+  <rule id="a11y/heading-order" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/heading-order">
+   N heading level skip(s) detected
+   Pages (5/14): /blog, /contact, /faq, /privacy, /products
+   Items (2):
+    - H4 after H2
+    - H3 after H1
+  </rule>
+ </category>
+ <category name="URL Structure" errors="0" warnings="4">
+  <rule id="url/length" severity="info" status="warn" docs="https://docs.squirrelscan.com/rules/url/length">
+   URL is N characters (over N)
+   Pages (4): /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024, /posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans, /posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams, /posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding
+   Items (4):
+    - /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024 (URL is 113 characters (over 100))
+    - /posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans (URL is 116 characters (over 100))
+    - /posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams (URL is 113 characters (over 100))
+    - /posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding (URL is 109 characters (over 100))
+  </rule>
+ </category>
+</issues>
+</audit>

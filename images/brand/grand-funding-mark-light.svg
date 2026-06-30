@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Grand Funding monogram</title>
+  <desc id="desc">A structural GF monogram for Grand Funding private lending.</desc>
+  <path fill="#0D0D12" d="M182 40c27.6 0 50 22.4 50 50v24h-42v-14c0-8.8-7.2-16-16-16H96c-8.8 0-16 7.2-16 16v56c0 8.8 7.2 16 16 16h78c8.8 0 16-7.2 16-16v-10h-42v-34h84v44c0 27.6-22.4 50-50 50H88c-35.3 0-64-28.7-64-64V104c0-35.3 28.7-64 64-64h94Z"/>
+  <path fill="#14B8A6" d="M96 58h104v24h-72v20h56v22h-56v74H96V58Z"/>
+</svg>

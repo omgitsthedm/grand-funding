@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audit version="0.0.38">
+<site url="https://www.grandfundingllc.com" crawled="31" date="2026-03-10T05:03:05.826Z"/>
+<score overall="78" grade="C">
+ <cat name="Structured Data" score="62"/>
+ <cat name="Performance" score="87"/>
+ <cat name="Accessibility" score="97"/>
+ <cat name="Content" score="82"/>
+ <cat name="Core SEO" score="93"/>
+ <cat name="URL Structure" score="98"/>
+ <cat name="Security" score="91"/>
+ <cat name="Video" score="57"/>
+ <cat name="Links" score="94"/>
+ <cat name="Crawlability" score="97"/>
+ <cat name="Images" score="100"/>
+ <cat name="Analytics" score="100"/>
+ <cat name="E-E-A-T" score="100"/>
+ <cat name="Internationalization" score="100"/>
+ <cat name="Legal Compliance" score="100"/>
+ <cat name="Mobile" score="100"/>
+ <cat name="Social Media" score="100"/>
+</score>
+<summary passed="3152" warnings="253" failed="16"/>
+<issues>
+ <category name="Crawlability" errors="0" warnings="1">
+  <rule id="crawl/sitemap-coverage" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/crawl/sitemap-coverage">
+   14 indexable page(s) not in sitemap (45%)
+   Items (5/14):
+    - /products
+    - /about
+    - /blog
+    - /contact
+    - /faq
+  </rule>
+ </category>
+ <category name="Core SEO" errors="0" warnings="13">
+  <rule id="core/meta-title" severity="error" status="warn" docs="https://docs.squirrelscan.com/rules/core/meta-title">
+   Title too short; Title too long
+   Pages (5/10): /contact, /contact.html, /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024, /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024.html, /posts/private-lending-exploring-the-impact-on-real-estate-investment
+   Items (5/10):
+    - /contact.html (Contact | Grand Funding LLC (27 chars))
+    - /contact (Contact | Grand Funding LLC (27 chars))
+    - /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024.html (Embracing the Real Estate Renaissance: Top Fix and (67 chars))
+    - /posts/private-lending-exploring-the-impact-on-real-estate-investment.html (Private Lending: Exploring the Impact on Real… | G (62 chars))
+    - /posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams.html (Understanding Second Mortgages: How Lenders Can… | (64 chars))
+  </rule>
+  <rule id="core/meta-description" severity="error" status="warn" docs="https://docs.squirrelscan.com/rules/core/meta-description">
+   Description too long
+   Pages (2): /about, /about.html
+   Items (2):
+    - /about.html (Meet Grand Funding LLC: a premium private lender f (168 chars))
+    - /about (Meet Grand Funding LLC: a premium private lender f (168 chars))
+  </rule>
+  <rule id="core/title-unique" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/core/title-unique">
+   14 duplicate title(s) affecting 28 pages
+   Items (5/14):
+    - loan programs | grand funding llc | az &amp; ca hard money loans (&quot;loan programs | grand funding llc | az &amp;...&quot; (2 pages)) [pageCount: 2] (from: /products.html, /products)
+    - about grand funding llc | az &amp; ca private lender | 40+ years (&quot;about grand funding llc | az &amp; ca privat...&quot; (2 pages)) [pageCount: 2] (from: /about.html, /about)
+    - blog | grand funding llc | hard money lending insights (&quot;blog | grand funding llc | hard money le...&quot; (2 pages)) [pageCount: 2] (from: /blog.html, /blog)
+    - faq - grand funding llc | hard money loan questions answered (&quot;faq - grand funding llc | hard money loa...&quot; (2 pages)) [pageCount: 2] (from: /faq.html, /faq)
+    - contact | grand funding llc (&quot;contact | grand funding llc...&quot; (2 pages)) [pageCount: 2] (from: /contact.html, /contact)
+  </rule>
+ </category>
+ <category name="Security" errors="0" warnings="7">
+  <rule id="security/csp" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/csp">
+   CSP allows &apos;unsafe-inline&apos;
+  </rule>
+  <rule id="security/form-captcha" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/form-captcha">
+   1 public form(s) without CAPTCHA
+   Pages (5): /, /apply, /apply.html, /contact, /contact.html
+   Items (2):
+    - [name=&quot;contact&quot;]
+    - [name=&quot;pre-approval&quot;]
+  </rule>
+  <rule id="security/http-to-https" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/http-to-https">
+   20 HTTP URL(s) redirect to HTTPS
+   Items (5/20):
+    - http://www.grandfundingllc.com/ (http://www.grandfundingllc.com/ → https://www.grandfundingllc.com/ (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https://www.grand…]
+    - http://www.grandfundingllc.com/products.html (http://www.grandfundingllc.com/products.html → https://www.grandfundingllc.com/products.html (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/products.html&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/products.html&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/products.html&quot;,&quot;statusCode&quot;:301,&quot;…]
+    - http://www.grandfundingllc.com/about.html (http://www.grandfundingllc.com/about.html → https://www.grandfundingllc.com/about.html (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/about.html&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/about.html&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/about.html&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;ht…]
+    - http://www.grandfundingllc.com/blog.html (http://www.grandfundingllc.com/blog.html → https://www.grandfundingllc.com/blog.html (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/blog.html&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/blog.html&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/blog.html&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;…]
+    - http://www.grandfundingllc.com/faq.html (http://www.grandfundingllc.com/faq.html → https://www.grandfundingllc.com/faq.html (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/faq.html&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/faq.html&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/faq.html&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{…]
+  </rule>
+ </category>
+ <category name="Links" errors="0" warnings="1">
+  <rule id="links/orphan-pages" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/links/orphan-pages">
+   14 orphan page(s) with &lt;2 incoming links
+   Items (5/14):
+    - /products.html
+    - /about.html
+    - /blog.html
+    - /faq.html
+    - /contact.html
+  </rule>
+ </category>
+ <category name="Content" errors="0" warnings="26">
+  <rule id="content/duplicate-title" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/duplicate-title">
+   14 duplicate title(s) found across 28 pages
+   Items (5/14):
+    - loan programs | grand funding llc | az &amp; ca hard money loans (&quot;loan programs | grand funding llc | az &amp;...&quot; (2 pages)) [pageCount: 2] (from: /products.html, /products)
+    - about grand funding llc | az &amp; ca private lender | 40+ years (&quot;about grand funding llc | az &amp; ca privat...&quot; (2 pages)) [pageCount: 2] (from: /about.html, /about)
+    - blog | grand funding llc | hard money lending insights (&quot;blog | grand funding llc | hard money le...&quot; (2 pages)) [pageCount: 2] (from: /blog.html, /blog)
+    - faq - grand funding llc | hard money loan questions answered (&quot;faq - grand funding llc | hard money loa...&quot; (2 pages)) [pageCount: 2] (from: /faq.html, /faq)
+    - contact | grand funding llc (&quot;contact | grand funding llc...&quot; (2 pages)) [pageCount: 2] (from: /contact.html, /contact)
+  </rule>
+  <rule id="content/duplicate-description" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/duplicate-description">
+   14 duplicate description(s) found across 28 pages
+   Items (5/14):
+    - explore grand funding loan programs: hard money, fix &amp; flip, (&quot;explore grand funding loan programs: har...&quot; (2 pages)) [pageCount: 2] (from: /products.html, /products)
+    - meet grand funding llc: a premium private lender for arizona (&quot;meet grand funding llc: a premium privat...&quot; (2 pages)) [pageCount: 2] (from: /about.html, /about)
+    - hard money lending insights for arizona and california inves (&quot;hard money lending insights for arizona ...&quot; (2 pages)) [pageCount: 2] (from: /blog.html, /blog)
+    - get answers to common questions about hard money loans, brid (&quot;get answers to common questions about ha...&quot; (2 pages)) [pageCount: 2] (from: /faq.html, /faq)
+    - contact grand funding llc for hard money loans in arizona an (&quot;contact grand funding llc for hard money...&quot; (2 pages)) [pageCount: 2] (from: /contact.html, /contact)
+  </rule>
+  <rule id="content/heading-hierarchy" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/heading-hierarchy">
+   Skipped heading levels detected
+   Pages (5/6): /blog, /blog.html, /contact, /contact.html, /privacy
+   Items (1):
+    - H2 -&gt; H4
+  </rule>
+  <rule id="content/keyword-stuffing" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/keyword-stuffing">
+   N word(s) may be overused
+   Pages (5/14): /blog, /blog.html, /contact, /contact.html, /posts/benefits-of-real-estate-investing-in-an-llc
+   Items (5/6):
+    - real (&quot;real&quot; (3.0%)) [count: 14, density: 3.023758099352052]
+    - loans (&quot;loans&quot; (3.1%)) [count: 6, density: 3.061224489795918]
+    - llc (&quot;llc&quot; (3.1%)) [count: 10, density: 3.1446540880503147]
+    - private (&quot;private&quot; (3.4%)) [count: 9, density: 3.4220532319391634]
+    - hard (&quot;hard&quot; (3.8%)) [count: 14, density: 3.7940379403794036]
+  </rule>
+  <rule id="content/word-count" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/word-count">
+   Thin content: N words (min N)
+   Pages (4): /apply, /apply.html, /contact, /contact.html
+   Items (4):
+    - /contact.html (Thin content: 224 words (min 300))
+    - /apply.html (Thin content: 235 words (min 300))
+    - /contact (Thin content: 224 words (min 300))
+    - /apply (Thin content: 235 words (min 300))
+  </rule>
+ </category>
+ <category name="Structured Data" errors="16" warnings="8">
+  <rule id="schema/local-business" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/schema/local-business">
+   LocalBusiness schema missing required properties; Address incomplete
+   Pages (5/7): /, /about, /about.html, /faq, /faq.html
+   Items (3):
+    - address
+    - streetAddress
+    - postalCode
+  </rule>
+  <rule id="schema/json-ld-valid" severity="warning" status="fail" docs="https://docs.squirrelscan.com/rules/schema/json-ld-valid">
+   Invalid JSON-LD syntax
+   Pages (5/16): /posts/benefits-of-real-estate-investing-in-an-llc, /posts/benefits-of-real-estate-investing-in-an-llc.html, /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024, /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024.html, /posts/how-to-qualify-for-a-hard-money-loan
+   Items (2):
+    - parse-0 (Validation: Article.image is required)
+    - Article:image (Article missing image) [message: Validation: Article.image is required, severity: missing, path: [&quot;image&quot;]]
+  </rule>
+  <rule id="schema/video" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/schema/video">
+   Page has video but no VideoObject schema
+   Pages (1): /
+  </rule>
+ </category>
+ <category name="Images" errors="0" warnings="1">
+  <rule id="images/responsive-size" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/images/responsive-size">
+   1 small image(s) may be serving oversized files
+   Pages (1): /
+   Items (1):
+    - gf-logo-horizontal-light.webp (91x44, no srcset)
+  </rule>
+ </category>
+ <category name="Performance" errors="0" warnings="123">
+  <rule id="perf/lcp-hints" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lcp-hints">
+   1 potential LCP image(s) without preload
+   Pages (5/31): /, /about, /about.html, /apply, /apply.html
+   Items (1):
+    - /images/gf-logo-horizontal-light.webp
+  </rule>
+  <rule id="perf/critical-request-chains" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/critical-request-chains">
+   N critical request chain(s) found
+   Pages (5/30): /about, /about.html, /apply, /apply.html, /blog
+   Items (5/7):
+    - CSS: /styles.css?v=20260119
+    - CSS: /premium.css?v=20260310
+    - CSS: /products.css?v=20260119
+    - CSS: /about.css?v=20260119
+    - CSS: /blog.css?v=20260119
+  </rule>
+  <rule id="perf/lazy-above-fold" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lazy-above-fold">
+   1 above-fold image(s) with lazy loading
+   Pages (5/31): /, /about, /about.html, /apply, /apply.html
+   Items (1):
+    - /images/gf-logo-horizontal-light.webp
+  </rule>
+  <rule id="perf/unminified-js" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/unminified-js">
+   3 JavaScript file(s) appear unminified
+   Pages (5/31): /, /about, /about.html, /apply, /apply.html
+   Items (3):
+    - script.js (19.4KB, ~5.3KB savings) [reason: high newlines (2.57%), 19 comments, long variable names, formatted code, excessive whitespace]
+    - script.js (19.4KB, ~5.3KB savings) [reason: high newlines (2.57%), 19 comments, long variable names, formatted code, excessive whitespace]
+    - script.js (19.4KB, ~5.3KB savings) [reason: high newlines (2.57%), 19 comments, long variable names, formatted code, excessive whitespace]
+  </rule>
+ </category>
+ <category name="Accessibility" errors="0" warnings="62">
+  <rule id="a11y/color-contrast" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/color-contrast">
+   2 potential color contrast issue(s)
+   Pages (1): /
+   Items (2):
+    - White text (verify background): 4 instance(s)
+    - Very light text color: 4 instance(s)
+  </rule>
+  <rule id="a11y/landmark-one-main" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/landmark-one-main">
+   Page has no main landmark
+   Pages (5/6): /about, /about.html, /faq, /faq.html, /products
+  </rule>
+  <rule id="a11y/video-captions" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/video-captions">
+   1 video(s) without caption tracks
+   Pages (1): /
+   Items (1):
+    - inline video
+  </rule>
+  <rule id="a11y/heading-order" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/heading-order">
+   N heading level skip(s) detected
+   Pages (5/28): /about, /about.html, /blog, /blog.html, /contact
+   Items (2):
+    - H4 after H2
+    - H3 after H1
+  </rule>
+  <rule id="a11y/identical-links-same-purpose" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/identical-links-same-purpose">
+   1 link text(s) lead to different destinations
+   Pages (2): /about, /about.html
+   Items (1):
+    - &quot;(602) 935-0371&quot; → 2 different URLs
+  </rule>
+  <rule id="a11y/link-in-text-block" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/link-in-text-block">
+   1 link(s) in text may lack underlines
+   Pages (5/16): /posts/benefits-of-real-estate-investing-in-an-llc, /posts/benefits-of-real-estate-investing-in-an-llc.html, /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024, /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024.html, /posts/how-to-qualify-for-a-hard-money-loan
+   Items (1):
+    - &quot;Back to Blog&quot;
+  </rule>
+  <rule id="a11y/link-text" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/link-text">
+   1 link(s) with generic text
+   Pages (2): /products, /products.html
+   Items (1):
+    - learn more
+  </rule>
+  <rule id="a11y/landmark-regions" severity="info" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/landmark-regions">
+   No &lt;main&gt; landmark found
+   Pages (5/6): /about, /about.html, /faq, /faq.html, /products
+  </rule>
+ </category>
+ <category name="URL Structure" errors="0" warnings="9">
+  <rule id="url/length" severity="info" status="warn" docs="https://docs.squirrelscan.com/rules/url/length">
+   URL is N characters (over N)
+   Pages (5/9): /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024, /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024.html, /posts/private-lending-exploring-the-impact-on-real-estate-investment.html, /posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans, /posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans.html
+   Items (5/9):
+    - /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024.html (URL is 118 characters (over 100))
+    - /posts/private-lending-exploring-the-impact-on-real-estate-investment.html (URL is 105 characters (over 100))
+    - /posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans.html (URL is 121 characters (over 100))
+    - /posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams.html (URL is 118 characters (over 100))
+    - /posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding.html (URL is 114 characters (over 100))
+  </rule>
+ </category>
+ <category name="Video" errors="0" warnings="2">
+  <rule id="video/video-schema" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/video/video-schema">
+   Video content without VideoObject schema
+   Pages (1): /
+  </rule>
+  <rule id="video/video-accessible" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/video/video-accessible">
+   No videos have caption tracks
+   Pages (1): /
+  </rule>
+ </category>
+</issues>
+</audit>

@@ -151,6 +151,90 @@
   font-weight: 750;
 }
 
+.apply-concierge {
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+  box-shadow: var(--shadow-sm);
+}
+
+.apply-concierge__eyebrow {
+  margin: 0 0 0.8rem;
+  color: var(--text-light);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.apply-concierge__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.multi-step-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-progress {
+  margin-bottom: 0.25rem;
+}
+
+.form-progress__bar {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.form-progress__fill {
+  height: 100%;
+  width: 33.333%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-warm));
+  transition: width var(--transition-base);
+}
+
+.form-progress__text {
+  margin-top: 0.6rem;
+  color: var(--text-light);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.form-step[hidden] {
+  display: none;
+}
+
+.step-kicker {
+  margin-bottom: 0.35rem;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.step-heading {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.form-actions .btn {
+  flex: 1;
+  justify-content: center;
+}
+
 /* Mobile */
 @media (max-width: 960px) {
   .apply-hero__grid {
@@ -163,5 +247,10 @@
 
   .apply-form .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .apply-concierge__actions,
+  .form-actions {
+    flex-direction: column;
   }
 }

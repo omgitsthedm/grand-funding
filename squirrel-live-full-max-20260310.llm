@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audit version="0.0.38">
+<site url="https://www.grandfundingllc.com" crawled="17" date="2026-03-10T10:03:21.652Z"/>
+<score overall="95" grade="A">
+ <cat name="Performance" score="93"/>
+ <cat name="Security" score="95"/>
+ <cat name="Accessibility" score="100"/>
+ <cat name="Analytics" score="100"/>
+ <cat name="Content" score="100"/>
+ <cat name="Core SEO" score="100"/>
+ <cat name="Crawlability" score="100"/>
+ <cat name="E-E-A-T" score="100"/>
+ <cat name="Internationalization" score="100"/>
+ <cat name="Images" score="100"/>
+ <cat name="Legal Compliance" score="100"/>
+ <cat name="Links" score="100"/>
+ <cat name="Local SEO" score="100"/>
+ <cat name="Mobile" score="100"/>
+ <cat name="Structured Data" score="100"/>
+ <cat name="Social Media" score="100"/>
+ <cat name="URL Structure" score="100"/>
+ <cat name="Video" score="100"/>
+</score>
+<summary passed="1814" warnings="39" failed="0"/>
+<issues>
+ <category name="Security" errors="0" warnings="2">
+  <rule id="security/csp" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/csp">
+   CSP allows &apos;unsafe-inline&apos;
+  </rule>
+  <rule id="security/http-to-https" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/http-to-https">
+   17 HTTP URL(s) redirect to HTTPS
+   Items (5/17):
+    - http://www.grandfundingllc.com/ (http://www.grandfundingllc.com/ → https://www.grandfundingllc.com/ (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https://www.grand…]
+    - http://www.grandfundingllc.com/products (http://www.grandfundingllc.com/products → https://www.grandfundingllc.com/products (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/products&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/products&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/products&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{…]
+    - http://www.grandfundingllc.com/about (http://www.grandfundingllc.com/about → https://www.grandfundingllc.com/about (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/about&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/about&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/about&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;ht…]
+    - http://www.grandfundingllc.com/blog (http://www.grandfundingllc.com/blog → https://www.grandfundingllc.com/blog (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/blog&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/blog&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/blog&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https…]
+    - http://www.grandfundingllc.com/faq (http://www.grandfundingllc.com/faq → https://www.grandfundingllc.com/faq (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/faq&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/faq&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/faq&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https://…]
+  </rule>
+ </category>
+ <category name="Performance" errors="0" warnings="36">
+  <rule id="perf/lcp-hints" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lcp-hints">
+   N potential LCP image(s) without preload
+   Pages (5/17): /, /about, /apply, /blog, /contact
+   Items (1):
+    - /images/brand/gf-direction-a-lockup-light.svg
+  </rule>
+  <rule id="perf/cls-hints" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/cls-hints">
+   1 iframe(s) without dimensions
+   Pages (3): /, /apply, /contact
+   Items (1):
+    - https://www.google.com/recaptcha/api/fallback?k=6LdnkKEqAAAAAPvyqoRAmjXxvE6evlb5z-5Ol90Y
+  </rule>
+  <rule id="perf/critical-request-chains" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/critical-request-chains">
+   N critical request chain(s) found
+   Pages (5/16): /about, /apply, /blog, /contact, /faq
+   Items (5/7):
+    - CSS: /styles.css?v=20260119
+    - CSS: /premium.css?v=20260310
+    - CSS: /products.css?v=20260119
+    - CSS: /about.css?v=20260119
+    - CSS: /blog.css?v=20260119
+  </rule>
+ </category>
+ <category name="Accessibility" errors="0" warnings="1">
+  <rule id="a11y/color-contrast" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/color-contrast">
+   2 potential color contrast issue(s)
+   Pages (1): /
+   Items (2):
+    - White text (verify background): 4 instance(s)
+    - Very light text color: 4 instance(s)
+  </rule>
+ </category>
+</issues>
+</audit>

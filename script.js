@@ -120,14 +120,121 @@ if (header) {
     }, { passive: true });
 }
 
-// ---- Phone Number Click Tracking ----
+// ---- Analytics hooks (no-op unless the client loads GA/gtag) ----
+const trackEvent = (name, params = {}) => {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', name, { transport_type: 'beacon', ...params });
+};
+
 document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     link.addEventListener('click', () => {
-        if (typeof gtag === 'function') {
-            gtag('event', 'phone_click', { event_category: 'contact', event_label: link.href });
-        }
+        trackEvent('click_to_call', {
+            event_category: 'contact',
+            event_label: link.href
+        });
     });
 });
+
+const primaryCtas = new Set(
+    Array.from(document.querySelectorAll('a[href="apply.html"], a[href="/apply"], a[href="/apply.html"], [data-sticky-cta]'))
+);
+
+primaryCtas.forEach(link => {
+    link.addEventListener('click', () => {
+        trackEvent('primary_cta_click', {
+            event_category: 'engagement',
+            event_label: (link.textContent || '').replace(/\s+/g, ' ').trim() || link.getAttribute('href') || 'primary_cta'
+        });
+    });
+});
+
+document.querySelectorAll('form[data-netlify="true"]').forEach(form => {
+    form.addEventListener('submit', () => {
+        trackEvent('form_submit', {
+            event_category: 'lead',
+            event_label: form.getAttribute('name') || 'lead_form'
+        });
+    });
+});
+
+// ---- Shared form enhancements ----
+(() => {
+    const timezone = (() => {
+        try {
+            return Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        } catch (error) {
+            return '';
+        }
+    })();
+
+    document.querySelectorAll('[data-timezone-field]').forEach((field) => {
+        field.value = timezone;
+    });
+
+    const today = new Date();
+    const localDay = new Date(today.getTime() - (today.getTimezoneOffset() * 60000))
+        .toISOString()
+        .split('T')[0];
+
+    document.querySelectorAll('[data-min-date]').forEach((field) => {
+        field.setAttribute('min', localDay);
+        if (!field.value) field.value = localDay;
+    });
+})();
+
+// ---- Apply page: multi-step form flow ----
+(() => {
+    const form = document.querySelector('.multi-step-form');
+    if (!form) return;
+
+    const steps = Array.from(form.querySelectorAll('[data-form-step]'));
+    const fill = form.querySelector('[data-form-progress]');
+    const stepText = form.querySelector('[data-form-step-text]');
+    if (!steps.length || !fill || !stepText) return;
+
+    let currentStep = Math.max(0, steps.findIndex(step => !step.hidden));
+    if (currentStep === -1) currentStep = 0;
+
+    const focusFirstField = (step) => {
+        const field = step.querySelector('input:not([type="hidden"]), select, textarea');
+        if (field) field.focus({ preventScroll: true });
+    };
+
+    const render = (nextStep, shouldFocus = false) => {
+        currentStep = nextStep;
+        steps.forEach((step, index) => {
+            const active = index === currentStep;
+            step.hidden = !active;
+            step.classList.toggle('is-active', active);
+        });
+        fill.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
+        stepText.textContent = `Step ${currentStep + 1} of ${steps.length}`;
+        if (shouldFocus) focusFirstField(steps[currentStep]);
+    };
+
+    const validateStep = (step) => {
+        const controls = Array.from(step.querySelectorAll('input, select, textarea'))
+            .filter((control) => control.willValidate);
+        return controls.every((control) => control.reportValidity());
+    };
+
+    form.querySelectorAll('[data-form-next]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const step = steps[currentStep];
+            if (!step || !validateStep(step) || currentStep >= steps.length - 1) return;
+            render(currentStep + 1, true);
+        });
+    });
+
+    form.querySelectorAll('[data-form-prev]').forEach((button) => {
+        button.addEventListener('click', () => {
+            if (currentStep <= 0) return;
+            render(currentStep - 1, true);
+        });
+    });
+
+    render(currentStep);
+})();
 
 // ---- Scroll Reveal (single IntersectionObserver) ----
 (() => {
@@ -135,7 +242,7 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     if (reduced || !('IntersectionObserver' in window)) return;
 
     const selectors = [
-        'section', '.product-section', '.blog-post', '.service-card',
+        '.product-section', '.blog-post', '.service-card',
         '.feature-card', '.fun-fact-card', '.cta-card', '.value-item',
         '.reason-card', '.faq-item', '.product-card', '.story-card',
         '.fun-fact', '.process-step', '.blog-card', '.contact-card',

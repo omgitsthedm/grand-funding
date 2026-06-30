@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audit version="0.0.38">
+<site url="https://www.grandfundingllc.com" crawled="17" date="2026-03-10T05:10:45.828Z"/>
+<score overall="82" grade="B">
+ <cat name="Structured Data" score="66"/>
+ <cat name="Performance" score="88"/>
+ <cat name="Accessibility" score="98"/>
+ <cat name="Content" score="94"/>
+ <cat name="Security" score="91"/>
+ <cat name="Crawlability" score="94"/>
+ <cat name="Video" score="80"/>
+ <cat name="E-E-A-T" score="87"/>
+ <cat name="Images" score="99"/>
+ <cat name="Analytics" score="100"/>
+ <cat name="Core SEO" score="100"/>
+ <cat name="Internationalization" score="100"/>
+ <cat name="Legal Compliance" score="100"/>
+ <cat name="Links" score="100"/>
+ <cat name="Mobile" score="100"/>
+ <cat name="Social Media" score="100"/>
+ <cat name="URL Structure" score="100"/>
+</score>
+<summary passed="955" warnings="67" failed="1"/>
+<issues>
+ <category name="Crawlability" errors="0" warnings="2">
+  <rule id="crawl/sitemap-4xx" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/crawl/sitemap-4xx">
+   5 sitemap URL(s) return 4XX
+   Items (5):
+    - /posts/benefits-of-real-estate-investing-in-an-llc [status: 403]
+    - /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024 [status: 403]
+    - /posts/private-lending-exploring-the-impact-on-real-estate-investment [status: 403]
+    - /posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding [status: 403]
+    - /posts/when-rates-decrease-opportunity-increases [status: 403]
+  </rule>
+  <rule id="crawl/sitemap-coverage" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/crawl/sitemap-coverage">
+   8 sitemap URL(s) were not crawled
+   Items (5/8):
+    - /posts/benefits-of-real-estate-investing-in-an-llc
+    - /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024
+    - /posts/how-to-qualify-for-a-hard-money-loan
+    - /posts/private-lending-exploring-the-impact-on-real-estate-investment
+    - /posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans
+  </rule>
+ </category>
+ <category name="Security" errors="0" warnings="5">
+  <rule id="security/csp" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/csp">
+   CSP allows &apos;unsafe-inline&apos;
+  </rule>
+  <rule id="security/form-captcha" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/form-captcha">
+   1 public form(s) without CAPTCHA
+   Pages (3): /, /apply, /contact
+   Items (2):
+    - [name=&quot;contact&quot;]
+    - [name=&quot;pre-approval&quot;]
+  </rule>
+  <rule id="security/http-to-https" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/http-to-https">
+   9 HTTP URL(s) redirect to HTTPS
+   Items (5/9):
+    - http://www.grandfundingllc.com/ (http://www.grandfundingllc.com/ → https://www.grandfundingllc.com/ (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https://www.grand…]
+    - http://www.grandfundingllc.com/products (http://www.grandfundingllc.com/products → https://www.grandfundingllc.com/products (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/products&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/products&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/products&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{…]
+    - http://www.grandfundingllc.com/about (http://www.grandfundingllc.com/about → https://www.grandfundingllc.com/about (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/about&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/about&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/about&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;ht…]
+    - http://www.grandfundingllc.com/blog (http://www.grandfundingllc.com/blog → https://www.grandfundingllc.com/blog (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/blog&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/blog&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/blog&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https…]
+    - http://www.grandfundingllc.com/faq (http://www.grandfundingllc.com/faq → https://www.grandfundingllc.com/faq (301)) [statusCode: 301, chain: {&quot;sourceUrl&quot;:&quot;http://www.grandfundingllc.com/faq&quot;,&quot;finalUrl&quot;:&quot;https://www.grandfundingllc.com/faq&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.grandfundingllc.com/faq&quot;,&quot;statusCode&quot;:301,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https://…]
+  </rule>
+ </category>
+ <category name="Content" errors="0" warnings="7">
+  <rule id="content/heading-hierarchy" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/heading-hierarchy">
+   Skipped heading levels detected
+   Pages (4): /blog, /contact, /privacy, /terms
+   Items (1):
+    - H2 -&gt; H4
+  </rule>
+  <rule id="content/keyword-stuffing" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/keyword-stuffing">
+   1 word(s) may be overused
+   Pages (1): /blog
+   Items (1):
+    - real (&quot;real&quot; (3.0%)) [count: 14, density: 3.023758099352052]
+  </rule>
+  <rule id="content/word-count" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/word-count">
+   Thin content: N words (min N)
+   Pages (2): /apply, /contact
+   Items (2):
+    - /contact (Thin content: 262 words (min 300))
+    - /apply (Thin content: 270 words (min 300))
+  </rule>
+ </category>
+ <category name="Structured Data" errors="1" warnings="5">
+  <rule id="schema/local-business" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/schema/local-business">
+   Address incomplete; LocalBusiness schema missing required properties
+   Pages (4): /, /about, /faq, /products
+   Items (3):
+    - streetAddress
+    - postalCode
+    - address
+  </rule>
+  <rule id="schema/json-ld-valid" severity="warning" status="fail" docs="https://docs.squirrelscan.com/rules/schema/json-ld-valid">
+   Invalid JSON-LD syntax
+   Pages (1): /
+   Items (2):
+    - parse-0 (Validation: VideoObject.uploadDate is required)
+    - VideoObject:uploadDate (VideoObject missing uploadDate) [message: Validation: VideoObject.uploadDate is required, severity: missing, path: [&quot;uploadDate&quot;]]
+  </rule>
+  <rule id="schema/video" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/schema/video">
+   VideoObject missing required properties
+   Pages (1): /
+   Items (1):
+    - uploadDate
+  </rule>
+ </category>
+ <category name="Images" errors="0" warnings="1">
+  <rule id="images/responsive-size" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/images/responsive-size">
+   1 small image(s) may be serving oversized files
+   Pages (1): /
+   Items (1):
+    - gf-logo-horizontal-light.webp (91x44, no srcset)
+  </rule>
+ </category>
+ <category name="Performance" errors="0" warnings="35">
+  <rule id="perf/lcp-hints" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lcp-hints">
+   1 potential LCP image(s) without preload
+   Pages (5/9): /, /about, /apply, /blog, /contact
+   Items (1):
+    - /images/gf-logo-horizontal-light.webp
+  </rule>
+  <rule id="perf/critical-request-chains" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/critical-request-chains">
+   N critical request chain(s) found
+   Pages (5/8): /about, /apply, /blog, /contact, /faq
+   Items (5/7):
+    - CSS: /styles.css?v=20260119
+    - CSS: /premium.css?v=20260310
+    - CSS: /products.css?v=20260119
+    - CSS: /about.css?v=20260119
+    - CSS: /blog.css?v=20260119
+  </rule>
+  <rule id="perf/lazy-above-fold" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lazy-above-fold">
+   1 above-fold image(s) with lazy loading
+   Pages (5/9): /, /about, /apply, /blog, /contact
+   Items (1):
+    - /images/gf-logo-horizontal-light.webp
+  </rule>
+  <rule id="perf/unminified-js" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/unminified-js">
+   3 JavaScript file(s) appear unminified
+   Pages (5/9): /, /about, /apply, /blog, /contact
+   Items (3):
+    - script.js (19.4KB, ~5.3KB savings) [reason: high newlines (2.57%), 19 comments, long variable names, formatted code, excessive whitespace]
+    - script.js (19.4KB, ~5.3KB savings) [reason: high newlines (2.57%), 19 comments, long variable names, formatted code, excessive whitespace]
+    - script.js (19.4KB, ~5.3KB savings) [reason: high newlines (2.57%), 19 comments, long variable names, formatted code, excessive whitespace]
+  </rule>
+ </category>
+ <category name="Accessibility" errors="0" warnings="10">
+  <rule id="a11y/color-contrast" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/color-contrast">
+   2 potential color contrast issue(s)
+   Pages (1): /
+   Items (2):
+    - White text (verify background): 4 instance(s)
+    - Very light text color: 4 instance(s)
+  </rule>
+  <rule id="a11y/video-captions" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/video-captions">
+   1 video(s) without caption tracks
+   Pages (1): /
+   Items (1):
+    - inline video
+  </rule>
+  <rule id="a11y/heading-order" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/heading-order">
+   1 heading level skip(s) detected
+   Pages (5/7): /about, /blog, /contact, /faq, /privacy
+   Items (1):
+    - H4 after H2
+  </rule>
+  <rule id="a11y/link-text" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/link-text">
+   1 link(s) with generic text
+   Pages (1): /products
+   Items (1):
+    - learn more
+  </rule>
+ </category>
+ <category name="E-E-A-T" errors="0" warnings="1">
+  <rule id="eeat/author-byline" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/eeat/author-byline">
+   No content pages have author attribution
+  </rule>
+ </category>
+ <category name="Video" errors="0" warnings="1">
+  <rule id="video/video-accessible" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/video/video-accessible">
+   No videos have caption tracks
+   Pages (1): /
+  </rule>
+ </category>
+</issues>
+</audit>

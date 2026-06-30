@@ -1,16 +1,20 @@
 headersOrigin = "config"
 redirectsOrigin = "config"
-plugins = []
 
 [functions]
 
 [functions."*"]
 
+[[plugins]]
+origin = "ui"
+package = "@netlify/plugin-lighthouse"
+
+[plugins.inputs]
+
 [build]
-publish = "/Users/davidmarsh/Desktop/LiFi NYC/_Utilities/Websites/Grand Funding LLC Site/grandfundingv12"
+publish = "/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding"
 publishOrigin = "config"
 commandOrigin = "config"
-base = "/Users/davidmarsh/Desktop/LiFi NYC/_Utilities/Websites/Grand Funding LLC Site/grandfundingv12"
 command = "echo 'No build command needed - static site'"
 
 [build.environment]
@@ -31,6 +35,7 @@ command = "echo 'No build command needed - static site'"
 for = "/*"
 
 [headers.values]
+Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
 X-Frame-Options = "DENY"
 X-Content-Type-Options = "nosniff"
 Referrer-Policy = "strict-origin-when-cross-origin"
@@ -55,8 +60,116 @@ for = "/images/*"
 Cache-Control = "public, max-age=31536000"
 
 [[redirects]]
-from = "https://grandfundingllc.com/*"
-to = "https://www.grandfundingllc.com/:splat"
+from = "/index.html"
+to = "/"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/about.html"
+to = "/about"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/products.html"
+to = "/products"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/blog.html"
+to = "/blog"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/faq.html"
+to = "/faq"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/contact.html"
+to = "/contact"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/apply.html"
+to = "/apply"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/privacy.html"
+to = "/privacy"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/terms.html"
+to = "/terms"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/thanks.html"
+to = "/success"
 status = 301.0
 force = true
 
@@ -69,7 +182,7 @@ force = true
 [[redirects]]
 from = "/about"
 to = "/about.html"
-status = 301.0
+status = 200.0
 force = false
 
 [redirects.query]
@@ -81,7 +194,7 @@ force = false
 [[redirects]]
 from = "/products"
 to = "/products.html"
-status = 301.0
+status = 200.0
 force = false
 
 [redirects.query]
@@ -93,7 +206,7 @@ force = false
 [[redirects]]
 from = "/blog"
 to = "/blog.html"
-status = 301.0
+status = 200.0
 force = false
 
 [redirects.query]
@@ -104,7 +217,7 @@ force = false
 
 [[redirects]]
 from = "/resources"
-to = "/blog.html"
+to = "/blog"
 status = 301.0
 force = false
 
@@ -117,7 +230,7 @@ force = false
 [[redirects]]
 from = "/faq"
 to = "/faq.html"
-status = 301.0
+status = 200.0
 force = false
 
 [redirects.query]
@@ -140,7 +253,7 @@ force = false
 
 [[redirects]]
 from = "/post/*"
-to = "/blog.html"
+to = "/blog"
 status = 301.0
 force = false
 
@@ -163,8 +276,236 @@ force = false
 [redirects.headers]
 
 [[redirects]]
+from = "/posts/benefits-of-real-estate-investing-in-an-llc.html"
+to = "/posts/benefits-of-real-estate-investing-in-an-llc"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024.html"
+to = "/posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/how-to-qualify-for-a-hard-money-loan.html"
+to = "/posts/how-to-qualify-for-a-hard-money-loan"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/private-lending-exploring-the-impact-on-real-estate-investment.html"
+to = "/posts/private-lending-exploring-the-impact-on-real-estate-investment"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans.html"
+to = "/posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams.html"
+to = "/posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding.html"
+to = "/posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/when-rates-decrease-opportunity-increases.html"
+to = "/posts/when-rates-decrease-opportunity-increases"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/benefits-of-real-estate-investing-in-an-llc"
+to = "/posts/benefits-of-real-estate-investing-in-an-llc.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024"
+to = "/posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/how-to-qualify-for-a-hard-money-loan"
+to = "/posts/how-to-qualify-for-a-hard-money-loan.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/private-lending-exploring-the-impact-on-real-estate-investment"
+to = "/posts/private-lending-exploring-the-impact-on-real-estate-investment.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans"
+to = "/posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams"
+to = "/posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding"
+to = "/posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posts/when-rates-decrease-opportunity-increases"
+to = "/posts/when-rates-decrease-opportunity-increases.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
 from = "/thanks"
+to = "/success"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/success"
 to = "/thanks.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/privacy"
+to = "/privacy.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/terms"
+to = "/terms.html"
 status = 200.0
 force = false
 

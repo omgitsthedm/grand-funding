@@ -2,38 +2,91 @@
   publish = "."
   command = "echo 'No build command needed - static site'"
 
-# Canonical host: force www
+# Clean URL canonicals
 [[redirects]]
-  from = "https://grandfundingllc.com/*"
-  to = "https://www.grandfundingllc.com/:splat"
+  from = "/index.html"
+  to = "/"
   status = 301
   force = true
 
-# Pretty URLs
+[[redirects]]
+  from = "/about.html"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products.html"
+  to = "/products"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog.html"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/faq.html"
+  to = "/faq"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/apply.html"
+  to = "/apply"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy.html"
+  to = "/privacy"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms.html"
+  to = "/terms"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/thanks.html"
+  to = "/success"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/about"
   to = "/about.html"
-  status = 301
+  status = 200
 
 [[redirects]]
   from = "/products"
   to = "/products.html"
-  status = 301
+  status = 200
 
 [[redirects]]
   from = "/blog"
   to = "/blog.html"
-  status = 301
+  status = 200
 
 [[redirects]]
   from = "/resources"
-  to = "/blog.html"
+  to = "/blog"
   status = 301
 
 [[redirects]]
   from = "/faq"
   to = "/faq.html"
-  status = 301
+  status = 200
 
 [[redirects]]
   from = "/contact"
@@ -43,26 +96,185 @@
 # Legacy patterns (Wix/blog)
 [[redirects]]
   from = "/post/*"
-  to = "/blog.html"
+  to = "/blog"
   status = 301
 
-# Netlify rewrites for clean URLs (no extra redirect hop)
 [[redirects]]
   from = "/apply"
   to = "/apply.html"
   status = 200
 
 [[redirects]]
+  from = "/posts/benefits-of-real-estate-investing-in-an-llc.html"
+  to = "/posts/benefits-of-real-estate-investing-in-an-llc"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024.html"
+  to = "/posts/top-fix-and-flip-markets-2024"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posts/how-to-qualify-for-a-hard-money-loan.html"
+  to = "/posts/how-to-qualify-for-a-hard-money-loan"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posts/private-lending-exploring-the-impact-on-real-estate-investment.html"
+  to = "/posts/private-lending-exploring-the-impact-on-real-estate-investment"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans.html"
+  to = "/posts/no-doc-mortgage-loans-for-investors"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams.html"
+  to = "/posts/understanding-second-mortgages"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding.html"
+  to = "/posts/hard-money-lenders-guide"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posts/when-rates-decrease-opportunity-increases.html"
+  to = "/posts/when-rates-decrease-opportunity-increases"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posts/benefits-of-real-estate-investing-in-an-llc"
+  to = "/posts/benefits-of-real-estate-investing-in-an-llc.html"
+  status = 200
+
+[[redirects]]
+  from = "/posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024"
+  to = "/posts/top-fix-and-flip-markets-2024"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posts/top-fix-and-flip-markets-2024"
+  to = "/posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024.html"
+  status = 200
+
+[[redirects]]
+  from = "/posts/how-to-qualify-for-a-hard-money-loan"
+  to = "/posts/how-to-qualify-for-a-hard-money-loan.html"
+  status = 200
+
+[[redirects]]
+  from = "/posts/private-lending-exploring-the-impact-on-real-estate-investment"
+  to = "/posts/private-lending-exploring-the-impact-on-real-estate-investment.html"
+  status = 200
+
+[[redirects]]
+  from = "/posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans"
+  to = "/posts/no-doc-mortgage-loans-for-investors"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posts/no-doc-mortgage-loans-for-investors"
+  to = "/posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans.html"
+  status = 200
+
+[[redirects]]
+  from = "/posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams"
+  to = "/posts/understanding-second-mortgages"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posts/understanding-second-mortgages"
+  to = "/posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams.html"
+  status = 200
+
+[[redirects]]
+  from = "/posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding"
+  to = "/posts/hard-money-lenders-guide"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posts/hard-money-lenders-guide"
+  to = "/posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding.html"
+  status = 200
+
+[[redirects]]
+  from = "/posts/when-rates-decrease-opportunity-increases"
+  to = "/posts/when-rates-decrease-opportunity-increases.html"
+  status = 200
+
+[[redirects]]
   from = "/thanks"
+  to = "/success"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sitemap_index.xml"
+  to = "/sitemap.xml"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sitemap-index.xml"
+  to = "/sitemap.xml"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sitemaps.xml"
+  to = "/sitemap.xml"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sitemap1.xml"
+  to = "/sitemap.xml"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/post-sitemap.xml"
+  to = "/sitemap.xml"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/success"
   to = "/thanks.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
   status = 200
 
 [[headers]]
   for = "/*"
   [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-hashes' 'sha256-+VHn2B2zP7eMTDJvAWf67UXJ4HvtFyUOGODFzGv3oS4=' 'sha256-5znW4f1RfgAIMplQCP0pfrZMG0kn1q9dtdj9Ber8BMM=' 'sha256-Frr9brhIQS4niOAsjZq1vdtUOlpBYgDXL09/okYbLbk=' 'sha256-I6IBb77y7Eyr3pOWJhLiDTMDXcH/tc8tKtAk3FNzqOo=' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' 'sha256-NA2FQA99ColTAukrMSDru9DYqP3fN9UH97MQfmb2eNU=' 'sha256-OfUPhN/kA9T0lCgz9TJl0GomoSTmJY2muhO5/hjks48=' 'sha256-QCI3LBMfVpiV0IOvwhusuxuQKDiWOFgFCJ1X9RqJvic=' 'sha256-Wf/BBt4w38Squ9lzd1ZQU0Opnz4QSH3LnonbjGbqN8I=' 'sha256-gVC/vu1WO/vMqvdy+0O8mbXLPXkpBJoW0quPcON4hHg=' 'sha256-jfDpq1TbH+HPbWuOgZstUnv/ffsUIPdYpWK/4vlqoP8=' 'sha256-jhFRA95aPZf+IeSzYENKvTNw380gJuc6epafxXmRBcg=' 'sha256-nT983ictqJsV/Cgg631aJ9rBT+P24a4HSYVOJDA4/tw=' 'sha256-r0oNINam6V8j3XnMpVfv6YFEl0e4jPFshdjvha0vN1U=' 'sha256-utEHFVoxfvwLeB0xASgD3upCO+P6LhS7sTDsq+aIYqE=' https://www.google.com https://www.gstatic.com https://www.recaptcha.net; style-src 'self' 'unsafe-hashes' 'sha256-+BWnjge/BaFMEDPXfi8MIp+vrIu9D8k0Y/SUgQ45Dgg=' 'sha256-+PT+RnB8zmHhWzfNtgApDPXlwYElBuEDgJc5FEAHtlA=' 'sha256-0nxyaj+9k/K0gZ/JtGJooGr0qA/UXzYNo+1hMMg/fVg=' 'sha256-3RcRSRHGBIgLT+Y2als/bSPcdjDLBIh/PO/fMLdW+HE=' 'sha256-3yAGODLlFl5kIgtbBVZUVawnX6A8HrCTWWpPu94uMHM=' 'sha256-5TmCSWsRHHKtNC4AgS23KS5Z9SBqma0xikI6H6iJ1/Y=' 'sha256-5nBL8MhYxKF/LLfT/BnkkzOlsDEbP3q3y7aDSnIgqoQ=' 'sha256-6SNpRuFnDaUADlm10aiLNBHTF6Klla8ENtMj+PXpd90=' 'sha256-9lt2QjT/g9Noz7YXAyDCipWFqQr4uQstvwa1exRqJ0U=' 'sha256-A1iNOui012l8qpJbXAwExjln07f7kmlHvZ8ssoOvnQw=' 'sha256-AQZhvaZvXpD8OH7uUCnSKonCzxfuJ+tv/13sa9T790k=' 'sha256-BQM9P3M9o9ITW2jbMB+CEKwxCiO3v4p6LDHRSCf8MNE=' 'sha256-CRBnSdWK4PDTJ573XAX6EHVDt7tBpNYswoGfCHOmrtA=' 'sha256-D/nMJWQEpmVs+NwXI14i6KhS5xeo0iCgkdMCUd51gPE=' 'sha256-D8LsdyxatYjDohjtrv6yBn42iktrW0XxP+f+AJW1klU=' 'sha256-DjzkIGRQ6+zPlNFDjItS+7bFNPg2dip0QJUOWNQJPBI=' 'sha256-EpRRn8UTeRTYku6zLrvPMbhfG04OfGpeku3jtDP/CLc=' 'sha256-G+exFJLcejAZOf7fuNJIIMODn/l80ebFTFe0r9d+jXQ=' 'sha256-IK4WNhM4krJqQ7MK/N6pFZmaP4pKAoS2OMr8YpWmNZ4=' 'sha256-Ih/rB2VneykuuDvLHawZ2JcGbF/2UV1HyYOFo09PHZY=' 'sha256-KWdUXHjnRaTczDNXe45TL+uwC44P6gVrtrgVlQfDZ08=' 'sha256-LMmnJlCzQLRve0MmlqnZY5DHeuy85ZLbn2vh2+EIeds=' 'sha256-MbksWQSqY9nfbroNAyZfwpu1EfeE60HYCGPMxjimwWY=' 'sha256-Mcs9rJLiwpB3ZwfFVWtXCaC6r+cZdyF5zvaYAkQ0Edw=' 'sha256-OpuLPnCgZ6R3xJHWpCT2i0NyLzzNVRS9pMcwHmOU11w=' 'sha256-PcnIAdtr1NmNZcLFf5ftF5SvhkwLfoF+o79JrRr9ylA=' 'sha256-QZTSYtlya660o6SzZD3LCphdXH4pVovs/K5Bbat+yw8=' 'sha256-SWrBNFwaZ4tnHbD7IgMFRbHz6WcQ9XxALBc9uy18WAk=' 'sha256-T428dseUYacPzJLEW2ch9mAntwLUHGcdxSIuQeoS+xA=' 'sha256-TkR7nNJC8cixFydOOkZQLq5HW7haGbKsdA6rhEKl9rg=' 'sha256-UMR32IqmphK8BUREmoCEFFf2E42icULoN2+WzPa0zBw=' 'sha256-VvhR6C1oSnaaYoJN8IKMm+bUifPfb4IfGvfkPCrzIsI=' 'sha256-Wi3+8jbn12vus9Oq4FOqEUCOpuRG3clBaVvLZZ2b9Fs=' 'sha256-X5drQWUQ1haaHZgaLdEdFibJccNviXrLm1T29p6PvOY=' 'sha256-XIrmH9wFu/5JDAql76/i6Be417P2+ml9MaSyJg/Znkc=' 'sha256-XgajWXmbc1zjx3rtIl8UEMaKcSzSDK9jUpPn6YhtGi4=' 'sha256-b0nQ0DI8ZD67SP9/KBIGTv+fQc0g4Q0qFoXNNVl1ZEQ=' 'sha256-bLo5EfZbpy3/OZiJwl4sTXIpDGwy+qWEdoEAgHo/J7Q=' 'sha256-c/DV2vKo4vlGcF7d0VyFmsp43p2hP7p2qCJXn/Ec2kI=' 'sha256-cmz0e+tv62jZeP19j7YzXHd7eJj42CIDhlCRKPcWRWY=' 'sha256-dnk3F1ZGrgh9Kvk9Vn3ptiaFUoFeGRayv9lz2urXGw8=' 'sha256-dr8iZuyyxJU5ZjU6G/ocAi54TuF5g+/sf9bDcuZb3bs=' 'sha256-f3o8AZxcuaExEWPdHq7wsxMWnZazB0MvwnuOx/60Hqs=' 'sha256-ffbTJe4LEKtl4ziW31hM60wfGPHdgwLIhfyT2a6OaWk=' 'sha256-jMlZ9cvU1WS5j8mrl+BAgwfUjtOFKfOnUVPNwC0q9+o=' 'sha256-jgYrGUtqDkw5AK2iTtWMRydV/Td+tC5GtXOCblwakVc=' 'sha256-k59c3kokUPBWX8Uf4Pr+iRgaEARQHbb0GpWlaVc9SmQ=' 'sha256-ka2Zzr8A27Aoab3YzkF4RakFMQoZYbp5GjkeoiAeJGQ=' 'sha256-mJdVUI10P9gaqE35iPP0rh9bBBwiEgNOcwdeVXlPFfI=' 'sha256-oxRgVuzPoi0Fik1sYUNbFmCzO8VE/v8t+oGmY89k6fI=' 'sha256-q8dsOjlPeZ+8EqiQXpVc11qQBfSvWj/zmeb9Op3qJd8=' 'sha256-r7zPOqM+1h0txetMIbk4qyJDeS62YpiQ8jkhkzFtS2k=' 'sha256-rojv8D/YhimACgZH/5u8unah+13wp01B/Ysl2lOLLIw=' 'sha256-sDTVVTdkjXu0odG9/7dxvafXBRosBObPFbvPG+uh2PU=' 'sha256-szPV0uKaAo8aPDsyPB+PohXoe8tlj0A/qCewo7lkjIY=' 'sha256-vs9j4DQ6NrTFzqr+WgLFutUEFINnEmB2UGZtgJuv53M=' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google.com https://www.gstatic.com https://www.recaptcha.net; frame-src 'self' https://www.google.com https://www.recaptcha.net; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
 # Reasonable caching without file-hash versioning

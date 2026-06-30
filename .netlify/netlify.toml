@@ -1,16 +1,20 @@
 headersOrigin = "config"
 redirectsOrigin = "config"
-plugins = []
 
 [functions]
 
 [functions."*"]
 
+[[plugins]]
+origin = "ui"
+package = "@netlify/plugin-lighthouse"
+
+[plugins.inputs]
+
 [build]
-publish = "/Users/davidmarsh/Desktop/LiFi NYC/_Utilities/Websites/Grand Funding LLC Site/grandfundingv12"
+publish = "/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/Website/grand-funding"
 publishOrigin = "config"
 commandOrigin = "config"
-base = "/Users/davidmarsh/Desktop/LiFi NYC/_Utilities/Websites/Grand Funding LLC Site/grandfundingv12"
 command = "echo 'No build command needed - static site'"
 
 [build.environment]
@@ -35,24 +39,31 @@ X-Frame-Options = "DENY"
 X-Content-Type-Options = "nosniff"
 Referrer-Policy = "strict-origin-when-cross-origin"
 Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
 
 [[headers]]
 for = "/*.css"
 
 [headers.values]
-Cache-Control = "public, max-age=0, must-revalidate"
+Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
 
 [[headers]]
 for = "/*.js"
 
 [headers.values]
-Cache-Control = "public, max-age=0, must-revalidate"
+Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
 
 [[headers]]
 for = "/images/*"
 
 [headers.values]
-Cache-Control = "public, max-age=31536000"
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.woff2"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[redirects]]
 from = "https://grandfundingllc.com/*"

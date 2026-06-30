@@ -890,3 +890,9 @@ a[href^="tel:"].header-phone{
   .footer-bottom{flex-direction:column;align-items:flex-start}
   .footer-meta{flex-direction:column;align-items:flex-start}
 }
+
+/* 2026-06-30 fix(header-cta-wrap): force header CTA to a single line on phone/tablet.
+   The mobile override stack was resetting white-space, wrapping "Get Pre-Approved →" to 2 lines. */
+@media (max-width: 768px){
+  .header .cta-btn{ white-space: nowrap !important; }
+}

@@ -6,7 +6,7 @@
 - Dev/preview: `npx serve .` (or Netlify dev) — static site, no build
 - Build: none (`publish = "."`)
 - Premium QA: `npm run test:premium` (Playwright; `:local` for localhost)
-- Deploy: `git push origin master` → Netlify auto-publishes (**push = production deploy** → needs `APPROVE LIVE CHANGE`)
+- Deploy: production changes are approval-gated. Historically `git push origin master` was treated as production, but latest Netlify deploy metadata checked 2026-06-30 has `branch: null` / `commit_ref: null`; do not assume git/live alignment without a fresh live diff.
 - ⚠️ Compliance-sensitive: do not change NMLS/license/rate/disclosure copy without David/Logan approval. `/apply` is a real lead form.
 
 ## Client Info
@@ -79,7 +79,7 @@
 - **Phase:** Deployed / Live / Forms verified end-to-end
 - **Last worked on:** 2026-05-03
 - **What's done:**
-  - Full site live at https://www.grandfundingllc.com on Netlify (auto-deploy from GitHub)
+  - Full site live at https://www.grandfundingllc.com on Netlify
   - 11 money pages (5 scenario + 6 location) with FinancialService + FAQPage schema
   - 3 LP pages (paid search, noindex) with lp.css
   - 12 blog posts with BlogPosting + Person schema
@@ -95,7 +95,7 @@
   - Netlify Forms with honeypot on apply + contact
   - Lighthouse scores: Desktop **99-100** perf / 100 a11y / 100 best practices / 100 SEO | Mobile **85** perf / 100 a11y / 100 best practices / 100 SEO (medians of multi-run measurements)
 - **What's pending:**
-  - Netlify auto-deploy broken — all deploys require `netlify deploy --prod --dir=.` manually (low priority)
+  - Netlify deploy model needs reconciliation — latest deploy metadata checked 2026-06-30 has `branch: null` / `commit_ref: null`; changing deploy wiring requires David approval.
 - **Needs from Logan for paid search to go live:**
   - **Google Ads conversion IDs** — fill in `AW_ID`, `AW_LEAD_LABEL`, `AW_CALL_LABEL` in `consent.js` lines 3-5. Step-by-step instructions sent 2026-05-03. Same-day turnaround once received.
   - Google Ads campaign must have auto-tagging enabled (passes `gclid` param) — forms + sessionStorage already capture it

@@ -108,10 +108,22 @@ Preferred fix:
 - The live internal-doc block works observationally: `/.ai/STATE.md` returned HTTP 404.
 - The agency standard kit now passes on the Codex branch: `agency-doctor` reported 8 passed, 0 failed.
 
+## Verification Run
+
+- Command: `npm run test:premium:watchlist`
+- Target: `https://www.grandfundingllc.com`
+- Result: failed, exit 2.
+- Summary: 616 checks, 55 failures, 55 watchlist failures, 55 unique page/breakpoint failures, 125.7s duration.
+- Failure class: `header-cta-wrap` on all 11 watchlist pages across phone/tablet breakpoints (`iphone-se-1`, `iphone-se`, `iphone-13`, `iphone-max`, `tablet`). Laptop and desktop passed.
+- Evidence file: `scripts/qa-report.json`.
+
+This is a production-read-only finding, not a branch regression from the documentation changes in this Codex pass. Fixing and promoting it is production-sensitive because deploy truth is not settled.
+
 ## Recommended Next Work
 
 1. Reconcile deploy truth with read-only live diff and approved deploy-wiring plan.
-2. Generate QA route manifest from sitemap/all HTML and make CI enforce coverage.
-3. Replace `generate_pages.py` and `generate_posts.py` with a structured content + template pipeline.
-4. Restore readable JS/CSS source and make minified output generated, not hand-reviewed source.
-5. Only after the architecture cleanup, continue adding SEO pages or polishing page-level UI.
+2. Fix the production `header-cta-wrap` failure on a branch, verify against a preview/local serve, then promote only through the approved production path.
+3. Generate QA route manifest from sitemap/all HTML and make CI enforce coverage.
+4. Replace `generate_pages.py` and `generate_posts.py` with a structured content + template pipeline.
+5. Restore readable JS/CSS source and make minified output generated, not hand-reviewed source.
+6. Only after the architecture cleanup, continue adding SEO pages or polishing page-level UI.

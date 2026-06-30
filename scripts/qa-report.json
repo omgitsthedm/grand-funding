@@ -1,12 +1,398 @@
 {
-  "startedAt": "2026-04-19T12:56:00.817Z",
+  "startedAt": "2026-06-30T06:46:19.996Z",
   "base": "https://www.grandfundingllc.com",
-  "failures": {},
+  "failures": {
+    "iphone-se-1 /": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se-1 /phoenix-hard-money-lender.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se-1 /arizona-hard-money-lender.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se-1 /fix-and-flip-loans-arizona.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se-1 /bridge-loans-arizona.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se-1 /blog.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se-1 /funded-deals.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se-1 /partners.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se-1 /about.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se-1 /contact.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se-1 /apply.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se /": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se /phoenix-hard-money-lender.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se /arizona-hard-money-lender.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se /fix-and-flip-loans-arizona.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se /bridge-loans-arizona.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se /blog.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se /funded-deals.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se /partners.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se /about.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se /contact.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-se /apply.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-13 /": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-13 /phoenix-hard-money-lender.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-13 /arizona-hard-money-lender.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-13 /fix-and-flip-loans-arizona.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-13 /bridge-loans-arizona.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-13 /blog.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-13 /funded-deals.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-13 /partners.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-13 /about.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-13 /contact.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-13 /apply.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-max /": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-max /phoenix-hard-money-lender.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-max /arizona-hard-money-lender.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-max /fix-and-flip-loans-arizona.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-max /bridge-loans-arizona.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-max /blog.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-max /funded-deals.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-max /partners.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-max /about.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-max /contact.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "iphone-max /apply.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "tablet /": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "tablet /phoenix-hard-money-lender.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "tablet /arizona-hard-money-lender.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "tablet /fix-and-flip-loans-arizona.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "tablet /bridge-loans-arizona.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "tablet /blog.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "tablet /funded-deals.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "tablet /partners.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "tablet /about.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "tablet /contact.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ],
+    "tablet /apply.html": [
+      {
+        "id": "header-cta-wrap",
+        "severity": "blocker",
+        "msg": "CTA text wraps (inner 30px > lineHeight 13px × 1.6)"
+      }
+    ]
+  },
   "summary": {
     "totalChecks": 616,
-    "totalFails": 0,
-    "watchlistFails": 0,
-    "uniquePageFails": 0,
-    "durationMs": 129464
+    "totalFails": 55,
+    "watchlistFails": 55,
+    "uniquePageFails": 55,
+    "durationMs": 125733
   }
 }

@@ -6,8 +6,20 @@ name: Premium QA
 on:
   push:
     branches: [main, master]
+    paths-ignore:
+      - 'docs/**'
+      - '.ai/**'
+      - '*.md'
+      - 'AGENTS.md'
+      - 'SOURCE_OF_TRUTH.md'
   pull_request:
     branches: [main, master]
+    paths-ignore:
+      - 'docs/**'
+      - '.ai/**'
+      - '*.md'
+      - 'AGENTS.md'
+      - 'SOURCE_OF_TRUTH.md'
   workflow_dispatch:
     inputs:
       base_url:

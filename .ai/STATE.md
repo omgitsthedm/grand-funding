@@ -48,7 +48,7 @@
 
 - `.env`/secrets; NMLS/license/rate/disclosure copy without approval.
 - The `/*.md → 404` redirect (keeps internal docs private).
-- `git push` to `master` (= production deploy) without `APPROVE LIVE CHANGE`.
+- `git push` to `master` (= production deploy) without clear, scoped confirmation from David.
 
 ## Proposed Changes / Inbox
 

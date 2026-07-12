@@ -45,7 +45,7 @@ Static HTML/CSS/JS (75 pages), DM Sans variable font (subsetted). Playwright pre
 - Dev / preview: serve the folder statically (e.g. `npx serve .` or Netlify dev); no build needed.
 - Build: none (`publish = "."`, static).
 - Premium QA: `npm run test:premium` (Playwright; `:local` variant for localhost).
-- Deploy: `git push origin master` → Netlify auto-publishes (push = production deploy → gated by `APPROVE LIVE CHANGE`).
+- Deploy: `git push origin master` → Netlify auto-publishes (push = production deploy → gated by clear, scoped confirmation from David).
 
 ## Locked Rules
 

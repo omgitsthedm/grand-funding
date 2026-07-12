@@ -6,7 +6,7 @@
 - Dev/preview: `npx serve .` (or Netlify dev) — static site, no build
 - Build: none (`publish = "."`)
 - Premium QA: `npm run test:premium` (Playwright; `:local` for localhost)
-- Deploy: `git push origin master` → Netlify auto-publishes (**push = production deploy** → needs `APPROVE LIVE CHANGE`)
+- Deploy: `git push origin master` → Netlify auto-publishes (**push = production deploy** → needs clear, scoped confirmation from David)
 - ⚠️ Compliance-sensitive: do not change NMLS/license/rate/disclosure copy without David/Logan approval. `/apply` is a real lead form.
 
 ## Client Info

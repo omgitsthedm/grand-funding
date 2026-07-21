@@ -5,6 +5,11 @@
   "description": "Grand Funding LLC — premium hard money lending site. Static HTML/CSS/JS on Netlify.",
   "type": "module",
   "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "validate": "SITE_DIR=dist node scripts/validate-site.mjs",
+    "test": "npm run build && npm run validate",
+    "serve": "node scripts/serve-site.mjs",
+    "test:crawl": "node scripts/crawl-site.mjs",
     "test:premium": "node scripts/qa-premium.mjs",
     "test:premium:watchlist": "WATCHLIST_ONLY=1 node scripts/qa-premium.mjs",
     "test:premium:local": "BASE_URL=http://localhost:8888 node scripts/qa-premium.mjs",

@@ -1,12 +1,12 @@
 {
-  "startedAt": "2026-06-30T08:47:09.986Z",
+  "startedAt": "2026-07-21T05:10:49.879Z",
   "base": "https://www.grandfundingllc.com",
   "failures": {},
   "summary": {
-    "totalChecks": 616,
+    "totalChecks": 2849,
     "totalFails": 0,
     "watchlistFails": 0,
     "uniquePageFails": 0,
-    "durationMs": 126535
+    "durationMs": 407735
   }
 }

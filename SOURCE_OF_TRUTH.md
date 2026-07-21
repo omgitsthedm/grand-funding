@@ -1,41 +1,46 @@
 # Grand Funding Site — Source of Truth
 
-Last verified: 2026-07-11 by Codex against the local checkout, GitHub remote inventory, repository manifests, and bounded Netlify metadata.
+Last verified 2026-07-20 by Codex against the resolved checkout, GitHub remote, Netlify API/CLI metadata, draft deploy, production deploy, and live public site.
 
 ## Canonical code
 
 - Visible workspace: `/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding`
 - Resolved Git root: `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding`
-- GitHub: https://github.com/omgitsthedm/grand-funding.git
+- GitHub: `https://github.com/omgitsthedm/grand-funding.git`
 - Canonical branch: `master`
-- GitHub is canonical for code history. Production synchronization is a separate fact and must be verified below.
+- Release source: `ff779628` through PR `#3`
+- Archived and out of scope: `~/Code/LiFi NYC/Clients/Grand Funding/Website/grandfundingv12`
 
 ## Technology and commands
 
-- Stack: Node.js
-- Dev: no standard development command detected; inspect the README
-- Build: no standard build command detected; inspect the README
-- Test: no standard test command detected
-- Lint: no standard lint command detected
+- Stack: static HTML/CSS/JavaScript with Node.js build/QA scripts and Python content generators
+- Install: `npm ci`
+- Build and validate: `npm test`
+- Serve built artifact: `npm run serve -- --dir dist --port 8888`
+- Full page crawl: `BASE_URL=http://127.0.0.1:8888 npm run test:crawl`
+- Responsive premium gate: `BASE_URL=http://127.0.0.1:8888 npm run test:premium`
+- Netlify publish directory: `dist/`
 
-## Production linkage
+## Production authority
 
-- Fresh Netlify inventory candidate: `grandfundingllc` · id `055c5942-aeaa-478a-9508-a34406994d5d` · https://www.grandfundingllc.com
-- Netlify provider: `not reported`.
-- This candidate came from an exact repository-name or local-link match. Re-confirm live content, DNS, forms, and ownership before treating it as the deployment authority.
+- Netlify project: `grandfundingllc`
+- Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
+- Live URL: `https://www.grandfundingllc.com`
+- Verified production deploy: `6a5efef6c589f88c9d2f4684` · state `ready`
+- Deployment is manual Netlify CLI. GitHub repo/provider/branch build linkage is absent; Git pushes do not publish.
+- Preview before production. Do not publish the repository root or use `--dir=.`.
 
-## Secrets and data
+## Verified release quality
 
-- Keep credentials, `.env*`, client records, and production data out of Git and agent output.
-- Commit only documented examples with non-secret values.
+- 87 HTML artifacts and 265 public files pass build validation.
+- 86 real pages pass mobile and desktop runtime crawling.
+- 37 representative pages pass 11 interface checks at seven breakpoints: 2,849 live checks, zero failures.
+- Live Lighthouse mobile: 99 Performance, 100 Accessibility, 100 Best Practices, 100 SEO.
+- Tested source/package/internal routes return 404; security headers are present.
+- Netlify Forms are recognized; no test lead was submitted.
 
-## Working rules
+## Safety and compliance
 
-- Use short-lived branches and preserve unrelated work.
-- Read `AGENTS.md`, `CLAUDE.md`, and `.ai/STATE.md` where present; current runtime evidence overrides stale notes.
-- Clear, scoped plain-language authorization is sufficient for live changes; evaluate meaning rather than matching fixed wording.
-- Validate proportionally before handoff. Never claim a deploy, form, payment, booking, database write, or production check succeeded without evidence.
-
-## Known uncertainty
-
-- Any production field marked unverified is intentionally unresolved, not a placeholder. Confirm it from the host account, DNS, and public content before release work.
+- Keep credentials, `.env*`, client records, form submissions, and production data out of Git and agent output.
+- NMLS 2466872, AZ MLO 1048901, rates, licenses, claims, testimonials, funded-deal facts, disclosures, and live form destinations require approved facts before changes.
+- Google Ads conversion labels are the only known external release dependency; approved values are not in this repository and must not be invented.

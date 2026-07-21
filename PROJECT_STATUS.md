@@ -1,70 +1,68 @@
-# Grand Funding — PROJECT STATUS (cold-start entry point)
+# Grand Funding — Project Status
 
-> **Read this first.** If you are a person or an AI agent picking this up cold, this file tells you what Grand Funding is, exactly where it stands, what to do next, and where everything lives. One screen to orientation.
->
-> **Last updated:** 2026-07-16 · **Updated by:** Claude Code (LiFi NYC) · **Stage:** Live client site (static)
+> Cold-start entry point. Last updated 2026-07-20 by Codex after the full-site production release.
 
----
+## Current outcome
 
-## 1. What it is
-Grand Funding LLC is a **live marketing + lead-gen website** for a direct private **hard-money lender** serving Arizona (Phoenix metro + Tucson) and California (LA, San Diego, statewide). It is a premium, mobile-first **static HTML/CSS/JS site** (no build) on Netlify, with a real Netlify Forms lead pipeline (`/apply`, `/contact`) that emails `Logan@grandfundingllc.com`. Regulated lender — NMLS 2466872.
+Grand Funding LLC is a live, mobile-first hard-money lender marketing and lead-generation site for Arizona and California. The complete code, UI/UX, design, accessibility, responsive, performance, security, form, and deployment audit is complete and published.
 
-## 2. Current state (2026-07-16)
-- **Status:** ✅ Live and in production. Full site deployed; forms verified end-to-end (2026-05-03). Last content/feature work 2026-05-03; recent commits are docs/agent-ops only.
-- **Live URL:** https://www.grandfundingllc.com — **200 OK, last verified 2026-07-16** (apex → www 301 redirect).
-- **Git:** clean — 0 uncommitted, 0 unpushed (in sync with origin). Last commit `60da6a4a` 2026-07-11 — "docs: replace agent truth templates".
-- ⚠️ **Branch:** `chore/plain-language-live-confirmation-20260711` — **NOT `master`.** This branch is 2 commits ahead of `master` (docs/agent-truth files only) and 0 behind. `master` is the canonical/default branch (`origin/HEAD → origin/master`, last commit `bb2c999c` 2026-07-04). Confirm the intended branch before any content or deploy work.
-- ⚠️ **Deploy is MANUAL to Netlify.** GitHub → Netlify auto-deploy is **broken** (documented 2026-04-18; `commit_ref: None`). Pushing to git does **NOT** publish. Ship only via `netlify deploy --prod --dir=.` — so pushing this file has no site impact.
-- Compliance-sensitive: NMLS #, license #s, rates, disclosures, and the real `/apply` lead form must not be altered without David/Logan approval.
+- Live: `https://www.grandfundingllc.com`
+- Netlify: `grandfundingllc` · `055c5942-aeaa-478a-9508-a34406994d5d`
+- Production deploy: `6a5efef6c589f88c9d2f4684` · `ready`
+- Release source: `ff779628` · GitHub PR `#3` into `master`
+- Public artifact: 265 allowlisted files in `dist/`
+- Live Lighthouse mobile: 99 Performance · 100 Accessibility · 100 Best Practices · 100 SEO
+- Full live premium QA: 2,849 checks · zero failures
+- Full live crawl: 86 pages × mobile/desktop · 172 checks · zero failures
 
-## 3. Where everything lives
-| Thing | Location |
+## Canonical locations
+
+| Item | Source of truth |
 |---|---|
-| **Canonical code (this repo)** | `~/Code/LiFi NYC/Clients/Grand Funding/grand-funding` — edit + push from here (`~/Code` is canonical; the `~/Desktop/...` path in older docs is the same repo via symlink) |
-| **GitHub** | `github.com/omgitsthedm/grand-funding` — **CANONICAL LIVE MASTER** (the archived `grandfundingv12` repo is the older version; ignore it) |
-| **Hosting** | Netlify project `grandfundingllc` (site id `055c5942-aeaa-478a-9508-a34406994d5d`) → https://www.grandfundingllc.com. Static `publish = "."`, no build. **Manual deploy only.** |
-| **Database** | None (static site) |
-| **Forms / leads** | Netlify Forms (`pre-approval` on `/apply`, `contact` on `/contact`) → email notifications to `Logan@grandfundingllc.com` |
-| **Analytics** | GA4 `G-K825ENLYS6` (deferred load, consent-gated) |
-| **Design / handoff material** | In-repo: `docs/`, `Logan-Handoff/` (off-site SEO packet), plus this repo's own MD docs |
-| **Secrets** | None committed. `.env*` blocked from git and public serving; `/*.md → 404` redirect keeps internal docs private on live |
+| Visible client path | `/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding` |
+| Resolved Git root | `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding` |
+| GitHub | `https://github.com/omgitsthedm/grand-funding.git` · default `master` |
+| Hosting | Netlify project `grandfundingllc` |
+| Forms | Netlify Forms; `pre-approval`, `contact`, and programmatic landing-page forms |
+| Audit | `docs/FULL-SITE-AUDIT-2026-07-20.md` |
 
-⚠️ There is a second local repo at `~/Code/LiFi NYC/Clients/Grand Funding/Website/grandfundingv12` — that is the **archived old version**. Do not write to it.
+The separate checkout at `~/Code/LiFi NYC/Clients/Grand Funding/Website/grandfundingv12` is archived. Do not modify or deploy it.
 
-## 4. What's done
-Full production site: ~52+ pages incl. 11 money pages (5 scenario + 6 location) with FinancialService + FAQPage schema, 3 noindexed paid-search LP pages, 12 blog posts (branded OG heroes, BlogPosting + Person/E-E-A-T schema), 28 programmatic SEO pages (loan×city, city hubs, glossary DefinedTerm, comparison guides), press page, funded-deals, partners, about, contact, apply, thanks, 404. "Cinematic Noir" dark design system (`premium-system.css` / `styles-v2.css`), self-hosted fonts, security headers (CSP/HSTS) in `netlify.toml`, `llms.txt` + AI-bot `robots.txt` (AEO), `sitemap.xml`. Lighthouse Desktop 99–100, Mobile 85 (LCP is a throttled-sim ceiling). Universal engagement/conversion block sitewide. **Forms verified live end-to-end** (the critical form-submission bug where a global JS handler swallowed all submits was found and fixed 2026-05-03).
+## Release changes
 
-## 5. What's next (immediate)
-From `CLAUDE.md` "What's pending" + `.ai/STATE.md` QA-PENDING:
-- **Needs from Logan (blocks paid search go-live):** Google Ads conversion IDs — fill `AW_ID`, `AW_LEAD_LABEL`, `AW_CALL_LABEL` in `consent.js` (lines 3–5). Enable Ads auto-tagging (`gclid`). Optionally add a Google Reviews widget to LP pages once reviews accumulate.
-- **Fix (low priority):** repair the broken GitHub → Netlify auto-deploy link, or continue manual deploys.
-- **Housekeeping:** decide whether `chore/plain-language-live-confirmation-20260711` should merge into `master`. Verify `/.ai/STATE.md` returns 404 on live (private-docs check). Optional webp image conversion pass for remaining jpg/png.
+- Replaced repository-root publishing with a deterministic `dist/` build. Package files, generators, QA reports, internal standards, docs, and local Netlify state are no longer public.
+- Repaired the invisible mobile hamburger, malformed homepage trust strip, homepage Netlify form declaration, sub-44px mobile fields, four broken links/assets, 39 incomplete document endings, iframe titles, and implicit input types.
+- Added complete build validation, a dependency-free local server, an 86-page two-viewport browser crawler, expanded premium UI checks, and a project-specific GitHub Actions rail.
+- Removed 7,447 unreferenced Material Design SVGs, tracked `.DS_Store` files, and tracked machine-specific Netlify files. Local Netlify linkage remains intact and ignored by Git.
+- Preserved the established cinematic desert-night visual identity and all approved lender claims, licenses, rates, testimonials, disclosures, and lead destinations.
 
-## 6. How to run / build / deploy
+## Deployment truth
+
+Netlify is not Git-linked. Pushing or merging Git does not publish production. Release flow:
+
 ```bash
-cd "~/Code/LiFi NYC/Clients/Grand Funding/grand-funding"
-# No build — static site (publish = ".")
-npx serve .                       # local preview (or `netlify dev`)
-
-# Premium QA gate (Playwright, 7 breakpoints vs live)
-npm install
-npx playwright install --with-deps chromium   # once per machine
-npm run test:premium              # full audit against production
-npm run test:premium:watchlist    # ranking-critical pages only
-BASE_URL=http://localhost:8888 npm run test:premium   # audit local dev
-
-# DEPLOY (MANUAL — git push does NOT publish, auto-deploy is broken):
-netlify deploy --prod --dir=. --message "..."
+npm ci
+npm test
+npm run serve -- --dir dist --port 8888
+BASE_URL=http://127.0.0.1:8888 npm run test:crawl
+BASE_URL=http://127.0.0.1:8888 npm run test:premium
+netlify deploy --context deploy-preview
+# Verify the draft, then with scoped production authorization:
+netlify deploy --prod --context production
 ```
 
-## 7. Non-negotiable boundaries (do not break)
-- **`git push` does not deploy** — production ships ONLY via manual `netlify deploy --prod --dir=.`. Never assume a push went live.
-- **Compliance copy is sacred:** NMLS 2466872, AZ MLO 1048901, rates, license #s, lending claims, disclosures — no changes without David/Logan approval.
-- `/apply` and `/contact` are **real transactional lead forms** → `Logan@grandfundingllc.com`. Do not break the submit path (the global JS handler must skip `[type="submit"]` and elements inside a `<form>`).
-- Keep the `/*.md → 404` redirect (keeps `.ai/`, docs, etc. private on live).
-- Never commit secrets / `.env*` / client records.
-- Do not touch the archived `grandfundingv12` repo.
-- Premium QA gate: fix the underlying cause, never patch CSS/HTML or disable a check just to make QA pass (`PREMIUM_STANDARDS.md` is the standard).
+Do not use `--dir=.`. The build and `netlify.toml` intentionally publish only `dist/`.
 
-## 8. Deeper docs (read in this order)
-`README.md` → `CLAUDE.md` (decisions log + current status — the richest source) → `.ai/STATE.md` + `.ai/RULES.md` (AI-Ops authoritative) → `SOURCE_OF_TRUTH.md` → `PREMIUM_STANDARDS.md` → `docs/HANDOFF-2026-04-20.md` + `docs/audit-results.md` → `AGENTS.md`.
+## Non-negotiable boundaries
+
+- Regulated lender: NMLS 2466872; AZ MLO 1048901.
+- Never alter rates, licensing, underwriting claims, disclosures, testimonials, or funded-deal claims without approved facts.
+- Real forms are transactional. Do not submit test leads without explicit approval.
+- Never read or publish secrets, credentials, `.env*`, client records, or submission contents.
+- Keep internal/source paths private and the `dist/` allowlist intact.
+
+## Remaining dependency
+
+Google Ads lead and phone conversion labels remain placeholders in `consent.js`. The approved labels are not present in the repository. Obtain them from the authorized Ads account owner before enabling conversion events; do not infer or invent them.
+
+No code, design, accessibility, responsive, performance, security, form-recognition, source-publish, Git, or production-deploy loose ends remain from this audit.

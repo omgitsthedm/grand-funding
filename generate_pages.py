@@ -808,6 +808,14 @@ def generate_page(spec):
     new_main = build_main_html(spec)
     template = template[:main_start] + new_main + template[main_end:]
 
+    # Some legacy source templates were committed without explicit document
+    # closers. Browsers recover, but validators and downstream processors should
+    # receive a complete document every time the generator runs.
+    if '</body>' not in template.lower():
+        template += '</body>'
+    if '</html>' not in template.lower():
+        template += '</html>'
+
     return template
 
 

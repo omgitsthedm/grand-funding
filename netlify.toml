@@ -1,6 +1,6 @@
 [build]
-  publish = "."
-  command = "echo 'No build command needed - static site'"
+  publish = "dist"
+  command = "npm run build"
 
 # Canonical host: force www
 [[redirects]]

@@ -2457,13 +2457,16 @@ html body .deal-clarity__footer .btn{
   min-width: 44px !important;
   min-height: 44px !important;
   display: inline-flex !important;
+  flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
+  color: var(--gf-ink-0) !important;
 }
 .mobile-menu-toggle span{
   display: block;
   width: 22px;
-  height: 2px;
+  height: 2px !important;
+  flex: 0 0 2px;
   background: currentColor;
   margin: 3px 0;
 }

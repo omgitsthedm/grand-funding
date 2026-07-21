@@ -249,7 +249,68 @@ const CHECKS = [
     })
   },
 
-  // 3. Dark-on-dark card text — invisible text bug.
+  // 3. Mobile menu affordance — the button can exist and still be invisible
+  // if its bars collapse to zero height or render outside the viewport.
+  {
+    id: 'mobile-menu-affordance',
+    severity: 'blocker',
+    test: async p => await p.evaluate(() => {
+      if (window.innerWidth > 768) return null;
+      // Paid-search landing pages deliberately use a minimal logo + phone bar
+      // with no navigation list, so they do not need a menu affordance.
+      if (!document.querySelector('.nav-list')) return null;
+      const toggle = document.querySelector('.mobile-menu-toggle');
+      if (!toggle) return 'mobile menu toggle missing';
+      const tr = toggle.getBoundingClientRect();
+      if (tr.left < 0 || tr.right > window.innerWidth || tr.width < 44 || tr.height < 44) {
+        return `toggle outside viewport or undersized: ${Math.round(tr.left)}–${Math.round(tr.right)} × ${Math.round(tr.height)}px`;
+      }
+      const bars = [...toggle.querySelectorAll('span')];
+      if (bars.length !== 3) return `expected 3 menu bars, found ${bars.length}`;
+      for (const [index, bar] of bars.entries()) {
+        const br = bar.getBoundingClientRect();
+        const style = getComputedStyle(bar);
+        if (br.width < 18 || br.height < 1.5 || style.visibility === 'hidden' || Number(style.opacity) < 0.5) {
+          return `menu bar ${index + 1} invisible: ${Math.round(br.width)}×${br.height.toFixed(1)}px opacity=${style.opacity}`;
+        }
+      }
+      return null;
+    })
+  },
+
+  // 4. Trust strip must retain its real component class. Browsers will recover
+  // malformed attributes into a landmark, masking the lost styling from a11y.
+  {
+    id: 'trust-strip-class',
+    severity: 'blocker',
+    test: async p => await p.evaluate(() => {
+      const strip = document.querySelector('[aria-label="Credentials and trust signals"]');
+      return strip && !strip.classList.contains('trust-strip')
+        ? `trust landmark has malformed classes: "${strip.className}"`
+        : null;
+    })
+  },
+
+  // 5. Form fields on touch devices need the same 44px minimum as buttons.
+  {
+    id: 'form-touch-targets',
+    severity: 'blocker',
+    test: async p => await p.evaluate(() => {
+      if (window.innerWidth > 768) return null;
+      const fields = document.querySelectorAll('form input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]), form select, form textarea, form button');
+      for (const field of fields) {
+        const style = getComputedStyle(field);
+        const rect = field.getBoundingClientRect();
+        if (style.display === 'none' || style.visibility === 'hidden' || rect.width === 0 || rect.height === 0) continue;
+        if (rect.height < 44) {
+          return `${field.tagName.toLowerCase()}${field.getAttribute('name') ? `[name=${field.getAttribute('name')}]` : ''} is ${rect.height.toFixed(1)}px tall`;
+        }
+      }
+      return null;
+    })
+  },
+
+  // 6. Dark-on-dark card text — invisible text bug.
   {
     id: 'card-text-contrast',
     severity: 'blocker',
@@ -269,7 +330,7 @@ const CHECKS = [
     })
   },
 
-  // 4. Icon alignment — centered above OR left-inline only.
+  // 7. Icon alignment — centered above OR left-inline only.
   {
     id: 'icon-misaligned',
     severity: 'blocker',
@@ -295,7 +356,7 @@ const CHECKS = [
     })
   },
 
-  // 5. Footer grid stacking — mobile must be 1 column.
+  // 8. Footer grid stacking — mobile must be 1 column.
   {
     id: 'footer-grid-mobile',
     severity: 'blocker',
@@ -311,7 +372,7 @@ const CHECKS = [
     })
   },
 
-  // 6. Hidden reveal content — opacity:0 element stuck in viewport.
+  // 9. Hidden reveal content — opacity:0 element stuck in viewport.
   {
     id: 'reveal-stuck',
     severity: 'blocker',
@@ -336,7 +397,7 @@ const CHECKS = [
     }
   },
 
-  // 7. Broken blog card rendering — image missing/tiny/invisible, title invisible.
+  // 10. Broken blog card rendering — image missing/tiny/invisible, title invisible.
   {
     id: 'blog-card-broken',
     severity: 'blocker',

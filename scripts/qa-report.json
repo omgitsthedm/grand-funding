@@ -1,12 +1,12 @@
 {
-  "startedAt": "2026-07-21T05:03:38.665Z",
-  "base": "https://6a5efd18ddccd28205ccb724--grandfundingllc.netlify.app",
+  "startedAt": "2026-07-21T05:10:49.879Z",
+  "base": "https://www.grandfundingllc.com",
   "failures": {},
   "summary": {
-    "totalChecks": 847,
+    "totalChecks": 2849,
     "totalFails": 0,
     "watchlistFails": 0,
     "uniquePageFails": 0,
-    "durationMs": 126719
+    "durationMs": 407735
   }
 }

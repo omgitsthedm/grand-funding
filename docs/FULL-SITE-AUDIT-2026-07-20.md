@@ -49,10 +49,12 @@ Audit and repair the complete Grand Funding site across source quality, UI/UX, a
 - Responsive UI: manual mobile review pass at 390px — menu closed/open, trust strip, sticky CTA, and consent layout
 - Reduced motion: pass — reveal content visible, hero video disabled, smooth scrolling disabled; only a 0.01ms lazy-image fail-safe remains
 - Runtime console: no homepage errors or warnings in mobile browser review
-- Full premium matrix: pass — 2,849 checks across 37 representative pages, seven breakpoints, and 11 interface invariants; zero failures
-- Full runtime crawl: pass locally and on Netlify preview — 86 pages at mobile and desktop, 172 page/viewport checks; zero failures
+- Full premium matrix: pass locally and live — 2,849 checks across 37 representative pages, seven breakpoints, and 11 interface invariants; zero failures
+- Full runtime crawl: pass locally, on Netlify preview, and live — 86 pages at mobile and desktop, 172 page/viewport checks per environment; zero failures
 - Netlify preview `6a5efd18ddccd28205ccb724`: pass — public pages 200; source, QA, package, internal docs, and intake paths 404; CSP/HSTS and supporting security headers present
-- Preview Lighthouse mobile: Performance 98, Accessibility 100, Best Practices 100. Netlify applies `X-Robots-Tag: noindex` to draft deploys, so SEO is verified on the production domain at release closeout.
+- Production deploy `6a5efef6c589f88c9d2f4684`: `ready` — key public routes 200, tested source/internal routes 404, preview-only noindex absent, and security headers present
+- Live Lighthouse mobile: Performance 99, Accessibility 100, Best Practices 100, SEO 100; FCP 1.4s, LCP 1.8s, TBT 10ms, CLS 0, Speed Index 2.8s
+- Netlify Forms: all existing forms remain recognized; `pre-approval` and `contact` submission counts remained 10 and 3 respectively; no QA lead was submitted
 
 ## Remaining external dependency
 

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Grand Funding direction B deco stamp</title>
+  <desc id="desc">Art deco GF stamp in terracotta.</desc>
+  <g fill="#C95F34">
+    <rect x="242" y="242" width="188" height="386"/>
+    <rect x="570" y="242" width="148" height="386"/>
+    <rect x="386" y="310" width="110" height="72"/>
+    <rect x="606" y="386" width="116" height="72"/>
+    <rect x="386" y="458" width="110" height="72"/>
+    <rect x="606" y="242" width="188" height="72"/>
+    <rect x="606" y="532" width="72" height="126"/>
+    <polygon points="242,628 430,706 430,628 302,574 302,314 242,314"/>
+    <polygon points="570,706 718,628 718,314 570,314"/>
+    <polygon points="466,226 500,206 534,226 580,226 520,184 500,172 480,184 420,226"/>
+    <polygon points="466,742 500,762 534,742 580,742 520,780 500,792 480,780 420,742"/>
+    <rect x="196" y="220" width="194" height="12"/>
+    <rect x="610" y="220" width="194" height="12"/>
+    <rect x="196" y="248" width="214" height="10"/>
+    <rect x="590" y="248" width="214" height="10"/>
+    <rect x="196" y="740" width="214" height="10"/>
+    <rect x="590" y="740" width="214" height="10"/>
+    <rect x="196" y="768" width="194" height="12"/>
+    <rect x="610" y="768" width="194" height="12"/>
+    <polygon points="500,792 566,824 530,842 500,826 470,842 434,824"/>
+    <polygon points="500,836 544,858 520,872 500,862 480,872 456,858"/>
+    <polygon points="500,872 526,886 500,900 474,886"/>
+  </g>
+</svg>

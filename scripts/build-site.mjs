@@ -29,7 +29,7 @@ const ROOT_ASSETS = [
   'trust-pack.css'
 ];
 
-const PUBLIC_DIRECTORIES = ['fonts', 'images', 'posts'];
+const PUBLIC_DIRECTORIES = ['brand-kit', 'fonts', 'images', 'posts'];
 
 function assertSafeDist() {
   if (path.dirname(DIST) !== ROOT || path.basename(DIST) !== 'dist') {

@@ -104,3 +104,4 @@
   - Test submissions confirmed in Netlify dashboard
   - Logan confirmed both test emails arrived at Logan@grandfundingllc.com
   - End-to-end pipeline operational
+| 2026-07-22 | Brand kit folded into main site | grand-funding-brand-kit.netlify.app (manual deploy, no repo — live deploy was the only copy) mirrored into `brand-kit/` + 3 direction SVGs into `images/brand/`; live at /brand-kit/ (noindex,nofollow kept, canonical added for validator). Old Netlify site deleted. |

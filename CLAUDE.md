@@ -74,6 +74,7 @@
 | 2026-05-03 | **CRITICAL: Form-submission bug FIXED** | Discovered ZERO form submissions had reached Netlify since site launch — all 18 forms count=0. Root cause: script.js global handler was matching `.btn-primary` submit buttons, setting type="button", and preventDefault'ing on click. Every form attempt silently scrolled to #contact. Fix: handler now skips `[type="submit"]` and elements `closest("form")`. Verified end-to-end: test submissions to contact + pre-approval forms registered in Netlify, email notification fires to Logan@grandfundingllc.com, Logan confirmed receipt. |
 | 2026-05-03 | contact.html form-name corrected | Hidden routing field said "pre-approval" instead of "contact". Now matches form's name attribute. |
 | 2026-05-03 | Sitewide email: info@ → Logan@grandfundingllc.com | 79 files updated. Netlify form notification hook updated via API. Logan@ confirmed working as primary contact. |
+| 2026-07-22 | Brand kit folded into main site | grand-funding-brand-kit.netlify.app (manual deploy, no repo — live deploy was the only copy) mirrored into `brand-kit/` + 3 direction SVGs into `images/brand/`; live at /brand-kit/ (noindex,nofollow kept, canonical added for validator). Old Netlify site deleted. |
 
 ## Current Status
 - **Phase:** Deployed / Live / Forms verified end-to-end
@@ -104,4 +105,3 @@
   - Test submissions confirmed in Netlify dashboard
   - Logan confirmed both test emails arrived at Logan@grandfundingllc.com
   - End-to-end pipeline operational
-| 2026-07-22 | Brand kit folded into main site | grand-funding-brand-kit.netlify.app (manual deploy, no repo — live deploy was the only copy) mirrored into `brand-kit/` + 3 direction SVGs into `images/brand/`; live at /brand-kit/ (noindex,nofollow kept, canonical added for validator). Old Netlify site deleted. |

@@ -1,5 +1,7 @@
 # Grand Funding LLC — Revenue-Mode Audit Results
 
+> **Superseded historical snapshot.** Findings and commands below describe the April 2026 site and are not current release authority. Use `SOURCE_OF_TRUTH.md` and `docs/GRAND-FUNDING-CLIENT-INDEPENDENT-ELEVATION-2026-07-25.md`.
+
 **Session:** 2026-04-19 (Phase 2: post-framework handoff → revenue mode)
 **Scope:** Blog failures fixed + 11 money pages upgraded + 2 state pages doubled in depth + internal linking spiderweb + conversion blocks
 **Constitution:** [`/PREMIUM_STANDARDS.md`](../PREMIUM_STANDARDS.md), [`/premium-system.css`](../premium-system.css), [`/scripts/qa-premium.mjs`](../scripts/qa-premium.mjs)

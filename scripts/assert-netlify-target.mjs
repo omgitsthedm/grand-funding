@@ -4,7 +4,9 @@ import { spawnSync } from 'node:child_process';
 
 const EXPECTED_SITE_ID = '055c5942-aeaa-478a-9508-a34406994d5d';
 const EXPECTED_SITE_NAME = 'grandfundingllc';
-const CORRECTIVE_COMMAND = `netlify link --id ${EXPECTED_SITE_ID}`;
+const NETLIFY_CLI = 'netlify-cli@27.0.0';
+const CORRECTIVE_COMMAND =
+  `npx --yes ${NETLIFY_CLI} link --id ${EXPECTED_SITE_ID}`;
 
 function safeMetadata(value, fallback) {
   if (typeof value !== 'string' || value.length === 0) return fallback;
@@ -36,16 +38,20 @@ function parseStatus(stdout) {
   }
 }
 
-const result = spawnSync('netlify', ['status', '--json'], {
+const result = spawnSync(
+  'npx',
+  ['--yes', NETLIFY_CLI, 'status', '--json'],
+  {
   encoding: 'utf8',
   stdio: ['ignore', 'pipe', 'pipe'],
-});
+  },
+);
 
 if (result.error) {
   fail(
     result.error.code === 'ENOENT'
-      ? 'Netlify CLI is not installed or is not on PATH.'
-      : 'Unable to inspect this checkout’s Netlify link.',
+      ? 'npm/npx is not installed or is not on PATH.'
+      : `Unable to run the pinned ${NETLIFY_CLI} target check.`,
   );
 }
 

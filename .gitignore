@@ -17,8 +17,10 @@
 backup/
 build/
 coverage/
+artifacts/
 dist-*/
 dist/
 node_modules/
 out/
+scripts/qa-report.json
 tmp/

@@ -2,54 +2,56 @@
 
 ## Identity
 
-- Project Code: LFNYC-GFL
-- Name: Grand Funding LLC
-- Tier: Tier 2 · Risk: Medium (regulated lender + live lead forms)
-- Visible Path: `/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding`
-- Resolved Git Root: `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding`
-- Remote: `https://github.com/omgitsthedm/grand-funding.git` · Default branch: `master`
+- Project code: `LFNYC-GFL`
+- Client: Grand Funding LLC
+- Risk: regulated lender with live lead forms
+- Resolved Git root: `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding`
+- Remote: `https://github.com/omgitsthedm/grand-funding.git`
+- Default branch: `master`
 
-## Current Stamp
+## Current stamp
 
-- Updated: 2026-07-20
-- Updated By: Codex
-- Basis: full code, design, accessibility, responsive, performance, security, form, preview, deploy, and live verification pass
-- Release source commit: `ff779628` · PR: `#3`
+- Updated: 2026-07-25
+- Candidate branch: `agent/grand-funding-continuous-elevation-july-2026`
+- Base and `origin/master`: `e135a678cb4c284cd8857ed3c32eba2bd545db3b`
+- Candidate state: verified; production release authorized and in progress
 
-## Current Live Truth
+## Generated-rules warning
 
-- Live URL: `https://www.grandfundingllc.com` (apex redirects to www)
-- Netlify project: `grandfundingllc` · site ID `055c5942-aeaa-478a-9508-a34406994d5d`
-- Production deploy: `6a5efef6c589f88c9d2f4684` · state `ready` · published 2026-07-21T05:09:14Z
-- Deployment is manual Netlify CLI. The site is not Git-linked; a Git push does not publish.
-- Netlify runs `npm run build` and publishes only `dist/` (265 allowlisted public files).
-- Source, package, QA, internal docs, and local Netlify state are excluded from production and verified 404.
+`.ai/RULES.md` was generated on 2026-06-28 and incorrectly says the project has no build, publishes the repository root, and deploys on Git push. Do not follow those commands.
 
-## Verified Quality
+`.ai/RULES_HEADER.md` now contains current truth. Regenerate `.ai/RULES.md` only through the canonical AI-Ops generator when that generator is available; do not hand-edit the generated file.
 
-- `npm test`: 87 HTML artifacts and 265 public files validated.
-- Full live premium matrix: 2,849 checks across 37 pages, seven breakpoints, and 11 invariants; zero failures.
-- Full live runtime crawl: 86 pages at mobile and desktop; 172 page/viewport checks; zero failures.
-- Live Lighthouse mobile: Performance 99, Accessibility 100, Best Practices 100, SEO 100; LCP 1.8s, TBT 10ms, CLS 0.
-- Production security headers present; public routes 200; tested internal/source routes 404.
-- Netlify Forms remain recognized. No QA lead was submitted and submission counts did not change.
+## Live truth
 
-## Risk and Compliance
+- URL: `https://www.grandfundingllc.com`
+- Netlify site: `grandfundingllc`
+- Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
+- This checkout carries an ignored local site link; the pinned preflight verifies both name and ID before deploy commands.
+- Current observed deploy: `6a64616a5602a06cd8001b9c`, ready, published 2026-07-25 at 07:10:35Z
+- Deployment is manual and publishes only `dist/`
+- A Git push does not publish
 
-- Regulated lender: NMLS 2466872; AZ MLO 1048901.
-- Rates, license identifiers, lending claims, disclosures, testimonials, funded-deal claims, and lead destinations remain compliance-sensitive and were preserved.
-- `/apply`, `/contact`, and programmatic lead forms are transactional. Never submit test leads without explicit approval.
+## Candidate quality
 
-## Remaining External Dependency
+- 279 public files
+- 88 HTML documents
+- 87 SEO-validated documents
+- 80 indexable pages
+- 169 redirect rules
+- 18 RSS items
+- Full route, preservation, accessibility, conversion, cross-browser, and responsive QA passed with zero failures
+- Local Lighthouse passed at mobile 85 performance and 100 accessibility/best practices/SEO, with desktop 100 across all four categories and zero layout shift on both profiles
+- Production dependency audit passed with zero vulnerabilities
 
-- `consent.js` still contains placeholder Google Ads conversion labels. Approved lead/call conversion-label values are not in the repository and must not be invented.
+## Release state
 
-## Next Agent Directive
+Strict release is blocked by seven unresolved decisions: occupancy/purpose, rates/points, amounts, leverage, timing, service area, and volume/comparative proof.
 
-Read `.ai/RULES.md`, this file, `PROJECT_STATUS.md`, and `docs/FULL-SITE-AUDIT-2026-07-20.md`. Build with `npm test`; run locally with `npm run serve -- --dir dist --port 8888`; use `BASE_URL=... npm run test:crawl` and `npm run test:premium`. Production is manual via `netlify deploy --prod` after scoped authorization and preview verification. Do not read secrets or submit a real lead.
+David Marsh explicitly authorized one production release after disclosure of the strict blocker. The exception is limited to the exact frozen baseline and is recorded in `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-25.md`; it does not resolve the seven issues or weaken future strict validation.
 
-## Emergency Notes
+Google Ads labels remain dormant placeholders. Porkbun DNS still needs the client-owned apex cleanup documented on the Desktop. There is no PostHog integration.
 
-- Preserve the live release and the `dist/` publish boundary.
-- If a deploy appears wrong, verify the Netlify deploy ID/state and public artifact before rollback or escalation.
-- Keep all regulated content unchanged unless approved facts are provided.
+## Directive
+
+Read `SOURCE_OF_TRUTH.md`, `CLAUDE.md`, `docs/GRAND-FUNDING-CLIENT-INDEPENDENT-ELEVATION-2026-07-25.md`, and the active release authorization. Build with Node `24.18.0` and `npm run quality:full`. Never deploy the repository root, submit a production form, mark claims resolved, or change regulated wording without approval. The one-time exception does not carry forward.

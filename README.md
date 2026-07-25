@@ -1,152 +1,79 @@
-# GRAND FUNDING LLC - CINEMATIC PACK (v4)
+# Grand Funding LLC Website
 
-Premium, mobile-first static site for Netlify. Updated to a darker, more dramatic "Cinematic Noir" palette with spotlight whites, improved approved-loans cards, and a working Netlify form flow.
+Premium static lead-generation site for Grand Funding LLC, a private real-estate lender serving investor audiences. The project preserves its cinematic desert-night identity while using a deterministic `dist/` build, fail-closed regulated-claim governance, responsive browser QA, and manual Netlify releases.
 
-## What Changed (v4)
+## Local setup
 
-### Visual + Layout Fixes
-- ✅ New palette: dark + dramatic, with warm highlights and teal glow (no stale "teal on teal")
-- ✅ Approved Loans cards are a clean grid (not stacked), with digestible facts per card
-- ✅ Header is now dark "glass" so it matches the site (no white bar)
-- ✅ About / Products / Blog pages re-skinned so there are no jarring full-width white blocks
-
-### Working Pre-Approval Form (Netlify)
-- ✅ New page: `apply.html` (Netlify form)
-- ✅ New page: `thanks.html` (post-submit confirmation)
-- ✅ Pretty URLs:
-  - `/apply` rewrites to `/apply.html`
-  - `/thanks` rewrites to `/thanks.html`
-
-## Files Included
-
-### Pages
-- `index.html`
-- `about.html`
-- `products.html`
-- `blog.html`
-- `faq.html`
-- `apply.html`
-- `thanks.html`
-
-### Styles
-- `styles.css` (global)
-- `apply.css` (apply/thanks)
-- `about.css`
-- `products.css`
-- `blog.css`
-
-### Media
-- `images/arizona-hero.mp4` (hero video)
-- `images/*` (site imagery)
-
-## Deploy to Netlify
-
-1. Drag-and-drop the whole folder into Netlify (or connect a Git repo).
-2. Set the publish directory to the project root (this folder).
-3. Confirm redirects are active via `netlify.toml`.
-
-### IMPORTANT: Make the form email you
-Netlify Forms can email submissions, but the email recipient is configured in Netlify, not in the code.
-
-In Netlify:
-1. Site settings -> Forms -> Enable form detection
-2. Forms -> `pre-approval` -> Notifications
-3. Add **Email notification** -> enter the receiving email (ex: `Logan@grandfundingllc.com`)
-
-Optional:
-- Enable spam filtering and keep the honeypot field (`bot-field`) in the code.
-
-## Quick Checks
-
-- `/apply` loads and submits -> lands on `/thanks`
-- `Forms` tab in Netlify shows new submissions
-- Mobile: hero cards become 1-column and form inputs are easy to tap
-
-## Palette (Cinematic Noir)
-
-- Background: #07080B
-- Surface: rgba(255,255,255,0.05 to 0.08)
-- Spotlight White: #F4F7FF
-- Teal glow: #4FE3D2
-- Warm sand: #F0B26B
-
----
-
-## Premium QA (merge gate)
-
-Every push and PR is gated by `.github/workflows/premium-qa.yml`, which runs
-`/scripts/qa-premium.mjs` via Playwright against the live site at **7 breakpoints**:
-`320 / 375 / 393 / 430 / 768 / 1280 / 1440`.
-
-### What the gate protects
-
-The script enforces seven invariants. Any regression fails the build:
-
-| # | Check | Fails when… |
-|---|---|---|
-| 1 | `horizontal-overflow` | `documentElement.scrollWidth > innerWidth` at any breakpoint |
-| 2 | `header-cta-wrap` | The `.header .cta-btn` renders taller than 42px (text wrapping) |
-| 3 | `card-text-contrast` | A card h3 has luminance `< 80/255` on the dark theme (dark-on-dark) |
-| 4 | `icon-misaligned` | A card icon is neither centered (±25px) nor left-inline (<30px from edge) |
-| 5 | `footer-grid-mobile` | The footer grid has >1 column at ≤768px |
-| 6 | `reveal-stuck` | A `.reveal`/`.reveal-stagger` element in viewport has opacity < 0.3 |
-| 7 | `blog-card-broken` | Blog card image <80% of card width, not loaded, or title invisible/dark |
-
-### Ranking watchlist
-
-A failure on any of these pages **blocks merge with exit code 2** (higher priority than a regular fail):
-
-- `/` (homepage)
-- `/phoenix-hard-money-lender.html`
-- `/arizona-hard-money-lender.html`
-- `/fix-and-flip-loans-arizona.html`
-- `/bridge-loans-arizona.html`
-- `/blog.html` (editorial index — breaks silently if CSS missing)
-- `/funded-deals.html` (proof — breaks silently if CSS missing)
-- `/partners.html` (broken silently if CSS missing)
-- `/about.html` (trust page)
-- `/contact.html` (conversion endpoint)
-- `/apply.html` (conversion endpoint)
-
-### Run it locally before pushing
+Use Node `24.18.0` from `.node-version`.
 
 ```bash
-# First-time setup (once per machine)
-npm install
-npx playwright install --with-deps chromium
-
-# Run the full audit against production
-npm run test:premium
-
-# Fast watchlist-only run (ranking-critical pages only)
-npm run test:premium:watchlist
-
-# Audit Netlify local dev server instead
-BASE_URL=http://localhost:8888 npm run test:premium
+npm ci
+npm run quality:fast
+npm run quality:full
 ```
 
-The script writes `scripts/qa-report.json` with a full failure breakdown.
+Serve the exact public artifact:
 
-### Exit codes
+```bash
+npm run serve -- --dir dist --port 8888
+```
 
-| Code | Meaning |
-|---|---|
-| `0` | All checks passed — safe to ship |
-| `1` | Premium regression on non-watchlist page |
-| `2` | Premium regression on a ranking-watchlist page (blocks merge with higher priority) |
-| `3` | Runner crashed (network, Playwright, etc.) |
+Do not serve or deploy the repository root.
 
-### Source of truth
+## Quality commands
 
-Do not patch CSS/HTML to make QA pass without fixing the underlying cause.
-The standard is:
+- `npm run quality:fast` — build, public-boundary validation, SEO validation, claims baseline, quality config
+- `npm run quality:full` — fast gate plus crawl, preservation, accessibility, conversion, cross-browser, and premium responsive QA
+- `npm run quality:maintenance` — configuration validation and non-destructive dead-code report
+- `npm run quality:live` — read-only live browser audit with telemetry blocked and form conversion tests skipped
+- `npm run quality:release` — strict client/legal claim approval, all browser gates, and exact Netlify target verification
 
-1. `/PREMIUM_STANDARDS.md` — human-readable rules (tokens, components, copy, schema, trust)
-2. `/premium-system.css` — authoritative design layer inlined into every HTML page
-3. `/scripts/qa-premium.mjs` — automated enforcement
+The release command is intentionally blocked until the seven decisions in `.lifi/regulated-claims.json` are approved and reconciled.
 
-If the QA script has a false positive, fix the script. If it catches a real regression, fix the code. Never disable a check to ship.
+## Public build
 
----
+`npm run build` creates `dist/` from an allowlisted source set, then:
 
-**Version**: v4 (Cinematic Noir + Netlify Form) · Premium QA gate added 2026-04-19
+- preserves and capability-gates the original moving hero
+- applies the restrained experience refinements
+- normalizes canonical URLs, schema, social metadata, and redirects
+- generates five premium social-card families
+- generates an 18-item RSS feed with neutral descriptions
+- fingerprints local CSS and JavaScript query versions from file content
+
+The current validated artifact contains 279 public files, including 88 HTML documents and 80 indexable pages.
+
+## Forms and analytics
+
+Netlify form names, actions, honeypots, and native POST fallbacks are preserved. Browser QA never submits a production lead.
+
+The enhanced runtime adds:
+
+- route-specific submit labels
+- accessible pending and recovery status
+- duplicate-submit protection
+- one-time, consent-aware, PII-free lead conversion events
+- one owner for phone-click telemetry
+
+Google Ads labels remain unconfigured and dormant. There is no PostHog integration.
+
+## Deployment
+
+Netlify project: `grandfundingllc`
+
+Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
+
+Publish directory: `dist/`
+
+Deployment is manual and requires scoped authorization:
+
+```bash
+npm run deploy:preview
+npm run deploy:production
+```
+
+The wrappers use pinned `netlify-cli@27.0.0`. Never use `netlify deploy --dir=.`.
+
+## Handoff
+
+See `docs/GRAND-FUNDING-CLIENT-INDEPENDENT-ELEVATION-2026-07-25.md` for completed work, evidence, client/legal blockers, external configuration, and recovery.

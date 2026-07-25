@@ -2,14 +2,14 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { createHash } from "node:crypto";
 
-const VERSION = "20260724";
 const HOME_ORDER = [
   "hero",
   "trust-strip",
   "meet-logan",
-  "products-overview-section",
   "loan-calc",
+  "products-overview-section",
   "compare-section",
   "story-section",
   "faq-section",
@@ -20,6 +20,42 @@ const HOME_ORDER = [
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function contentHash(value) {
+  return createHash("sha256").update(value).digest("hex").slice(0, 12);
+}
+
+async function assetVersions(dist) {
+  const versions = new Map();
+  for (const entry of await fs.readdir(dist, { withFileTypes: true })) {
+    if (!entry.isFile() || !/\.(?:css|js)$/i.test(entry.name)) continue;
+    versions.set(
+      entry.name,
+      contentHash(await fs.readFile(path.join(dist, entry.name)))
+    );
+  }
+  return versions;
+}
+
+function versionLocalAssets(html, versions) {
+  for (const [name, version] of versions) {
+    const asset = escapeRegExp(name);
+    html = html.replace(
+      new RegExp(`([\"'])/${asset}(?:\\?v=[^\"']*)?\\1`, "gi"),
+      (_, quote) => `${quote}/${name}?v=${version}${quote}`
+    );
+  }
+  return html;
+}
+
+function stripMarkup(value) {
+  return value
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&(?:nbsp|#160);/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function tagRange(html, tagName, className) {
@@ -74,7 +110,7 @@ function makeHeroIntentClear(hero) {
     .replace("Grand Funding in Numbers", "Real Deals. Real Timelines.")
     .replace(
       "A snapshot of speed + flexibility across AZ &amp; CA.",
-      "A verified snapshot of direct decisions across Arizona and California."
+      "Explore the financing scenarios behind the numbers."
     )
     .replace(
       "<a class='btn btn-primary btn-lg' href='/apply'>Get Pre-Approved</a><div class=\"hero-visual-caption\">",
@@ -253,6 +289,19 @@ function repairBlogCardStructure(source) {
   return replaceRange(source, grid, repairedGrid);
 }
 
+function simplifyBlogToolbar(source) {
+  const toolbar = tagRange(source, "div", "blog-toolbar");
+  const redundantCta =
+    /<a\b(?=[^>]*\bclass=(?:"[^"]*\bghost-btn\b[^"]*"|'[^']*\bghost-btn\b[^']*'))[^>]*href=(?:"\/apply(?:\.html)?"|'\/apply(?:\.html)?')[^>]*>[\s\S]*?<\/a>/i;
+  if (!redundantCta.test(toolbar.html)) {
+    throw new Error(
+      "Original-experience contract failed: blog toolbar CTA missing"
+    );
+  }
+  const refinedToolbar = toolbar.html.replace(redundantCta, "");
+  return replaceRange(source, toolbar, refinedToolbar);
+}
+
 function streamlineApplyFlow(source) {
   const cardRange = tagRange(source, "div", "apply-card");
   let card = cardRange.html;
@@ -332,35 +381,204 @@ function addContextualRouteLinks(source, relativeFile) {
   return source;
 }
 
-function injectAssets(html) {
-  if (!html.includes("/original-refinement.css")) {
-    html = html.replace(
-      "</head>",
-      `<link rel="stylesheet" href="/original-refinement.css?v=${VERSION}">\n</head>`
-    );
-  }
-  if (!html.includes("/original-refinement.js")) {
-    html = html.replace(
-      "</body>",
-      `<script defer src="/original-refinement.js?v=${VERSION}"></script>\n</body>`
+function enhanceLeadForms(html) {
+  return html.replace(
+    /<form\b[^>]*>[\s\S]*?<\/form>/gi,
+    form => {
+      const opening = form.match(/^<form\b[^>]*>/i)?.[0] || "";
+      const name =
+        /\bname=(?:"([^"]+)"|'([^']+)')/i.exec(opening)?.slice(1).find(Boolean) ||
+        "";
+      if (!["pre-approval", "contact"].includes(name)) return form;
+
+      const kind = name === "contact" ? "contact" : "application";
+      const label = kind === "contact" ? "Send Message" : "Send Deal Details";
+      let refined = form.replace(
+        opening,
+        opening.replace(
+          />$/,
+          ` data-gf-lead-form data-form-kind="${kind}">`
+        )
+      );
+
+      const submitPattern =
+        /<button\b([^>]*\btype=(?:"submit"|'submit')[^>]*)>[\s\S]*?<\/button>/i;
+      if (!submitPattern.test(refined)) {
+        throw new Error(
+          `Original-experience contract failed: ${name} submit button missing`
+        );
+      }
+      refined = refined.replace(
+        submitPattern,
+        (_, attributes) => {
+          const normalized = attributes.replace(
+            /\sdata-submit-label=(?:"[^"]*"|'[^']*')/i,
+            ""
+          );
+          return `<button${normalized} data-submit-label="${label}">${label}</button>`;
+        }
+      );
+
+      if (!refined.includes("data-form-status")) {
+        refined = refined.replace(
+          "</form>",
+          '<p class="form-status" data-form-status role="status" aria-live="polite" aria-atomic="true"></p></form>'
+        );
+      }
+      return refined;
+    }
+  );
+}
+
+function removeUnconfirmedLeadTracking(html, relativeFile) {
+  if (!/^thanks(?:-contact)?\.html$/.test(relativeFile)) return html;
+
+  html = html.replace(
+    /gtag\((?:"event"|'event'),(?:"generate_lead"|'generate_lead'),\{[^}]*\}\);?/gi,
+    ""
+  );
+  html = html.replace(
+    /<script>\s*window\.addEventListener\((?:"load"|'load'),function\(\)\{if\(typeof gfLeadConversion===["']function["']\)\{gfLeadConversion\(\);\}\}\);\s*<\/script>/gi,
+    ""
+  );
+
+  let seenTagManagerFallback = false;
+  html = html.replace(
+    /<noscript\b[^>]*>[\s\S]*?googletagmanager\.com\/ns\.html\?id=GTM-M36VM2VG[\s\S]*?<\/noscript>/gi,
+    block => {
+      if (seenTagManagerFallback) return "";
+      seenTagManagerFallback = true;
+      return block;
+    }
+  );
+
+  if (/generate_lead|gfLeadConversion\(\)/i.test(html)) {
+    throw new Error(
+      `Original-experience contract failed: unconfirmed lead tracking remains in ${relativeFile}`
     );
   }
   return html;
 }
 
+function improveAccessibleTables(html, relativeFile) {
+  const documentTitle = stripMarkup(
+    /<h1\b[^>]*>([\s\S]*?)<\/h1>/i.exec(html)?.[1] ||
+      "Grand Funding lending information"
+  );
+  let tableIndex = 0;
+
+  html = html.replace(/<table\b[^>]*>[\s\S]*?<\/table>/gi, table => {
+    tableIndex += 1;
+    let refined = table;
+    if (!/<caption\b/i.test(refined)) {
+      const opening = refined.match(/^<table\b[^>]*>/i)?.[0];
+      if (!opening) return refined;
+      const label =
+        relativeFile === "disclosures.html"
+          ? "Grand Funding loan program terms and lending disclosures"
+          : `${documentTitle} comparison table ${tableIndex}`;
+      refined = refined.replace(
+        opening,
+        `${opening}<caption class="visually-hidden">${label}</caption>`
+      );
+    }
+
+    refined = refined.replace(
+      /<thead\b[^>]*>[\s\S]*?<\/thead>/gi,
+      head =>
+        head.replace(/<th\b([^>]*)>([\s\S]*?)<\/th>/gi, (_, attributes, content) => {
+          let normalized = attributes;
+          if (!/\bscope=/i.test(normalized)) normalized += ' scope="col"';
+          if (!stripMarkup(content) && !/\baria-label=/i.test(normalized)) {
+            normalized += ' aria-label="Comparison factor"';
+          }
+          return `<th${normalized}>${content}</th>`;
+        })
+    );
+    return refined;
+  });
+
+  if (relativeFile.startsWith("compare-")) {
+    html = html.replace(
+      /<h3\b([^>]*)>(Not sure which fits your deal\?)<\/h3>/i,
+      "<h2$1>$2</h2>"
+    );
+  }
+  return html;
+}
+
+function injectAssets(html, versions) {
+  const stylesheetVersion = versions.get("original-refinement.css");
+  const scriptVersion = versions.get("original-refinement.js");
+  if (!stylesheetVersion || !scriptVersion) {
+    throw new Error("Original-experience contract failed: refinement asset hash missing");
+  }
+  if (!html.includes("/original-refinement.css")) {
+    html = html.replace(
+      "</head>",
+      `<link rel="stylesheet" href="/original-refinement.css?v=${stylesheetVersion}">\n</head>`
+    );
+  }
+  if (!/rel=["']alternate["'][^>]*type=["']application\/rss\+xml["']/i.test(html)) {
+    html = html.replace(
+      "</head>",
+      '<link rel="alternate" type="application/rss+xml" title="Grand Funding Investor Guides" href="https://www.grandfundingllc.com/feed.xml">\n</head>'
+    );
+  }
+  if (!html.includes("/original-refinement.js")) {
+    html = html.replace(
+      "</body>",
+      `<script defer src="/original-refinement.js?v=${scriptVersion}"></script>\n</body>`
+    );
+  }
+  return versionLocalAssets(html, versions);
+}
+
 function useNativeFaqButtons(html) {
-  return html.replace(
+  let index = 0;
+  const nativeButtons = html.replace(
     /<div\b([^>]*\bclass=(?:"[^"]*\bfaq-question\b[^"]*"|'[^']*\bfaq-question\b[^']*')[^>]*)>([\s\S]*?)<\/div>(?=<div\b[^>]*\bclass=(?:"[^"]*\bfaq-answer\b[^"]*"|'[^']*\bfaq-answer\b[^']*'))/gi,
     (_, attributes, content) => {
       const normalizedAttributes = attributes
         .replace(/\srole=(?:"button"|'button')/i, "")
-        .replace(/\stabindex=(?:"0"|'0')/i, "");
+        .replace(/\stabindex=(?:"0"|'0')/i, "")
+        .replace(/\saria-expanded=(?:"[^"]*"|'[^']*')/i, "")
+        .replace(/\saria-controls=(?:"[^"]*"|'[^']*')/i, "")
+        .replace(/\sid=(?:"[^"]*"|'[^']*')/i, "");
       const normalizedContent = content
         .replace(/<h3\b[^>]*>/i, '<span class="faq-question-title" role="heading" aria-level="3">')
         .replace(/<\/h3>/i, "</span>");
-      return `<button type="button"${normalizedAttributes}>${normalizedContent}</button>`;
+      index += 1;
+      return `<button type="button"${normalizedAttributes} id="faq-question-${index}" aria-expanded="false" aria-controls="faq-answer-${index}">${normalizedContent}</button>`;
     }
   );
+
+  let answerIndex = 0;
+  const linkedDisclosures = nativeButtons.replace(
+    /(<button\b[^>]*\bclass=(?:"[^"]*\bfaq-question\b[^"]*"|'[^']*\bfaq-question\b[^']*')[^>]*\bid=(?:"faq-question-(\d+)"|'faq-question-(\d+)')[^>]*>[\s\S]*?<\/button>)(\s*)<div\b([^>]*\bclass=(?:"[^"]*\bfaq-answer\b[^"]*"|'[^']*\bfaq-answer\b[^']*')[^>]*)>/gi,
+    (_, button, doubleQuotedIndex, singleQuotedIndex, whitespace, attributes) => {
+      const questionIndex = Number(doubleQuotedIndex || singleQuotedIndex);
+      answerIndex += 1;
+      if (questionIndex !== answerIndex) {
+        throw new Error(
+          "Original-experience contract failed: FAQ question/answer order drifted"
+        );
+      }
+      const normalizedAttributes = attributes
+        .replace(/\sid=(?:"[^"]*"|'[^']*')/i, "")
+        .replace(/\srole=(?:"[^"]*"|'[^']*')/i, "")
+        .replace(/\saria-labelledby=(?:"[^"]*"|'[^']*')/i, "")
+        .replace(/\shidden(?:=(?:"[^"]*"|'[^']*'|[^\s>]+))?/i, "");
+      return `${button}${whitespace}<div${normalizedAttributes} id="faq-answer-${questionIndex}" role="region" aria-labelledby="faq-question-${questionIndex}" hidden>`;
+    }
+  );
+
+  if (index !== answerIndex) {
+    throw new Error(
+      `Original-experience contract failed: FAQ disclosure mismatch (${index}/${answerIndex})`
+    );
+  }
+  return linkedDisclosures;
 }
 
 async function walk(directory) {
@@ -375,6 +593,7 @@ async function walk(directory) {
 
 export async function refineOriginalExperience({ dist }) {
   const htmlFiles = (await walk(dist)).filter(file => file.endsWith(".html"));
+  const versions = await assetVersions(dist);
   for (const file of htmlFiles) {
     const relative = path.relative(dist, file).split(path.sep).join("/");
     let html = await fs.readFile(file, "utf8");
@@ -383,11 +602,17 @@ export async function refineOriginalExperience({ dist }) {
       html = moveProductsHeroFirst(html);
       html = removeRedundantProductsCta(html);
     }
-    if (relative === "blog.html") html = repairBlogCardStructure(html);
+    if (relative === "blog.html") {
+      html = repairBlogCardStructure(html);
+      html = simplifyBlogToolbar(html);
+    }
     if (relative === "apply.html") html = streamlineApplyFlow(html);
     html = addContextualRouteLinks(html, relative);
     html = useNativeFaqButtons(html);
-    html = injectAssets(html);
+    html = enhanceLeadForms(html);
+    html = removeUnconfirmedLeadTracking(html, relative);
+    html = improveAccessibleTables(html, relative);
+    html = injectAssets(html, versions);
     await fs.writeFile(file, html);
   }
 }

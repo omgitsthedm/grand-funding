@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "npm run build"
+  command = "npm run quality:fast"
 
 # The apex-host rule and canonical clean-URL rules are generated into
 # dist/_redirects in first-match-safe order. Keep only aliases here.

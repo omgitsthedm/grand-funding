@@ -117,6 +117,40 @@
   line-height: 1.35;
 }
 
+.faq-answer[hidden] {
+  display: none !important;
+}
+
+.form-status {
+  min-height: 1.5em;
+  margin: 0.75rem 0 0;
+  color: rgba(244, 247, 255, 0.72);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+form[aria-busy="true"] button[type="submit"] {
+  cursor: wait;
+  filter: saturate(0.72);
+  opacity: 0.8;
+}
+
+[data-text-link],
+.blog-callout__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 0.625rem;
+}
+
+main > div > p a[href^="tel:"],
+main > p a[href^="tel:"] {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 0.625rem;
+}
+
 .sticky-dual[hidden],
 body[data-route="/apply"] .sticky-dual,
 body[data-route="/contact"] .sticky-dual,
@@ -201,6 +235,57 @@ main > section {
   .hero .loan-card[href]::after {
     opacity: 1;
     transform: none;
+  }
+
+  .hero .hero-visual {
+    display: block !important;
+    width: 100%;
+    margin: 1.5rem auto 0;
+    text-align: left;
+  }
+
+  .hero .hero-loans {
+    display: block !important;
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .hero .hero-loans-header {
+    margin-bottom: 0.85rem;
+  }
+
+  .hero .hero-loans-title {
+    font-size: 1.05rem;
+  }
+
+  .hero .hero-loans-sub,
+  .hero .hero-loans-footer {
+    display: none !important;
+  }
+
+  .hero .loan-cards {
+    display: flex !important;
+    gap: 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 0.1rem 0 0.75rem;
+    scroll-padding-inline: 0.1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: rgba(79, 227, 210, 0.56) rgba(255, 255, 255, 0.08);
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .hero .loan-card[href] {
+    flex: 0 0 min(78vw, 19rem);
+    opacity: 1 !important;
+    scroll-snap-align: start;
+    transform: none !important;
+  }
+
+  .hero .loan-card:nth-child(n + 4) {
+    display: none !important;
   }
 
   .product-guide-links span[aria-hidden="true"] {

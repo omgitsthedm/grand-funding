@@ -9,21 +9,37 @@
     "generate:social": "node scripts/generate-original-social-art.mjs",
     "validate": "SITE_DIR=dist node scripts/validate-site.mjs",
     "validate:seo": "SITE_DIR=dist node scripts/validate-seo.mjs",
-    "test": "npm run build && npm run validate && npm run validate:seo",
+    "validate:claims": "node scripts/validate-regulated-claims.mjs",
+    "validate:claims:release": "CLAIMS_STRICT=1 node scripts/validate-regulated-claims.mjs",
+    "validate:quality": "node scripts/validate-quality-config.mjs",
+    "test": "npm run quality:fast",
     "verify:netlify-target": "node scripts/assert-netlify-target.mjs",
     "serve": "node scripts/serve-site.mjs",
     "test:crawl": "node scripts/crawl-site.mjs",
     "test:preservation": "node scripts/qa-preservation.mjs",
+    "test:a11y": "node scripts/qa-a11y.mjs",
+    "test:conversion": "node scripts/qa-conversion.mjs",
+    "test:cross-browser": "node scripts/qa-cross-browser.mjs",
     "test:premium": "node scripts/qa-premium.mjs",
     "test:premium:watchlist": "WATCHLIST_ONLY=1 node scripts/qa-premium.mjs",
     "test:premium:local": "BASE_URL=http://localhost:8888 node scripts/qa-premium.mjs",
-    "playwright:install": "npx playwright install --with-deps chromium"
+    "test:browser": "node scripts/run-site-qa.mjs",
+    "quality:fast": "npm run build && npm run validate && npm run validate:seo && npm run validate:claims && npm run validate:quality",
+    "quality:full": "npm run quality:fast && npm run test:browser",
+    "quality:release": "npm run quality:fast && npm run validate:claims:release && npm run test:browser && npm run verify:netlify-target",
+    "quality:live": "node scripts/run-site-qa.mjs --live",
+    "quality:maintenance": "npm run validate:quality && node scripts/audit-dead-code.mjs",
+    "deploy:preview": "npm run quality:release && npx --yes netlify-cli@27.0.0 deploy --dir=dist",
+    "deploy:production": "npm run quality:release && npx --yes netlify-cli@27.0.0 deploy --dir=dist --prod",
+    "playwright:install": "npx playwright install --with-deps chromium firefox webkit"
   },
   "devDependencies": {
-    "playwright": "^1.45.0"
+    "@axe-core/playwright": "4.12.1",
+    "playwright": "1.62.0",
+    "yaml": "2.9.0"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=24 <27"
   },
   "repository": {
     "type": "git",

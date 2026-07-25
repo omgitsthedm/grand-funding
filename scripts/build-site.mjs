@@ -2,13 +2,15 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { generateRss } from './generate-rss.mjs';
 import { normalizeBuiltSite } from './normalize-built-site.mjs';
+import { refineLegacyRuntime } from './refine-legacy-runtime.mjs';
 import { refineOriginalExperience } from './refine-original-experience.mjs';
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
 const SITE_ORIGIN = 'https://www.grandfundingllc.com';
-const RELEASE_DATE = '2026-07-24';
+const RELEASE_DATE = '2026-07-25';
 
 const ROOT_ASSETS = [
   '404.html',
@@ -74,12 +76,17 @@ for (const directory of PUBLIC_DIRECTORIES) {
   await copyRequired(path.join(ROOT, directory), path.join(DIST, directory));
 }
 
+await refineLegacyRuntime({ dist: DIST });
 await refineOriginalExperience({ dist: DIST });
 const normalization = await normalizeBuiltSite({
   root: ROOT,
   dist: DIST,
   siteOrigin: SITE_ORIGIN,
   releaseDate: RELEASE_DATE
+});
+const feedItems = await generateRss({
+  dist: DIST,
+  siteOrigin: SITE_ORIGIN
 });
 
 const files = await walk(DIST);
@@ -89,5 +96,5 @@ const bytes = (await Promise.all(files.map(async file => (await fs.stat(file)).s
 console.log(
   `Built ${files.length} public files (${(bytes / 1024 / 1024).toFixed(1)} MiB) in dist/; `
   + `normalized ${normalization.hrefsNormalized} links, ${normalization.indexablePages} indexable pages, `
-  + `${normalization.redirectRules} redirect rules`
+  + `${normalization.redirectRules} redirect rules, ${feedItems} RSS items`
 );

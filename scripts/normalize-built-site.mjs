@@ -5,6 +5,28 @@ const ORGANIZATION_NAME = 'Grand Funding LLC';
 const LANGUAGE = 'en-US';
 const OG_LOCALE = 'en_US';
 const DEFAULT_SOCIAL_IMAGE = '/images/og-grandfunding-v2.jpg';
+const SOCIAL_IMAGE_FAMILIES = Object.freeze({
+  fundedDeals: Object.freeze({
+    path: '/images/social/funded-deals-20260724.jpg',
+    alt: 'Funded real estate deals — Grand Funding LLC'
+  }),
+  investorGuides: Object.freeze({
+    path: '/images/social/investor-guides-20260724.jpg',
+    alt: 'Grand Funding LLC investor guides for private real estate lending'
+  }),
+  loanPrograms: Object.freeze({
+    path: '/images/social/loan-programs-20260725.jpg',
+    alt: 'Grand Funding LLC business-purpose real estate loan programs'
+  }),
+  loganDirect: Object.freeze({
+    path: '/images/social/logan-direct-lender-20260724.jpg',
+    alt: 'Logan Sullivan, founder and direct lender at Grand Funding LLC'
+  }),
+  marketLending: Object.freeze({
+    path: '/images/social/arizona-california-lending-20260725.jpg',
+    alt: 'Grand Funding LLC real estate investor lending in Arizona and California'
+  })
+});
 const GENERIC_ARIZONA_DESCRIPTION =
   'Arizona hard money lender. 24-hour approval, 3-5 day funding. Fix & flip, bridge, construction. $70K-$5M. Direct private lender in Phoenix & statewide.';
 const FORBIDDEN_SCHEMA_TYPES = new Set([
@@ -582,6 +604,7 @@ async function chooseSocialImage({
   let selectedPath = DEFAULT_SOCIAL_IMAGE;
   let routeAlt = null;
   let mappedRouteImage = false;
+  let uniquePostImage = false;
 
   if (isPost) {
     const slug = path.basename(relativeFile, '.html');
@@ -591,16 +614,31 @@ async function chooseSocialImage({
       : null;
 
     if (existingPath?.startsWith('/images/og/')) {
-      if (/\.png$/i.test(existingPath)) candidates.push(existingPath);
-      else candidates.push(existingPath.replace(/\.[^.]+$/i, '.png'));
+      const existingSlug = path.basename(
+        existingPath,
+        path.extname(existingPath)
+      );
+      if (existingSlug === slug) candidates.push(existingPath);
     }
-    candidates.push(`/images/og/${slug}.png`);
+    candidates.push(
+      `/images/og/${slug}.png`,
+      `/images/og/${slug}.jpg`,
+      `/images/og/${slug}.jpeg`,
+      `/images/og/${slug}.webp`
+    );
 
     for (const candidate of [...new Set(candidates)]) {
       if (await fileExists(path.join(dist, candidate.slice(1)))) {
         selectedPath = candidate;
+        uniquePostImage = true;
         break;
       }
+    }
+
+    if (!uniquePostImage) {
+      selectedPath = SOCIAL_IMAGE_FAMILIES.investorGuides.path;
+      routeAlt = SOCIAL_IMAGE_FAMILIES.investorGuides.alt;
+      mappedRouteImage = true;
     }
   } else {
     const mapping = socialImageForRoute(route);
@@ -610,6 +648,13 @@ async function chooseSocialImage({
       mappedRouteImage = true;
     }
   }
+
+  assertPrioritySocialImage({
+    isPost,
+    route,
+    selectedPath,
+    uniquePostImage
+  });
 
   const absoluteFile = path.join(dist, selectedPath.slice(1));
   if (!(await fileExists(absoluteFile))) {
@@ -635,22 +680,30 @@ async function chooseSocialImage({
   };
 }
 
-function socialImageForRoute(route) {
-  if (route === '/funded-deals') {
-    return {
-      path: '/images/social/funded-deals-20260724.jpg',
-      alt: 'Funded real estate deals — Grand Funding LLC'
-    };
-  }
+function isLoanProgramRoute(route) {
+  return (
+    route === '/products' ||
+    route.startsWith('/lp-') ||
+    /^\/(?:bridge-loans|cash-out-refinance|construction-loans|fix-and-flip-loans|second-position-loans)(?:-|$)/.test(
+      route
+    )
+  );
+}
+
+function isMarketLenderRoute(route) {
+  return /^\/[a-z0-9]+(?:-[a-z0-9]+)*-hard-money-lender$/.test(route);
+}
+
+function prioritySocialImageForRoute(route) {
+  if (route === '/funded-deals') return SOCIAL_IMAGE_FAMILIES.fundedDeals;
+  if (isLoanProgramRoute(route)) return SOCIAL_IMAGE_FAMILIES.loanPrograms;
+  if (isMarketLenderRoute(route)) return SOCIAL_IMAGE_FAMILIES.marketLending;
 
   if (
     ['/about', '/apply', '/contact', '/partners'].includes(route) ||
     route.startsWith('/thanks')
   ) {
-    return {
-      path: '/images/social/logan-direct-lender-20260724.jpg',
-      alt: 'Logan Sullivan, founder and direct lender at Grand Funding LLC'
-    };
+    return SOCIAL_IMAGE_FAMILIES.loganDirect;
   }
 
   if (
@@ -658,13 +711,32 @@ function socialImageForRoute(route) {
     route.startsWith('/glossary-') ||
     route.startsWith('/compare-')
   ) {
-    return {
-      path: '/images/social/investor-guides-20260724.jpg',
-      alt: 'Grand Funding LLC investor guides for private real estate lending'
-    };
+    return SOCIAL_IMAGE_FAMILIES.investorGuides;
   }
 
   return null;
+}
+
+function assertPrioritySocialImage({
+  isPost,
+  route,
+  selectedPath,
+  uniquePostImage
+}) {
+  const expected =
+    isPost && !uniquePostImage
+      ? SOCIAL_IMAGE_FAMILIES.investorGuides
+      : prioritySocialImageForRoute(route);
+
+  if (expected && selectedPath !== expected.path) {
+    throw new Error(
+      `${route}: priority social family must use ${expected.path}; selected ${selectedPath}`
+    );
+  }
+}
+
+function socialImageForRoute(route) {
+  return prioritySocialImageForRoute(route);
 }
 
 function socialMetaBlock({

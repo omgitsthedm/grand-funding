@@ -1,0 +1,506 @@
+{
+  "schemaVersion": 1,
+  "lastReviewed": "2026-07-25",
+  "scope": {
+    "description": "Fail-closed baseline for public regulated and comparative lending claims. This registry documents current wording; it does not approve or resolve it.",
+    "sourceIncludes": [
+      "/*.html",
+      "/posts/**/*.html",
+      "/llms.txt"
+    ],
+    "generatedIncludesWhenPresent": [
+      "/dist/**/*.html",
+      "/dist/llms.txt",
+      "/dist/feed.xml"
+    ]
+  },
+  "rules": [
+    {
+      "id": "occupancy-and-consumer-purpose",
+      "label": "Owner occupancy, primary residence, and consumer-purpose eligibility",
+      "pattern": "\\b(?:owner[- ]occupied|primary residence(?:s)?|consumer[- ]purpose)\\b",
+      "flags": "gi"
+    },
+    {
+      "id": "rates-and-points",
+      "label": "Advertised rates, APR, and origination points",
+      "pattern": "(?:\\b(?:interest rates?|rates?|APR|origination (?:fees?|points?)|points?|interestRate)\\b.{0,30}?\\d{1,3}(?:\\.\\d+)?(?:\\s*(?:-|–|—|to)\\s*\\d{1,3}(?:\\.\\d+)?)?\\s*%|\\d{1,3}(?:\\.\\d+)?(?:\\s*(?:-|–|—|to)\\s*\\d{1,3}(?:\\.\\d+)?)?\\s*%.{0,30}?\\b(?:interest rates?|rates?|APR|origination (?:fees?|points?)|points?)\\b|\\b\\d+(?:\\.\\d+)?(?:\\s*(?:-|–|—|to)\\s*\\d+(?:\\.\\d+)?)?\\s+(?:origination )?points?\\b)",
+      "flags": "gi"
+    },
+    {
+      "id": "loan-amounts",
+      "label": "Advertised loan minimums, maximums, ranges, and financing amounts",
+      "pattern": "(?:\"(?:minValue|maxValue)\"\\s*:\\s*\\d+|\\b(?:loan amounts?|loan range|financing|minimum|maximum|up to|borrow|fund)\\b.{0,30}?\\$[\\d,.]+(?:\\s*(?:-|–|—|to)\\s*\\$?[\\d,.]+)?\\s*(?:[KkMm]\\+?|million|thousand)?|\\$[\\d,.]+(?:\\s*(?:-|–|—|to)\\s*\\$?[\\d,.]+)?\\s*(?:[KkMm]\\+?|million|thousand)?.{0,30}?\\b(?:loan amounts?|loan range|financing|minimum|maximum|borrow)\\b|\\$[\\d,.]+(?:\\s*(?:-|–|—|to)\\s*\\$?[\\d,.]+)?\\s*(?:[KkMm]\\+?|million|thousand)?\\s*(?:loan|ceiling|cap)\\b)",
+      "flags": "gi"
+    },
+    {
+      "id": "leverage",
+      "label": "Advertised LTV, ARV, LTC, CLTV, and financed-cost limits",
+      "pattern": "(?:\\b(?:LTV|ARV|LTC|CLTV)\\b.{0,35}?\\d{1,3}(?:\\.\\d+)?(?:\\s*(?:-|–|—|to)\\s*\\d{1,3}(?:\\.\\d+)?)?\\s*%|\\d{1,3}(?:\\.\\d+)?(?:\\s*(?:-|–|—|to)\\s*\\d{1,3}(?:\\.\\d+)?)?\\s*%\\s*(?:of\\s+(?:the\\s+)?(?:purchase price|current value|after-repair value|ARV|LTV|LTC|CLTV|project costs?|rehab(?: costs?)?|land value)|(?:LTV|ARV|LTC|CLTV)\\b))",
+      "flags": "gi"
+    },
+    {
+      "id": "timing-taxonomy",
+      "label": "Approval, decision, term-sheet, closing, funding, and response timing",
+      "pattern": "(?:\\b(?:approv(?:e|al|ed|als)|decision|term[ -]sheets?|clos(?:e|es|ing|ed)|fund(?:s|ing|ed)?|turnaround|pre-approv(?:al|ed)|respond|response)\\b[^.!?]{0,30}?\\b(?:same[ -]day|\\d+(?:\\s*(?:-|–|—|to)\\s*\\d+)?(?:\\+)?[ -]?(?:business[ -])?(?:hours?|days?|weeks?))\\b|\\b(?:same[ -]day|\\d+(?:\\s*(?:-|–|—|to)\\s*\\d+)?(?:\\+)?[ -]?(?:business[ -])?(?:hours?|days?|weeks?))\\b[^.!?]{0,30}?\\b(?:approv(?:e|al|ed|als)|decision|term[ -]sheets?|clos(?:e|es|ing|ed)|fund(?:s|ing|ed)?|turnaround|pre-approv(?:al|ed)|respond|response)\\b)",
+      "flags": "gi"
+    },
+    {
+      "id": "service-area",
+      "label": "Licensed, advertised, and exceptional service-area claims",
+      "pattern": "(?:\\bnationwide\\b|\\bstatewide\\b|\\boutside Arizona or California\\b|\\b(?:Arizona|California)\\s*(?:and|or|&)\\s*(?:California|Arizona)\\b|\\b(?:serv(?:e|es|ed|ing)|lend(?:s|ing)?|originate(?:s|d|ing)?|licensed|provid(?:e|es|ing))\\s+[^.!?]{0,35}?\\b(?:Arizona|California|Alabama|Alaska|Arkansas|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New Hampshire|New Jersey|New Mexico|New York|North Carolina|North Dakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode Island|South Carolina|South Dakota|Tennessee|Texas|Utah|Vermont|Virginia|Washington|West Virginia|Wisconsin|Wyoming)\\b)",
+      "flags": "gi"
+    },
+    {
+      "id": "unverified-volume-and-vanity",
+      "label": "Unverified lending volume and self-awarded best-lender claims",
+      "pattern": "(?:1,500 loans|\\$350 million|best hard money lender(?:s)?)",
+      "flags": "gi"
+    }
+  ],
+  "issues": [
+    {
+      "id": "occupancy-policy",
+      "status": "unresolved",
+      "strictBlock": true,
+      "decisionOwner": "Logan Sullivan and lending counsel",
+      "summary": "Public pages currently conflict on whether Grand Funding can originate owner-occupied or primary-residence loans.",
+      "decisionNeeded": "Confirm the authoritative occupancy and consumer-purpose policy, including whether any product, state, or license-specific exception exists. Then align every registered occurrence and mark this issue resolved only after legal review.",
+      "affirmativeOccurrenceIds": [
+        "faq-primary-residence-question",
+        "faq-owner-occupied-answer",
+        "home-owner-occupied-ok",
+        "products-owner-and-investment",
+        "san-diego-owner-may-qualify",
+        "second-position-primary-may-qualify"
+      ],
+      "restrictiveOccurrenceIds": [
+        "cashout-primary-excluded-a",
+        "cashout-primary-excluded-b",
+        "disclosures-no-owner-consumer",
+        "disclosures-consumer-statutes",
+        "disclosures-not-primary",
+        "disclosures-arizona-non-owner",
+        "disclosures-california-non-owner",
+        "disclosures-california-certification",
+        "llms-not-a-fit",
+        "second-position-guide-property",
+        "second-position-guide-denial",
+        "terms-no-owner"
+      ]
+    },
+    {
+      "id": "rates-and-points-policy",
+      "status": "unresolved",
+      "strictBlock": true,
+      "decisionOwner": "Logan Sullivan and lending counsel",
+      "summary": "Advertised rates and points differ across disclosures, products, FAQs, location pages, and comparison pages.",
+      "decisionNeeded": "Approve per-product rate and points ranges, qualifiers, effective date, and a single change-control source.",
+      "evidence": [
+        "disclosures.html:294-312",
+        "products.html:238",
+        "faq.html:207",
+        "san-diego-hard-money-lender.html:419",
+        "compare-hard-money-vs-bank.html:304-306",
+        "compare-bridge-vs-cash-out-refi.html:304-306"
+      ]
+    },
+    {
+      "id": "loan-amount-policy",
+      "status": "unresolved",
+      "strictBlock": true,
+      "decisionOwner": "Logan Sullivan and lending counsel",
+      "summary": "Construction and second-position minimums and maximums conflict across public pages.",
+      "decisionNeeded": "Approve each product minimum, hard maximum, and any documented exception; remove plus signs from hard caps unless approved.",
+      "evidence": [
+        "disclosures.html:299-304",
+        "products.html:238",
+        "second-position-loans-arizona.html:290",
+        "second-position-loans-scottsdale.html:317",
+        "llms.txt:90-91"
+      ]
+    },
+    {
+      "id": "leverage-policy",
+      "status": "unresolved",
+      "strictBlock": true,
+      "decisionOwner": "Logan Sullivan and lending counsel",
+      "summary": "LTV, ARV, LTC, and CLTV percentages use conflicting values or denominators.",
+      "decisionNeeded": "Approve the exact denominator and combined constraints for every product, including construction and second-position loans.",
+      "evidence": [
+        "disclosures.html:297-304",
+        "products.html:238",
+        "faq.html:207",
+        "second-position-loans-arizona.html:290",
+        "llms.txt:11-28"
+      ]
+    },
+    {
+      "id": "timing-taxonomy",
+      "status": "unresolved",
+      "strictBlock": true,
+      "decisionOwner": "Logan Sullivan, operations, and lending counsel",
+      "summary": "Approval, term-sheet, closing, and funding timeframes are used interchangeably and vary by route.",
+      "decisionNeeded": "Approve separate, qualified SLAs by product for decision, term sheet, closing, and funding.",
+      "evidence": [
+        "llms.txt:9-10",
+        "products.html:233-245",
+        "construction-loans-arizona.html:290",
+        "second-position-loans-arizona.html:231-290",
+        "second-position-loans-scottsdale.html:297-322",
+        "cash-out-refinance-investors-arizona.html:290"
+      ]
+    },
+    {
+      "id": "service-area-policy",
+      "status": "unresolved",
+      "strictBlock": true,
+      "decisionOwner": "Logan Sullivan and lending counsel",
+      "summary": "Terms and normalized schema limit eligibility to Arizona and California while public copy markets select nationwide deals.",
+      "decisionNeeded": "Confirm the licensed origination footprint and the provenance and publishability of any transaction outside Arizona or California.",
+      "evidence": [
+        "terms.html:281",
+        "disclosures.html:282",
+        "index.html:183-221",
+        "llms.txt:139-156"
+      ]
+    },
+    {
+      "id": "volume-and-comparative-proof",
+      "status": "unresolved",
+      "strictBlock": true,
+      "decisionOwner": "Logan Sullivan and lending counsel",
+      "summary": "The FAQ retains unverified 1,500-loan and $350M volume claims, and location pages self-award best-lender status.",
+      "decisionNeeded": "Provide dated documentary support and approval or authorize removal and criteria-based neutral wording.",
+      "affirmativeOccurrenceIds": [
+        "faq-unverified-volume",
+        "phoenix-best-lender-question",
+        "los-angeles-best-lender-question"
+      ],
+      "restrictiveOccurrenceIds": []
+    }
+  ],
+  "snapshots": [
+    {
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "source": {
+        "matchedFiles": 12,
+        "matchCount": 35,
+        "sha256": "99f7cd3bcad509e3aa980d74c8d7e69522fb519be520f0b82b680f9931d184b8"
+      },
+      "dist": {
+        "matchedFiles": 12,
+        "matchCount": 31,
+        "sha256": "e2c7022a14e6a80278577bdbad83351a2d313cfdca0385c51f767b8eb91d2879"
+      }
+    },
+    {
+      "issueId": "rates-and-points-policy",
+      "ruleId": "rates-and-points",
+      "source": {
+        "matchedFiles": 41,
+        "matchCount": 97,
+        "sha256": "ffbd7e4f7b4b072ccdc2a1356e720d77b2edae90256e46d7b95ade5dca7b8f56"
+      },
+      "dist": {
+        "matchedFiles": 41,
+        "matchCount": 74,
+        "sha256": "3cbfe7e1d3d7b061b885dc8d01674aba4ee85e40c815fd7bb8522371035a8f7a"
+      }
+    },
+    {
+      "issueId": "loan-amount-policy",
+      "ruleId": "loan-amounts",
+      "source": {
+        "matchedFiles": 62,
+        "matchCount": 194,
+        "sha256": "66bcc3c4c6f57fa24f2ba2f55796134e32178a1ce1d5fa05484cfced2ed5130e"
+      },
+      "dist": {
+        "matchedFiles": 62,
+        "matchCount": 153,
+        "sha256": "ba7922259e9a3feaf0f598871e8d5bc5f8016df9dbd1a3fb6633c636d303fd10"
+      }
+    },
+    {
+      "issueId": "leverage-policy",
+      "ruleId": "leverage",
+      "source": {
+        "matchedFiles": 63,
+        "matchCount": 300,
+        "sha256": "ab3fa2705f3cd039bed1df86cc99f9777f6e286e0a46eacfbc21efd4b08ad19d"
+      },
+      "dist": {
+        "matchedFiles": 63,
+        "matchCount": 267,
+        "sha256": "0751879dd741b3eb5e420f5a506709c9898f2f285f0a07d87cba5e56baee8916"
+      }
+    },
+    {
+      "issueId": "timing-taxonomy",
+      "ruleId": "timing-taxonomy",
+      "source": {
+        "matchedFiles": 83,
+        "matchCount": 1201,
+        "sha256": "eb8d2b79e054d4a116de98c5c68ffddda41665d8e13425c17db31851c949f06d"
+      },
+      "dist": {
+        "matchedFiles": 76,
+        "matchCount": 792,
+        "sha256": "4701b040170b1ec3e8e458203f4befe23fb76cfbed6febded0b1bff47926c380"
+      }
+    },
+    {
+      "issueId": "service-area-policy",
+      "ruleId": "service-area",
+      "source": {
+        "matchedFiles": 87,
+        "matchCount": 433,
+        "sha256": "b1df85cf01b3b217a7f963a4a6a086cf6a1d3180428e28369c74687baf5af325"
+      },
+      "dist": {
+        "matchedFiles": 87,
+        "matchCount": 300,
+        "sha256": "c77fecd6ae012bcbed6168f7f62b15e6e49c03ea1cc9a5944845d840a048db6e"
+      }
+    },
+    {
+      "issueId": "volume-and-comparative-proof",
+      "ruleId": "unverified-volume-and-vanity",
+      "source": {
+        "matchedFiles": 3,
+        "matchCount": 8,
+        "sha256": "86948f5faebcf3d39b57691c7f5a47606d4f3705a80917529975f8dd12ba97f4"
+      },
+      "dist": {
+        "matchedFiles": 3,
+        "matchCount": 6,
+        "sha256": "6417d7f77015e1bf2b916f75505947d0ea1dc25bea58290bdfe8463121dc07cd"
+      }
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "cashout-primary-excluded-a",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "restrictive",
+      "path": "cash-out-refinance-investors-arizona.html",
+      "phrase": "Primary residences are excluded — investment and non-owner-occupied properties only.",
+      "count": 2,
+      "distCount": 1
+    },
+    {
+      "id": "cashout-primary-excluded-b",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "restrictive",
+      "path": "cash-out-refinance-investors-arizona.html",
+      "phrase": "Investment and non-owner-occupied properties only — primary residences are excluded from this program.",
+      "count": 1
+    },
+    {
+      "id": "comparison-bank-primary-residence",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "educational-context",
+      "path": "compare-hard-money-vs-bank.html",
+      "phrase": "Long-term hold rentals, primary residence",
+      "count": 1
+    },
+    {
+      "id": "disclosures-no-owner-consumer",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "restrictive",
+      "path": "disclosures.html",
+      "phrase": "We do not originate loans secured by owner-occupied primary residences and do not offer consumer-purpose mortgage products.",
+      "count": 1
+    },
+    {
+      "id": "disclosures-consumer-statutes",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "restrictive",
+      "path": "disclosures.html",
+      "phrase": "Grand Funding loans are not consumer-purpose loans subject to the Truth in Lending Act (TILA), Real Estate Settlement Procedures Act (RESPA), or similar consumer-lending statutes applicable to owner-occupied primary residences.",
+      "count": 1
+    },
+    {
+      "id": "disclosures-not-primary",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "restrictive",
+      "path": "disclosures.html",
+      "phrase": "the subject property is not and will not be your primary residence.",
+      "count": 1
+    },
+    {
+      "id": "disclosures-arizona-non-owner",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "restrictive",
+      "path": "disclosures.html",
+      "phrase": "secured by non-owner-occupied investment real estate.",
+      "count": 1
+    },
+    {
+      "id": "disclosures-california-non-owner",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "restrictive",
+      "path": "disclosures.html",
+      "phrase": "secured by non-owner-occupied real estate,",
+      "count": 1
+    },
+    {
+      "id": "disclosures-california-certification",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "restrictive",
+      "path": "disclosures.html",
+      "phrase": "business-purpose / non-owner-occupied certification signed at closing.",
+      "count": 1
+    },
+    {
+      "id": "faq-primary-residence-question",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "affirmative",
+      "path": "faq.html",
+      "phrase": "Can I use a hard money loan to buy my primary residence?",
+      "count": 1
+    },
+    {
+      "id": "faq-owner-occupied-answer",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "affirmative",
+      "path": "faq.html",
+      "phrase": "Yes, we offer owner-occupied loans for primary residences, typically through our cash-out refinance program.",
+      "count": 1
+    },
+    {
+      "id": "home-owner-occupied-ok",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "affirmative",
+      "path": "index.html",
+      "phrase": "Owner-occupied OK",
+      "count": 1
+    },
+    {
+      "id": "llms-not-a-fit",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "restrictive",
+      "path": "llms.txt",
+      "phrase": "Owner-occupied primary residences (they only lend on investment / business-purpose property)",
+      "count": 1
+    },
+    {
+      "id": "second-position-guide-property",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "restrictive",
+      "path": "posts/second-position-loans-arizona-guide.html",
+      "phrase": "Properties: Investment real estate in Arizona and California (non-owner occupied)",
+      "count": 1
+    },
+    {
+      "id": "second-position-guide-denial",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "restrictive",
+      "path": "posts/second-position-loans-arizona-guide.html",
+      "phrase": "Owner-occupied residential property: We fund investment property only. Primary residences fall under TRID and QM rules",
+      "count": 1
+    },
+    {
+      "id": "banks-article-owner-context",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "educational-context",
+      "path": "posts/why-banks-say-no-to-fix-and-flip-investors.html",
+      "phrase": "underwrite low-risk loans for owner-occupied or stabilized rental properties.",
+      "count": 1
+    },
+    {
+      "id": "banks-article-heloc-context",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "educational-context",
+      "path": "posts/why-banks-say-no-to-fix-and-flip-investors.html",
+      "phrase": "use a HELOC on their primary residence (or another investment property)",
+      "count": 1
+    },
+    {
+      "id": "products-owner-and-investment",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "affirmative",
+      "path": "products.html",
+      "phrase": "Owner-Occupied & Investment: Both qualify",
+      "count": 1
+    },
+    {
+      "id": "san-diego-owner-may-qualify",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "affirmative",
+      "path": "san-diego-hard-money-lender.html",
+      "phrase": "Both investment and owner-occupied properties may qualify depending on the loan type.",
+      "count": 2,
+      "distCount": 1
+    },
+    {
+      "id": "second-position-primary-may-qualify",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "affirmative",
+      "path": "second-position-loans-arizona.html",
+      "phrase": "Primary residences may qualify for certain programs.",
+      "count": 2,
+      "distCount": 1
+    },
+    {
+      "id": "terms-no-owner",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "restrictive",
+      "path": "terms.html",
+      "phrase": "Grand Funding does not originate loans secured by owner-occupied primary residences",
+      "count": 1
+    },
+    {
+      "id": "faq-unverified-volume",
+      "issueId": "volume-and-comparative-proof",
+      "ruleId": "unverified-volume-and-vanity",
+      "classification": "unverified-volume",
+      "path": "faq.html",
+      "phrase": "We've funded over 1,500 loans totaling more than $350 million.",
+      "count": 1
+    },
+    {
+      "id": "phoenix-best-lender-question",
+      "issueId": "volume-and-comparative-proof",
+      "ruleId": "unverified-volume-and-vanity",
+      "classification": "self-awarded-comparison",
+      "path": "phoenix-hard-money-lender.html",
+      "phrase": "Who is the best hard money lender in Phoenix?",
+      "count": 3,
+      "distCount": 2
+    },
+    {
+      "id": "los-angeles-best-lender-question",
+      "issueId": "volume-and-comparative-proof",
+      "ruleId": "unverified-volume-and-vanity",
+      "classification": "self-awarded-comparison",
+      "path": "los-angeles-hard-money-lender.html",
+      "phrase": "Who are the best hard money lenders in Los Angeles?",
+      "count": 3,
+      "distCount": 2
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+version: 1
+project: grand-funding
+updated: 2026-07-25
+
+preservation_contract:
+  brand:
+    - desert-night background system
+    - teal and ember accent system
+    - DM Sans typography
+    - original moving Arizona hero
+    - original hero poster fallback
+  experience:
+    - direct access to Logan
+    - funded-deal proof
+    - loan calculator behavior
+    - Netlify form names, actions, and no-JS POST fallback
+  forbidden_without_client_approval:
+    - rates, fees, points, loan amounts, leverage, or timing claims
+    - occupancy, consumer-purpose, licensing, or service-area policy
+    - testimonials, funded-deal facts, or comparative superiority claims
+    - production form submissions
+
+commands:
+  fast: npm run quality:fast
+  full: npm run quality:full
+  release: npm run quality:release
+  live: BASE_URL=https://www.grandfundingllc.com npm run quality:live
+  maintenance: npm run quality:maintenance
+
+required_gates:
+  fast:
+    - deterministic build
+    - public-boundary validation
+    - technical SEO validation
+    - frozen regulated-claims baseline
+    - quality-config validation
+  full:
+    - route crawl
+    - original-experience preservation
+    - accessibility
+    - conversion and form resilience
+    - Chromium, Firefox, and WebKit critical paths
+    - premium watchlist
+  release:
+    - all full gates
+    - strict regulated-claims approval
+    - exact Netlify site identity
+
+runtime:
+  target_node: 24.18.0
+  package_manager: npm
+  publish_directory: dist
+  browsers:
+    - chromium
+    - firefox
+    - webkit
+
+production:
+  site_id: 055c5942-aeaa-478a-9508-a34406994d5d
+  canonical_origin: https://www.grandfundingllc.com
+  deploy_requires_explicit_user_authorization: true

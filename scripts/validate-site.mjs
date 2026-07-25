@@ -93,6 +93,10 @@ for (const file of htmlFiles) {
       errors.push(`${name}: missing meta description`);
     }
     if (!/<link\b[^>]*\brel=["']canonical["']/i.test(html)) errors.push(`${name}: missing canonical link`);
+    if (!/<link\b[^>]*\brel=["']alternate["'][^>]*\btype=["']application\/rss\+xml["']/i.test(html)
+      && !/<link\b[^>]*\btype=["']application\/rss\+xml["'][^>]*\brel=["']alternate["']/i.test(html)) {
+      errors.push(`${name}: missing RSS discovery link`);
+    }
   }
 
   if (/class=["'][^"']*\bclass\s*=/.test(html)) errors.push(`${name}: malformed nested class attribute`);
@@ -134,12 +138,77 @@ for (const file of htmlFiles) {
     }
     if (!/name=["']form-name["']/i.test(body)) errors.push(`${name}: ${attributes.name || 'form'} missing form-name input`);
     if (!/\bnetlify-honeypot=/i.test(open)) errors.push(`${name}: ${attributes.name || 'form'} missing honeypot declaration`);
+    if (['pre-approval', 'contact'].includes(attributes.name)) {
+      if (!/\bdata-gf-lead-form(?:\s|>)/i.test(open)) {
+        errors.push(`${name}: ${attributes.name} missing resilient lead-form marker`);
+      }
+      if (!/\bdata-form-kind=["'](?:application|contact)["']/i.test(open)) {
+        errors.push(`${name}: ${attributes.name} missing typed form kind`);
+      }
+      if (!/\bdata-form-status(?:\s|>)/i.test(body) || !/\brole=["']status["']/i.test(body)) {
+        errors.push(`${name}: ${attributes.name} missing accessible submission status`);
+      }
+    }
+  }
+
+  const faqQuestions = [...html.matchAll(/<button\b[^>]*\bclass=(?:"[^"]*\bfaq-question\b[^"]*"|'[^']*\bfaq-question\b[^']*')[^>]*>/gi)];
+  const faqAnswers = [...html.matchAll(/<div\b[^>]*\bclass=(?:"[^"]*\bfaq-answer\b[^"]*"|'[^']*\bfaq-answer\b[^']*')[^>]*>/gi)];
+  if (faqQuestions.length !== faqAnswers.length) {
+    errors.push(`${name}: FAQ question/answer count mismatch (${faqQuestions.length}/${faqAnswers.length})`);
+  }
+  faqQuestions.forEach((question, index) => {
+    const questionAttributes = parseAttributes(question[0]);
+    const answerAttributes = parseAttributes(faqAnswers[index]?.[0] || '');
+    if (!questionAttributes.id || questionAttributes['aria-controls'] !== answerAttributes.id) {
+      errors.push(`${name}: FAQ disclosure ${index + 1} has broken controls relationship`);
+    }
+    if (answerAttributes['aria-labelledby'] !== questionAttributes.id) {
+      errors.push(`${name}: FAQ disclosure ${index + 1} has broken label relationship`);
+    }
+    if (!/\shidden(?:\s|>)/i.test(faqAnswers[index]?.[0] || '')) {
+      errors.push(`${name}: FAQ disclosure ${index + 1} is not semantically collapsed`);
+    }
+  });
+
+  for (const tableMatch of html.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/gi)) {
+    const table = tableMatch[0];
+    if (!/<caption\b[^>]*>[\s\S]*?<\/caption>/i.test(table)) {
+      errors.push(`${name}: table missing caption`);
+    }
+    for (const headMatch of table.matchAll(/<thead\b[^>]*>[\s\S]*?<\/thead>/gi)) {
+      for (const header of headMatch[0].matchAll(/<th\b[^>]*>/gi)) {
+        if (!/\bscope=["']col["']/i.test(header[0])) {
+          errors.push(`${name}: table column header missing scope=col`);
+        }
+      }
+    }
+  }
+
+  if (/^thanks(?:-contact)?\.html$/.test(name)) {
+    if (/generate_lead|gfLeadConversion\(\)/i.test(html)) {
+      errors.push(`${name}: unconfirmed direct-load lead conversion remains`);
+    }
+    const gtmFallbacks = count(
+      html,
+      /<noscript\b[^>]*>[\s\S]*?googletagmanager\.com\/ns\.html\?id=GTM-M36VM2VG[\s\S]*?<\/noscript>/gi
+    );
+    if (gtmFallbacks > 1) errors.push(`${name}: duplicate GTM noscript fallbacks (${gtmFallbacks})`);
   }
 }
 
 for (const file of files.filter(file => file.endsWith('.css'))) {
   const css = fs.readFileSync(file, 'utf8');
   for (const match of css.matchAll(/url\(\s*["']?([^"')]+)["']?\s*\)/gi)) resolveReference(match[1], file);
+}
+
+const feedPath = path.join(SITE, 'feed.xml');
+if (!fs.existsSync(feedPath)) {
+  errors.push('feed.xml: missing generated investor-guide RSS feed');
+} else {
+  const feed = fs.readFileSync(feedPath, 'utf8');
+  if (!/<rss\b/i.test(feed) || !/<channel\b/i.test(feed) || count(feed, /<item\b/gi) < 1) {
+    errors.push('feed.xml: invalid or empty RSS feed');
+  }
 }
 
 if (errors.length) {

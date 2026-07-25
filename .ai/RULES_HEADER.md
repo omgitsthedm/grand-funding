@@ -14,51 +14,61 @@ Client Projects under Little Fight NYC
 
 Tier:
 
-Tier 2 — live lead-gen site for a regulated lender
+Tier 2 — live lead-generation site for a regulated lender
 
 Risk:
 
-Medium — real-estate / private-lending site with NMLS licensing + an `/apply` lead form; copy is compliance-sensitive
+Medium — real-estate private-lending site with licensing, regulated claims, analytics, and live lead forms
 
 Canonical Path:
+
+/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding
+
+Visible Client Path:
 
 /Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding
 
 Remote:
 
-https://github.com/omgitsthedm/grand-funding.git  (default branch: `master`)
+https://github.com/omgitsthedm/grand-funding.git (default branch: `master`)
 
 Host:
 
-Netlify — **static site, `publish = "."`** (whole repo root), no build (`command = echo`). `.md`/internal files are already blocked from public serving via a `/*.md → 404` redirect (so `.ai/`, `CLAUDE.md`, `AGENTS.md` are NOT public).
+Netlify project `grandfundingllc`, site ID `055c5942-aeaa-478a-9508-a34406994d5d`. Deterministic build publishes only `dist/`. Deployment is manual and is not triggered by Git push.
 
 Live URL:
 
-`https://www.grandfundingllc.com` (apex → www via netlify redirect)
+`https://www.grandfundingllc.com`
 
 Stack:
 
-Static HTML/CSS/JS (75 pages), DM Sans variable font (subsetted). Playwright premium-QA scripts (`npm run test:premium`). No framework, no build step.
+Static HTML/CSS/JavaScript with Node `24.18.0` build, validation, Playwright, axe, and release scripts.
 
 ## Commands
 
-- Dev / preview: serve the folder statically (e.g. `npx serve .` or Netlify dev); no build needed.
-- Build: none (`publish = "."`, static).
-- Premium QA: `npm run test:premium` (Playwright; `:local` variant for localhost).
-- Deploy: `git push origin master` → Netlify auto-publishes (push = production deploy → gated by clear, scoped confirmation from David).
+- Install: `npm ci`
+- Fast gate: `npm run quality:fast`
+- Full gate: `npm run quality:full`
+- Serve exact artifact: `npm run serve -- --dir dist --port 8888`
+- Release gate: `npm run quality:release`
+- Preview deployment: `npm run deploy:preview`
+- Production deployment: `npm run deploy:production`
+
+Never serve or deploy the repository root. Never use `--dir=.`.
 
 ## Locked Rules
 
-- Live lender site — treat as production. Branch is `master` (not main).
-- **Compliance-sensitive copy:** NMLS #, license #s, rates, lending claims, and disclosures must not be altered without David/Logan approval. Don't invent rates or legal/financial claims.
-- `/apply` is a real lead form — do not submit test leads against production.
-- Images `.webp` + `width`/`height` + lazy-load (mixed jpg/png/webp present — webp pass is a future option).
-- Mobile-first, WCAG AA, LiFi footer. Preserve the dark cinematic palette (see CLAUDE.md).
-- `git push` (to `master`) = production deploy → gated. `.env`/secrets never read.
-- `.ai/`, `CLAUDE.md`, `AGENTS.md` stay private via the existing `/*.md → 404` redirect — do not remove that rule.
+- Preserve the cinematic desert-night identity, teal/ember palette, moving Arizona hero, calculator, funded-deal proof, and Netlify form contracts.
+- Rates, fees, points, amounts, leverage, timing, occupancy, consumer purpose, licenses, service area, testimonials, funded-deal facts, and comparative claims require approved facts and lending-counsel review.
+- Strict release remains blocked while any issue in `.lifi/regulated-claims.json` is unresolved.
+- Do not submit production forms during QA.
+- Do not read or expose `.env*`, credentials, client records, or submission data.
+- Commit, push, preview deploy, production deploy, DNS, and external-account changes require the authorization appropriate to that action.
+- Google Ads labels must remain dormant until approved values are supplied.
+- No PostHog account or integration is required.
 
-## Grand Funding QA Harness Map
+## QA Harness Map
 
-Observational (agent may run): `git status/log`, read source/config, static local serve, `npm run test:premium:local`, public GET to www.grandfundingllc.com, read-only Netlify deploy metadata.
+Observational: Git status/log, source/config inspection, local build/server, `quality:fast`, `quality:full`, telemetry-blocked live GET audits, read-only Netlify metadata, DNS lookup.
 
-Transactional/gated (David-run / approved): `git push`/Netlify deploy; real `/apply` lead submissions; any change to NMLS/license/rate/disclosure copy; DNS/domain/env changes.
+Transactional: form submission, commit, push, deploy, DNS mutation, external-account configuration, or regulated-copy change.

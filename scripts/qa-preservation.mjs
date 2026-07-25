@@ -104,7 +104,8 @@ const TELEMETRY_HOSTS = [
   /(^|\.)clarity\.ms$/i,
   /(^|\.)hotjar\.com$/i,
   /(^|\.)segment\.com$/i,
-  /(^|\.)segment\.io$/i
+  /(^|\.)segment\.io$/i,
+  /(^|\.)posthog\.com$/i
 ];
 
 const INTERNAL_PRODUCTION_HOSTS = new Set([
@@ -548,6 +549,22 @@ async function inspectForms(page, route) {
         if (!field) issues.push(`operational hidden field is missing: ${fieldName}`);
       }
 
+      const submit = form.querySelector('button[type="submit"]');
+      const status = form.querySelector('[data-form-status]');
+      const expectedType = expected.name === 'contact' ? 'contact' : 'application';
+      if (!form.hasAttribute('data-gf-lead-form')) {
+        issues.push('resilient lead-form marker is missing');
+      }
+      if (form.getAttribute('data-form-kind') !== expectedType) {
+        issues.push(`typed form kind must be ${expectedType}`);
+      }
+      if (!submit?.getAttribute('data-submit-label')) {
+        issues.push('route-specific submit label is missing');
+      }
+      if (!status || status.getAttribute('role') !== 'status') {
+        issues.push('accessible submission status region is missing');
+      }
+
       return issues;
     },
     {
@@ -576,6 +593,9 @@ async function inspectRefinedRouteFlow(page, route, width) {
       };
 
       if (expectedRoute === '/blog') {
+        if (document.querySelector('.blog-toolbar .ghost-btn')) {
+          issues.push('redundant blog-toolbar conversion CTA remains');
+        }
         const grid = document.querySelector('.blog-grid');
         if (!grid) {
           issues.push('blog grid is missing');
@@ -638,6 +658,33 @@ async function inspectRefinedRouteFlow(page, route, width) {
             `products needs one decisive close; found final=${genericClose}, `
               + `duplicate=${duplicateClose}`
           );
+        }
+      }
+
+      if (expectedRoute === '/') {
+        const calculator = document.querySelector('main .loan-calc');
+        const products = document.querySelector('main .products-overview-section');
+        if (!calculator || !products) {
+          issues.push('homepage calculator or product section is missing');
+        } else if (
+          !(calculator.compareDocumentPosition(products)
+            & Node.DOCUMENT_POSITION_FOLLOWING)
+        ) {
+          issues.push('homepage calculator must precede the long product inventory');
+        }
+
+        if (viewportWidth <= 820) {
+          const panel = document.querySelector('.hero .hero-loans');
+          const cards = Array.from(
+            document.querySelectorAll('.hero .loan-card[href]')
+          );
+          const visibleCards = cards.filter(visible);
+          if (!visible(panel) || visibleCards.length !== 3) {
+            issues.push(
+              `mobile hero needs a compact 3-deal proof strip; got panel=${visible(panel)} `
+                + `and ${visibleCards.length} visible cards`
+            );
+          }
         }
       }
 
@@ -775,6 +822,26 @@ async function inspectStickyAndConsent(page, route, width) {
     issues.push('cookie consent did not close after Essential only');
   }
 
+  const suppressionZones = {
+    '/': ['.meet-logan__cta', '.loan-calc'],
+    '/products': ['.products-hero', '.quiz'],
+    '/funded-deals': ['.deals-hero'],
+    '/blog': ['.blog-hero', '.blog-callout']
+  }[route] || [];
+  for (const selector of suppressionZones) {
+    const zone = page.locator(selector).first();
+    if (!(await zone.count())) {
+      issues.push(`sticky suppression zone is missing: ${selector}`);
+      continue;
+    }
+    await zone.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(240);
+    const state = await getState();
+    if (state.sticky.visible) {
+      issues.push(`sticky CTA competes with ${selector}`);
+    }
+  }
+
   if (STICKY_INELIGIBLE_ROUTES.has(route)) {
     if (afterConsent.sticky.visible) {
       issues.push(`sticky CTA must remain hidden on ${route}`);
@@ -790,20 +857,20 @@ async function inspectStickyAndConsent(page, route, width) {
       }
     }
 
-    await page.evaluate(() => {
-      const hero = document.querySelector('.hero');
-      const desired = hero
-        ? hero.getBoundingClientRect().bottom + window.scrollY + 32
-        : Math.min(520, document.documentElement.scrollHeight / 4);
-      const maximum = Math.max(
-        0,
-        document.documentElement.scrollHeight - window.innerHeight
-      );
-      window.scrollTo({ top: Math.min(desired, maximum), behavior: 'instant' });
-    });
-    await page.waitForTimeout(350);
-    const eligibleState = await getState();
-    if (!eligibleState.sticky.exists || !eligibleState.sticky.visible) {
+    let eligibleState = null;
+    for (const progress of [0.22, 0.34, 0.46, 0.58, 0.7, 0.82]) {
+      await page.evaluate(value => {
+        const maximum = Math.max(
+          0,
+          document.documentElement.scrollHeight - window.innerHeight
+        );
+        window.scrollTo({ top: maximum * value, behavior: 'instant' });
+      }, progress);
+      await page.waitForTimeout(220);
+      eligibleState = await getState();
+      if (eligibleState.sticky.visible) break;
+    }
+    if (!eligibleState?.sticky.exists || !eligibleState.sticky.visible) {
       issues.push(`sticky CTA is not visible on eligible long page ${route}`);
     }
 
@@ -940,6 +1007,12 @@ async function inspectReducedMotionFallback(browser) {
   });
   await installSafetyRails(context);
   const page = await context.newPage();
+  const videoRequests = [];
+  page.on('request', request => {
+    if (new URL(request.url()).pathname === '/images/arizona-hero.mp4') {
+      videoRequests.push(request.url());
+    }
+  });
 
   try {
     const response = await page.goto(routeUrl(route), {
@@ -999,6 +1072,11 @@ async function inspectReducedMotionFallback(browser) {
       const stuck = await inspectHiddenContent(page);
       return stuck.length ? `opacity-hidden content: ${stuck.join(', ')}` : null;
     });
+    await check(viewport, route, 'reduced-motion-no-video-download', () =>
+      videoRequests.length
+        ? `hero MP4 was requested ${videoRequests.length} time(s)`
+        : null
+    );
   } finally {
     await page.close();
     await context.close();
@@ -1028,6 +1106,169 @@ async function inspectReducedMotionSticky(browser) {
     );
     await check(viewport, route, 'sticky-respects-reduced-motion', async () => {
       const issues = await inspectStickyAndConsent(page, route, 390);
+      return issues.length ? issues.join(' | ') : null;
+    });
+  } finally {
+    await page.close();
+    await context.close();
+  }
+}
+
+async function inspectConstrainedNetworkVideoFallback(
+  browser,
+  { name, saveData, effectiveType }
+) {
+  const route = '/';
+  const context = await browser.newContext({
+    viewport: { width: 1440, height: 900 },
+    reducedMotion: 'no-preference',
+    serviceWorkers: 'block'
+  });
+  await context.addInitScript(
+    connection => {
+      Object.defineProperty(window.navigator, 'connection', {
+        configurable: true,
+        value: connection
+      });
+    },
+    { saveData, effectiveType }
+  );
+  await installSafetyRails(context);
+  const page = await context.newPage();
+  const videoRequests = [];
+  page.on('request', request => {
+    if (new URL(request.url()).pathname === '/images/arizona-hero.mp4') {
+      videoRequests.push(request.url());
+    }
+  });
+
+  try {
+    const response = await page.goto(routeUrl(route), {
+      waitUntil: 'load',
+      timeout: 30_000
+    });
+    await check(name, route, 'document-200', () =>
+      response?.status() === 200
+        ? null
+        : `expected 200, got ${response?.status() ?? 'no response'}`
+    );
+    await page.waitForTimeout(250);
+
+    await check(name, route, 'network-capability-applied', async () => {
+      const connection = await page.evaluate(() => ({
+        saveData: Boolean(navigator.connection?.saveData),
+        effectiveType: navigator.connection?.effectiveType || ''
+      }));
+      if (connection.saveData !== saveData) {
+        return `saveData expected ${saveData}, got ${connection.saveData}`;
+      }
+      if (connection.effectiveType !== effectiveType) {
+        return `effectiveType expected ${effectiveType}, got ${connection.effectiveType}`;
+      }
+      return null;
+    });
+
+    await check(name, route, 'constrained-network-static-poster', async () => {
+      const state = await page.evaluate(() => {
+        const video = document.querySelector('.hero-video');
+        return {
+          hasVideo: Boolean(video),
+          hasSource: Boolean(video?.querySelector('source')),
+          poster: video?.poster || ''
+        };
+      });
+      const issues = [];
+      if (!state.hasVideo) issues.push('hero video element was removed');
+      if (state.hasSource) issues.push('hero MP4 source was attached');
+      if (!state.poster.endsWith('/images/arizona-hero-poster.webp')) {
+        issues.push(`hero poster changed: ${state.poster || '(empty)'}`);
+      }
+      return issues.length ? issues.join(' | ') : null;
+    });
+
+    await check(name, route, 'constrained-network-no-video-download', () =>
+      videoRequests.length
+        ? `hero MP4 was requested ${videoRequests.length} time(s)`
+        : null
+    );
+  } finally {
+    await page.close();
+    await context.close();
+  }
+}
+
+async function inspectBackgroundToForegroundVideo(browser) {
+  const viewport = 'background-to-foreground';
+  const route = '/';
+  const context = await browser.newContext({
+    viewport: { width: 1440, height: 900 },
+    reducedMotion: 'no-preference',
+    serviceWorkers: 'block'
+  });
+  await context.addInitScript(() => {
+    window.__qaVisibilityState = 'hidden';
+    Object.defineProperty(document, 'visibilityState', {
+      configurable: true,
+      get: () => window.__qaVisibilityState
+    });
+    window.__qaSetVisibility = state => {
+      window.__qaVisibilityState = state;
+      document.dispatchEvent(new Event('visibilitychange'));
+    };
+  });
+  await installSafetyRails(context);
+  const page = await context.newPage();
+  const videoRequests = [];
+  page.on('request', request => {
+    if (new URL(request.url()).pathname === '/images/arizona-hero.mp4') {
+      videoRequests.push(request.url());
+    }
+  });
+
+  try {
+    const response = await page.goto(routeUrl(route), {
+      waitUntil: 'load',
+      timeout: 30_000
+    });
+    await check(viewport, route, 'document-200', () =>
+      response?.status() === 200
+        ? null
+        : `expected 200, got ${response?.status() ?? 'no response'}`
+    );
+    await page.waitForTimeout(250);
+
+    await check(viewport, route, 'background-defers-video', async () => {
+      const state = await page.evaluate(() => ({
+        visibility: document.visibilityState,
+        hasSource: Boolean(document.querySelector('.hero-video source'))
+      }));
+      const issues = [];
+      if (state.visibility !== 'hidden') {
+        issues.push(`expected hidden document, got ${state.visibility}`);
+      }
+      if (state.hasSource) issues.push('hero MP4 source attached while hidden');
+      if (videoRequests.length) {
+        issues.push(`hero MP4 requested ${videoRequests.length} time(s) while hidden`);
+      }
+      return issues.length ? issues.join(' | ') : null;
+    });
+
+    await page.evaluate(() => window.__qaSetVisibility('visible'));
+    await page.waitForTimeout(500);
+    await check(viewport, route, 'foreground-restores-video', async () => {
+      const state = await page.evaluate(() => ({
+        visibility: document.visibilityState,
+        source:
+          document.querySelector('.hero-video source')?.getAttribute('src') || ''
+      }));
+      const issues = [];
+      if (state.visibility !== 'visible') {
+        issues.push(`expected visible document, got ${state.visibility}`);
+      }
+      if (state.source !== '/images/arizona-hero.mp4') {
+        issues.push(`hero MP4 source missing after foreground: ${state.source || '(empty)'}`);
+      }
+      if (!videoRequests.length) issues.push('hero MP4 was not requested after foreground');
       return issues.length ? issues.join(' | ') : null;
     });
   } finally {
@@ -1227,6 +1468,17 @@ try {
 
   await inspectReducedMotionFallback(browser);
   await inspectReducedMotionSticky(browser);
+  await inspectConstrainedNetworkVideoFallback(browser, {
+    name: 'save-data',
+    saveData: true,
+    effectiveType: '4g'
+  });
+  await inspectConstrainedNetworkVideoFallback(browser, {
+    name: 'slow-network',
+    saveData: false,
+    effectiveType: '2g'
+  });
+  await inspectBackgroundToForegroundVideo(browser);
 } finally {
   await browser.close();
 }

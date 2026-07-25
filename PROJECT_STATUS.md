@@ -1,68 +1,73 @@
 # Grand Funding — Project Status
 
-> Cold-start entry point. Last updated 2026-07-20 by Codex after the full-site production release.
+Updated: 2026-07-25
 
-## Current outcome
+## Outcome
 
-Grand Funding LLC is a live, mobile-first hard-money lender marketing and lead-generation site for Arizona and California. The complete code, UI/UX, design, accessibility, responsive, performance, security, form, and deployment audit is complete and published.
+A restrained, client-independent elevation is complete on local branch `agent/grand-funding-continuous-elevation-july-2026`. It keeps the original cinematic desert-night identity and moving Arizona hero while improving conversion flow, mobile proof, accessibility, form resilience, analytics integrity, premium social sharing, RSS/AEO, performance behavior, and release safety.
 
-- Live: `https://www.grandfundingllc.com`
-- Netlify: `grandfundingllc` · `055c5942-aeaa-478a-9508-a34406994d5d`
-- Production deploy: `6a5efef6c589f88c9d2f4684` · `ready`
-- Release source: `ff779628` · GitHub PR `#3` into `master`
-- Public artifact: 265 allowlisted files in `dist/`
-- Live Lighthouse mobile: 99 Performance · 100 Accessibility · 100 Best Practices · 100 SEO
-- Full live premium QA: 2,849 checks · zero failures
-- Full live crawl: 86 pages × mobile/desktop · 172 checks · zero failures
+The candidate passed the complete Node 24 release suite. Production release is explicitly authorized and in progress; the seven regulated-claims decisions remain unresolved under a documented exact-baseline exception.
 
-## Canonical locations
+## Completed without client input
 
-| Item | Source of truth |
-|---|---|
-| Visible client path | `/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding` |
-| Resolved Git root | `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding` |
-| GitHub | `https://github.com/omgitsthedm/grand-funding.git` · default `master` |
-| Hosting | Netlify project `grandfundingllc` |
-| Forms | Netlify Forms; `pre-approval`, `contact`, and programmatic landing-page forms |
-| Audit | `docs/FULL-SITE-AUDIT-2026-07-20.md` |
+- Reordered the homepage around trust, Logan, calculator, and loan choices.
+- Restored useful mobile funded-deal proof as a compact scroll-snap strip.
+- Removed competing sticky CTAs around high-intent sections.
+- Improved products and blog flow without redesigning the brand.
+- Added native accessible FAQ disclosures and table semantics.
+- Added form pending, recovery, and duplicate-submit behavior.
+- Repaired thank-you conversion attribution so direct visits and refreshes cannot create fake leads.
+- Consolidated phone telemetry and kept all events consent-aware and PII-free.
+- Prevented hero-video download for reduced motion, Save-Data, 2G, slow 2G, and hidden tabs; foregrounding restores capable animation.
+- Added content-hashed CSS/JavaScript query versions.
+- Added premium non-screenshot social art for loan and market route families.
+- Added route mapping contracts, RSS discovery, and an 18-item neutral-description feed.
+- Added Node 24, pinned Playwright browsers, pinned release CLI calls, broader CI, and local-only conversion interception.
+- Added an exact Netlify target guard and an explicit checkout-local link so unrelated ancestor account state cannot select another client site.
+- Added fail-closed claims snapshots for seven regulated categories.
+- Added non-destructive dead-code and debt ledgers; no uncertain asset was deleted.
+- Removed the tracked generated QA report and moved evidence under ignored `artifacts/`.
 
-The separate checkout at `~/Code/LiFi NYC/Clients/Grand Funding/Website/grandfundingv12` is archived. Do not modify or deploy it.
+## Verified candidate
 
-## Release changes
+- Build: 279 public files, 88 HTML documents, 80 indexable pages, 169 redirects, 18 RSS items
+- SEO: 87 documents
+- Claims baseline: 2,268 source and 1,623 built high-risk matches frozen across seven categories
+- Runtime crawl: 174 page/viewport checks, zero failures
+- Accessibility: 20 page/profile audits, zero failures
+- Conversion: 17 contract checks, zero failures, local POST interception only
+- Cross-browser: 60 document checks across Chromium, Firefox, WebKit, Android, and iPhone profiles, zero failures
+- Premium responsive gate: 847 checks, zero failures
+- Local Lighthouse: mobile 85 performance and 100 accessibility/best practices/SEO; desktop 100 in all four categories; zero layout shift on both profiles
+- Dependency audit: zero production vulnerabilities
 
-- Replaced repository-root publishing with a deterministic `dist/` build. Package files, generators, QA reports, internal standards, docs, and local Netlify state are no longer public.
-- Repaired the invisible mobile hamburger, malformed homepage trust strip, homepage Netlify form declaration, sub-44px mobile fields, four broken links/assets, 39 incomplete document endings, iframe titles, and implicit input types.
-- Added complete build validation, a dependency-free local server, an 86-page two-viewport browser crawler, expanded premium UI checks, and a project-specific GitHub Actions rail.
-- Removed 7,447 unreferenced Material Design SVGs, tracked `.DS_Store` files, and tracked machine-specific Netlify files. Local Netlify linkage remains intact and ignored by Git.
-- Preserved the established cinematic desert-night visual identity and all approved lender claims, licenses, rates, testimonials, disclosures, and lead destinations.
+## Client/legal release blockers
 
-## Deployment truth
+1. Occupancy and consumer-purpose policy
+2. Rates and points
+3. Loan minimums and maximums
+4. LTV, ARV, LTC, and CLTV policy
+5. Decision, term-sheet, closing, and funding timing
+6. Licensed service area
+7. Lending volume and comparative proof
 
-Netlify is not Git-linked. Pushing or merging Git does not publish production. Release flow:
+The exact frozen wording and decision owners are in `.lifi/regulated-claims.json`.
 
-```bash
-npm ci
-npm test
-npm run serve -- --dir dist --port 8888
-BASE_URL=http://127.0.0.1:8888 npm run test:crawl
-BASE_URL=http://127.0.0.1:8888 npm run test:premium
-netlify deploy --context deploy-preview
-# Verify the draft, then with scoped production authorization:
-netlify deploy --prod --context production
-```
+## External configuration
 
-Do not use `--dir=.`. The build and `netlify.toml` intentionally publish only `dist/`.
+- Google Ads conversion labels: client marketing account owner
+- Porkbun apex DNS cleanup: client domain administrator
+- Physical iOS, Android, screen-reader, and constrained-network spot checks: QA
 
-## Non-negotiable boundaries
+## Deferred engineering debt
 
-- Regulated lender: NMLS 2466872; AZ MLO 1048901.
-- Never alter rates, licensing, underwriting claims, disclosures, testimonials, or funded-deal claims without approved facts.
-- Real forms are transactional. Do not submit test leads without explicit approval.
-- Never read or publish secrets, credentials, `.env*`, client records, or submission contents.
-- Keep internal/source paths private and the `dist/` allowlist intact.
+- Consolidate overlapping legacy motion/observer systems only behind preservation tests.
+- Modernize or retire `generate_pages.py` only after it consumes approved claim data.
+- Review dead-code candidates against external URLs and source-asset history before any deletion.
+- Regenerate `.ai/RULES.md` through the canonical AI-Ops generator from the updated header.
 
-## Remaining dependency
+## Release authorization
 
-Google Ads lead and phone conversion labels remain placeholders in `consent.js`. The approved labels are not present in the repository. Obtain them from the authorized Ads account owner before enabling conversion events; do not infer or invent them.
+The one-time 2026-07-25 production authorization is recorded in `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-25.md`. It permits only the exact frozen claims baseline already present on the live site and does not mark any claim approved.
 
-No code, design, accessibility, responsive, performance, security, form-recognition, source-publish, Git, or production-deploy loose ends remain from this audit.
+After this release, obtain the seven client/legal decisions, reconcile public wording once, and return to the standard strict release path.

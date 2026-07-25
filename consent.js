@@ -1,1 +1,132 @@
-{const e="gf_consent_v1",t="AW-XXXXXXXXXX",n="XXXXXXXXXXXXXXXXXXX",a="XXXXXXXXXXXXXXXXXXX";window.dataLayer=window.dataLayer||[];const o=(...e)=>window.dataLayer.push(e);let r=null;try{r=JSON.parse(localStorage.getItem(e))}catch{}1===r?.v&&o("consent","update",{ad_storage:r.ads?"granted":"denied",ad_user_data:r.ads?"granted":"denied",ad_personalization:r.ads?"granted":"denied",analytics_storage:r.analytics?"granted":"denied"});const d=()=>{const n=document.getElementById("consent-banner");if(n){r||setTimeout(()=>n.classList.add("is-open"),350);for(const t of n.querySelectorAll("[data-consent]"))t.addEventListener("click",()=>{const a=t.getAttribute("data-consent"),r="all"===a,d="all"===a,s={v:1,ads:r,analytics:d,ts:Date.now()};try{localStorage.setItem(e,JSON.stringify(s))}catch{}o("consent","update",{ad_storage:r?"granted":"denied",ad_user_data:r?"granted":"denied",ad_personalization:r?"granted":"denied",analytics_storage:d?"granted":"denied"}),n.classList.remove("is-open")})}for(const e of document.querySelectorAll('a[href^="tel:"]'))e.addEventListener("click",()=>{o("event","phone_click",{event_category:"engagement",event_label:e.getAttribute("href")}),t.includes("X")||a.includes("X")||o("event","conversion",{send_to:`${t}/${a}`})});const d=new URLSearchParams(window.location.search),s=["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid","gbraid","wbraid"],c={};for(const e of s){const t=d.get(e);if(t)c[e]=t,sessionStorage.setItem(`gf_${e}`,t);else{const t=sessionStorage.getItem(`gf_${e}`);t&&(c[e]=t)}}if(document.referrer&&!document.referrer.includes(window.location.host)){const e=sessionStorage.getItem("gf_referrer")||document.referrer;sessionStorage.setItem("gf_referrer",e),c.referrer=e}for(const[e,t]of Object.entries(c))for(const n of document.querySelectorAll(`input[name="${e}"]`))n.value=t};"loading"===document.readyState?document.addEventListener("DOMContentLoaded",d,{once:!0}):d(),window.gfLeadConversion=()=>{o("event","generate_lead",{event_category:"form",event_label:"apply_form"}),t.includes("X")||n.includes("X")||o("event","conversion",{send_to:`${t}/${n}`,value:1,currency:"USD"})}}
+(() => {
+  "use strict";
+
+  const CONSENT_KEY = "gf_consent_v1";
+  const GOOGLE_ADS_ID = "AW-XXXXXXXXXX";
+  const GOOGLE_ADS_LABELS = {
+    application: "XXXXXXXXXXXXXXXXXXX",
+    contact: "XXXXXXXXXXXXXXXXXXX",
+    phone: "XXXXXXXXXXXXXXXXXXX"
+  };
+
+  window.dataLayer = window.dataLayer || [];
+  const gtag = (...args) => window.dataLayer.push(args);
+
+  const readConsent = () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(CONSENT_KEY));
+      return saved?.v === 1 ? saved : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const updateGoogleConsent = consent => {
+    gtag("consent", "update", {
+      ad_storage: consent?.ads ? "granted" : "denied",
+      ad_user_data: consent?.ads ? "granted" : "denied",
+      ad_personalization: consent?.ads ? "granted" : "denied",
+      analytics_storage: consent?.analytics ? "granted" : "denied"
+    });
+  };
+
+  let consent = readConsent();
+  if (consent) updateGoogleConsent(consent);
+
+  const configuredLabel = label =>
+    Boolean(label) &&
+    !GOOGLE_ADS_ID.includes("X") &&
+    !label.includes("X");
+
+  const fireAdsConversion = (label, fields = {}) => {
+    if (!consent?.ads || !configuredLabel(label)) return;
+    gtag("event", "conversion", {
+      send_to: `${GOOGLE_ADS_ID}/${label}`,
+      ...fields
+    });
+  };
+
+  window.gfPhoneConversion = ({ href = "", location = "page" } = {}) => {
+    consent = readConsent();
+    if (!consent?.analytics) return false;
+    gtag("event", "phone_click", {
+      event_category: "engagement",
+      event_label: href,
+      cta_location: location
+    });
+    fireAdsConversion(GOOGLE_ADS_LABELS.phone);
+    return true;
+  };
+
+  window.gfLeadConversion = ({
+    formType,
+    submissionId
+  } = {}) => {
+    consent = readConsent();
+    if (
+      !consent?.analytics ||
+      !["application", "contact"].includes(formType) ||
+      !submissionId
+    ) {
+      return false;
+    }
+
+    const conversionKey = `gf_lead_conversion_v1:${submissionId}`;
+    try {
+      if (sessionStorage.getItem(conversionKey) === "1") return false;
+      sessionStorage.setItem(conversionKey, "1");
+    } catch {
+      // Storage can be unavailable. The pending marker is still removed once.
+    }
+
+    gtag("event", "generate_lead", {
+      form_type: formType,
+      method: "web_form",
+      submission_id: submissionId
+    });
+    fireAdsConversion(GOOGLE_ADS_LABELS[formType], {
+      value: 1,
+      currency: "USD"
+    });
+    return true;
+  };
+
+  const ready = callback => {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", callback, { once: true });
+      return;
+    }
+    callback();
+  };
+
+  ready(() => {
+    const banner = document.getElementById("consent-banner");
+    if (!banner) return;
+
+    if (!consent) {
+      setTimeout(() => banner.classList.add("is-open"), 350);
+    }
+
+    banner.querySelectorAll("[data-consent]").forEach(button => {
+      button.addEventListener("click", () => {
+        const acceptedAll = button.dataset.consent === "all";
+        consent = {
+          v: 1,
+          ads: acceptedAll,
+          analytics: acceptedAll,
+          ts: Date.now()
+        };
+        try {
+          localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+        } catch {
+          // Consent mode still updates for this page when storage is unavailable.
+        }
+        updateGoogleConsent(consent);
+        banner.classList.remove("is-open");
+        dispatchEvent(
+          new CustomEvent("gf:consent-changed", { detail: { ...consent } })
+        );
+      });
+    });
+  });
+})();

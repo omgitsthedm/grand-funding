@@ -1,0 +1,63 @@
+version: 1
+updated: 2026-07-25
+policy: Characterize, quarantine, verify external contracts, then remove in small reversible batches.
+
+candidates:
+  - id: legacy-assets-tree
+    paths:
+      - assets/
+    observed:
+      tracked_files: 18
+      exact_bytes: 8631848
+      approximate_size: 8.3 MiB
+      copied_to_dist: false
+      repository_references: none found
+    status: hold
+    removal_gate:
+      - verify no external or historic direct URLs depend on these paths
+      - retain any irreplaceable originals outside the public repository
+
+  - id: deprecated-premium-css
+    paths:
+      - premium.css
+    observed:
+      production_html_references: none
+      documentation_only: true
+    status: candidate
+    removal_gate:
+      - verify no build-time inlining or external link contract
+
+  - id: legacy-styles-css
+    paths:
+      - styles.css
+    observed:
+      production_html_references: none
+      copied_to_dist: false
+    status: candidate
+    removal_gate:
+      - compare against styles-v2.css and protected source generators
+
+  - id: unreferenced-image-candidates
+    paths:
+      - images/
+    observed:
+      generated_scan: 96 of 166 files had no repository reference on 2026-07-25
+      exact_candidate_bytes: 6132374
+      approximate_size: 5.85 MiB
+    status: hold
+    removal_gate:
+      - generate an exact hash and reference report
+      - verify social, email, ad, cached, and historic external URLs
+      - remove only an approved batch
+
+protected_not_dead:
+  - premium-system.css
+  - about.css
+  - lp.css
+  - scripts/build-site.mjs
+  - scripts/normalize-built-site.mjs
+  - scripts/refine-original-experience.mjs
+  - scripts/refine-legacy-runtime.mjs
+
+removed_generated_noise:
+  - scripts/qa-report.json

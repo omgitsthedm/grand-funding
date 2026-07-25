@@ -19,12 +19,34 @@
 import { chromium } from 'playwright';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BASE = process.env.BASE_URL || 'https://www.grandfundingllc.com';
 const WATCHLIST_ONLY = !!process.env.WATCHLIST_ONLY;
 const CI = !!process.env.CI;
+const TELEMETRY_HOSTS = [
+  /(^|\.)googletagmanager\.com$/i,
+  /(^|\.)google-analytics\.com$/i,
+  /(^|\.)analytics\.google\.com$/i,
+  /(^|\.)googleadservices\.com$/i,
+  /(^|\.)doubleclick\.net$/i,
+  /(^|\.)facebook\.net$/i,
+  /(^|\.)facebook\.com$/i,
+  /(^|\.)clarity\.ms$/i,
+  /(^|\.)hotjar\.com$/i,
+  /(^|\.)segment\.com$/i,
+  /(^|\.)segment\.io$/i,
+  /(^|\.)posthog\.com$/i
+];
+let blockedTelemetryRequests = 0;
+
+function isTelemetryUrl(rawUrl) {
+  try {
+    const { hostname } = new URL(rawUrl);
+    return TELEMETRY_HOSTS.some(pattern => pattern.test(hostname));
+  } catch {
+    return false;
+  }
+}
 
 // ─────────────────────────────────────────────────────────────
 // Ranking watchlist — these pages MUST pass at every breakpoint.
@@ -493,6 +515,18 @@ async function main() {
       userAgent:
         'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1'
     });
+    await ctx.route('**/*', async route => {
+      if (isTelemetryUrl(route.request().url())) {
+        blockedTelemetryRequests += 1;
+        await route.fulfill({
+          status: 204,
+          contentType: 'text/plain',
+          body: ''
+        });
+        return;
+      }
+      await route.continue();
+    });
     const page = await ctx.newPage();
     for (const route of PAGES) {
       totalChecks += CHECKS.length;
@@ -524,8 +558,11 @@ async function main() {
     durationMs: Date.now() - new Date(report.startedAt).getTime()
   };
 
-  fs.mkdirSync(path.join(__dirname), { recursive: true });
-  const reportPath = path.join(__dirname, 'qa-report.json');
+  const reportDirectory = path.resolve(
+    process.env.QA_ARTIFACT_DIR || 'artifacts'
+  );
+  fs.mkdirSync(reportDirectory, { recursive: true });
+  const reportPath = path.join(reportDirectory, 'qa-premium-report.json');
   fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
 
   console.log(`\n\n${'═'.repeat(70)}`);
@@ -535,6 +572,7 @@ async function main() {
   console.log(`  Total failures:        ${totalFails}`);
   console.log(`  Watchlist failures:    ${watchlistFails}`);
   console.log(`  Unique page failures:  ${report.summary.uniquePageFails}`);
+  console.log(`  Telemetry blocked:     ${blockedTelemetryRequests}`);
   console.log(`  Duration:              ${(report.summary.durationMs / 1000).toFixed(1)}s`);
   console.log(`  Report:                ${path.relative(process.cwd(), reportPath)}`);
 

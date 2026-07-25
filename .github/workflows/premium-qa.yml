@@ -1,96 +1,58 @@
-name: Premium QA
-
-# Block regressions before they reach production.
-# Source of truth: /PREMIUM_STANDARDS.md + /premium-system.css + /scripts/qa-premium.mjs
+name: Grand Funding Live Premium Audit
 
 on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
   workflow_dispatch:
     inputs:
       base_url:
-        description: 'URL to audit (defaults to production)'
-        required: false
-        default: 'https://www.grandfundingllc.com'
+        description: URL to audit
+        required: true
+        default: https://www.grandfundingllc.com
       watchlist_only:
-        description: 'Watchlist-critical pages only (fast run)'
-        required: false
-        default: 'false'
+        description: Audit only ranking-critical routes
+        required: true
+        default: true
         type: boolean
 
+permissions:
+  contents: read
+
 concurrency:
-  group: premium-qa-${{ github.ref }}
+  group: grand-funding-live-premium
   cancel-in-progress: true
 
 jobs:
-  premium-qa:
-    name: Premium QA Merge Gate
+  live-premium:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v7
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version-file: .node-version
+          cache: npm
 
-      - name: Install dependencies
-        run: npm ci || npm install
+      - name: Install locked dependencies
+        run: npm ci
 
-      - name: Install Playwright browsers
+      - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Set BASE_URL (local server for PRs, production for pushes)
-        run: |
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "PR build — serving site locally so CI tests branch content, not production."
-            npx --yes serve . -p 8080 &
-            sleep 5
-            echo "BASE_URL=http://localhost:8080" >> $GITHUB_ENV
-          elif [[ -n "${{ github.event.inputs.base_url }}" ]]; then
-            echo "BASE_URL=${{ github.event.inputs.base_url }}" >> $GITHUB_ENV
-          else
-            echo "BASE_URL=https://www.grandfundingllc.com" >> $GITHUB_ENV
-          fi
-
-      - name: Run Premium QA
+      - name: Audit requested live URL
         env:
-          CI: 'true'
-          WATCHLIST_ONLY: ${{ github.event.inputs.watchlist_only == 'true' && '1' || '' }}
-        run: |
-          npm run test:premium
+          BASE_URL: ${{ inputs.base_url }}
+          CI: "true"
+          WATCHLIST_ONLY: ${{ inputs.watchlist_only && '1' || '' }}
+        run: npm run test:premium
 
-      - name: Upload QA report (always)
+      - name: Upload premium report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
-          name: qa-report-${{ github.run_id }}
-          path: scripts/qa-report.json
+          name: live-premium-${{ github.run_id }}
+          path: artifacts/qa-premium-report.json
           retention-days: 30
           if-no-files-found: warn
-
-      - name: Summary
-        if: always()
-        run: |
-          echo "## Premium QA Result" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          if [ -f scripts/qa-report.json ]; then
-            echo '```json' >> $GITHUB_STEP_SUMMARY
-            node -e "const r = JSON.parse(require('fs').readFileSync('scripts/qa-report.json')); console.log(JSON.stringify(r.summary, null, 2))" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            if [ "${{ job.status }}" = "failure" ]; then
-              echo "### Failures by page/breakpoint" >> $GITHUB_STEP_SUMMARY
-              echo '```json' >> $GITHUB_STEP_SUMMARY
-              node -e "const r = JSON.parse(require('fs').readFileSync('scripts/qa-report.json')); console.log(JSON.stringify(r.failures, null, 2))" >> $GITHUB_STEP_SUMMARY
-              echo '```' >> $GITHUB_STEP_SUMMARY
-            fi
-          else
-            echo "_No report generated — QA runner crashed._" >> $GITHUB_STEP_SUMMARY
-          fi

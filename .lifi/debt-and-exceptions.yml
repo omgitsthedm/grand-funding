@@ -1,0 +1,62 @@
+version: 1
+updated: 2026-07-25
+
+open:
+  - id: exact-baseline-production-exception-2026-07-25
+    severity: operator-authorized-release-exception
+    owner: David Marsh
+    detail: Production was explicitly reauthorized after disclosure of the seven strict regulated-claims blocks. This exception permits only the exact frozen baseline and does not approve or resolve any claim.
+    control: docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-25.md; strict validation remains unchanged for future releases
+
+  - id: regulated-claims-conflict
+    severity: release-blocking
+    owner: Logan Sullivan and lending counsel
+    detail: Public rates, amounts, leverage, timing, occupancy, purpose, service-area, volume, and comparative claims are inconsistent.
+    control: .lifi/regulated-claims.json and strict release validation
+
+  - id: ads-conversion-labels
+    severity: external-configuration
+    owner: client marketing account owner
+    detail: Google Ads conversion labels remain placeholders. PII-free typed analytics are implemented; ad conversions stay dormant.
+
+  - id: apex-dns-obsolete-record
+    severity: external-configuration
+    owner: client domain administrator
+    detail: Remove only obsolete Porkbun A record 99.83.190.102 and preserve 75.2.60.5 plus all other records.
+    handoff: /Users/davidmarsh/Desktop/GRAND-FUNDING-CLIENT-DNS-FIX-HANDOFF-2026-07-25.md
+
+  - id: legacy-runtime-ownership
+    severity: maintenance
+    owner: engineering
+    detail: Multiple legacy scripts still contain overlapping motion and observer systems.
+    control: The build contract-patches video loading and phone analytics; preservation QA must stay green before deeper consolidation.
+
+  - id: programmatic-page-generator
+    severity: seo-governance
+    owner: content and compliance
+    detail: generate_pages.py is unused and contains stale lending claims.
+    control: Do not run or revive it until it reads only approved claim registry values and uniqueness gates pass.
+
+  - id: physical-device-qa
+    severity: verification
+    owner: QA
+    detail: Real iOS Safari, Android, keyboard/screen-reader, and constrained-network checks remain outside headless CI.
+
+  - id: ai-ops-rules-regeneration
+    severity: documentation
+    owner: agency operations
+    detail: .ai/RULES_HEADER.md is current, but generated .ai/RULES.md still contains obsolete root-publish and Git-push deployment commands.
+    control: Regenerate only through the canonical AI-Ops generator; current STATE and SOURCE_OF_TRUTH supersede the stale command section.
+
+closed:
+  - id: direct-thank-you-lead-events
+    resolution: One-time typed conversions now require a fresh matching form marker and analytics consent.
+
+  - id: generic-form-pending-state
+    resolution: Lead forms now expose route-specific labels, busy status, duplicate-submit protection, and recovery.
+
+  - id: reduced-motion-video-download
+    resolution: The deployable runtime no longer attaches the hero MP4 for reduced-motion, Save-Data, 2G, or hidden-page contexts.
+
+  - id: faq-collapsed-content-in-accessibility-tree
+    resolution: Questions and panels now have explicit IDs, controls, labels, expanded state, and true hidden state.

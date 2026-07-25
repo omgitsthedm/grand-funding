@@ -35,6 +35,11 @@ const assets = {
   fundedDeals: join(socialDir, "funded-deals-20260724.jpg"),
   loganDirect: join(socialDir, "logan-direct-lender-20260724.jpg"),
   investorGuides: join(socialDir, "investor-guides-20260724.jpg"),
+  loanPrograms: join(socialDir, "loan-programs-20260725.jpg"),
+  marketLending: join(
+    socialDir,
+    "arizona-california-lending-20260725.jpg",
+  ),
 };
 
 function run(command, args) {
@@ -154,7 +159,7 @@ function addBrandAndType(args, font, mark, titleLines, subtitle) {
 function generateScenicPoster({
   source,
   output,
-  title,
+  titleLines,
   subtitle,
   focalPoint = "center",
 }) {
@@ -190,7 +195,7 @@ function generateScenicPoster({
     "-composite",
   ];
 
-  addBrandAndType(args, temporaryFont, temporaryMark, [title], subtitle);
+  addBrandAndType(args, temporaryFont, temporaryMark, titleLines, subtitle);
 
   args.push(
     "-sampling-factor",
@@ -298,7 +303,7 @@ try {
   generateScenicPoster({
     source: assets.fundedDealsSource,
     output: assets.fundedDeals,
-    title: "Funded Deals",
+    titleLines: ["Funded Deals"],
     subtitle: "Direct private lending · Arizona + California",
   });
 
@@ -307,14 +312,30 @@ try {
   generateScenicPoster({
     source: assets.investorGuidesSource,
     output: assets.investorGuides,
-    title: "Investor Guides",
+    titleLines: ["Investor Guides"],
     subtitle: "Clear answers before the deadline.",
+  });
+
+  generateScenicPoster({
+    source: assets.investorGuidesSource,
+    output: assets.loanPrograms,
+    titleLines: ["Loan Programs"],
+    subtitle: "Explore financing by property and project.",
+  });
+
+  generateScenicPoster({
+    source: assets.fundedDealsSource,
+    output: assets.marketLending,
+    titleLines: ["Arizona +", "California"],
+    subtitle: "Business-purpose real estate lending.",
   });
 
   for (const output of [
     assets.fundedDeals,
     assets.loganDirect,
     assets.investorGuides,
+    assets.loanPrograms,
+    assets.marketLending,
   ]) {
     const dimensions = run("magick", [
       "identify",

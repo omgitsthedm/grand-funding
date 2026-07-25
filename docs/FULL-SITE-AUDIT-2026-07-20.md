@@ -1,5 +1,7 @@
 # Grand Funding full-site audit — 2026-07-20
 
+> **Historical release snapshot.** Keep this for evidence, but use `SOURCE_OF_TRUTH.md` and `docs/GRAND-FUNDING-CLIENT-INDEPENDENT-ELEVATION-2026-07-25.md` for current commands, blockers, and release state.
+
 ## Objective
 
 Audit and repair the complete Grand Funding site across source quality, UI/UX, accessibility, responsive behavior, performance, security, forms, and deployment. Preserve approved lender facts and never submit a real lead during QA.

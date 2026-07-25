@@ -8,7 +8,7 @@ Last reconciled 2026-07-24 against the resolved Git checkout, repository configu
 - Visible client path may resolve here from `/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding`
 - Remote: `https://github.com/omgitsthedm/grand-funding.git`
 - Canonical branch: `master`
-- Released source commit: `ecb197c900dc413756e8677faf81c309ddaab369`
+- Released source commit: `405425596a705c05e3dfc009530e0d1b313a708d`
 - The separate `~/Code/LiFi NYC/Clients/Grand Funding/Website/grandfundingv12` checkout is archived and out of scope.
 
 ## Production authority
@@ -16,8 +16,8 @@ Last reconciled 2026-07-24 against the resolved Git checkout, repository configu
 - Live URL: `https://www.grandfundingllc.com`
 - Netlify project: `grandfundingllc`
 - Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
-- Current published deploy: `6a64420313e477e0eb227ec3`
-- Published: `2026-07-25T04:56:39.880Z`
+- Current published deploy: `6a644622ea5f470fa52d2f07`
+- Published: `2026-07-25T05:14:14.825Z`
 - Build command: `npm run build`
 - Public artifact: `dist/`
 - Deployment mode: manual Netlify release; Git pushes do not publish.
@@ -59,7 +59,7 @@ The current local worktree contains the Desert Deal Room reinvention:
 - normalized canonicals, route-specific descriptions, connected schema graphs, visible FAQ/schema parity, and automated SEO validation;
 - a dedicated cross-viewport reinvention browser suite and stricter CI artifact gate.
 
-The work was merged through GitHub PR #4. Preview deploy `6a643ffee17381e219647c04` passed 536 focused checks, 174 runtime crawl checks, and 847 premium watchlist checks with zero failures. Production deploy `6a64420313e477e0eb227ec3` is `ready`; 536 live interaction checks and an 80-URL sitemap HTTP crawl passed, representative asset MIME types are correct, and Netlify recognizes the forms without a test submission.
+The work was merged through GitHub PR #4, with manifest MIME hardening through PR #6. Preview deploy `6a643ffee17381e219647c04` passed 536 focused checks, 174 runtime crawl checks, and 847 premium watchlist checks with zero failures. Production deploy `6a644622ea5f470fa52d2f07` is `ready`; 536 live interaction checks and an 80-URL sitemap HTTP crawl passed, representative asset MIME types are correct, `site.webmanifest` returns `application/manifest+json`, and Netlify recognizes the forms without a test submission.
 
 ## Safety and compliance
 

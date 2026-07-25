@@ -6,7 +6,7 @@ Grand Funding’s next website has been implemented locally as **Desert Deal Roo
 
 The work preserves the existing regulated-content and transaction contracts while rebuilding the public artifact through a deterministic `dist/` pipeline. It adds purpose-built social-share art, route-aware metadata, canonical-aligned connected schema, a clearer homepage narrative, resilient motion, and a dedicated cross-viewport QA suite.
 
-This is an undeployed working state. Nothing in this pass was committed, pushed, previewed, or published.
+The reinvention was merged through GitHub PR #4 and published to production on 2026-07-25. Post-release verification passed without submitting any form.
 
 ## Verified authority
 
@@ -15,12 +15,12 @@ This is an undeployed working state. Nothing in this pass was committed, pushed,
 | Canonical Git root | `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding` |
 | Branch | `master` |
 | Remote | `https://github.com/omgitsthedm/grand-funding.git` |
-| Baseline commit | `fd6cffdadca004d6b8ae4ec879af9dec36cfb9f4` |
+| Released source commit | `ecb197c900dc413756e8677faf81c309ddaab369` |
 | Live URL | `https://www.grandfundingllc.com` |
 | Netlify project | `grandfundingllc` |
 | Netlify site ID | `055c5942-aeaa-478a-9508-a34406994d5d` |
-| Current live deploy | `6a61b4aafec5909a1591fa8b` |
-| Published | `2026-07-23T06:29:02.459Z` |
+| Current live deploy | `6a64420313e477e0eb227ec3` |
+| Published | `2026-07-25T04:56:39.880Z` |
 | Build | `npm run build` |
 | Public directory | `dist/` |
 | Deploy mode | Manual; Git pushes do not publish |
@@ -188,6 +188,16 @@ The branch/PR CI workflow serves and tests the built artifact. The separate prem
 
 The host-installed `@netlify/plugin-lighthouse` returned a local document-request 404 during that Netlify-aware build, although Netlify reported the plugin and build complete. Verify the plugin against an authorized preview or reconfigure it at the hosting layer; this did not alter or invalidate the local artifact.
 
+### Release verification
+
+- GitHub PR #4 merged cleanly after the Grand Funding QA workflow passed.
+- Preview deploy `6a643ffee17381e219647c04`: 536 reinvention checks, 174 runtime crawl checks, and 847 premium watchlist checks passed with zero failures.
+- Production deploy `6a64420313e477e0eb227ec3`: Netlify state `ready`.
+- Production: 536 interaction checks across six routes and four viewports passed.
+- All 80 production sitemap URLs returned successfully.
+- Representative HTML, XML, Apple icon, and social-card requests returned correct status and MIME types.
+- Netlify recognizes the deployed forms; no test lead was submitted.
+
 ## Changed areas
 
 ### Experience and assets
@@ -239,12 +249,10 @@ The host-installed `@netlify/plugin-lighthouse` returned a local document-reques
 
 1. Obtain owner/legal decisions for `llms.txt`, Ads labels, and brand direction.
 2. Resolve or explicitly accept the apex TLS and host-injected analytics risks.
-3. Verify or reconfigure the host-installed Lighthouse plugin in a preview-capable environment.
-4. With explicit preview authorization, rerun `npm run verify:netlify-target` and create a Netlify preview from `dist/`.
-5. Inspect navigation, forms without submitting, structured data, social metadata, representative responsive routes, and the Lighthouse plugin result.
-6. Request separate, explicit production authorization.
-7. Only after approval, publish the reviewed `dist/` release and verify the resulting deploy ID, canonical host, headers, forms recognition, social images, crawl, and premium monitor.
+3. Reconfigure or deliberately remove the host-installed Lighthouse plugin if a future Netlify build is expected to use it.
+4. Monitor production analytics for duplicate measurement after the release.
+5. For any future release, repeat the target guard, local suite, inspected preview, scoped authorization, production deploy, and live verification sequence.
 
 ## Release statement
 
-As of this handoff, the reinvention is a local candidate release. The live site remains deploy `6a61b4aafec5909a1591fa8b`. No deployment or other production mutation occurred.
+The reinvention is live at `https://www.grandfundingllc.com` on deploy `6a64420313e477e0eb227ec3`. The released source is GitHub commit `ecb197c900dc413756e8677faf81c309ddaab369`. DNS, host analytics, Ads labels, `llms.txt`, brand approval, and the optional host Lighthouse plugin remain external follow-ups.

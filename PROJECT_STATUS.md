@@ -6,7 +6,7 @@
 
 Grand Funding’s next site experience is implemented locally as **Desert Deal Room / Desert Ledger**. It replaces a repetitive, card-heavy journey with a focused editorial homepage, better proof and founder access, scenario-led navigation, purpose-built social sharing, stricter SEO/AEO generation, and broader browser QA while preserving the established brand, real forms, approved regulated facts, legal routes, and analytics contracts.
 
-This pass did not commit, push, preview, or deploy. The live site is unchanged.
+The reinvention was merged through GitHub PR #4 and published to production on 2026-07-25. Post-release checks passed without submitting a form.
 
 ## Current production
 
@@ -15,10 +15,10 @@ This pass did not commit, push, preview, or deploy. The live site is unchanged.
 | Live URL | `https://www.grandfundingllc.com` |
 | Netlify project | `grandfundingllc` |
 | Site ID | `055c5942-aeaa-478a-9508-a34406994d5d` |
-| Published deploy | `6a61b4aafec5909a1591fa8b` |
-| Published at | `2026-07-23T06:29:02.459Z` |
+| Published deploy | `6a64420313e477e0eb227ec3` |
+| Published at | `2026-07-25T04:56:39.880Z` |
 | Git branch | `master` |
-| Baseline commit | `fd6cffdadca004d6b8ae4ec879af9dec36cfb9f4` |
+| Released source commit | `ecb197c900dc413756e8677faf81c309ddaab369` |
 | Publish directory | `dist/` |
 | Deployment | Manual; Git pushes do not publish |
 
@@ -46,6 +46,9 @@ The canonical Git root is `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding
 - Premium gate: 2,849 checks across 37 pages and seven breakpoints; zero total, watchlist, or unique-page failures.
 - Python generator compile, dependency audit, Netlify target assertion, and diff-integrity checks passed.
 - `netlify build --context deploy-preview` preserved the exact artifact hash: `4d6dc1ce4794022187247ba72bd7cbc1808b290f0be19b687b7e09aeb686e684`.
+- Preview deploy `6a643ffee17381e219647c04`: 536 focused checks, 174 route/viewport crawl checks, and 847 premium watchlist checks passed with zero failures.
+- Production deploy `6a64420313e477e0eb227ec3`: state `ready`; 536 live interaction checks passed; all 80 sitemap URLs returned successfully; representative HTML, XML, PNG, and JPEG resources returned correct status and MIME types.
+- Netlify recognizes the production form definitions; no test form was submitted.
 
 ## Release procedure
 
@@ -59,7 +62,7 @@ BASE_URL=http://127.0.0.1:8888 npm run test:premium
 npm run verify:netlify-target
 ```
 
-After the complete local suite passes, create and inspect a preview. A production deploy requires clear, scoped authorization for that specific live action. Never publish the repository root or use `--dir=.`.
+For a future release, repeat the complete local suite, inspect a preview, obtain scoped production authorization, and publish only `dist/`. Never publish the repository root or use `--dir=.`.
 
 ## Non-negotiable boundaries
 
@@ -69,7 +72,7 @@ After the complete local suite passes, create and inspect a preview. A productio
 - Do not read or publish secrets, `.env*`, client records, or submission contents.
 - Preserve the deterministic `dist/` allowlist and the current live release until a new release is approved.
 
-## Remaining before release
+## Remaining external follow-ups
 
 1. Resolve or explicitly accept the apex A-record split TLS issue.
 2. Identify and remove/reconcile duplicate host-injected analytics listeners.
@@ -77,6 +80,5 @@ After the complete local suite passes, create and inspect a preview. A productio
 4. Obtain approved Google Ads lead and call conversion labels.
 5. Review compliance-sensitive unsupported claims in `llms.txt` with the owner/legal reviewer.
 6. Approve a brand-kit direction or deliberately retain the current identity.
-7. Create and inspect a Netlify preview, then request separate production authorization.
 
 Detailed scope: `docs/GRAND-FUNDING-REINVENTION-2026-07-24.md`.

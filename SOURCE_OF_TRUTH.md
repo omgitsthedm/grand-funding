@@ -8,11 +8,12 @@ Last verified: 2026-07-25
 - Resolved Git root: `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding`
 - GitHub: `https://github.com/omgitsthedm/grand-funding.git`
 - Default branch: `master`
-- Candidate branch: `agent/grand-funding-continuous-elevation-july-2026`
-- Candidate base: `e135a678cb4c284cd8857ed3c32eba2bd545db3b`
-- `origin/master` at verification: the same commit
+- Release branch: `agent/grand-funding-continuous-elevation-july-2026`
+- Candidate commit: `de41e436d60f14d9e117ed32e5857d55f5c248b1`
+- PR: `#11`
+- `origin/master` at verification: `f5baf1f620a4b8a6aa1c915d82fbbc9f564ab51b`
 
-The current elevation passed the full local release suite. Its production release is explicitly authorized and in progress.
+The current elevation is merged, live, and production-verified.
 
 The checkout under `~/Code/LiFi NYC/Clients/Grand Funding/Website/grandfundingv12` is archived and out of scope.
 
@@ -35,16 +36,19 @@ Never publish the repository root or use `--dir=.`.
 - Netlify project: `grandfundingllc`
 - Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
 - Admin URL: `https://app.netlify.com/projects/grandfundingllc`
-- Current observed production deploy: `6a64616a5602a06cd8001b9c`
+- Current observed production deploy: `6a6489b013e4771689227e4f`
 - Production state: `ready`
-- Published: `2026-07-25T07:10:35.407Z`
+- Published: `2026-07-25T10:02:30.817Z`
+- Verified preview: `6a647f062aa291182e0c70f1`
+- Rollback target: `6a64616a5602a06cd8001b9c`
 - Deploy metadata has no commit reference; release is manual, not Git-linked
 
 A Git commit or push does not publish the site.
 
-## Current candidate artifact
+## Current production artifact
 
 - 279 public files
+- Fingerprint: `91e6e9a2e2d37f78a98ab3ef9d8fa7c0f0ec333b83b5fe118972a3a78aef01b0`
 - 88 HTML documents
 - 87 SEO-validated real documents
 - 80 indexable pages
@@ -64,7 +68,7 @@ npm run deploy:preview
 npm run deploy:production
 ```
 
-`quality:release` is intentionally blocked by seven unresolved client/legal claim decisions. David Marsh explicitly authorized one exact-baseline production release after disclosure of that blocker. The scope and controls are recorded in `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-25.md`; the exception does not approve claims or carry forward to future releases.
+`quality:release` is intentionally blocked by seven unresolved client/legal claim decisions. David Marsh explicitly authorized one exact-baseline production release after disclosure of that blocker. Deploy `6a6489b013e4771689227e4f` consumed that exception. It did not approve claims and does not carry forward to future releases.
 
 ## External state
 

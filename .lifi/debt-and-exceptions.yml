@@ -2,12 +2,6 @@ version: 1
 updated: 2026-07-25
 
 open:
-  - id: exact-baseline-production-exception-2026-07-25
-    severity: operator-authorized-release-exception
-    owner: David Marsh
-    detail: Production was explicitly reauthorized after disclosure of the seven strict regulated-claims blocks. This exception permits only the exact frozen baseline and does not approve or resolve any claim.
-    control: docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-25.md; strict validation remains unchanged for future releases
-
   - id: regulated-claims-conflict
     severity: release-blocking
     owner: Logan Sullivan and lending counsel
@@ -49,6 +43,9 @@ open:
     control: Regenerate only through the canonical AI-Ops generator; current STATE and SOURCE_OF_TRUTH supersede the stale command section.
 
 closed:
+  - id: exact-baseline-production-exception-2026-07-25
+    resolution: Consumed once by production deploy 6a6489b013e4771689227e4f after preview and live verification. It did not approve or resolve any claim and does not carry forward.
+
   - id: direct-thank-you-lead-events
     resolution: One-time typed conversions now require a fresh matching form marker and analytics consent.
 

@@ -4,9 +4,9 @@ Updated: 2026-07-25
 
 ## Outcome
 
-A restrained, client-independent elevation is complete on local branch `agent/grand-funding-continuous-elevation-july-2026`. It keeps the original cinematic desert-night identity and moving Arizona hero while improving conversion flow, mobile proof, accessibility, form resilience, analytics integrity, premium social sharing, RSS/AEO, performance behavior, and release safety.
+A restrained, client-independent elevation is live at `https://www.grandfundingllc.com`. It keeps the original cinematic desert-night identity and moving Arizona hero while improving conversion flow, mobile proof, accessibility, form resilience, analytics integrity, premium social sharing, RSS/AEO, performance behavior, and release safety.
 
-The candidate passed the complete Node 24 release suite. Production release is explicitly authorized and in progress; the seven regulated-claims decisions remain unresolved under a documented exact-baseline exception.
+Candidate `de41e436` was merged to `master` as `f5baf1f6` through PR #11 and manually published as Netlify deploy `6a6489b013e4771689227e4f`. The seven regulated-claims decisions remain unresolved; the one-time exact-baseline exception is consumed.
 
 ## Completed without client input
 
@@ -28,7 +28,7 @@ The candidate passed the complete Node 24 release suite. Production release is e
 - Added non-destructive dead-code and debt ledgers; no uncertain asset was deleted.
 - Removed the tracked generated QA report and moved evidence under ignored `artifacts/`.
 
-## Verified candidate
+## Verified release
 
 - Build: 279 public files, 88 HTML documents, 80 indexable pages, 169 redirects, 18 RSS items
 - SEO: 87 documents
@@ -40,6 +40,12 @@ The candidate passed the complete Node 24 release suite. Production release is e
 - Premium responsive gate: 847 checks, zero failures
 - Local Lighthouse: mobile 85 performance and 100 accessibility/best practices/SEO; desktop 100 in all four categories; zero layout shift on both profiles
 - Dependency audit: zero production vulnerabilities
+- GitHub `deployable-artifact`: passed
+- Production route crawl: 174 checks, zero failures
+- Production preservation: 505 checks, zero failures
+- Production accessibility: 20 audits, zero failures
+- Production premium responsive gate: 847 checks, zero failures
+- Artifact parity: preview, deploy-specific production URL, and live root HTML are byte-identical
 
 ## Client/legal release blockers
 
@@ -68,6 +74,6 @@ The exact frozen wording and decision owners are in `.lifi/regulated-claims.json
 
 ## Release authorization
 
-The one-time 2026-07-25 production authorization is recorded in `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-25.md`. It permits only the exact frozen claims baseline already present on the live site and does not mark any claim approved.
+The one-time 2026-07-25 production authorization is recorded in `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-25.md`. It was consumed by deploy `6a6489b013e4771689227e4f`, permitted only the exact frozen baseline already present on the live site, and did not mark any claim approved.
 
-After this release, obtain the seven client/legal decisions, reconcile public wording once, and return to the standard strict release path.
+Next, obtain the seven client/legal decisions, reconcile public wording once, and return to the standard strict release path.

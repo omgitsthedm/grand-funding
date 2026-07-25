@@ -668,98 +668,64 @@ def build_main_html(spec):
 
 
 def build_schema_blocks(spec):
-    """Build one route-aware JSON-LD graph for a generated page."""
+    """Build the JSON-LD schema blocks for a page."""
     city = spec['city']
+    state = spec['state_abbr']
     state_full = spec['state']
     slug = spec['slug']
+    loan_type = spec['loan_type']
     h1 = spec['h1']
     base_url = 'https://www.grandfundingllc.com'
-    canonical = f'{base_url}/{slug}'
-    organization_id = f'{base_url}/#organization'
-    website_id = f'{base_url}/#website'
-    webpage_id = f'{canonical}#webpage'
-    product_id = f'{canonical}#financial-product'
-    breadcrumb_id = f'{canonical}#breadcrumb'
-    faq_id = f'{canonical}#faq'
 
-    faq_items = [
-        {
+    # FAQPage schema
+    faq_items = []
+    for q, a in spec['schema_faq']:
+        faq_items.append({
             '@type': 'Question',
             'name': q,
             'acceptedAnswer': {'@type': 'Answer', 'text': a}
-        }
-        for q, a in spec['schema_faq']
-    ]
+        })
 
-    area_served = {
-        '@type': 'State' if city in ['Arizona', 'California'] else 'City',
-        'name': city
-    }
-    if city not in ['Arizona', 'California']:
-        area_served['containedInPlace'] = {'@type': 'State', 'name': state_full}
-
-    graph = {
+    faq_schema = {
         '@context': 'https://schema.org',
-        '@graph': [
-            {
-                '@type': 'Organization',
-                '@id': organization_id,
-                'name': 'Grand Funding LLC',
-                'url': f'{base_url}/',
-                'telephone': '+1-602-935-0371',
-                'email': 'Logan@grandfundingllc.com'
-            },
-            {
-                '@type': 'WebSite',
-                '@id': website_id,
-                'url': f'{base_url}/',
-                'name': 'Grand Funding LLC',
-                'publisher': {'@id': organization_id},
-                'inLanguage': 'en-US'
-            },
-            {
-                '@type': 'WebPage',
-                '@id': webpage_id,
-                'url': canonical,
-                'name': spec['title'],
-                'description': spec['meta_desc'],
-                'isPartOf': {'@id': website_id},
-                'about': {'@id': product_id},
-                'breadcrumb': {'@id': breadcrumb_id},
-                'inLanguage': 'en-US'
-            },
-            {
-                '@type': 'BreadcrumbList',
-                '@id': breadcrumb_id,
-                'itemListElement': [
-                    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': f'{base_url}/'},
-                    {'@type': 'ListItem', 'position': 2, 'name': 'Loan Products', 'item': f'{base_url}/products'},
-                    {'@type': 'ListItem', 'position': 3, 'name': h1, 'item': canonical},
-                ]
-            },
-            {
-                '@type': 'FinancialProduct',
-                '@id': product_id,
-                'name': h1,
-                'category': 'HardMoneyLoan',
-                'provider': {'@id': organization_id},
-                'areaServed': area_served,
-                'url': canonical
-            },
-            {
-                '@type': 'FAQPage',
-                '@id': faq_id,
-                'url': canonical,
-                'mainEntity': faq_items
-            }
+        '@type': 'FAQPage',
+        'mainEntity': faq_items
+    }
+
+    # BreadcrumbList schema
+    breadcrumb_schema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': f'{base_url}/'},
+            {'@type': 'ListItem', 'position': 2, 'name': 'Loan Products', 'item': f'{base_url}/products'},
+            {'@type': 'ListItem', 'position': 3, 'name': h1, 'item': f'{base_url}/{slug}'},
         ]
     }
 
-    return (
-        '<script type="application/ld+json">'
-        + json.dumps(graph, separators=(",", ":"))
-        + '</script>'
-    )
+    # FinancialProduct schema
+    fp_schema = {
+        '@context': 'https://schema.org',
+        '@type': 'FinancialProduct',
+        'name': h1,
+        'category': 'HardMoneyLoan',
+        'provider': {
+            '@type': 'Organization',
+            'name': 'Grand Funding LLC',
+            'url': base_url
+        },
+        'areaServed': {
+            '@type': 'City' if city not in ['Arizona', 'California'] else 'State',
+            'name': city,
+            'containedInPlace': {'@type': 'State', 'name': state_full}
+        },
+        'url': f'{base_url}/{slug}'
+    }
+
+    s1 = f'<script type="application/ld+json">{json.dumps(faq_schema, separators=(",", ":"))}</script>'
+    s2 = f'<script type="application/ld+json">{json.dumps(breadcrumb_schema, separators=(",", ":"))}</script>'
+    s3 = f'<script type="application/ld+json">{json.dumps(fp_schema, separators=(",", ":"))}</script>'
+    return s1 + s2 + s3
 
 
 def generate_page(spec):
@@ -812,13 +778,24 @@ def generate_page(spec):
             f'<meta content="{base_url}/{slug}" property="og:url">', 1)
 
     # ---- Replace schema blocks ----
-    # Source templates may carry page-specific, state-specific, or nested
-    # legacy graphs. Remove every inherited JSON-LD block before adding the
-    # connected graph for this canonical route.
+    # Remove old FAQPage, BreadcrumbList, FinancialProduct schemas
+    # Keep LocalBusiness schema (it's general)
+    # We'll append new schemas before </head>
     new_schemas = build_schema_blocks(spec)
 
+    # Remove old FAQPage schema
     template = re.sub(
-        r'<script\b[^>]*type=["\']application/ld\+json["\'][^>]*>.*?</script>',
+        r'<script type="application/ld\+json">\{"@context":"https://schema\.org","@type":"FAQPage".*?</script>',
+        '', template, flags=re.DOTALL)
+
+    # Remove old BreadcrumbList schema
+    template = re.sub(
+        r'<script type="application/ld\+json">\{"@context":"https://schema\.org","@type":"BreadcrumbList".*?</script>',
+        '', template, flags=re.DOTALL)
+
+    # Remove old FinancialProduct schema
+    template = re.sub(
+        r'<script type="application/ld\+json">\{"@context":"https://schema\.org","@type":"FinancialProduct".*?</script>',
         '', template, flags=re.DOTALL)
 
     # Insert new schemas before </head>

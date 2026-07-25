@@ -16,7 +16,7 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
-User-agent: Google-Extended
+User-agent: GoogleExtendedBot
 Allow: /
 
 User-agent: Applebot-Extended

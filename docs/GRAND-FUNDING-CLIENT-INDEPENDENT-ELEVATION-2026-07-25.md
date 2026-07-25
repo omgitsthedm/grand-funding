@@ -1,8 +1,8 @@
 # Grand Funding Client-Independent Elevation Handoff
 
 Date: 2026-07-25
-Status: production release authorized and in progress
-Production: pending preview and live verification
+Status: production release complete and verified
+Production: live at `https://www.grandfundingllc.com`
 
 ## Objective
 
@@ -11,13 +11,17 @@ Sharpen the existing Grand Funding experience without repainting the car a diffe
 ## Source and separation
 
 - Repository: `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding`
-- Candidate branch: `agent/grand-funding-continuous-elevation-july-2026`
-- Base and current committed HEAD: `e135a678cb4c284cd8857ed3c32eba2bd545db3b`
+- Release branch: `agent/grand-funding-continuous-elevation-july-2026`
+- Candidate commit: `de41e436d60f14d9e117ed32e5857d55f5c248b1`
+- Master merge: `f5baf1f620a4b8a6aa1c915d82fbbc9f564ab51b` via PR #11
 - Live site: `https://www.grandfundingllc.com`
 - Netlify site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
+- Preview deploy: `6a647f062aa291182e0c70f1`
+- Production deploy: `6a6489b013e4771689227e4f`
+- Rollback deploy: `6a64616a5602a06cd8001b9c`
 - Public build: `dist/`
 
-The verified candidate is ready to commit. Production authorization and the one-time exact-baseline claims exception are recorded in `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-25.md`.
+The verified candidate was committed, merged, previewed, published, and live-verified. Production authorization and the consumed one-time exact-baseline claims exception are recorded in `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-25.md`.
 
 ## Completed
 
@@ -98,6 +102,17 @@ Verified final closeout baseline:
 - Local Lighthouse: mobile 85 performance and 100 accessibility/best practices/SEO; desktop 100 in all four categories; zero layout shift on both profiles
 - Production dependency audit: zero vulnerabilities
 
+Production verification:
+
+- GitHub `deployable-artifact`: passed on PR #11
+- Artifact: 279 files; fingerprint `91e6e9a2e2d37f78a98ab3ef9d8fa7c0f0ec333b83b5fe118972a3a78aef01b0`
+- Preview: 174 route checks, 505 preservation checks, 20 accessibility audits, and 847 premium responsive checks passed
+- Production: 174 route checks, 505 preservation checks, 20 accessibility audits, and 847 premium responsive checks passed
+- Critical pages, RSS, sitemap, and both new social cards returned HTTP 200 with correct content types
+- Preview, deploy-specific production, and live root HTML were byte-identical
+- Local Firefox profiles passed; external Firefox could not connect to any HTTPS host in this runner, while remote Chromium and WebKit passed
+- No production form was submitted and third-party telemetry was blocked during browser QA
+
 These closeout commands passed after the last source change:
 
 ```bash
@@ -149,7 +164,7 @@ npm run deploy:production
 
 Never publish the repository root. Future releases must use strict claims validation unless a new, explicit, narrowly scoped exception is documented after the blocker is disclosed.
 
-The 2026-07-25 release is governed by the separately documented one-time operator authorization. It must use `dist/` only, pass the complete non-strict baseline and browser suite, verify a preview, publish the same artifact, and leave all seven claims issues unresolved.
+The 2026-07-25 release consumed the separately documented one-time operator authorization. It used `dist/` only, passed the complete non-strict baseline and browser suite, verified a preview, published the same artifact, and left all seven claims issues unresolved. The exception does not carry forward.
 
 If a committed candidate must be reversed, use a normal revert commit. If a production deploy must be reversed, select a known-good deploy in Netlify deploy history. Do not force-push or use a destructive local reset as an operational rollback.
 

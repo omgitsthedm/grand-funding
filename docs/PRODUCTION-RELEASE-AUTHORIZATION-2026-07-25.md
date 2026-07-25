@@ -1,7 +1,7 @@
 # Grand Funding Production Release Authorization
 
 Date: 2026-07-25
-Status: authorized; release in progress
+Status: executed and closed
 Authorized by: David Marsh
 
 ## Authorized scope
@@ -32,3 +32,18 @@ This is operational authorization to republish the exact frozen claims baseline 
 8. Record the commit, deploy ID, verification results, and rollback target.
 
 Do not change DNS, submit a live application or contact form, enable placeholder Google Ads conversions, mark claims resolved, or publish the repository root as part of this authorization.
+
+## Release result
+
+- Candidate commit: `de41e436d60f14d9e117ed32e5857d55f5c248b1`
+- Master merge: `f5baf1f620a4b8a6aa1c915d82fbbc9f564ab51b` via PR #11
+- GitHub `deployable-artifact`: passed
+- Verified preview: `6a647f062aa291182e0c70f1`
+- Production deploy: `6a6489b013e4771689227e4f`, ready, published 2026-07-25T10:02:30.817Z
+- Rollback target: `6a64616a5602a06cd8001b9c`
+- Artifact: 279 files; fingerprint `91e6e9a2e2d37f78a98ab3ef9d8fa7c0f0ec333b83b5fe118972a3a78aef01b0`
+- Preview and production route, preservation, accessibility, and premium responsive gates passed with zero failures
+- Live, deploy-specific production, and preview root HTML were byte-identical
+- No DNS edit, live form submission, regulated-copy edit, placeholder Ads activation, or PostHog integration occurred
+
+The authorization is consumed. All seven claims issues remain unresolved and strict-blocking for future releases.

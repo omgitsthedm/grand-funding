@@ -43,9 +43,11 @@ Both deployment wrappers use pinned `netlify-cli@27.0.0`, run the release gate, 
 - Live URL: `https://www.grandfundingllc.com`
 - Netlify project: `grandfundingllc`
 - Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
-- Current observed production deploy: `6a64616a5602a06cd8001b9c`, ready, published 2026-07-25 at 07:10:35Z
+- Current observed production deploy: `6a6489b013e4771689227e4f`, ready, published 2026-07-25 at 10:02:30Z
+- Release merge: `f5baf1f620a4b8a6aa1c915d82fbbc9f564ab51b`
+- Rollback deploy: `6a64616a5602a06cd8001b9c`
 - Netlify is not Git-linked; a push does not publish this site
-- The current candidate is local and has not been committed, pushed, or deployed
+- The current elevation is merged to `master`, deployed, and live-verified
 
 ## Experience preservation contract
 

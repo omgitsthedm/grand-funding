@@ -12,9 +12,10 @@
 ## Current stamp
 
 - Updated: 2026-07-25
-- Candidate branch: `agent/grand-funding-continuous-elevation-july-2026`
-- Base and `origin/master`: `e135a678cb4c284cd8857ed3c32eba2bd545db3b`
-- Candidate state: verified; production release authorized and in progress
+- Release branch: `agent/grand-funding-continuous-elevation-july-2026`
+- Candidate commit: `de41e436d60f14d9e117ed32e5857d55f5c248b1`
+- `origin/master`: `f5baf1f620a4b8a6aa1c915d82fbbc9f564ab51b` via PR #11
+- Release state: live and verified
 
 ## Generated-rules warning
 
@@ -28,11 +29,13 @@
 - Netlify site: `grandfundingllc`
 - Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
 - This checkout carries an ignored local site link; the pinned preflight verifies both name and ID before deploy commands.
-- Current observed deploy: `6a64616a5602a06cd8001b9c`, ready, published 2026-07-25 at 07:10:35Z
+- Current observed deploy: `6a6489b013e4771689227e4f`, ready, published 2026-07-25 at 10:02:30Z
+- Verified preview: `6a647f062aa291182e0c70f1`
+- Rollback target: `6a64616a5602a06cd8001b9c`
 - Deployment is manual and publishes only `dist/`
 - A Git push does not publish
 
-## Candidate quality
+## Release quality
 
 - 279 public files
 - 88 HTML documents
@@ -43,15 +46,19 @@
 - Full route, preservation, accessibility, conversion, cross-browser, and responsive QA passed with zero failures
 - Local Lighthouse passed at mobile 85 performance and 100 accessibility/best practices/SEO, with desktop 100 across all four categories and zero layout shift on both profiles
 - Production dependency audit passed with zero vulnerabilities
+- GitHub `deployable-artifact` passed on PR #11
+- Production passed 174 route checks, 505 preservation checks, 20 accessibility audits, and 847 premium responsive checks with zero failures
+- Live, production-deploy, and preview root HTML hashes match
+- External Playwright Firefox could not connect to any HTTPS host in this runner; the same Firefox profiles passed locally, while remote Chromium and WebKit passed against the preview
 
 ## Release state
 
 Strict release is blocked by seven unresolved decisions: occupancy/purpose, rates/points, amounts, leverage, timing, service area, and volume/comparative proof.
 
-David Marsh explicitly authorized one production release after disclosure of the strict blocker. The exception is limited to the exact frozen baseline and is recorded in `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-25.md`; it does not resolve the seven issues or weaken future strict validation.
+David Marsh explicitly authorized one production release after disclosure of the strict blocker. That exact-baseline exception was consumed by deploy `6a6489b013e4771689227e4f`. It did not resolve the seven issues or weaken future strict validation.
 
 Google Ads labels remain dormant placeholders. Porkbun DNS still needs the client-owned apex cleanup documented on the Desktop. There is no PostHog integration.
 
 ## Directive
 
-Read `SOURCE_OF_TRUTH.md`, `CLAUDE.md`, `docs/GRAND-FUNDING-CLIENT-INDEPENDENT-ELEVATION-2026-07-25.md`, and the active release authorization. Build with Node `24.18.0` and `npm run quality:full`. Never deploy the repository root, submit a production form, mark claims resolved, or change regulated wording without approval. The one-time exception does not carry forward.
+Read `SOURCE_OF_TRUTH.md`, `CLAUDE.md`, `docs/GRAND-FUNDING-CLIENT-INDEPENDENT-ELEVATION-2026-07-25.md`, and the executed release authorization. Build with Node `24.18.0` and `npm run quality:full`. Never deploy the repository root, submit a production form, mark claims resolved, or change regulated wording without approval. The consumed exception does not carry forward.

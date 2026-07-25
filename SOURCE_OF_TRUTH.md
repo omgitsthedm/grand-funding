@@ -1,46 +1,79 @@
 # Grand Funding Site — Source of Truth
 
-Last verified 2026-07-20 by Codex against the resolved checkout, GitHub remote, Netlify API/CLI metadata, draft deploy, production deploy, and live public site.
+Last reconciled 2026-07-24 against the resolved Git checkout, repository configuration, local Netlify linkage, current production deploy metadata, and the active reinvention worktree.
 
 ## Canonical code
 
-- Visible workspace: `/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding`
 - Resolved Git root: `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding`
-- GitHub: `https://github.com/omgitsthedm/grand-funding.git`
+- Visible client path may resolve here from `/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding`
+- Remote: `https://github.com/omgitsthedm/grand-funding.git`
 - Canonical branch: `master`
-- Release source: `ff779628` through PR `#3`
-- Archived and out of scope: `~/Code/LiFi NYC/Clients/Grand Funding/Website/grandfundingv12`
-
-## Technology and commands
-
-- Stack: static HTML/CSS/JavaScript with Node.js build/QA scripts and Python content generators
-- Install: `npm ci`
-- Build and validate: `npm test`
-- Serve built artifact: `npm run serve -- --dir dist --port 8888`
-- Full page crawl: `BASE_URL=http://127.0.0.1:8888 npm run test:crawl`
-- Responsive premium gate: `BASE_URL=http://127.0.0.1:8888 npm run test:premium`
-- Netlify publish directory: `dist/`
+- Current baseline commit: `fd6cffdadca004d6b8ae4ec879af9dec36cfb9f4`
+- The separate `~/Code/LiFi NYC/Clients/Grand Funding/Website/grandfundingv12` checkout is archived and out of scope.
 
 ## Production authority
 
+- Live URL: `https://www.grandfundingllc.com`
 - Netlify project: `grandfundingllc`
 - Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
-- Live URL: `https://www.grandfundingllc.com`
-- Verified production deploy: `6a5efef6c589f88c9d2f4684` · state `ready`
-- Deployment is manual Netlify CLI. GitHub repo/provider/branch build linkage is absent; Git pushes do not publish.
-- Preview before production. Do not publish the repository root or use `--dir=.`.
+- Current published deploy: `6a61b4aafec5909a1591fa8b`
+- Published: `2026-07-23T06:29:02.459Z`
+- Build command: `npm run build`
+- Public artifact: `dist/`
+- Deployment mode: manual Netlify release; Git pushes do not publish.
 
-## Verified release quality
+The local Netlify link was found pointing at the unrelated `chromatic-painting-design` site and was corrected to Grand Funding on 2026-07-24. `npm run verify:netlify-target` now enforces both expected site name and ID before release work.
 
-- 87 HTML artifacts and 265 public files pass build validation.
-- 86 real pages pass mobile and desktop runtime crawling.
-- 37 representative pages pass 11 interface checks at seven breakpoints: 2,849 live checks, zero failures.
-- Live Lighthouse mobile: 99 Performance, 100 Accessibility, 100 Best Practices, 100 SEO.
-- Tested source/package/internal routes return 404; security headers are present.
-- Netlify Forms are recognized; no test lead was submitted.
+## Build and verification
+
+```bash
+npm ci
+npm test
+npm run serve -- --dir dist --port 8888
+BASE_URL=http://127.0.0.1:8888 npm run test:reinvention
+BASE_URL=http://127.0.0.1:8888 npm run test:crawl
+BASE_URL=http://127.0.0.1:8888 npm run test:premium
+npm run verify:netlify-target
+```
+
+`npm test` builds the allowlisted public artifact, validates site structure and asset references, and validates SEO/AEO contracts. Browser suites must run against `dist/`, not the repository root.
+
+Final local validation on 2026-07-24 passed:
+
+- 277 public files; 88 HTML documents validated; SEO validation passed for 87 HTML documents;
+- 536 reinvention checks across six routes and four viewports, zero failures;
+- 174 crawl checks across 87 routes at mobile and desktop widths, zero failures;
+- 2,849 premium checks across 37 pages and seven breakpoints, zero failures;
+- Python generator compile, dependency audit, exact Netlify target assertion, and diff-integrity checks;
+- Netlify-aware local build with an unchanged artifact hash of `4d6dc1ce4794022187247ba72bd7cbc1808b290f0be19b687b7e09aeb686e684`.
+
+## Undeployed 2026-07-24 worktree
+
+The current local worktree contains the Desert Deal Room reinvention:
+
+- focused eight-section homepage with preserved calculator and pre-approval form;
+- funded proof, founder access, scenario ledger, FAQ, and direct-intake hierarchy;
+- approved-deal-route motion with reduced-motion, Save-Data, and low-resource safeguards;
+- route-aware conversion blocks and removal of repetitive universal engagement;
+- premium 1200×630 social art and complete Open Graph/Twitter image metadata;
+- normalized canonicals, route-specific descriptions, connected schema graphs, visible FAQ/schema parity, and automated SEO validation;
+- a dedicated cross-viewport reinvention browser suite and stricter CI artifact gate.
+
+This work was not committed, pushed, previewed, or deployed in this pass. Production remains on deploy `6a61b4aafec5909a1591fa8b`.
 
 ## Safety and compliance
 
-- Keep credentials, `.env*`, client records, form submissions, and production data out of Git and agent output.
-- NMLS 2466872, AZ MLO 1048901, rates, licenses, claims, testimonials, funded-deal facts, disclosures, and live form destinations require approved facts before changes.
-- Google Ads conversion labels are the only known external release dependency; approved values are not in this repository and must not be invented.
+- Regulated identifiers: NMLS `2466872`; AZ MLO `1048901`.
+- Preserve approved rates, licenses, lending claims, disclosures, testimonials, funded-deal facts, legal text, analytics identifiers, and lead destinations.
+- `/apply`, `/contact`, and programmatic forms are transactional. Do not submit production test leads without explicit authorization.
+- Keep credentials, `.env*`, client records, submissions, source tools, docs, and local Netlify metadata outside the public artifact.
+- Production deploy requires passing local checks, `npm run verify:netlify-target`, an inspected preview, and explicit authorization for the production action.
+
+## External dependencies and risks
+
+- The apex host’s two A records exhibit split TLS behavior; resolve domain/certificate provisioning with the DNS owner or Netlify.
+- Host-injected click tracking appears to duplicate source analytics listeners; resolve at the hosting/analytics layer.
+- The host-installed Lighthouse plugin returned a local document-request 404 during the Netlify-aware build; verify or reconfigure it on an authorized preview. The build completed and the artifact remained byte-identical.
+- Approved Google Ads lead/call conversion labels are absent and must not be invented.
+- `llms.txt` contains compliance-sensitive unsupported claims requiring owner/legal review.
+- Brand-kit directions A/B/C remain unapproved; preserve the current identity until one is selected.

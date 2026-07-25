@@ -40,5 +40,6 @@ jobs:
             fi
             sleep 1
           done
+          BASE_URL=http://127.0.0.1:8888 npm run test:reinvention
           BASE_URL=http://127.0.0.1:8888 WATCHLIST_ONLY=1 npm run test:premium
           BASE_URL=http://127.0.0.1:8888 npm run test:crawl

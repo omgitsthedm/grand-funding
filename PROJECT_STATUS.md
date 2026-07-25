@@ -1,68 +1,82 @@
 # Grand Funding — Project Status
 
-> Cold-start entry point. Last updated 2026-07-20 by Codex after the full-site production release.
+> Cold-start entry point. Updated 2026-07-24 during the local reinvention pass.
 
-## Current outcome
+## Outcome
 
-Grand Funding LLC is a live, mobile-first hard-money lender marketing and lead-generation site for Arizona and California. The complete code, UI/UX, design, accessibility, responsive, performance, security, form, and deployment audit is complete and published.
+Grand Funding’s next site experience is implemented locally as **Desert Deal Room / Desert Ledger**. It replaces a repetitive, card-heavy journey with a focused editorial homepage, better proof and founder access, scenario-led navigation, purpose-built social sharing, stricter SEO/AEO generation, and broader browser QA while preserving the established brand, real forms, approved regulated facts, legal routes, and analytics contracts.
 
-- Live: `https://www.grandfundingllc.com`
-- Netlify: `grandfundingllc` · `055c5942-aeaa-478a-9508-a34406994d5d`
-- Production deploy: `6a5efef6c589f88c9d2f4684` · `ready`
-- Release source: `ff779628` · GitHub PR `#3` into `master`
-- Public artifact: 265 allowlisted files in `dist/`
-- Live Lighthouse mobile: 99 Performance · 100 Accessibility · 100 Best Practices · 100 SEO
-- Full live premium QA: 2,849 checks · zero failures
-- Full live crawl: 86 pages × mobile/desktop · 172 checks · zero failures
+This pass did not commit, push, preview, or deploy. The live site is unchanged.
 
-## Canonical locations
+## Current production
 
-| Item | Source of truth |
+| Item | Current truth |
 |---|---|
-| Visible client path | `/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding` |
-| Resolved Git root | `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding` |
-| GitHub | `https://github.com/omgitsthedm/grand-funding.git` · default `master` |
-| Hosting | Netlify project `grandfundingllc` |
-| Forms | Netlify Forms; `pre-approval`, `contact`, and programmatic landing-page forms |
-| Audit | `docs/FULL-SITE-AUDIT-2026-07-20.md` |
+| Live URL | `https://www.grandfundingllc.com` |
+| Netlify project | `grandfundingllc` |
+| Site ID | `055c5942-aeaa-478a-9508-a34406994d5d` |
+| Published deploy | `6a61b4aafec5909a1591fa8b` |
+| Published at | `2026-07-23T06:29:02.459Z` |
+| Git branch | `master` |
+| Baseline commit | `fd6cffdadca004d6b8ae4ec879af9dec36cfb9f4` |
+| Publish directory | `dist/` |
+| Deployment | Manual; Git pushes do not publish |
 
-The separate checkout at `~/Code/LiFi NYC/Clients/Grand Funding/Website/grandfundingv12` is archived. Do not modify or deploy it.
+The canonical Git root is `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding`, with remote `https://github.com/omgitsthedm/grand-funding.git`.
 
-## Release changes
+## Implemented locally
 
-- Replaced repository-root publishing with a deterministic `dist/` build. Package files, generators, QA reports, internal standards, docs, and local Netlify state are no longer public.
-- Repaired the invisible mobile hamburger, malformed homepage trust strip, homepage Netlify form declaration, sub-44px mobile fields, four broken links/assets, 39 incomplete document endings, iframe titles, and implicit input types.
-- Added complete build validation, a dependency-free local server, an 86-page two-viewport browser crawler, expanded premium UI checks, and a project-specific GitHub Actions rail.
-- Removed 7,447 unreferenced Material Design SVGs, tracked `.DS_Store` files, and tracked machine-specific Netlify files. Local Netlify linkage remains intact and ignored by Git.
-- Preserved the established cinematic desert-night visual identity and all approved lender claims, licenses, rates, testimonials, disclosures, and lead destinations.
+- Rebuilt the homepage into eight purposeful sections: deal-room hero, funded proof, Logan access, scenario ledger, preserved calculator, approved-deal route, FAQ, and preserved intake.
+- Added tactile desert-ledger styling and restrained motion with reduced-motion, Save-Data, and low-resource fallbacks.
+- Replaced the universal engagement block with route-aware, lower-friction next steps.
+- Removed unsupported “Logan is available” status language from the built application route while preserving contact access.
+- Added four art-directed 1200×630 social-share compositions for home, funded deals, founder/direct-lender, and editorial routes.
+- Added premium Open Graph/Twitter image metadata, a correct 180×180 Apple touch icon, route-specific descriptions, canonical-aligned connected schema, and SEO/AEO validation.
+- Corrected malformed built blog headings and known generated-copy duplication.
+- Added a cross-viewport reinvention QA suite covering key discovery, proof, editorial, market, and conversion routes.
+- Tightened CI to test the built branch artifact; the separate production premium workflow is now a manual read-only monitor.
+- Added a Netlify target assertion and corrected the local link from the Chromatic project to Grand Funding.
 
-## Deployment truth
+## Final local validation
 
-Netlify is not Git-linked. Pushing or merging Git does not publish production. Release flow:
+- Clean install: zero dependency vulnerabilities.
+- Build/static checks: 277 public files; 88 HTML documents validated; SEO validation passed for 87 HTML documents.
+- Reinvention QA: 536 checks across six routes and four viewports; zero failures.
+- Full crawl: 174 runtime checks across 87 routes at mobile and desktop widths; zero failures.
+- Premium gate: 2,849 checks across 37 pages and seven breakpoints; zero total, watchlist, or unique-page failures.
+- Python generator compile, dependency audit, Netlify target assertion, and diff-integrity checks passed.
+- `netlify build --context deploy-preview` preserved the exact artifact hash: `4d6dc1ce4794022187247ba72bd7cbc1808b290f0be19b687b7e09aeb686e684`.
+
+## Release procedure
 
 ```bash
 npm ci
 npm test
 npm run serve -- --dir dist --port 8888
+BASE_URL=http://127.0.0.1:8888 npm run test:reinvention
 BASE_URL=http://127.0.0.1:8888 npm run test:crawl
 BASE_URL=http://127.0.0.1:8888 npm run test:premium
-netlify deploy --context deploy-preview
-# Verify the draft, then with scoped production authorization:
-netlify deploy --prod --context production
+npm run verify:netlify-target
 ```
 
-Do not use `--dir=.`. The build and `netlify.toml` intentionally publish only `dist/`.
+After the complete local suite passes, create and inspect a preview. A production deploy requires clear, scoped authorization for that specific live action. Never publish the repository root or use `--dir=.`.
 
 ## Non-negotiable boundaries
 
-- Regulated lender: NMLS 2466872; AZ MLO 1048901.
-- Never alter rates, licensing, underwriting claims, disclosures, testimonials, or funded-deal claims without approved facts.
-- Real forms are transactional. Do not submit test leads without explicit approval.
-- Never read or publish secrets, credentials, `.env*`, client records, or submission contents.
-- Keep internal/source paths private and the `dist/` allowlist intact.
+- NMLS `2466872`; AZ MLO `1048901`.
+- Do not change rates, licenses, lending or approval claims, disclosures, testimonials, funded-deal facts, legal content, analytics identifiers, or lead destinations without approved facts.
+- Do not submit production `/apply`, `/contact`, or programmatic forms without explicit authorization.
+- Do not read or publish secrets, `.env*`, client records, or submission contents.
+- Preserve the deterministic `dist/` allowlist and the current live release until a new release is approved.
 
-## Remaining dependency
+## Remaining before release
 
-Google Ads lead and phone conversion labels remain placeholders in `consent.js`. The approved labels are not present in the repository. Obtain them from the authorized Ads account owner before enabling conversion events; do not infer or invent them.
+1. Resolve or explicitly accept the apex A-record split TLS issue.
+2. Identify and remove/reconcile duplicate host-injected analytics listeners.
+3. Verify or reconfigure the host-installed Lighthouse plugin on an authorized preview; local Netlify build reported a document-request 404 without changing the artifact.
+4. Obtain approved Google Ads lead and call conversion labels.
+5. Review compliance-sensitive unsupported claims in `llms.txt` with the owner/legal reviewer.
+6. Approve a brand-kit direction or deliberately retain the current identity.
+7. Create and inspect a Netlify preview, then request separate production authorization.
 
-No code, design, accessibility, responsive, performance, security, form-recognition, source-publish, Git, or production-deploy loose ends remain from this audit.
+Detailed scope: `docs/GRAND-FUNDING-REINVENTION-2026-07-24.md`.

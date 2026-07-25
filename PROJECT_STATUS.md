@@ -15,10 +15,10 @@ The reinvention was merged through GitHub PR #4 and published to production on 2
 | Live URL | `https://www.grandfundingllc.com` |
 | Netlify project | `grandfundingllc` |
 | Site ID | `055c5942-aeaa-478a-9508-a34406994d5d` |
-| Published deploy | `6a64420313e477e0eb227ec3` |
-| Published at | `2026-07-25T04:56:39.880Z` |
+| Published deploy | `6a644622ea5f470fa52d2f07` |
+| Published at | `2026-07-25T05:14:14.825Z` |
 | Git branch | `master` |
-| Released source commit | `ecb197c900dc413756e8677faf81c309ddaab369` |
+| Released source commit | `405425596a705c05e3dfc009530e0d1b313a708d` |
 | Publish directory | `dist/` |
 | Deployment | Manual; Git pushes do not publish |
 
@@ -47,7 +47,8 @@ The canonical Git root is `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding
 - Python generator compile, dependency audit, Netlify target assertion, and diff-integrity checks passed.
 - `netlify build --context deploy-preview` preserved the exact artifact hash: `4d6dc1ce4794022187247ba72bd7cbc1808b290f0be19b687b7e09aeb686e684`.
 - Preview deploy `6a643ffee17381e219647c04`: 536 focused checks, 174 route/viewport crawl checks, and 847 premium watchlist checks passed with zero failures.
-- Production deploy `6a64420313e477e0eb227ec3`: state `ready`; 536 live interaction checks passed; all 80 sitemap URLs returned successfully; representative HTML, XML, PNG, and JPEG resources returned correct status and MIME types.
+- Production deploy `6a644622ea5f470fa52d2f07`: state `ready`; 536 live interaction checks passed; all 80 sitemap URLs returned successfully; representative HTML, XML, manifest, PNG, and JPEG resources returned correct status and MIME types.
+- Post-release hardening PR #6 corrected `site.webmanifest` from `application/octet-stream` to `application/manifest+json` under `nosniff`.
 - Netlify recognizes the production form definitions; no test form was submitted.
 
 ## Release procedure

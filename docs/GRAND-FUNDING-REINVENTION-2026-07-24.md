@@ -15,12 +15,12 @@ The reinvention was merged through GitHub PR #4 and published to production on 2
 | Canonical Git root | `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding` |
 | Branch | `master` |
 | Remote | `https://github.com/omgitsthedm/grand-funding.git` |
-| Released source commit | `ecb197c900dc413756e8677faf81c309ddaab369` |
+| Released source commit | `405425596a705c05e3dfc009530e0d1b313a708d` |
 | Live URL | `https://www.grandfundingllc.com` |
 | Netlify project | `grandfundingllc` |
 | Netlify site ID | `055c5942-aeaa-478a-9508-a34406994d5d` |
-| Current live deploy | `6a64420313e477e0eb227ec3` |
-| Published | `2026-07-25T04:56:39.880Z` |
+| Current live deploy | `6a644622ea5f470fa52d2f07` |
+| Published | `2026-07-25T05:14:14.825Z` |
 | Build | `npm run build` |
 | Public directory | `dist/` |
 | Deploy mode | Manual; Git pushes do not publish |
@@ -192,10 +192,11 @@ The host-installed `@netlify/plugin-lighthouse` returned a local document-reques
 
 - GitHub PR #4 merged cleanly after the Grand Funding QA workflow passed.
 - Preview deploy `6a643ffee17381e219647c04`: 536 reinvention checks, 174 runtime crawl checks, and 847 premium watchlist checks passed with zero failures.
-- Production deploy `6a64420313e477e0eb227ec3`: Netlify state `ready`.
+- Production deploy `6a644622ea5f470fa52d2f07`: Netlify state `ready`.
 - Production: 536 interaction checks across six routes and four viewports passed.
 - All 80 production sitemap URLs returned successfully.
 - Representative HTML, XML, Apple icon, and social-card requests returned correct status and MIME types.
+- Post-release PR #6 added an explicit manifest header; `site.webmanifest` now returns `application/manifest+json` with `nosniff`.
 - Netlify recognizes the deployed forms; no test lead was submitted.
 
 ## Changed areas
@@ -255,4 +256,4 @@ The host-installed `@netlify/plugin-lighthouse` returned a local document-reques
 
 ## Release statement
 
-The reinvention is live at `https://www.grandfundingllc.com` on deploy `6a64420313e477e0eb227ec3`. The released source is GitHub commit `ecb197c900dc413756e8677faf81c309ddaab369`. DNS, host analytics, Ads labels, `llms.txt`, brand approval, and the optional host Lighthouse plugin remain external follow-ups.
+The reinvention is live at `https://www.grandfundingllc.com` on deploy `6a644622ea5f470fa52d2f07`. The released source is GitHub commit `405425596a705c05e3dfc009530e0d1b313a708d`. DNS, host analytics, Ads labels, `llms.txt`, brand approval, and the optional host Lighthouse plugin remain external follow-ups.

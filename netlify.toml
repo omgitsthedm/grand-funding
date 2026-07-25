@@ -2,90 +2,23 @@
   publish = "dist"
   command = "npm run build"
 
-# Canonical host: force www
-[[redirects]]
-  from = "https://grandfundingllc.com/*"
-  to = "https://www.grandfundingllc.com/:splat"
-  status = 301
-  force = true
-
-# Pretty URLs
-[[redirects]]
-  from = "/about"
-  to = "/about.html"
-  status = 301
-
-[[redirects]]
-  from = "/products"
-  to = "/products.html"
-  status = 301
-
-[[redirects]]
-  from = "/blog"
-  to = "/blog.html"
-  status = 301
-
+# The apex-host rule and canonical clean-URL rules are generated into
+# dist/_redirects in first-match-safe order. Keep only aliases here.
 [[redirects]]
   from = "/resources"
-  to = "/blog.html"
-  status = 301
-
-[[redirects]]
-  from = "/faq"
-  to = "/faq.html"
-  status = 301
-
-[[redirects]]
-  from = "/contact"
-  to = "/contact.html"
-  status = 301
-
-[[redirects]]
-  from = "/privacy"
-  to = "/privacy.html"
-  status = 301
-
-[[redirects]]
-  from = "/terms"
-  to = "/terms.html"
-  status = 301
-
-[[redirects]]
-  from = "/disclosures"
-  to = "/disclosures.html"
+  to = "/blog"
   status = 301
 
 [[redirects]]
   from = "/disclosure"
-  to = "/disclosures.html"
+  to = "/disclosures"
   status = 301
 
 # Legacy patterns (Wix/blog)
 [[redirects]]
   from = "/post/*"
-  to = "/blog.html"
+  to = "/blog"
   status = 301
-
-# Netlify rewrites for clean URLs (no extra redirect hop)
-[[redirects]]
-  from = "/apply"
-  to = "/apply.html"
-  status = 200
-
-[[redirects]]
-  from = "/thanks"
-  to = "/thanks.html"
-  status = 200
-
-[[redirects]]
-  from = "/funded-deals"
-  to = "/funded-deals.html"
-  status = 200
-
-[[redirects]]
-  from = "/partners"
-  to = "/partners.html"
-  status = 200
 
 [[headers]]
   for = "/*"
@@ -112,7 +45,13 @@
 [[headers]]
   for = "/images/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/*.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
 
 [[headers]]
   for = "/*.woff2"

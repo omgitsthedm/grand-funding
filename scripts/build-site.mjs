@@ -2,9 +2,13 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { normalizeBuiltSite } from './normalize-built-site.mjs';
+import { refineOriginalExperience } from './refine-original-experience.mjs';
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
+const SITE_ORIGIN = 'https://www.grandfundingllc.com';
+const RELEASE_DATE = '2026-07-24';
 
 const ROOT_ASSETS = [
   '404.html',
@@ -16,6 +20,8 @@ const ROOT_ASSETS = [
   'conversion-tools.js',
   'favicon.ico',
   'llms.txt',
+  'original-refinement.css',
+  'original-refinement.js',
   'premium-motion.css',
   'premium-motion.js',
   'premium-polish.css',
@@ -68,8 +74,20 @@ for (const directory of PUBLIC_DIRECTORIES) {
   await copyRequired(path.join(ROOT, directory), path.join(DIST, directory));
 }
 
+await refineOriginalExperience({ dist: DIST });
+const normalization = await normalizeBuiltSite({
+  root: ROOT,
+  dist: DIST,
+  siteOrigin: SITE_ORIGIN,
+  releaseDate: RELEASE_DATE
+});
+
 const files = await walk(DIST);
 const bytes = (await Promise.all(files.map(async file => (await fs.stat(file)).size)))
   .reduce((sum, size) => sum + size, 0);
 
-console.log(`Built ${files.length} public files (${(bytes / 1024 / 1024).toFixed(1)} MiB) in dist/`);
+console.log(
+  `Built ${files.length} public files (${(bytes / 1024 / 1024).toFixed(1)} MiB) in dist/; `
+  + `normalized ${normalization.hrefsNormalized} links, ${normalization.indexablePages} indexable pages, `
+  + `${normalization.redirectRules} redirect rules`
+);

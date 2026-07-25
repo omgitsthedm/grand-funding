@@ -1,13 +1,17 @@
-name: Production Premium Monitor
+name: Premium QA
 
-# Manual, read-only monitor for an already-published URL.
-# Branch and pull-request artifacts are gated by ci.yml.
+# Block regressions before they reach production.
+# Source of truth: /PREMIUM_STANDARDS.md + /premium-system.css + /scripts/qa-premium.mjs
 
 on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
   workflow_dispatch:
     inputs:
       base_url:
-        description: 'Published URL to audit'
+        description: 'URL to audit (defaults to production)'
         required: false
         default: 'https://www.grandfundingllc.com'
       watchlist_only:
@@ -17,35 +21,47 @@ on:
         type: boolean
 
 concurrency:
-  group: production-premium-monitor
+  group: premium-qa-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   premium-qa:
-    name: Published Site Monitor
+    name: Premium QA Merge Gate
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci || npm install
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
+      - name: Set BASE_URL (local server for PRs, production for pushes)
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "PR build — serving site locally so CI tests branch content, not production."
+            npx --yes serve . -p 8080 &
+            sleep 5
+            echo "BASE_URL=http://localhost:8080" >> $GITHUB_ENV
+          elif [[ -n "${{ github.event.inputs.base_url }}" ]]; then
+            echo "BASE_URL=${{ github.event.inputs.base_url }}" >> $GITHUB_ENV
+          else
+            echo "BASE_URL=https://www.grandfundingllc.com" >> $GITHUB_ENV
+          fi
+
       - name: Run Premium QA
         env:
           CI: 'true'
-          BASE_URL: ${{ github.event.inputs.base_url || 'https://www.grandfundingllc.com' }}
           WATCHLIST_ONLY: ${{ github.event.inputs.watchlist_only == 'true' && '1' || '' }}
         run: |
           npm run test:premium

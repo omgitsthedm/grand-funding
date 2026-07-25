@@ -186,7 +186,11 @@ async function inspectPage(page, route, viewport, blockedTelemetry) {
     const apply = await page.evaluate(() => ({
       falseAvailability: document.body.textContent.includes('Logan is available'),
       talkBlocks: document.querySelectorAll('.talk-to-logan').length,
-      forms: document.querySelectorAll('form[name="pre-approval"][data-netlify]').length,
+      forms: Array.from(document.querySelectorAll('form[name="pre-approval"]')).filter(
+        (form) =>
+          form.hasAttribute('data-netlify') ||
+          Boolean(form.querySelector('input[name="form-name"][value="pre-approval"]'))
+      ).length,
       stickyVisible: Boolean(document.querySelector('[data-sticky-cta]:not([hidden])'))
     }));
     assert(!apply.falseAvailability, `${label} false live availability removed`);

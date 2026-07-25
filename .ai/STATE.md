@@ -15,22 +15,22 @@
 - Updated: `2026-07-24`
 - Updated by: Codex
 - Basis: repository, build configuration, local Netlify target, production deploy metadata, and active reinvention worktree
-- Baseline commit: `fd6cffdadca004d6b8ae4ec879af9dec36cfb9f4`
-- Worktree: local reinvention changes present; not committed, pushed, previewed, or deployed
+- Released source commit: `ecb197c900dc413756e8677faf81c309ddaab369`
+- Worktree: production release complete; closeout documentation reconciled after live verification
 
 ## Current live truth
 
 - Live URL: `https://www.grandfundingllc.com`
 - Netlify project: `grandfundingllc`
 - Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
-- Production deploy: `6a61b4aafec5909a1591fa8b`
+- Production deploy: `6a64420313e477e0eb227ec3`
 - State: `ready`
-- Published: `2026-07-23T06:29:02.459Z`
+- Published: `2026-07-25T04:56:39.880Z`
 - Netlify builds with `npm run build` and publishes only `dist/`.
 - Deployment is manual. Git pushes do not publish.
 - The local Netlify link was corrected from the unrelated Chromatic project and now targets Grand Funding.
 
-## Local reinvention state
+## Released reinvention
 
 - Direction: Desert Deal Room / Desert Ledger
 - Homepage: focused eight-section hierarchy with preserved calculator and pre-approval form
@@ -63,6 +63,8 @@ Final local validation completed on 2026-07-24:
 - Premium gate: 2,849 checks across 37 pages and seven breakpoints; zero total, watchlist, or unique-page failures.
 - Python generator compile, production dependency audit, Netlify target assertion, and `git diff --check`: passed.
 - Netlify-aware local build completed with an artifact hash identical before and after the command: `4d6dc1ce4794022187247ba72bd7cbc1808b290f0be19b687b7e09aeb686e684`.
+- Preview deploy `6a643ffee17381e219647c04`: 536 reinvention checks, 174 runtime crawl checks, and 847 premium watchlist checks passed with zero failures.
+- Production deploy `6a64420313e477e0eb227ec3`: 536 live reinvention checks passed, all 80 sitemap URLs returned successfully, representative routes/assets returned correct status and MIME types, and Netlify reported the deploy `ready`.
 
 ## Risk and compliance
 
@@ -90,4 +92,4 @@ Final local validation completed on 2026-07-24:
 
 ## Next agent directive
 
-Read this file, `CLAUDE.md`, `PROJECT_STATUS.md`, and `docs/GRAND-FUNDING-REINVENTION-2026-07-24.md`. Preserve the verified dirty worktree and completed local candidate. The next possible action is an inspected Netlify preview of `dist/`, but only with explicit preview authorization. Do not commit, push, preview, deploy, submit forms, or mutate DNS/analytics without the corresponding scoped authorization.
+Read this file, `CLAUDE.md`, `PROJECT_STATUS.md`, and `docs/GRAND-FUNDING-REINVENTION-2026-07-24.md`. Treat commit `ecb197c900dc413756e8677faf81c309ddaab369` and production deploy `6a64420313e477e0eb227ec3` as the released baseline. Preserve regulated facts and the `dist/` release boundary. Do not submit forms or mutate DNS, analytics, advertising, compliance copy, or production without the corresponding scoped authorization.

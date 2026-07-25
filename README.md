@@ -14,7 +14,7 @@ The 2026-07-24 local reinvention evolves the established cinematic desert-night 
 - connected schema, canonical alignment, route-specific metadata, and automated SEO/AEO validation;
 - graceful reduced-motion, Save-Data, and low-resource behavior.
 
-The working reinvention has not been deployed. The currently published Netlify deploy remains `6a61b4aafec5909a1591fa8b`, published `2026-07-23T06:29:02.459Z`.
+The reinvention is live. GitHub PR #4 merged as source commit `ecb197c900dc413756e8677faf81c309ddaab369`; Netlify production deploy `6a64420313e477e0eb227ec3` was published on `2026-07-25T04:56:39.880Z` and passed post-release verification.
 
 ## Repository and hosting
 

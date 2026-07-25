@@ -112,6 +112,7 @@ Production verification:
 - Preview, deploy-specific production, and live root HTML were byte-identical
 - Local Firefox profiles passed; external Firefox could not connect to any HTTPS host in this runner, while remote Chromium and WebKit passed
 - No production form was submitted and third-party telemetry was blocked during browser QA
+- Closeout CI exposed a fractional-animation timing flake in the consent test; the test now waits for the functional class change and persisted essential-only state, and all 505 preservation checks pass
 
 These closeout commands passed after the last source change:
 

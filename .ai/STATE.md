@@ -50,6 +50,7 @@
 - Production passed 174 route checks, 505 preservation checks, 20 accessibility audits, and 847 premium responsive checks with zero failures
 - Live, production-deploy, and preview root HTML hashes match
 - External Playwright Firefox could not connect to any HTTPS host in this runner; the same Firefox profiles passed locally, while remote Chromium and WebKit passed against the preview
+- Closeout CI exposed and removed a fixed-delay consent-animation test flake; preservation now verifies the functional class and persisted essential-only state, then passed all 505 checks locally
 
 ## Release state
 

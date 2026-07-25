@@ -812,15 +812,55 @@ async function inspectStickyAndConsent(page, route, width) {
   const essential = page.locator('[data-consent="essential"]').first();
   if (await essential.count()) {
     await essential.click();
-    await page.waitForTimeout(380);
+    await page.waitForFunction(
+      () => {
+        const banner = document.querySelector(
+          '#consent-banner, .consent-banner'
+        );
+        if (!banner || banner.classList.contains('is-open')) return false;
+        try {
+          const saved = JSON.parse(localStorage.getItem('gf_consent_v1'));
+          return (
+            saved?.v === 1
+            && saved.ads === false
+            && saved.analytics === false
+          );
+        } catch {
+          return false;
+        }
+      },
+      undefined,
+      { timeout: 2_500 }
+    ).catch(() => null);
   } else {
     issues.push('Essential only consent control is missing');
   }
 
-  const afterConsent = await getState();
-  if (afterConsent.consent.visible) {
+  const consentDecision = await page.evaluate(() => {
+    const banner = document.querySelector(
+      '#consent-banner, .consent-banner'
+    );
+    let saved = null;
+    try {
+      saved = JSON.parse(localStorage.getItem('gf_consent_v1'));
+    } catch {
+      // Report the missing functional state below.
+    }
+    return {
+      isOpen: banner?.classList.contains('is-open') ?? true,
+      storedEssential:
+        saved?.v === 1
+        && saved.ads === false
+        && saved.analytics === false
+    };
+  });
+  if (consentDecision.isOpen) {
     issues.push('cookie consent did not close after Essential only');
   }
+  if (!consentDecision.storedEssential) {
+    issues.push('Essential only consent was not persisted');
+  }
+  const afterConsent = await getState();
 
   const suppressionZones = {
     '/': ['.meet-logan__cta', '.loan-calc'],

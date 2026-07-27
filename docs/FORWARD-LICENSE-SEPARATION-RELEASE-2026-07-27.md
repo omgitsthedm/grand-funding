@@ -1,7 +1,7 @@
 # Grand Funding Public License-Separation Release
 
 - Date: 2026-07-27
-- Status: authorized candidate; production verification pending
+- Status: executed and production-verified
 - Site: `https://www.grandfundingllc.com`
 - Netlify project: `grandfundingllc`
 - Netlify site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
@@ -64,22 +64,23 @@ Internal validators and this preservation record necessarily name the restricted
 
 Seven existing regulated-claims categories remain unresolved and strict-blocking. The default baseline validator proves that this release does not expand those claims. The strict release gate remains unchanged and is expected to stop on those seven decisions.
 
-The one-time operational exception is limited to removing the public license/association material required by the July 27 written notice. It does not approve any regulated claim and cannot be reused for another release.
+The one-time operational exception was limited to removing the public license/association material required by the July 27 written notice. Production deploy `6a67cfd4f0a305b559bbcb3d` consumed it. It did not approve any regulated claim and cannot be reused for another release.
 
 ## Verification record
 
-To be completed from the exact committed artifact:
-
-- candidate commit: pending
-- pull request / merge: pending
+- production source commit: `e8c3a85462652262b678d6626aed2f1437ac6787`
+- pull request: `#13`
 - artifact: 281 files; SHA-256 fingerprint `8cc2b29639889e1f123af792d9d024573b5db808bcdda5bde3733d5542247d83` over each sorted relative path, a NUL byte, and the file bytes
 - full local quality gate: passed twice after repair, including 174 route/viewport checks, 505 preservation checks, 20 accessibility audits, 17 conversion contracts, 60 cross-browser document checks, and 847 responsive watchlist checks, all with zero failures
 - expected strict claims stop: confirmed; the unchanged strict gate stopped only on the seven documented unresolved decisions
 - public separation scans: zero restricted text/source/artifact matches and zero capitalized `Forward` brand matches
 - media scans: zero OCR matches across all raster images and five sampled frames from each of two public videos
-- preview deploy and live-mode QA: pending
-- production deploy and live-mode QA: pending
-- route, metadata, structured-data, raster OCR, and video-frame scans: pending
+- preview deploy: `6a67cd7fd0fc1d853f8309e5`, ready; 174 route/viewport checks, 505 preservation checks, 20 accessibility audits, 60 cross-browser document checks, and 847 responsive checks passed with zero failures
+- production deploy: `6a67cfd4f0a305b559bbcb3d`, ready and current; published `2026-07-27T21:38:35.680Z`
+- production live-mode QA: the same 174 route/viewport checks, 505 preservation checks, 20 accessibility audits, 60 cross-browser document checks, and 847 responsive checks passed with zero failures
+- remote artifact verification: 192 non-HTML files matched byte-for-byte; all 88 HTML documents matched visible text, metadata, JSON-LD, and form contracts after Netlify's expected clean-URL/form rewrite; no restricted term survived
+- hosting identity: Netlify re-confirmed `grandfundingllc`, site ID `055c5942-aeaa-478a-9508-a34406994d5d`, with production deploy `6a67cfd4f0a305b559bbcb3d` current and ready
+- external-state boundary: no live form submission, analytics activation, DNS edit, environment-variable change, form-submission access, or client-record access occurred
 
 During the first full browser pass, the gate caught a redactor defect that had converted JavaScript logical-OR operators in the analytics initializer into bitwise-OR operators. No preview or production deploy had occurred. The separator regex was corrected, all 86 affected current pages were regenerated from preserved HEAD, a fast-gate regression assertion was added, and the complete browser suite passed twice afterward.
 

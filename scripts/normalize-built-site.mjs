@@ -4,7 +4,7 @@ import path from 'node:path';
 const ORGANIZATION_NAME = 'Grand Funding LLC';
 const LANGUAGE = 'en-US';
 const OG_LOCALE = 'en_US';
-const DEFAULT_SOCIAL_IMAGE = '/images/og-grandfunding-v2.jpg';
+const DEFAULT_SOCIAL_IMAGE = '/images/og-grandfunding-v3-20260727.jpg';
 const SOCIAL_IMAGE_FAMILIES = Object.freeze({
   fundedDeals: Object.freeze({
     path: '/images/social/funded-deals-20260724.jpg',
@@ -19,7 +19,7 @@ const SOCIAL_IMAGE_FAMILIES = Object.freeze({
     alt: 'Grand Funding LLC business-purpose real estate loan programs'
   }),
   loganDirect: Object.freeze({
-    path: '/images/social/logan-direct-lender-20260724.jpg',
+    path: '/images/social/logan-direct-lender-20260727.jpg',
     alt: 'Logan Sullivan, founder and direct lender at Grand Funding LLC'
   }),
   marketLending: Object.freeze({
@@ -924,18 +924,6 @@ function schemaGraph({
     url: `${siteUrl.origin}/`,
     telephone: '+1-602-935-0371',
     email: 'Logan@grandfundingllc.com',
-    identifier: [
-      {
-        '@type': 'PropertyValue',
-        name: 'NMLS ID',
-        value: '2466872'
-      },
-      {
-        '@type': 'PropertyValue',
-        name: 'AZ MLO License',
-        value: '1048901'
-      }
-    ],
     areaServed: [
       { '@type': 'State', name: 'Arizona' },
       { '@type': 'State', name: 'California' }
@@ -986,11 +974,6 @@ function schemaGraph({
       jobTitle: 'Founder and Direct Lender',
       url: `${siteUrl.origin}/about`,
       image: `${siteUrl.origin}/images/logan/logan-portrait-720.webp`,
-      identifier: {
-        '@type': 'PropertyValue',
-        name: 'NMLS ID',
-        value: '2466872'
-      },
       worksFor: { '@id': organizationId }
     });
   }

@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-25
+updated: 2026-07-27
 policy: Characterize, quarantine, verify external contracts, then remove in small reversible batches.
 
 candidates:
@@ -41,9 +41,10 @@ candidates:
     paths:
       - images/
     observed:
-      generated_scan: 96 of 166 files had no repository reference on 2026-07-25
-      exact_candidate_bytes: 6132374
-      approximate_size: 5.85 MiB
+      generated_scan: 97 of 168 files had no repository reference on 2026-07-27
+      exact_candidate_bytes: 6243641
+      approximate_size: 5.95 MiB
+      release_note: Two cache-busted clean social images were added; historic externally addressable image paths remain preserved and were redacted in place under the litigation hold.
     status: hold
     removal_gate:
       - generate an exact hash and reference report

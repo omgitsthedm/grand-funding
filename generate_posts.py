@@ -38,7 +38,7 @@ POSTS = {
             }
         ],
         "breadcrumb_title": "Scottsdale Construction Loans: Build Guide for AZ Investors",
-        "main_html": """<main id="main"><section class="blog-hero" style="padding-bottom:24px"><div class="container"><p class="eyebrow" style="margin-bottom:10px"><a href="/blog.html" style="color:inherit;text-decoration:none;opacity:.85"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true" style="vertical-align:middle;margin-right:4px"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>Back to Blog</a></p><h1>Scottsdale Construction Loans: Build New, Tear Down, or Expand in the Luxury Market</h1><div class="post-byline" data-post-byline style="display:flex;align-items:center;gap:.85rem;margin:.5rem 0 1.75rem;color:rgba(244,247,255,.72);font-size:.9rem;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:.5rem"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4FE3D2,#F0B26B);display:flex;align-items:center;justify-content:center;color:#0B1014;font-weight:900;font-size:.78rem">LS</div><span style="color:#F0F0EC;font-weight:700">By Logan Sullivan</span></div><span style="color:rgba(244,247,255,.5)" aria-hidden="true">·</span><time datetime="2026-06-29" style="color:rgba(244,247,255,.7)">June 29, 2026</time><span style="color:rgba(244,247,255,.5)" aria-hidden="true">·</span><span style="color:rgba(244,247,255,.7)">Direct Lender · NMLS #2466872</span></div><div class="post-meta" style="justify-content:center"><span class="post-date">June 29, 2026</span><span class="post-category">Construction</span></div></div></section><section class="section" style="padding-top:0"><div class="container" style="max-width:860px"><figure class="blog-hero-image"><img src="/images/ScottsdaleFundedcopy.webp" alt="" width="784" height="588" loading="eager" fetchpriority="high" decoding="async" role="presentation"></figure><article class="blog-post" style="display:block"><div class="post-content">
+        "main_html": """<main id="main"><section class="blog-hero" style="padding-bottom:24px"><div class="container"><p class="eyebrow" style="margin-bottom:10px"><a href="/blog.html" style="color:inherit;text-decoration:none;opacity:.85"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true" style="vertical-align:middle;margin-right:4px"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>Back to Blog</a></p><h1>Scottsdale Construction Loans: Build New, Tear Down, or Expand in the Luxury Market</h1><div class="post-byline" data-post-byline style="display:flex;align-items:center;gap:.85rem;margin:.5rem 0 1.75rem;color:rgba(244,247,255,.72);font-size:.9rem;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:.5rem"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4FE3D2,#F0B26B);display:flex;align-items:center;justify-content:center;color:#0B1014;font-weight:900;font-size:.78rem">LS</div><span style="color:#F0F0EC;font-weight:700">By Logan Sullivan</span></div><span style="color:rgba(244,247,255,.5)" aria-hidden="true"></span><time datetime="2026-06-29" style="color:rgba(244,247,255,.7)">June 29, 2026</time><span style="color:rgba(244,247,255,.5)" aria-hidden="true"></span><span style="color:rgba(244,247,255,.7)">Direct Lender</span></div><div class="post-meta" style="justify-content:center"><span class="post-date">June 29, 2026</span><span class="post-category">Construction</span></div></div></section><section class="section" style="padding-top:0"><div class="container" style="max-width:860px"><figure class="blog-hero-image"><img src="/images/ScottsdaleFundedcopy.webp" alt="" width="784" height="588" loading="eager" fetchpriority="high" decoding="async" role="presentation"></figure><article class="blog-post" style="display:block"><div class="post-content">
 <p>Scottsdale is one of the most active new-construction markets in the country. Teardown-rebuilds in Old Town, custom luxury estates in North Scottsdale, spec homes in McCormick Ranch, and ADUs in Paradise Valley — the building activity is constant. This guide explains how Scottsdale construction loans work, what lenders actually look at, and how to structure a deal that closes fast.</p>
 
 <h2>Why Scottsdale Construction Financing Is Different From Phoenix</h2>
@@ -158,7 +158,7 @@ POSTS = {
             }
         ],
         "breadcrumb_title": "Second Position Loans Arizona: Unlock Equity Without Refinancing",
-        "main_html": """<main id="main"><section class="blog-hero" style="padding-bottom:24px"><div class="container"><p class="eyebrow" style="margin-bottom:10px"><a href="/blog.html" style="color:inherit;text-decoration:none;opacity:.85"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true" style="vertical-align:middle;margin-right:4px"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>Back to Blog</a></p><h1>Second Position Loans Arizona: Tap Equity Without Touching Your First Mortgage</h1><div class="post-byline" data-post-byline style="display:flex;align-items:center;gap:.85rem;margin:.5rem 0 1.75rem;color:rgba(244,247,255,.72);font-size:.9rem;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:.5rem"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4FE3D2,#F0B26B);display:flex;align-items:center;justify-content:center;color:#0B1014;font-weight:900;font-size:.78rem">LS</div><span style="color:#F0F0EC;font-weight:700">By Logan Sullivan</span></div><span style="color:rgba(244,247,255,.5)" aria-hidden="true">·</span><time datetime="2026-06-29" style="color:rgba(244,247,255,.7)">June 29, 2026</time><span style="color:rgba(244,247,255,.5)" aria-hidden="true">·</span><span style="color:rgba(244,247,255,.7)">Direct Lender · NMLS #2466872</span></div><div class="post-meta" style="justify-content:center"><span class="post-date">June 29, 2026</span><span class="post-category">Strategy</span></div></div></section><section class="section" style="padding-top:0"><div class="container" style="max-width:860px"><figure class="blog-hero-image"><picture><source srcset="/images/og/cash-out-refi-vs-second-position-loan-arizona.webp" type="image/webp"><img src="/images/og/cash-out-refi-vs-second-position-loan-arizona.png" alt="" width="1200" height="630" loading="eager" fetchpriority="high" decoding="async" role="presentation"></picture></figure><article class="blog-post" style="display:block"><div class="post-content">
+        "main_html": """<main id="main"><section class="blog-hero" style="padding-bottom:24px"><div class="container"><p class="eyebrow" style="margin-bottom:10px"><a href="/blog.html" style="color:inherit;text-decoration:none;opacity:.85"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true" style="vertical-align:middle;margin-right:4px"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>Back to Blog</a></p><h1>Second Position Loans Arizona: Tap Equity Without Touching Your First Mortgage</h1><div class="post-byline" data-post-byline style="display:flex;align-items:center;gap:.85rem;margin:.5rem 0 1.75rem;color:rgba(244,247,255,.72);font-size:.9rem;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:.5rem"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4FE3D2,#F0B26B);display:flex;align-items:center;justify-content:center;color:#0B1014;font-weight:900;font-size:.78rem">LS</div><span style="color:#F0F0EC;font-weight:700">By Logan Sullivan</span></div><span style="color:rgba(244,247,255,.5)" aria-hidden="true"></span><time datetime="2026-06-29" style="color:rgba(244,247,255,.7)">June 29, 2026</time><span style="color:rgba(244,247,255,.5)" aria-hidden="true"></span><span style="color:rgba(244,247,255,.7)">Direct Lender</span></div><div class="post-meta" style="justify-content:center"><span class="post-date">June 29, 2026</span><span class="post-category">Strategy</span></div></div></section><section class="section" style="padding-top:0"><div class="container" style="max-width:860px"><figure class="blog-hero-image"><picture><source srcset="/images/og/cash-out-refi-vs-second-position-loan-arizona.webp" type="image/webp"><img src="/images/og/cash-out-refi-vs-second-position-loan-arizona.png" alt="" width="1200" height="630" loading="eager" fetchpriority="high" decoding="async" role="presentation"></picture></figure><article class="blog-post" style="display:block"><div class="post-content">
 <p>Arizona real estate investors are sitting on more equity than they've ever had. The problem: accessing it without losing a 3.5% first mortgage can feel impossible when banks won't touch non-owner properties and cash-out refis would triple your monthly payment. A second position loan is often the answer. Here's how it works, when it makes sense, and what Grand Funding looks at to approve one.</p>
 
 <h2>What Is a Second Position Loan?</h2>
@@ -233,7 +233,6 @@ POSTS = {
     }
 }
 
-
 def build_schemas(spec, slug):
     """Build JSON-LD schemas for the blog post."""
     person_schema = {
@@ -247,10 +246,6 @@ def build_schemas(spec, slug):
         "image": "https://www.grandfundingllc.com/images/logan/logan-portrait-720.webp",
         "description": "Logan Sullivan is the founder of Grand Funding LLC, a direct private hard money lender for Arizona and California real estate investors. With 40+ years of real estate, lending, and investment experience, Logan underwrites and closes every loan personally.",
         "knowsAbout": ["Hard money lending", "Private money lending", "Fix and flip loans", "Bridge loans", "Construction loans", "Second position loans", "Arizona real estate investment", "California real estate investment"],
-        "hasCredential": [
-            {"@type": "EducationalOccupationalCredential", "name": "NMLS License #2466872"},
-            {"@type": "EducationalOccupationalCredential", "name": "AZ MLO License #1048901"}
-        ],
         "worksFor": {"@type": "Organization", "name": "Grand Funding LLC", "url": "https://www.grandfundingllc.com"}
     }
 
@@ -293,7 +288,6 @@ def build_schemas(spec, slug):
     for schema in [person_schema, webpage_schema, faq_schema, breadcrumb_schema]:
         blocks.append(f'<script type="application/ld+json">{minify_json(schema)}</script>')
     return ''.join(blocks)
-
 
 def generate_post(slug, spec, template_content):
     """Generate a blog post HTML file from the template."""
@@ -418,7 +412,6 @@ def generate_post(slug, spec, template_content):
 
     return content
 
-
 def main():
     with open(TEMPLATE, 'r') as f:
         template_content = f.read()
@@ -434,7 +427,6 @@ def main():
     print(f"\nGenerated {len(POSTS)} blog posts:")
     for slug in POSTS:
         print(f"  ✓ posts/{slug}.html")
-
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastReviewed": "2026-07-25",
+  "lastReviewed": "2026-07-27",
   "scope": {
     "description": "Fail-closed baseline for public regulated and comparative lending claims. This registry documents current wording; it does not approve or resolve it.",
     "sourceIncludes": [
@@ -240,29 +240,31 @@
     {
       "issueId": "timing-taxonomy",
       "ruleId": "timing-taxonomy",
+      "baselineNote": "2026-07-27 hash-only rebaseline after license-only badges were removed. Thirty-eight match spans now include adjacent pre-approval text; file counts, match counts, and all timing wording are unchanged. This does not approve any timing claim.",
       "source": {
         "matchedFiles": 83,
         "matchCount": 1201,
-        "sha256": "eb8d2b79e054d4a116de98c5c68ffddda41665d8e13425c17db31851c949f06d"
+        "sha256": "d82c89d20c33e6b65dc66760626d97f2e10bddb51fad3cea6786a8acb815f92f"
       },
       "dist": {
         "matchedFiles": 76,
         "matchCount": 792,
-        "sha256": "4701b040170b1ec3e8e458203f4befe23fb76cfbed6febded0b1bff47926c380"
+        "sha256": "f2844524ef305e8af1a2517ff913f09df555f596fc8ba4ed8fb27369ee6b068a"
       }
     },
     {
       "issueId": "service-area-policy",
       "ruleId": "service-area",
+      "baselineNote": "2026-07-27 rebaseline records removal of the Forward-sponsored license references and related Grand Funding licensing assertions under written removal instruction. The underlying service-area policy remains unresolved and release-blocking.",
       "source": {
         "matchedFiles": 87,
-        "matchCount": 433,
-        "sha256": "b1df85cf01b3b217a7f963a4a6a086cf6a1d3180428e28369c74687baf5af325"
+        "matchCount": 429,
+        "sha256": "40ccff2c6769e8955126ae5fbd0d9ec426ed285514899fd043d83660e05a06ff"
       },
       "dist": {
         "matchedFiles": 87,
-        "matchCount": 300,
-        "sha256": "c77fecd6ae012bcbed6168f7f62b15e6e49c03ea1cc9a5944845d840a048db6e"
+        "matchCount": 297,
+        "sha256": "015308bc86788af9ef74c4b8076eca59e9bab24cb8044bbd86a1530f612bb94d"
       }
     },
     {

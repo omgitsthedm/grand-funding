@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-25
+updated: 2026-07-27
 
 open:
   - id: regulated-claims-conflict
@@ -43,6 +43,9 @@ open:
     control: Regenerate only through the canonical AI-Ops generator; current STATE and SOURCE_OF_TRUTH supersede the stale command section.
 
 closed:
+  - id: forward-license-separation-release-2026-07-27
+    resolution: Consumed once by production deploy 6a67cfd4f0a305b559bbcb3d after preserved pre-change evidence, full non-strict QA, OCR, preview verification, and production verification. It authorized only public license-association removal and did not approve or resolve any of the seven frozen regulated-claims issues.
+
   - id: exact-baseline-production-exception-2026-07-25
     resolution: Consumed once by production deploy 6a6489b013e4771689227e4f after preview and live verification. It did not approve or resolve any claim and does not carry forward.
 

@@ -77,8 +77,8 @@ PAGES = {
         'term': '12-18 months',
         'loan_range': '$250K-$5M',
         'title': 'Scottsdale Construction Loans | 10.99% From | Grand Funding LLC',
-        'meta_desc': 'Scottsdale construction loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 80% of project cost, $250K–5M. Direct private lender. NMLS #2466872. Call (602) 935-0371.',
-        'og_desc': 'Construction loans for Scottsdale, Arizona real estate investors. Up to 80% of cost, from 10.99%, funded in 3-5 days. Direct lender. NMLS #2466872. Call (602) 935-0371.',
+        'meta_desc': 'Scottsdale construction loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 80% of project cost, $250K–5M. Direct private lender. Call (602) 935-0371.',
+        'og_desc': 'Construction loans for Scottsdale, Arizona real estate investors. Up to 80% of cost, from 10.99%, funded in 3-5 days. Direct lender. Call (602) 935-0371.',
         'h1': 'Scottsdale Construction Loans',
         'hero_sub': "Up to 80% of cost. Milestone draws aligned with your build schedule. $5M cap. Built for luxury custom home builders and investor-developers in Arizona's premier market. Funding investors from North Scottsdale, Old Town, Paradise Valley, DC Ranch and across Arizona.",
         'h2': 'Construction Loans built for Scottsdale deals',
@@ -123,8 +123,8 @@ PAGES = {
         'term': '12-18 months',
         'loan_range': '$250K-$5M',
         'title': 'San Diego Construction Loans | 10.99% From | Grand Funding LLC',
-        'meta_desc': 'San Diego construction loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 80% of cost, $250K–5M. Direct private lender. NMLS #2466872. Call (602) 935-0371.',
-        'og_desc': 'Construction loans for San Diego, California real estate investors. Up to 80% of cost, from 10.99%, funded in 3-5 days. Direct lender. NMLS #2466872. Call (602) 935-0371.',
+        'meta_desc': 'San Diego construction loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 80% of cost, $250K–5M. Direct private lender. Call (602) 935-0371.',
+        'og_desc': 'Construction loans for San Diego, California real estate investors. Up to 80% of cost, from 10.99%, funded in 3-5 days. Direct lender. Call (602) 935-0371.',
         'h1': 'San Diego Construction Loans',
         'hero_sub': "Up to 80% of cost. Milestone draws on your schedule. $5M cap. Built for San Diego builders and investor-developers navigating coastal permitting and high-value new construction. Funding investors from La Jolla, Pacific Beach, North Park, Encinitas, and across California.",
         'h2': 'Construction Loans built for San Diego deals',
@@ -169,8 +169,8 @@ PAGES = {
         'term': '12-18 months',
         'loan_range': '$250K-$5M',
         'title': 'Los Angeles Construction Loans | 10.99% From | Grand Funding LLC',
-        'meta_desc': 'Los Angeles construction loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 80% of cost, $250K–5M. Direct private lender. NMLS #2466872. Call (602) 935-0371.',
-        'og_desc': 'Construction loans for Los Angeles, California real estate investors. Up to 80% of cost, from 10.99%, funded in 3-5 days. Direct lender. NMLS #2466872. Call (602) 935-0371.',
+        'meta_desc': 'Los Angeles construction loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 80% of cost, $250K–5M. Direct private lender. Call (602) 935-0371.',
+        'og_desc': 'Construction loans for Los Angeles, California real estate investors. Up to 80% of cost, from 10.99%, funded in 3-5 days. Direct lender. Call (602) 935-0371.',
         'h1': 'Los Angeles Construction Loans',
         'hero_sub': "Up to 80% of cost. Milestone-based draws. $5M cap. Built for LA developers navigating LADBS permitting, teardown-rebuilds, multi-family projects, and high-value coastal construction. Funding investors from Venice, Silver Lake, Highland Park, Culver City, and across California.",
         'h2': 'Construction Loans built for Los Angeles deals',
@@ -217,8 +217,8 @@ PAGES = {
         'term': '12-24 months',
         'loan_range': '$70K-$2M',
         'title': 'Scottsdale 2nd Position Loans | 11.99% From | Grand Funding LLC',
-        'meta_desc': 'Scottsdale second position loans from Grand Funding. Keep your low-rate first, access equity. 24-hour approval, 7-10 day funding. NMLS #2466872. Call (602) 935-0371.',
-        'og_desc': 'Second position loans for Scottsdale, Arizona investors. Keep your low-rate first, access equity up to 75% CLTV. NMLS #2466872. Call (602) 935-0371.',
+        'meta_desc': 'Scottsdale second position loans from Grand Funding. Keep your low-rate first, access equity. 24-hour approval, 7-10 day funding. Call (602) 935-0371.',
+        'og_desc': 'Second position loans for Scottsdale, Arizona investors. Keep your low-rate first, access equity up to 75% CLTV. Call (602) 935-0371.',
         'h1': 'Scottsdale 2nd Position Loans',
         'hero_sub': "Keep your low-rate first. Add a junior lien up to 75% CLTV. Funds in 7-10 days. Better than refinancing if your first is sub-5%. Funding Scottsdale investors from North Scottsdale, Old Town, Paradise Valley, McCormick Ranch and across Arizona.",
         'h2': '2nd Position Loans built for Scottsdale investors',
@@ -265,8 +265,8 @@ PAGES = {
         'term': '6-18 months',
         'loan_range': '$70K-$2M',
         'title': 'Tucson Fix & Flip Loans | 9.99% From | Grand Funding LLC',
-        'meta_desc': 'Tucson fix and flip loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 90% ARV, from 9.99%, $70K–2M. Direct private lender. NMLS #2466872. Call (602) 935-0371.',
-        'og_desc': 'Fix & flip loans for Tucson, Arizona real estate investors. Up to 90% ARV, from 9.99%, funded in 3-5 days. Direct lender. NMLS #2466872. Call (602) 935-0371.',
+        'meta_desc': 'Tucson fix and flip loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 90% ARV, from 9.99%, $70K–2M. Direct private lender. Call (602) 935-0371.',
+        'og_desc': 'Fix & flip loans for Tucson, Arizona real estate investors. Up to 90% ARV, from 9.99%, funded in 3-5 days. Direct lender. Call (602) 935-0371.',
         'h1': 'Tucson Fix & Flip Loans',
         'hero_sub': "Up to 90% of ARV. Asset-based — no income docs. Funded in 3-5 days so you don't lose the deal. Funding Tucson investors from Barrio Viejo, Midtown, the Foothills, Sam Hughes, and across Southern Arizona.",
         'h2': 'Fix & Flip loans built for Tucson deals',
@@ -310,8 +310,8 @@ PAGES = {
         'term': '6-24 months',
         'loan_range': '$70K-$2M',
         'title': 'Tucson Bridge Loans | 9.99% From | Grand Funding LLC',
-        'meta_desc': 'Tucson bridge loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 75% LTV, from 9.99%, $70K–2M. Direct private lender. NMLS #2466872. Call (602) 935-0371.',
-        'og_desc': 'Bridge loans for Tucson, Arizona real estate investors. Up to 75% LTV, from 9.99%, funded in 3-5 days. Direct lender. NMLS #2466872. Call (602) 935-0371.',
+        'meta_desc': 'Tucson bridge loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 75% LTV, from 9.99%, $70K–2M. Direct private lender. Call (602) 935-0371.',
+        'og_desc': 'Bridge loans for Tucson, Arizona real estate investors. Up to 75% LTV, from 9.99%, funded in 3-5 days. Direct lender. Call (602) 935-0371.',
         'h1': 'Tucson Bridge Loans',
         'hero_sub': "3-5 day close. 24-month term ceiling. No prepayment penalty on most loans. Built for Tucson investors who need speed and flexibility. Funding investors from Barrio Viejo, Midtown, the Foothills, and across Southern Arizona.",
         'h2': 'Bridge Loans built for Tucson deals',
@@ -355,8 +355,8 @@ PAGES = {
         'term': '6-18 months',
         'loan_range': '$70K-$3M',
         'title': 'Mesa Fix & Flip Loans | 9.99% From | Grand Funding LLC',
-        'meta_desc': 'Mesa fix and flip loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 90% ARV, from 9.99%, $70K–3M. Direct private lender. NMLS #2466872. Call (602) 935-0371.',
-        'og_desc': 'Fix & flip loans for Mesa, Arizona real estate investors. Up to 90% ARV, from 9.99%, funded in 3-5 days. Direct lender. NMLS #2466872. Call (602) 935-0371.',
+        'meta_desc': 'Mesa fix and flip loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 90% ARV, from 9.99%, $70K–3M. Direct private lender. Call (602) 935-0371.',
+        'og_desc': 'Fix & flip loans for Mesa, Arizona real estate investors. Up to 90% ARV, from 9.99%, funded in 3-5 days. Direct lender. Call (602) 935-0371.',
         'h1': 'Mesa Fix & Flip Loans',
         'hero_sub': "Up to 90% of ARV. Asset-based — no income docs. Funded in 3-5 days so you don't lose the deal. Funding Mesa investors from Downtown Mesa, Eastmark, Red Mountain, Dobson Ranch, and across the East Valley.",
         'h2': 'Fix & Flip loans built for Mesa deals',
@@ -400,8 +400,8 @@ PAGES = {
         'term': '6-24 months',
         'loan_range': '$70K-$3M',
         'title': 'Mesa Bridge Loans | 9.99% From | Grand Funding LLC',
-        'meta_desc': 'Mesa bridge loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 75% LTV, from 9.99%, $70K–3M. Direct private lender. NMLS #2466872. Call (602) 935-0371.',
-        'og_desc': 'Bridge loans for Mesa, Arizona real estate investors. Up to 75% LTV, from 9.99%, funded in 3-5 days. Direct lender. NMLS #2466872. Call (602) 935-0371.',
+        'meta_desc': 'Mesa bridge loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 75% LTV, from 9.99%, $70K–3M. Direct private lender. Call (602) 935-0371.',
+        'og_desc': 'Bridge loans for Mesa, Arizona real estate investors. Up to 75% LTV, from 9.99%, funded in 3-5 days. Direct lender. Call (602) 935-0371.',
         'h1': 'Mesa Bridge Loans',
         'hero_sub': "3-5 day close. 24-month term ceiling. No prepayment penalty on most loans. Built for Mesa investors who need speed and flexibility across the East Valley. Funding investors from Eastmark, Red Mountain, Dobson Ranch, and across Arizona.",
         'h2': 'Bridge Loans built for Mesa deals',
@@ -445,8 +445,8 @@ PAGES = {
         'term': '6-18 months',
         'loan_range': '$70K-$2M',
         'title': 'Tempe Fix & Flip Loans | 9.99% From | Grand Funding LLC',
-        'meta_desc': 'Tempe fix and flip loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 90% ARV, from 9.99%, $70K–2M. Direct private lender. NMLS #2466872. Call (602) 935-0371.',
-        'og_desc': 'Fix & flip loans for Tempe, Arizona real estate investors. Up to 90% ARV, from 9.99%, funded in 3-5 days. Direct lender. NMLS #2466872. Call (602) 935-0371.',
+        'meta_desc': 'Tempe fix and flip loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 90% ARV, from 9.99%, $70K–2M. Direct private lender. Call (602) 935-0371.',
+        'og_desc': 'Fix & flip loans for Tempe, Arizona real estate investors. Up to 90% ARV, from 9.99%, funded in 3-5 days. Direct lender. Call (602) 935-0371.',
         'h1': 'Tempe Fix & Flip Loans',
         'hero_sub': "Up to 90% of ARV. Asset-based — no income docs. Funded in 3-5 days. Tempe's ASU proximity, Mill Ave corridor, and Tempe Town Lake keep buyer demand strong for renovated properties. Funding investors from Old Town Tempe, South Tempe, and across the Valley.",
         'h2': 'Fix & Flip loans built for Tempe deals',
@@ -490,8 +490,8 @@ PAGES = {
         'term': '6-24 months',
         'loan_range': '$70K-$2M',
         'title': 'Tempe Bridge Loans | 9.99% From | Grand Funding LLC',
-        'meta_desc': 'Tempe bridge loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 75% LTV, from 9.99%, $70K–2M. Direct private lender. NMLS #2466872. Call (602) 935-0371.',
-        'og_desc': 'Bridge loans for Tempe, Arizona real estate investors. Up to 75% LTV, from 9.99%, funded in 3-5 days. Direct lender. NMLS #2466872. Call (602) 935-0371.',
+        'meta_desc': 'Tempe bridge loans from Grand Funding. 24-hour approval, 3-5 day funding. Up to 75% LTV, from 9.99%, $70K–2M. Direct private lender. Call (602) 935-0371.',
+        'og_desc': 'Bridge loans for Tempe, Arizona real estate investors. Up to 75% LTV, from 9.99%, funded in 3-5 days. Direct lender. Call (602) 935-0371.',
         'h1': 'Tempe Bridge Loans',
         'hero_sub': "3-5 day close. 24-month term ceiling. No prepayment penalty on most loans. Tempe's central location and consistent demand make it ideal for short-term bridge holds. Funding investors from Old Town Tempe, South Tempe, and across the Valley.",
         'h2': 'Bridge Loans built for Tempe deals',
@@ -522,7 +522,6 @@ PAGES = {
     },
 
 }
-
 
 # ============================================================
 # Generator
@@ -611,7 +610,6 @@ def build_main_html(spec):
 <section class="engagement-block" aria-label="Why investors choose Grand Funding">
 <div class="engagement-block__inner">
 <div class="engagement-trust">
-<div class="engagement-trust__item"><div class="engagement-trust__icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="engagement-trust__num">NMLS</div><div class="engagement-trust__label">Licensed &middot; #2466872</div></div>
 <div class="engagement-trust__item"><div class="engagement-trust__icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10S22 17.52 22 12 17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg></div><div class="engagement-trust__num">24hr</div><div class="engagement-trust__label">Term Sheet</div></div>
 <div class="engagement-trust__item"><div class="engagement-trust__icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg></div><div class="engagement-trust__num">3-5</div><div class="engagement-trust__label">Day Funding</div></div>
 <div class="engagement-trust__item"><div class="engagement-trust__icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="engagement-trust__num">Direct</div><div class="engagement-trust__label">No Brokers &middot; Logan Decides</div></div>
@@ -621,7 +619,7 @@ def build_main_html(spec):
 <div class="engagement-logan__photo"><img src="/images/logan/logan-face-240.webp" srcset="/images/logan/logan-face-128.webp 128w,/images/logan/logan-face-240.webp 240w" sizes="84px" width="84" height="84" alt="Logan Sullivan, Founder of Grand Funding LLC" loading="lazy"></div>
 <div class="engagement-logan__copy">
 <div class="engagement-logan__name">Logan Sullivan, Founder &amp; Direct Lender</div>
-<div class="engagement-logan__title">NMLS #2466872 &middot; AZ MLO #1048901 &middot; 40+ Years in AZ + CA Real Estate</div>
+<div class="engagement-logan__title">40+ Years in AZ + CA Real Estate</div>
 <div class="engagement-logan__quote">I personally review every deal. If you have a property under contract, call me &mdash; we can usually have a term sheet in 24 hours.</div>
 </div>
 <div class="engagement-logan__actions">
@@ -665,7 +663,6 @@ def build_main_html(spec):
 </div>
 </section>
 </main>'''
-
 
 def build_schema_blocks(spec):
     """Build the JSON-LD schema blocks for a page."""
@@ -726,7 +723,6 @@ def build_schema_blocks(spec):
     s2 = f'<script type="application/ld+json">{json.dumps(breadcrumb_schema, separators=(",", ":"))}</script>'
     s3 = f'<script type="application/ld+json">{json.dumps(fp_schema, separators=(",", ":"))}</script>'
     return s1 + s2 + s3
-
 
 def generate_page(spec):
     """Generate a complete HTML page from spec and template."""
@@ -817,7 +813,6 @@ def generate_page(spec):
         template += '</html>'
 
     return template
-
 
 # ============================================================
 # Run generator

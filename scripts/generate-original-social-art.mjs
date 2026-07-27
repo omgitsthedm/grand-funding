@@ -33,7 +33,7 @@ const assets = {
   fundedDealsSource: join(sourceDir, "funded-deals-background.png"),
   investorGuidesSource: join(sourceDir, "investor-guides-background.png"),
   fundedDeals: join(socialDir, "funded-deals-20260724.jpg"),
-  loganDirect: join(socialDir, "logan-direct-lender-20260724.jpg"),
+  loganDirect: join(socialDir, "logan-direct-lender-20260727.jpg"),
   investorGuides: join(socialDir, "investor-guides-20260724.jpg"),
   loanPrograms: join(socialDir, "loan-programs-20260725.jpg"),
   marketLending: join(
@@ -263,7 +263,7 @@ function generateLoganPoster(output) {
     temporaryFont,
     temporaryMark,
     ["Talk Directly", "to the Lender"],
-    "Logan Sullivan · NMLS #2466872",
+    "Logan Sullivan · Founder",
   );
 
   args.push(

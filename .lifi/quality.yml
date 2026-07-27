@@ -1,6 +1,6 @@
 version: 1
 project: grand-funding
-updated: 2026-07-25
+updated: 2026-07-27
 
 preservation_contract:
   brand:
@@ -32,6 +32,7 @@ required_gates:
     - deterministic build
     - public-boundary validation
     - technical SEO validation
+    - public NMLS and MLO separation validation
     - frozen regulated-claims baseline
     - quality-config validation
   full:

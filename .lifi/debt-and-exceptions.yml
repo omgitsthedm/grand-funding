@@ -1,7 +1,13 @@
 version: 1
-updated: 2026-07-25
+updated: 2026-07-27
 
 open:
+  - id: forward-license-separation-release-2026-07-27
+    severity: time-critical-compliance
+    owner: David Marsh and release operator
+    detail: Remove every public NMLS, MLO, Forward, and Grand Funding licensing-association reference requested in the 2026-07-27 written notice while preserving the complete pre-change history.
+    control: One-time release is limited to the exact redaction candidate, requires the full non-strict quality gate, image and video OCR, a clean preview, and post-deploy live verification. It does not approve or resolve any of the seven frozen regulated-claims issues.
+
   - id: regulated-claims-conflict
     severity: release-blocking
     owner: Logan Sullivan and lending counsel

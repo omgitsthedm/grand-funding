@@ -203,20 +203,20 @@ POSTS = {
 
 <h2>Arizona Second Position Loan Terms: What to Expect</h2>
 <ul>
-<li><strong>Rate:</strong> Starting at 11.99% interest-only</li>
-<li><strong>Maximum CLTV:</strong> 75% (first mortgage + second position combined)</li>
-<li><strong>Loan amounts:</strong> $70,000 to $2,000,000</li>
+<li><strong>Rates and points:</strong> Provided after direct deal review</li>
+<li><strong>Leverage:</strong> Determined after review of the first lien, property value, and requested financing</li>
+<li><strong>Loan sizing:</strong> Determined after direct deal review</li>
 <li><strong>Term:</strong> 12 to 24 months</li>
 <li><strong>Close timeline:</strong> 3 to 5 business days</li>
-<li><strong>Properties:</strong> Investment real estate in Arizona and California (non-owner occupied)</li>
+<li><strong>Properties:</strong> Eligible real estate in Arizona and California; occupancy is reviewed case by case</li>
 </ul>
 
 <h2>What Gets Second Position Loans Denied</h2>
 <p>Understanding the no-gos saves everyone time:</p>
 <ul>
-<li><strong>CLTV above 75%:</strong> If the first mortgage is already at 80% LTV, there's no room for a second position loan within our guidelines. The first needs to be paid down first.</li>
+<li><strong>Leverage outside approved terms:</strong> Existing liens, property value, and the requested financing must fit the transaction-specific terms provided after review.</li>
 <li><strong>First mortgage in default:</strong> A missed payment on the first is a disqualifier. Current status on the first is non-negotiable.</li>
-<li><strong>Owner-occupied residential property:</strong> We fund investment property only. Primary residences fall under TRID and QM rules — different product entirely.</li>
+<li><strong>Owner-occupied residential property:</strong> Owner-occupied and primary-residence eligibility is limited and reviewed case by case.</li>
 <li><strong>No clear exit strategy:</strong> "I'll figure it out" isn't an exit. We need a specific, realistic plan for loan repayment within the term.</li>
 </ul>
 

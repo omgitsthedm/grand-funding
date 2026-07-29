@@ -163,7 +163,7 @@ function sharpenHomepage(source) {
   const form = sections.get("contact-section")?.match(
     /<form\b(?=[^>]*\bname=["']pre-approval["'])[\s\S]*?<\/form>/i
   )?.[0];
-  const calculator = sections.get("loan-calc")?.includes("data-loan-calc");
+  const calculator = sections.get("loan-calc")?.includes("data-project-calc");
   if (!form || !calculator) {
     throw new Error("Original-experience contract failed: form or calculator missing");
   }

@@ -1,11 +1,11 @@
 version: 1
-updated: 2026-07-27
+updated: 2026-07-29
 
 open:
   - id: regulated-claims-conflict
     severity: release-blocking
     owner: Logan Sullivan and lending counsel
-    detail: Public rates, amounts, leverage, timing, occupancy, purpose, service-area, volume, and comparative claims are inconsistent.
+    detail: The July 27 client survey is implemented in public copy, but formal lending-counsel approval and documentary support remain unrecorded for all seven strict-block categories.
     control: .lifi/regulated-claims.json and strict release validation
 
   - id: ads-conversion-labels
@@ -43,6 +43,9 @@ open:
     control: Regenerate only through the canonical AI-Ops generator; current STATE and SOURCE_OF_TRUTH supersede the stale command section.
 
 closed:
+  - id: client-survey-claims-release-2026-07-29
+    resolution: Consumed once by production deploy 6a69f55b47ede5d0a16b98ec after preserved pre-change evidence, a verified immutable preview, full local and live browser QA, and exact remote-asset comparison. It authorized only the website decisions in the supplied July 27 client survey; it did not represent lending-counsel approval, resolve the seven strict blocks, change DNS, activate ads, or restore any licensing or Forward-association content.
+
   - id: forward-license-separation-release-2026-07-27
     resolution: Consumed once by production deploy 6a67cfd4f0a305b559bbcb3d after preserved pre-change evidence, full non-strict QA, OCR, preview verification, and production verification. It authorized only public license-association removal and did not approve or resolve any of the seven frozen regulated-claims issues.
 

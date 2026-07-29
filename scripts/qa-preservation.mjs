@@ -944,14 +944,12 @@ async function inspectStickyAndConsent(page, route, width) {
 }
 
 async function inspectHeroVideo(page, width) {
-  if (width >= 1024) {
-    await page
-      .waitForFunction(() => {
-        const video = document.querySelector('.hero-video');
-        return !video || video.readyState >= 2 || Boolean(video.error);
-      }, null, { timeout: 5_000 })
-      .catch(() => {});
-  }
+  await page
+    .waitForFunction(() => {
+      const video = document.querySelector('.hero-video');
+      return !video || video.readyState >= 2 || Boolean(video.error);
+    }, null, { timeout: 5_000 })
+    .catch(() => {});
 
   return page.evaluate(async expectedWidth => {
     const issues = [];
@@ -967,8 +965,6 @@ async function inspectHeroVideo(page, width) {
     if (posterPath !== '/images/arizona-hero-poster.webp') {
       issues.push(`hero poster changed: ${posterPath || '(empty)'}`);
     }
-
-    if (expectedWidth < 1024) return issues;
 
     const source =
       video.currentSrc ||
@@ -1003,6 +999,30 @@ async function inspectHeroVideo(page, width) {
     if (end <= start && video.readyState < 3) {
       issues.push(
         `hero video did not advance and is not future-data ready (${start} → ${end})`
+      );
+    }
+
+    const hero = document.querySelector('main[data-original-home-refined] > .hero');
+    const overlay = hero?.querySelector('.hero-overlay');
+    const title = hero?.querySelector('.hero-title.gradient-text');
+    const nextSection = hero?.nextElementSibling;
+    if (!hero || !overlay || !title || !nextSection) {
+      issues.push('refined hero presentation contract is incomplete');
+      return issues;
+    }
+
+    const overlayStyle = getComputedStyle(overlay);
+    const titleStyle = getComputedStyle(title);
+    const gap = nextSection.getBoundingClientRect().top - hero.getBoundingClientRect().bottom;
+    if (overlayStyle.backgroundImage !== 'none') {
+      issues.push(`hero overlay still uses a gradient: ${overlayStyle.backgroundImage}`);
+    }
+    if (titleStyle.backgroundImage !== 'none') {
+      issues.push(`hero title still uses a gradient: ${titleStyle.backgroundImage}`);
+    }
+    if (gap < 8 || gap > 32) {
+      issues.push(
+        `hero-to-next-section gap is outside the intended small range at ${expectedWidth}px: ${gap.toFixed(1)}px`
       );
     }
     return issues;

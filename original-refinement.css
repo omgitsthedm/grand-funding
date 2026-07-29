@@ -298,6 +298,40 @@ main > section {
   }
 }
 
+/* Homepage hero: let the Arizona footage carry the visual treatment. */
+main[data-original-home-refined] > .hero {
+  margin-bottom: clamp(0.75rem, 1.4vw, 1.25rem);
+}
+
+main[data-original-home-refined] > .hero .hero-overlay {
+  background: rgba(7, 8, 11, 0.56) !important;
+}
+
+main[data-original-home-refined] > .hero .hero-grain {
+  opacity: 0.06;
+  mix-blend-mode: normal;
+}
+
+main[data-original-home-refined] > .hero .hero-decoration {
+  display: none !important;
+}
+
+main[data-original-home-refined] > .hero .hero-title.gradient-text {
+  color: #f4f7ff !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: currentColor !important;
+  animation: none !important;
+}
+
+@media (max-width: 720px) and (prefers-reduced-motion: no-preference) {
+  main[data-original-home-refined] > .hero .hero-video {
+    display: block !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html body .hero .hero-video,
   html body .hero-media .hero-video,

@@ -1,6 +1,6 @@
 # Grand Funding LLC — Working Contract
 
-> Current as of 2026-07-25. Read `.ai/STATE.md`, `SOURCE_OF_TRUTH.md`, and this file before working.
+> Current as of 2026-07-29. Read `.ai/STATE.md`, `SOURCE_OF_TRUTH.md`, and this file before working.
 
 ## Source of truth
 
@@ -8,7 +8,7 @@
 - Visible client path: `/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding`
 - Remote: `https://github.com/omgitsthedm/grand-funding.git`
 - Default branch: `master`
-- Candidate branch: `agent/grand-funding-continuous-elevation-july-2026`
+- Current release branch: `agent/grand-funding-client-approvals-20260729`
 - Stack: static HTML, CSS, and JavaScript with a deterministic Node build
 - Required runtime: Node `24.18.0`
 - Netlify publish directory: `dist/`
@@ -43,11 +43,12 @@ Both deployment wrappers use pinned `netlify-cli@27.0.0`, run the release gate, 
 - Live URL: `https://www.grandfundingllc.com`
 - Netlify project: `grandfundingllc`
 - Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
-- Current observed production deploy: `6a6489b013e4771689227e4f`, ready, published 2026-07-25 at 10:02:30Z
-- Release merge: `f5baf1f620a4b8a6aa1c915d82fbbc9f564ab51b`
-- Rollback deploy: `6a64616a5602a06cd8001b9c`
+- Current observed production deploy: `6a69f55b47ede5d0a16b98ec`, ready, published 2026-07-29 at 12:43:16Z
+- Production source commit: `79a17a20af56112e9b7856f52a0f686b0c0dd038`
+- Release PR: `#14`
+- Previous production deploy: `6a67cfd4f0a305b559bbcb3d`
 - Netlify is not Git-linked; a push does not publish this site
-- The current elevation is merged to `master`, deployed, and live-verified
+- The July 27 client-survey implementation is deployed and live-verified
 
 ## Experience preservation contract
 
@@ -67,11 +68,11 @@ Elevate through clearer flow, stronger CTA context, accessible behavior, premium
 
 ## Regulated boundaries
 
-Do not change or invent rates, fees, points, loan amounts, leverage, timing promises, occupancy policy, consumer-purpose policy, licenses, service area, testimonials, funded-deal facts, or comparative claims without approved client facts and lending-counsel review.
+The exact July 27 client survey decisions are preserved in `docs/GRAND-FUNDING-CLIENT-WEBSITE-APPROVAL-2026-07-27.md` and implemented by the deterministic website-approval sanitizer. Do not expand or invent rates, fees, points, loan amounts, leverage, timing promises, occupancy policy, consumer-purpose policy, licenses, service area, testimonials, funded-deal facts, or comparative claims beyond that record without new written approval and lending-counsel review.
 
 Do not submit production forms during QA. Never read or expose credentials, `.env*`, client records, or form submissions.
 
-The strict release gate is blocked by seven decisions:
+The strict release gate remains blocked by seven lending-counsel approvals:
 
 1. Occupancy and consumer-purpose policy
 2. Rates and points
@@ -85,4 +86,4 @@ Google Ads conversion labels remain placeholders and dormant. There is no PostHo
 
 ## Current handoff
 
-Use `docs/GRAND-FUNDING-CLIENT-INDEPENDENT-ELEVATION-2026-07-25.md` for the candidate scope, validation, blockers, rollback, and next action.
+Use `docs/GRAND-FUNDING-CLIENT-APPROVAL-RELEASE-2026-07-29.md` for the current scope, validation, blockers, preservation record, and release evidence.

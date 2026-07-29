@@ -1,6 +1,6 @@
 version: 1
 project: grand-funding
-updated: 2026-07-27
+updated: 2026-07-29
 
 preservation_contract:
   brand:
@@ -12,7 +12,7 @@ preservation_contract:
   experience:
     - direct access to Logan
     - funded-deal proof
-    - loan calculator behavior
+    - project-cost and gross-spread calculator behavior
     - Netlify form names, actions, and no-JS POST fallback
   forbidden_without_client_approval:
     - rates, fees, points, loan amounts, leverage, or timing claims
@@ -33,6 +33,7 @@ required_gates:
     - public-boundary validation
     - technical SEO validation
     - public NMLS and MLO separation validation
+    - client website approval validation
     - frozen regulated-claims baseline
     - quality-config validation
   full:

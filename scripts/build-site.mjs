@@ -2,6 +2,7 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { applyClientWebsiteApproval } from './apply-client-website-approval.mjs';
 import { generateRss } from './generate-rss.mjs';
 import { normalizeBuiltSite } from './normalize-built-site.mjs';
 import { redactPublicLicenseReferences } from './redact-public-license-references.mjs';
@@ -11,7 +12,7 @@ import { refineOriginalExperience } from './refine-original-experience.mjs';
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
 const SITE_ORIGIN = 'https://www.grandfundingllc.com';
-const RELEASE_DATE = '2026-07-25';
+const RELEASE_DATE = '2026-07-29';
 
 const ROOT_ASSETS = [
   '404.html',
@@ -77,6 +78,7 @@ for (const directory of PUBLIC_DIRECTORIES) {
   await copyRequired(path.join(ROOT, directory), path.join(DIST, directory));
 }
 
+const initialClientApproval = await applyClientWebsiteApproval({ root: DIST });
 await refineLegacyRuntime({ dist: DIST });
 await refineOriginalExperience({ dist: DIST });
 const normalization = await normalizeBuiltSite({
@@ -84,6 +86,10 @@ const normalization = await normalizeBuiltSite({
   dist: DIST,
   siteOrigin: SITE_ORIGIN,
   releaseDate: RELEASE_DATE
+});
+const finalClientApproval = await applyClientWebsiteApproval({
+  root: DIST,
+  preserveJsonLd: true
 });
 const feedItems = await generateRss({
   dist: DIST,
@@ -99,6 +105,8 @@ console.log(
   `Built ${files.length} public files (${(bytes / 1024 / 1024).toFixed(1)} MiB) in dist/; `
   + `normalized ${normalization.hrefsNormalized} links, ${normalization.indexablePages} indexable pages, `
   + `${normalization.redirectRules} redirect rules, ${feedItems} RSS items; `
+  + `applied ${finalClientApproval.approvalDate} client website policy to `
+  + `${initialClientApproval.changedFiles + finalClientApproval.changedFiles} copied/generated file pass(es); `
   + `redacted public license/association content in ${redaction.changedFiles} file(s) `
   + `(${redaction.removedReferences} restricted token(s))`
 );

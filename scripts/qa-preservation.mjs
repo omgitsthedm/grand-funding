@@ -1010,30 +1010,42 @@ async function inspectHeroVideo(page, width) {
 }
 
 async function inspectCalculator(page) {
-  const calculator = page.locator('[data-loan-calc], .loan-calc').first();
-  if (!(await calculator.count())) return ['homepage loan calculator is missing'];
+  const calculator = page.locator('.loan-calc[data-project-calc]').first();
+  if (!(await calculator.count())) return ['homepage project calculator is missing'];
 
-  const amount = calculator.locator('[data-calc="loan-amount"]');
-  const purchase = calculator.locator('[data-calc="purchase"]');
-  const bridge = calculator.locator('[data-calc-type="bridge"]');
-  if (!(await amount.count()) || !(await purchase.count()) || !(await bridge.count())) {
-    return ['loan calculator controls or output are incomplete'];
+  const purchase = calculator.locator('[data-project-calc="purchase"]');
+  const rehab = calculator.locator('[data-project-calc="rehab"]');
+  const value = calculator.locator('[data-project-calc="value"]');
+  const cost = calculator.locator('[data-project-calc="cost"]');
+  const spread = calculator.locator('[data-project-calc="spread"]');
+  if (
+    !(await purchase.count()) ||
+    !(await rehab.count()) ||
+    !(await value.count()) ||
+    !(await cost.count()) ||
+    !(await spread.count())
+  ) {
+    return ['project calculator controls or output are incomplete'];
   }
 
-  const before = (await amount.textContent())?.trim() || '';
-  await purchase.fill('$800,000');
-  await bridge.click();
+  const before = (await spread.textContent())?.trim() || '';
+  await purchase.fill('$100,000');
+  await rehab.fill('$25,000');
+  await value.fill('$160,000');
   await page.waitForTimeout(80);
-  const after = (await amount.textContent())?.trim() || '';
-  const pressed = await bridge.getAttribute('aria-pressed');
-  const numeric = Number(after.replace(/[^0-9.]/g, ''));
+  const afterCost = (await cost.textContent())?.trim() || '';
+  const afterSpread = (await spread.textContent())?.trim() || '';
   const issues = [];
 
-  if (!after || after === before) issues.push('calculator output did not update');
-  if (!Number.isFinite(numeric) || numeric <= 0) {
-    issues.push(`calculator output is not a positive amount: ${after || '(empty)'}`);
+  if (!afterSpread || afterSpread === before) {
+    issues.push('project calculator output did not update');
   }
-  if (pressed !== 'true') issues.push('calculator loan type state did not update');
+  if (afterCost !== '$125,000') {
+    issues.push(`project calculator total cost is incorrect: ${afterCost || '(empty)'}`);
+  }
+  if (afterSpread !== '$35,000') {
+    issues.push(`project calculator gross spread is incorrect: ${afterSpread || '(empty)'}`);
+  }
   return issues;
 }
 

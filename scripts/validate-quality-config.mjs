@@ -23,6 +23,7 @@ const requiredScripts = [
   "test:a11y",
   "test:conversion",
   "test:cross-browser",
+  "validate:client-approval",
   "validate:claims",
   "validate:license-separation",
   "verify:netlify-target"
@@ -73,6 +74,7 @@ const expectedComposition = {
     "npm run validate",
     "npm run validate:seo",
     "npm run validate:license-separation",
+    "npm run validate:client-approval",
     "npm run validate:claims",
     "npm run validate:quality"
   ],

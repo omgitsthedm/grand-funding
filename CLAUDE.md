@@ -1,19 +1,21 @@
-# Grand Funding LLC — Working Contract
+# Grand Funding working contract
 
-> Current as of 2026-07-29. Read `.ai/STATE.md`, `SOURCE_OF_TRUTH.md`, and this file before working.
+Current as of 2026-07-29. Read `.ai/STATE.md`, `SOURCE_OF_TRUTH.md`, and this file before changing the project.
 
-## Source of truth
+## Source and release
 
 - Resolved repository: `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding`
 - Visible client path: `/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding`
 - Remote: `https://github.com/omgitsthedm/grand-funding.git`
 - Default branch: `master`
-- Current release branch: `agent/grand-funding-client-approvals-20260729`
-- Stack: static HTML, CSS, and JavaScript with a deterministic Node build
+- Production-source merge: `b64b409e91e457c99c0b98853be77aae85d495b7`
+- Production review: pull request #17
+- Release-record merge: `cdc425b3e0d5e70e1cf3b1914a0ba1da52c2af55`
+- Release-record review: pull request #18
 - Required runtime: Node `24.18.0`
 - Netlify publish directory: `dist/`
 
-The generated `.ai/RULES.md` still contains obsolete 2026-06-28 root-publish commands. Do not use its build or deployment section until the canonical AI-Ops generator regenerates it from the updated `.ai/RULES_HEADER.md`.
+The generated `.ai/RULES.md` still contains obsolete root-publish commands. Do not use its build or deployment section until the canonical AI-Ops generator regenerates it.
 
 ## Commands
 
@@ -26,64 +28,61 @@ npm run serve -- --dir dist --port 8888
 
 `npm run quality:release` is fail-closed. It must remain blocked while the seven regulated-claim decisions in `.lifi/regulated-claims.json` are unresolved.
 
-Never publish the repository root. Never use `--dir=.`.
-
-Deployment is manual and requires clear, scoped authorization:
-
-```bash
-npm run deploy:preview
-# Verify the preview, then only with explicit production authorization:
-npm run deploy:production
-```
-
-Both deployment wrappers use pinned `netlify-cli@27.0.0`, run the release gate, and verify the exact Netlify site identity before any upload.
+Never publish the repository root or use `--dir=.`.
 
 ## Production
 
 - Live URL: `https://www.grandfundingllc.com`
 - Netlify project: `grandfundingllc`
 - Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
-- Current observed production deploy: `6a69f55b47ede5d0a16b98ec`, ready, published 2026-07-29 at 12:43:16Z
-- Production source commit: `79a17a20af56112e9b7856f52a0f686b0c0dd038`
-- Release PR: `#14`
-- Previous production deploy: `6a67cfd4f0a305b559bbcb3d`
-- Netlify is not Git-linked; a push does not publish this site
-- The July 27 client-survey implementation is deployed and live-verified
+- Current production deploy: `6a6acd18828f50c85c77a2e5`
+- State: `ready`
+- Published: `2026-07-30T04:03:49.811Z`
+- Verified preview: `6a6acad9385847c56c5c2015`
+- Production artifact: 294 files
+- Aggregate SHA-256: `8af2323876df6cd2d6e4ef857ee9a8ecbdfd9f2bfccbe7c422528dacebd1c6e6`
 
-## Experience preservation contract
+Netlify is not Git-linked. A Git push does not publish this site.
 
-Preserve the original cinematic desert-night identity:
+## Experience contract
 
-- background `#07080B`
-- teal `#4FE3D2`
-- ember `#F0B26B`
+Preserve the flat Arizona Night Deal Desk direction:
+
+- desert-night setting and moving Arizona hero
+- teal, ember, graphite, and light-ink palette
 - DM Sans typography
-- moving Arizona hero with poster and constrained-device fallback
+- solid headings and actions without visible gradients
 - direct access to Logan
-- funded-deal proof
-- loan calculator behavior
-- original Netlify form names, actions, honeypots, and no-JS POST fallback
+- project calculator and approved timing context
+- Netlify form names, actions, honeypots, and no-JavaScript fallback
+- static poster and zero MPEG-4 (MP4) video requests under reduced motion
 
-Elevate through clearer flow, stronger CTA context, accessible behavior, premium original sharing art, reliable forms, performance, and safer release rails. Do not replace the identity with a generic SaaS or portfolio design.
+Do not restore the unverified mobile funded-deal hero panel, generic glass effects, ornamental gradients, or unsupported offer claims.
 
 ## Regulated boundaries
 
-The exact July 27 client survey decisions are preserved in `docs/GRAND-FUNDING-CLIENT-WEBSITE-APPROVAL-2026-07-27.md` and implemented by the deterministic website-approval sanitizer. Do not expand or invent rates, fees, points, loan amounts, leverage, timing promises, occupancy policy, consumer-purpose policy, licenses, service area, testimonials, funded-deal facts, or comparative claims beyond that record without new written approval and lending-counsel review.
+The July 27 client survey decisions are preserved in `docs/GRAND-FUNDING-CLIENT-WEBSITE-APPROVAL-2026-07-27.md`. The deterministic website-approval sanitizer enforces them.
 
-Do not submit production forms during QA. Never read or expose credentials, `.env*`, client records, or form submissions.
+Do not expand or invent rates, fees, points, loan amounts, leverage, timing promises, occupancy policy, consumer-purpose policy, licenses, service area, testimonials, funded-deal facts, or comparative claims without new written approval and lending-counsel review.
 
-The strict release gate remains blocked by seven lending-counsel approvals:
+The strict release gate remains blocked by:
 
-1. Occupancy and consumer-purpose policy
-2. Rates and points
-3. Loan amounts
-4. LTV, ARV, LTC, and CLTV leverage
-5. Approval, term-sheet, closing, and funding timing
-6. Licensed service area
-7. Volume and comparative proof
+1. occupancy and consumer-purpose policy
+2. rates and points
+3. loan amounts
+4. loan-to-value, after-repair value, loan-to-cost, and combined loan-to-value leverage
+5. decision, term-sheet, closing, and funding timing taxonomy
+6. licensed service area
+7. volume and comparative proof
 
-Google Ads conversion labels remain placeholders and dormant. There is no PostHog integration or PostHog dependency.
+Google Ads conversion labels remain dormant. Do not submit production forms, inspect production submissions, expose credentials, or change DNS records during quality assurance.
 
 ## Current handoff
 
-Use `docs/GRAND-FUNDING-CLIENT-APPROVAL-RELEASE-2026-07-29.md` for the current scope, validation, blockers, preservation record, and release evidence.
+Use these records:
+
+- `SITE-REINVENTION-DOSSIER.md`
+- `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-29-REINVENTION.md`
+- `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/SESSION-CLOSEOUT-2026-07-29-WEBSITE-REINVENTION-COMPLIANCE-RELEASE.md`
+
+Pre-hardening production deploys are not approved rollback targets. Use the final hardened artifact or a later artifact that passes the same claims and browser gates.

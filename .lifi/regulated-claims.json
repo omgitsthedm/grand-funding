@@ -211,31 +211,31 @@
     {
       "issueId": "timing-taxonomy",
       "ruleId": "timing-taxonomy",
-      "baselineNote": "2026-07-29 client-survey rebaseline records the current client-approved timing wording after removal of unrelated numeric pricing and sizing claims. Formal operations and lending-counsel approval remains unrecorded.",
+      "baselineNote": "2026-07-29 removal-only rebaseline after the client-approved timing wording was reduced by neutralizing unsurveyed credit, documentation, payment-structure, draw, and project-requirement promises. No new timing value was introduced. Formal operations and lending-counsel approval remains unrecorded.",
       "source": {
         "matchedFiles": 75,
-        "matchCount": 667,
-        "sha256": "d181b896213dc6fdb54220bcbed9be3f8f63fee714458c12cc73f18734ccb69a"
+        "matchCount": 655,
+        "sha256": "945208ace0bbf54d0b95931718e4a7eecb819d8210ae79040129e9f5bc375179"
       },
       "dist": {
         "matchedFiles": 76,
-        "matchCount": 682,
-        "sha256": "4d1c5e6b510100550fcec44ed5c30b03ce24871e69ef5f5fbd4480243823c0c4"
+        "matchCount": 670,
+        "sha256": "2edcfb37f6e50eb561f3872face4e437060ab736d75866d28261fa2cdb6c0bb2"
       }
     },
     {
       "issueId": "service-area-policy",
       "ruleId": "service-area",
-      "baselineNote": "2026-07-29 client-survey rebaseline records statewide Arizona and California wording and removal of nationwide and out-of-area service implications. Formal licensing and lending-counsel confirmation remains unresolved and release-blocking.",
+      "baselineNote": "2026-07-29 removal-only rebaseline records one fewer service-area occurrence after a categorical property-eligibility statement was replaced with transaction-specific review wording. No state or service area was added. Formal licensing and lending-counsel confirmation remains unresolved and release-blocking.",
       "source": {
         "matchedFiles": 86,
-        "matchCount": 257,
-        "sha256": "5a640ec242d07f8855ebf479b2447aa5cf4e4cbf5863feb75cc44e7cfd4deb1a"
+        "matchCount": 256,
+        "sha256": "87f389ac6b61fe18ae46e6acb0d0be72f5257f2009df8ec5f4dc83924dc41c3c"
       },
       "dist": {
         "matchedFiles": 87,
-        "matchCount": 331,
-        "sha256": "d3f50d243fc05d2b7c6d3c47e96b6bb76e2d3e4f0b7f9b9d9593bed7562ba70a"
+        "matchCount": 330,
+        "sha256": "f76fd8ad276b428bc5415e38829e5b01bd6143a986bc55127d42936b40f3d5a3"
       }
     },
     {

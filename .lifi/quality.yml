@@ -17,6 +17,7 @@ preservation_contract:
   forbidden_without_client_approval:
     - rates, fees, points, loan amounts, leverage, or timing claims
     - occupancy, consumer-purpose, licensing, or service-area policy
+    - credit thresholds, blanket documentation, prepayment, fixed-term, draw, or categorical fee policy
     - testimonials, funded-deal facts, or comparative superiority claims
     - production form submissions
 
@@ -34,6 +35,7 @@ required_gates:
     - technical SEO validation
     - public NMLS and MLO separation validation
     - client website approval validation
+    - fail-closed public lending-policy validation
     - frozen regulated-claims baseline
     - quality-config validation
   full:
@@ -61,3 +63,32 @@ production:
   site_id: 055c5942-aeaa-478a-9508-a34406994d5d
   canonical_origin: https://www.grandfundingllc.com
   deploy_requires_explicit_user_authorization: true
+
+performance_budgets:
+  homepage_mobile:
+    runs: 3
+    performance_min: 85
+    accessibility_min: 100
+    best_practices_min: 100
+    seo_min: 100
+    first_contentful_paint_ms_max: 2700
+    largest_contentful_paint_ms_max: 3800
+    total_blocking_time_ms_max: 100
+    cumulative_layout_shift_max: 0.05
+  generated_delivery:
+    stylesheets_per_html_page_max: 1
+    inline_style_tags_max: 0
+    duplicated_legacy_stylesheet_links_max: 0
+    tracking_preconnects_before_consent_max: 0
+
+evidence_boundaries:
+  frozen_pending_provenance:
+    - individual funded-deal amounts and closing details
+    - testimonial identities and quotes
+    - paid referral compensation language
+  hostile_conditions:
+    - JavaScript unavailable
+    - reduced motion
+    - save-data or constrained connection
+    - backgrounded or restored tab
+    - failed analytics and third-party requests

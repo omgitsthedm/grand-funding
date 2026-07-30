@@ -135,15 +135,31 @@ const CHECKS = [
       return await p.evaluate(() => {
         const fails = [];
 
-        // 0.a Foundational stylesheet must be loaded (link OR inlined).
+        // 0.a Foundational stylesheet must be loaded. Legacy pages may retain
+        // styles-v2 or the premium inline block; optimized builds consolidate
+        // the complete route cascade into one content-addressed site bundle.
         const hasStylesV2Link = !!document.querySelector(
           'link[rel="stylesheet"][href*="styles-v2"], link[rel="preload"][href*="styles-v2"]'
         );
-        // Also accept inlined premium system block as foundational coverage.
         const hasPremiumInline = !!Array.from(document.querySelectorAll('style'))
           .find(s => s.textContent.includes('GRAND FUNDING PREMIUM SYSTEM'));
-        if (!hasStylesV2Link && !hasPremiumInline) {
-          fails.push('foundational CSS missing (no styles-v2.css link AND no premium-system inline)');
+        const optimizedBundles = Array.from(
+          document.querySelectorAll('link[rel="stylesheet"]')
+        ).filter(link => {
+          const pathname = new URL(link.href, location.href).pathname;
+          return /^\/site-[a-f0-9]{16}\.css$/i.test(pathname);
+        });
+        const hasLoadedOptimizedBundle =
+          optimizedBundles.length === 1 &&
+          Boolean(optimizedBundles[0].sheet);
+        if (
+          !hasStylesV2Link &&
+          !hasPremiumInline &&
+          !hasLoadedOptimizedBundle
+        ) {
+          fails.push(
+            'foundational CSS missing (no styles-v2, premium inline block, or loaded content-addressed site bundle)'
+          );
         }
 
         // 0.b Body background must be the premium dark theme.

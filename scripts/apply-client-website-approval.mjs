@@ -20,6 +20,24 @@ const TERMS_NOTE =
   "Rates, points, loan sizing, leverage, and final terms are provided only after Grand Funding reviews the specific transaction. This website is not a commitment to lend.";
 const FOOTER_DISCLOSURE =
   "Grand Funding primarily offers business-purpose real estate financing in Arizona and California. Owner-occupied, primary-residence, or consumer-purpose transactions, if available, are considered only in limited, case-specific circumstances and may require additional documentation and review. This is not a commitment to lend. All financing is subject to transaction-specific review and final documentation.";
+const CREDIT_DOCUMENTATION_NOTE =
+  "Credit, income, experience, and documentation requirements are determined after review of the specific transaction.";
+const PREPAYMENT_NOTE =
+  "Any prepayment provision or minimum-interest period is transaction-specific and is disclosed in writing before closing.";
+const TERM_NOTE =
+  "Term length is determined after review of the specific transaction and is disclosed in writing.";
+const DRAW_NOTE =
+  "Construction and rehabilitation draw structure, milestones, inspections, and timing are determined for the specific project and are disclosed in writing.";
+const FEE_NOTE =
+  "Applicable lender charges and third-party costs are disclosed in writing after review and in the final transaction documents.";
+const USE_OF_FUNDS_NOTE =
+  "Permitted uses of funds and exit requirements are determined after review of the specific transaction and are disclosed in writing.";
+const PAYMENT_STRUCTURE_NOTE =
+  "Payment structure is determined after review of the specific transaction and is disclosed in writing.";
+const PROJECT_REQUIREMENTS_NOTE =
+  "Contractor, licensing, experience, inspection, scope-of-work, and other project requirements are determined after review of the specific project.";
+const PROPERTY_ELIGIBILITY_NOTE =
+  "Property type and transaction eligibility are determined after review of the specific request.";
 
 const OFFER_NUMBER_PATTERN =
   /(?:\b(?:rates?|APR|origination(?:\s+(?:fee|fees|point|points))?|points?)\b.{0,50}?(?:\d+(?:\.\d+)?\s*%|\d+(?:\.\d+)?(?:\s*(?:-|–|—|to)\s*\d+(?:\.\d+)?)?\s+(?:origination\s+)?points?)|(?:\d+(?:\.\d+)?\s*%|\d+(?:\.\d+)?(?:\s*(?:-|–|—|to)\s*\d+(?:\.\d+)?)?\s+(?:origination\s+)?points?).{0,50}?\b(?:rates?|APR|origination(?:\s+(?:fee|fees|point|points))?|points?)\b|\b(?:loan\s+(?:amounts?|range|limits?|minimum|maximum)|minimum\s+loan|maximum\s+loan|max\s+loan|borrow|fund(?:ing)?\s+up\s+to|up\s+to)\b.{0,55}?\$[\d,.]+\s*(?:[KkMm]|million|thousand)?|\$[\d,.]+\s*(?:[KkMm]|million|thousand)?.{0,55}?\b(?:loan\s+(?:amounts?|range|limits?|minimum|maximum)|minimum|maximum|max\s+loan|borrow)\b|\b(?:LTV|ARV|LTC|CLTV)\b.{0,45}?\d+(?:\.\d+)?\s*%|\d+(?:\.\d+)?\s*%.{0,45}?\b(?:LTV|ARV|LTC|CLTV)\b|\d+(?:\.\d+)?\s*%\s+of\s+(?:the\s+)?(?:purchase\s+price|project\s+costs?|rehab(?:\s+costs?)?|after-repair\s+value))/i;
@@ -31,6 +49,18 @@ const SANITIZED_OFFER_FRAGMENT_PATTERN =
   /\b(?:deal-specific leverage|deal-specific loan sizing|a deal-specific amount|terms provided after deal review provided after deal review|points provided after deal review provided after deal review)\b/i;
 const RESIDUAL_NUMERIC_OFFER_PATTERN =
   /(?:\b(?:rates?|APR|interest|origination|points?|mortgage)\b.{0,90}?\d+(?:\.\d+)?(?:\s*(?:-|–|—|to)\s*\d+(?:\.\d+)?)?\s*%|\d+(?:\.\d+)?(?:\s*(?:-|–|—|to)\s*\d+(?:\.\d+)?)?\s*%.{0,90}?\b(?:rates?|APR|interest|origination|points?|mortgage)\b|\b(?:up to|maximum|max(?:imum)?(?:\s+loan)?|minimum|loan\s+(?:amount|range|limit|size)|fund(?:ing)?\s+up to)\b.{0,80}?\$[\d,.]+\s*(?:[KkMm]\+?|million|thousand)?|\$[\d,.]+\s*(?:[KkMm]\+?|million|thousand)?.{0,80}?\b(?:maximum|max(?:imum)?(?:\s+loan)?|minimum|loan\s+(?:amount|range|limit|size)|ceiling|cap)\b|\b(?:up to|within|at|from|lends?|finances?|funds?)\b.{0,70}?\d+(?:\.\d+)?(?:\s*(?:-|–|—|to)\s*\d+(?:\.\d+)?)?\s*%\s*(?:combined\s+)?(?:LTV|ARV|LTC|CLTV|loan-to-value|of\s+(?:the\s+)?(?:purchase|project|cost|property|rehab|after[ -]repair|post[ -]completion))|\b(?:LTV|ARV|LTC|CLTV|leverage|loan-to-value)\b.{0,55}?\d+(?:\.\d+)?(?:\s*(?:-|–|—|to)\s*\d+(?:\.\d+)?)?\s*%|\d+(?:\.\d+)?(?:\s*(?:-|–|—|to)\s*\d+(?:\.\d+)?)?\s*%\s*(?:combined\s+)?(?:LTV|ARV|LTC|CLTV|loan-to-value|of\s+(?:the\s+)?(?:purchase|project|cost|property|rehab|after[ -]repair|post[ -]completion)))/i;
+const CREDIT_POLICY_PATTERN =
+  /\b(?:credit scores? as low as \d{3}|no minimum (?:credit score|FICO)|bad credit[^.!?]{0,80}\b(?:qualif(?:y|ies)|yes)|bankruptcies and foreclosures[^.!?]{0,80}(?:disqualif|qualif)|regardless of credit)\b/i;
+const DOCUMENTATION_POLICY_PATTERN =
+  /\b(?:no income (?:docs?|documentation)(?: required)?|no W-?2s?|no tax returns?|no pay stubs?|without income documentation|asset-based approval|approval is asset-based|not income-based)\b/i;
+const PREPAYMENT_POLICY_PATTERN =
+  /\b(?:no prepayment penalt(?:y|ies)|without (?:an? )?(?:additional )?(?:prepayment )?(?:fee|fees|penalty|penalties)|penalties minimal)\b/i;
+const FIXED_TERM_POLICY_PATTERN =
+  /\b(?:term(?: length|s?)?\s*(?::|of|from|between|range(?:s)?(?: from)?)?\s*\d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*months?|\d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*month terms?|\d{1,2}-month term ceiling)\b/i;
+const NUMERIC_DRAW_POLICY_PATTERN =
+  /\b(?:\d+\s*(?:-|–|—|to)\s*\d+ milestone draws?|inspection costs? \$[\d,.]+\s*(?:-|–|—|to)\s*\$?[\d,.]+|first draw at (?:slab|foundation))\b/i;
+const CATEGORICAL_FEE_POLICY_PATTERN =
+  /\b(?:no hidden fees?|no surprises|no junk fees?)\b/i;
 
 function decodeEntities(value) {
   const named = {
@@ -841,6 +871,744 @@ function applyExactApprovedWording(value) {
   return output;
 }
 
+function neutralizeUnapprovedPolicyClaims(value) {
+  return value
+    .replace(
+      /\bWe underwrite deals,\s*not paperwork\./gi,
+      "We review each transaction individually.",
+    )
+    .replace(
+      /\bHere(?:'|’|&rsquo;)s who we fund,\s*the scenarios we see most,\s*and the documents we need to give you a same-day term sheet\./gi,
+      "Here are common scenarios and the information used to begin a transaction-specific review.",
+    )
+    .replace(
+      /\bAsset-based lending that focuses on deal quality and exit strategy,\s*not just credit scores\.\s*We find ways to say yes\./gi,
+      "Transaction-specific review considers the property, requested financing, experience, documentation, and exit strategy.",
+    )
+    .replace(
+      /\bSelf-employed,\s*LLC-owned properties,\s*non-W-?2 income\s*[—-]\s*none of that slows us down\.\s*We underwrite on the property(?:'|’|&rsquo;)s value and your equity position,\s*period\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bNo\.\s*Grand Funding(?:'|’|&rsquo;)s (?:Arizona investor )?cash-out refi(?:nance)? is asset-based\s*[—-]\s*we underwrite on (?:the )?property(?:'|’|&rsquo;)?s? value and (?:your )?equity(?: position)?,\s*not (?:your )?W-?2s or tax returns\.\s*Self-employed investors,\s*LLCs?(?: borrowers)?,\s*and those with complex income(?: structures)? qualify (?:exactly )?the same way (?:as any other borrower|anyone else does)\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bGrand Funding doesn(?:'|’|&rsquo;)t restrict use of funds\s*[—-]\s*(?:we |Grand Funding )?just needs? a clear exit strategy for the refinanced property\./gi,
+      USE_OF_FUNDS_NOTE,
+    )
+    .replace(
+      /\bAnything deal-related:\s*down payments on new acquisitions,\s*rehab budgets,\s*paying off high-rate debt,\s*working capital,\s*or bridging to the next opportunity\.\s*Grand Funding doesn(?:'|’|&rsquo;)t restrict use of funds\s*[—-]\s*(?:we |Grand Funding )?just needs? a clear exit strategy for the refinanced property\./gi,
+      USE_OF_FUNDS_NOTE,
+    )
+    .replace(
+      /\bDocumentation After Review,\s*(?:income and )?documentation requirements determined after review\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bDocumentation After Review,\s*(?:income and )?documentation requirements determined after review\.\s*approval\b/gi,
+      `${CREDIT_DOCUMENTATION_NOTE} Approval`,
+    )
+    .replace(
+      /\b(?:Income docs?|Income documentation):\s*None required\s*\(asset-based\)/gi,
+      "Documentation: Determined after deal review",
+    )
+    .replace(
+      /<div class="lp-stat__num">0<\/div><div class="lp-stat__label">Income Docs Needed<\/div>/gi,
+      '<div class="lp-stat__num">Review</div><div class="lp-stat__label">Documentation</div>',
+    )
+    .replace(
+      /\bAsset-based\s*[—-]\s*Documentation After Review,\s*no bank delays\./gi,
+      "Transaction-specific review with documented requirements.",
+    )
+    .replace(
+      /\bLLCs welcome\s*[—-]\s*asset-based,\s*Documentation After Review required\b/gi,
+      "LLC-held properties may be submitted for transaction-specific review",
+    )
+    .replace(
+      /\bleverage determined after review\s*[—-]\s*Documentation After Review,\s*asset-based\b/gi,
+      "transaction-specific leverage and documentation review",
+    )
+    .replace(
+      /\bDo all Grand Funding products skip income documentation\?\s*Yes\.\s*Every product is asset-based\s*[—-]\s*approval is driven by property value,\s*deal quality,\s*and your exit strategy\.\s*(?:income and )?documentation requirements determined after review,\s*documentation requirements are determined after review\.?/gi,
+      `How are income and documentation reviewed? ${CREDIT_DOCUMENTATION_NOTE}`,
+    )
+    .replace(
+      /\bWe do not require W-?2s,\s*tax returns,\s*or pay stubs\.\s*Grand Funding underwrites on asset-based criteria\s*[—-]\s*property value and deal quality\s*[—-]\s*rather than personal income verification\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bNo\.\s*We don(?:'|’|&rsquo;)t require tax returns,\s*W-?2s,\s*or bank statements for most programs\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bNo\.\s*We underwrite the deal,\s*not your W-?2\.\s*Property value,\s*equity position,\s*and your exit strategy are what matter\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bdocumentation requirements are determined after review or (?:income documents|W-?2s) are required for most (?:hard money )?programs\.[^<]*?(?:business owners|exit strategy)\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bWe do not require tax returns,\s*W-?2s,\s*or income verification\.\s*The equity in the property is the underwriting\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bA short-term,\s*asset-based real estate loan secured by the property itself rather than the borrower(?:'|’|&rsquo;)s income or credit profile\./gi,
+      `Short-term real estate financing secured by real property. ${CREDIT_DOCUMENTATION_NOTE}`,
+    )
+    .replace(
+      /\bA NO-DOC mortgage loan is characterized by exempting borrowers from furnishing income documentation or tax returns\.[^<]*?liquid assets composition\./gi,
+      "“No-doc” is an informal market term, not a promise that documentation is unnecessary. Requirements vary by transaction, product, purpose, and lender.",
+    )
+    .replace(
+      /\bConventional banks underwrite YOU\s*[—-]\s*income,\s*credit,\s*DTI,\s*seasoning\.\s*Private lenders underwrite the DEAL\s*[—-]\s*property,\s*equity,\s*exit\.[^<]*?(?:private lending|right fit)\./gi,
+      "Traditional and private financing use different review criteria, documentation, and timing. Grand Funding determines its requirements only after reviewing the specific transaction.",
+    )
+    .replace(
+      /\bBanks underwrite based on your income and credit history\.\s*Hard money lenders underwrite on the deal\s*[—-]\s*specifically,\s*the After Repair Value \(ARV\) and the quality of your renovation plan\./gi,
+      "Traditional and private financing use different review criteria. Property details, project scope, requested financing, experience, documentation, and exit strategy may all be considered.",
+    )
+    .replace(
+      /\bExperience helps but (?:is not|isn(?:'|’|&rsquo;)t) required\.\s*First-time [^.!?<]+ can still qualify[^.!?<]*\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bInterest-only payments are standard\./gi,
+      PAYMENT_STRUCTURE_NOTE,
+    )
+    .replace(
+      /\bInterest-only payments during (?:the )?renovation period\b/gi,
+      "Payment structure determined after review",
+    )
+    .replace(
+      /\bKeep monthly carry costs low while you renovate\.\s*Interest-only payments mean you(?:'|’|&rsquo;)re not paying down principal while the property is under construction\./gi,
+      PAYMENT_STRUCTURE_NOTE,
+    )
+    .replace(
+      /\bInterest-only payments keep monthly carrying costs low during the renovation period\b/gi,
+      PAYMENT_STRUCTURE_NOTE,
+    )
+    .replace(
+      /\b(?:LLC borrower,\s*)?interest-only structure\b/gi,
+      "transaction-specific payment structure",
+    )
+    .replace(
+      /\bLLC borrower,\s*interest-only\./gi,
+      "LLC-held property; payment structure documented after review.",
+    )
+    .replace(
+      /\bInterest-Only Payments\b/gi,
+      "Payment Structure After Review",
+    )
+    .replace(
+      /\bTerm:\s*6,\s*12,\s*or\s*18 months with extension options in many cases\./gi,
+      TERM_NOTE,
+    )
+    .replace(
+      /\bWe finance acquisition\s*\+\s*construction with milestone draws\./gi,
+      DRAW_NOTE,
+    )
+    .replace(
+      /\bWe fund ground-up builds and major renovations with milestone draws\./gi,
+      `Grand Funding accepts ground-up and major-renovation scenarios for review. ${DRAW_NOTE}`,
+    )
+    .replace(
+      /\bfunds rehab in milestone draws\b/gi,
+      "uses a project-specific draw structure disclosed in writing",
+    )
+    .replace(
+      /\bLogan structures the draw schedule with you when terms are set\./gi,
+      DRAW_NOTE,
+    )
+    .replace(
+      /\bInitial draw funds at closing,\s*subsequent draws release on milestone completion\./gi,
+      DRAW_NOTE,
+    )
+    .replace(
+      /\bWe require a third-party inspection before releasing each draw\.[^<]*?project timeline\./gi,
+      `${PROJECT_REQUIREMENTS_NOTE} ${DRAW_NOTE}`,
+    )
+    .replace(
+      /\bLoan closes\.\s*First draw can release once permits confirmed\b/gi,
+      DRAW_NOTE,
+    )
+    .replace(
+      /\bYes for ground-up new construction\.\s*Owner-builders are case-by-case\s*[—-]\s*we look at experience and project complexity\./gi,
+      PROJECT_REQUIREMENTS_NOTE,
+    )
+    .replace(
+      /\b(?:Custom home builders and investor-developers|Builder-investors) with a permitted plan,\s*(?:licensed )?GC(?: lined up)?,\s*(?:and )?(?:a budget|a clear exit)\./gi,
+      PROJECT_REQUIREMENTS_NOTE,
+    )
+    .replace(
+      /\bWith over 40 years of building experience,\s*we understand the construction process and offer flexible draw schedules\./gi,
+      DRAW_NOTE,
+    )
+    .replace(
+      /\bFlexible Draws:\s*Customized payment schedules\b/gi,
+      "Draw structure: Determined after project review",
+    )
+    .replace(
+      /\bMilestone-based draws\b/gi,
+      "Draw structure after project review",
+    )
+    .replace(
+      /\bBoth residential and commercial properties are eligible\./gi,
+      PROPERTY_ELIGIBILITY_NOTE,
+    )
+    .replace(
+      /\bBoth fix\s*(?:&amp;|&)\s*flip and long-term investment properties are eligible\./gi,
+      PROPERTY_ELIGIBILITY_NOTE,
+    )
+    .replace(
+      /\bProperties:\s*Eligible real estate in Arizona and California;\s*occupancy is reviewed case by case\b/gi,
+      "Properties: reviewed case by case in Arizona and California; occupancy is also reviewed case by case",
+    )
+    .replace(
+      /\bAsset-based lending means income and documentation requirements determined after review\.\s*We evaluate the [^.!?<]+ and your exit strategy\s*[—-]\s*not your personal income\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /<h2 id="asset-based">4\. Asset-Based Underwriting Notice<\/h2>/gi,
+      '<h2 id="transaction-review">4. Transaction Review and Documentation</h2>',
+    )
+    .replace(
+      /href="#asset-based">Asset-Based Underwriting Notice</gi,
+      'href="#transaction-review">Transaction Review and Documentation<',
+    )
+    .replace(
+      /<h3>How Our Underwriting Works<\/h3>\s*<p>Grand Funding underwrites loans primarily on[\s\S]*?initial pre-approval process\.<\/p>/gi,
+      `<h3>Transaction-specific review</h3><p>${CREDIT_DOCUMENTATION_NOTE} Property details, requested financing, equity, experience, reserves, transaction purpose, and exit strategy may all be considered. Any authorization or additional documentation request is provided for the specific transaction.</p>`,
+    )
+    .replace(
+      /\b(?:What(?:'s| is) the minimum credit score|What credit score do I need(?: for a hard money loan)?|Can I get (?:a )?(?:[\w -]+\s+)?hard money loan[^?]{0,80}with bad credit)\?/gi,
+      "How are credit and experience reviewed?",
+    )
+    .replace(
+      /\bSan Diego hard money loans are asset-based, not credit-based\.[^<]*?specific transaction\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bYes\.\s*Hard money loans in San Diego are asset-based\.[^<]*?specific transaction\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bLos Angeles hard money loans are asset-based,[^<]*?(?:specific transaction|determined after review)\.?/gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bYes\.\s*Hard money loans are asset-based, reviewed transaction by transaction\.[^<]*/gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bCredit is considered but is not the primary qualifying factor\.[^<]*?specific transaction\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bUnderwriting focuses on the property's after-repair value \(ARV\), loan-to-value ratio, and your exit strategy\s*[—-]\s*not your FICO\.[^<]*?(?:borrowers?|applicants?)\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /<p>A hard money loan in Arizona is a short-term, asset-based loan secured by real estate\s*[—-]\s*not your credit score(?: or income history)?\.[\s\S]*?<\/p>/gi,
+      `<p>A hard money loan is short-term real estate financing secured by real property. ${CREDIT_DOCUMENTATION_NOTE}</p>`,
+    )
+    .replace(
+      /<p>A California hard money loan is a short-term, asset-based loan secured by the property\s*[—-]\s*not (?:by )?your credit score or income\.[\s\S]*?<\/p>/gi,
+      `<p>A hard money loan is short-term real estate financing secured by real property. ${CREDIT_DOCUMENTATION_NOTE} Grand Funding's published process targets decisions within 24 hours and funding within 3-5 business days after approval; actual timing depends on the transaction.</p>`,
+    )
+    .replace(
+      /\bWe underwrite on the property, not your tax returns, so a serious buyer with equity can close in 3\s*(?:-|–|—)\s*5 business days\./gi,
+      "Grand Funding reviews each transaction individually. The published 3–5 business-day funding target depends on the property, requested financing, title, documentation, and other transaction conditions.",
+    )
+    .replace(
+      /\bApproval is based on the property value and deal quality\s*[—-]\s*not your employment history or credit score\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bApproval is based on the property's value\s*[—-]\s*not the borrower's income or credit score\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bDo I need to show income or tax returns to qualify\?/gi,
+      "How are income and documentation reviewed?",
+    )
+    .replace(
+      /\bNo\.\s*Grand Funding is an asset-based direct lender\.[^<]*?approved the same way\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bWe focus on the property value and your deal\s*[—-]\s*not your employment history\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bWe focus on the property value, your equity, and a clear exit strategy\s*[—-]\s*not W-?2s or pay stubs\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bUnlike banks, the focus is on the deal\s*[—-]\s*not your tax returns\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /<p><strong>Grand Funding specializes in short-term, asset-based loans for real estate investors who may not qualify for traditional financing, specifically targeting investment properties\.<\/strong><\/p>/gi,
+      `<p><strong>Grand Funding reviews requested real estate financing transaction by transaction.</strong> ${CREDIT_DOCUMENTATION_NOTE}</p>`,
+    )
+    .replace(
+      /\bHard money loans are short-term, asset-based loans secured by real estate\. Unlike traditional financing, these loans are funded by private investors and focus on the property's value rather than the borrower's credit history\./gi,
+      `Hard money loans are short-term real estate financing secured by real property. ${CREDIT_DOCUMENTATION_NOTE}`,
+    )
+    .replace(
+      /\bLoans secured by the value of collateral \(the property\) rather than creditworthiness\b/gi,
+      `Real estate financing secured by real property. ${CREDIT_DOCUMENTATION_NOTE}`,
+    )
+    .replace(
+      /\ball asset-based,\s*Documentation After Review required\b/gi,
+      "with eligibility and documentation determined after review of the specific transaction",
+    )
+    .replace(
+      /\bNo strict income requirements\b/gi,
+      "Income and documentation requirements determined after review",
+    )
+    .replace(
+      /\bAsset-based underwriting means[^.!?<]*[.!]?/gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bDocumentation After Review\s*[—-]\s*asset-based underwriting only\b/gi,
+      "Documentation determined after review",
+    )
+    .replace(
+      /\bdocumentation requirements are determined after review or tax returns\.[^<]*?paperwork\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bincome and documentation requirements determined after review\.\s*Credit, income, experience, and documentation requirements are determined after review of the specific transaction\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\b(?:Arizona )?borrowers with credit scores? as low as \d{3} may qualify[^.!?<]*/gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bNo minimum credit score is required for most Grand Funding loans\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bEven bankruptcies and foreclosures[^.!?<]*(?:disqualify|qualify)[^.!?<]*/gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\b(?:We're|We are) asset-based\s*[—-]\s*no minimum FICO\.?/gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bNo minimum (?:credit score|FICO)\b/gi,
+      "Credit and experience reviewed after submission",
+    )
+    .replace(
+      /\b(?:No Income Documentation|No Income Docs?)\b/gi,
+      "Documentation After Review",
+    )
+    .replace(
+      /\bno income (?:docs?|documentation)(?: required)?\b/gi,
+      "documentation requirements determined after review",
+    )
+    .replace(
+      /\bno W-?2s?,?\s*(?:no )?tax returns?(?:,?\s*no bank statements?)?\b/gi,
+      "income and documentation requirements determined after review",
+    )
+    .replace(
+      /\bno W-?2s?,?\s*tax returns?,?\s*or pay stubs? are required\b/gi,
+      "income and documentation requirements are determined after review",
+    )
+    .replace(
+      /\bno (?:W-?2s?|tax returns?|pay ?stubs?|bank statements?|income verification)(?: required)?\b/gi,
+      "documentation requirements are determined after review",
+    )
+    .replace(
+      /\bno (?:tax returns?|pay stubs?) required\b/gi,
+      "documentation requirements are determined after review",
+    )
+    .replace(
+      /\bwithout income documentation\b/gi,
+      "after transaction-specific documentation review",
+    )
+    .replace(
+      /\bIncome docs?:\s*None required\s*\(asset-based\)/gi,
+      "Documentation: determined after deal review",
+    )
+    .replace(/\basset-based approval\b/gi, "approval")
+    .replace(
+      /\bApproval is asset-based[^.!?<]*/gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bGrand Funding is an asset-based lender\b/gi,
+      "Grand Funding reviews each transaction individually",
+    )
+    .replace(
+      /\bGrand Funding is an asset-based direct lender\b/gi,
+      "Grand Funding reviews each transaction individually",
+    )
+    .replace(
+      /\bThe property and the deal qualify the loan\b/gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bapproval is asset-based\s*[—-][^.!?<]*(?:credit score|W-?2s?|tax returns?)[^.!?<]*/gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(/\bnot income-based\b/gi, "reviewed transaction by transaction")
+    .replace(
+      /<p>Hard money loans differ from traditional mortgages in several key ways:[\s\S]*?Less documentation required\.<\/p>/gi,
+      `<p>Hard money and traditional mortgages follow different review, timing, pricing, documentation, and term structures. Grand Funding provides transaction-specific requirements and terms in writing after reviewing the requested financing.</p>`,
+    )
+    .replace(
+      /<p>Credit is considered but not the primary factor\.[\s\S]*?specific transaction\.(?:\s*Credit, income, experience, and documentation requirements are determined after review of the specific transaction\.)?<\/p>/gi,
+      `<p>${CREDIT_DOCUMENTATION_NOTE}</p>`,
+    )
+    .replace(
+      /<p>Yes! Unlike traditional lenders who require W-2s and tax returns,[\s\S]*?welcome to apply\.<\/p>/gi,
+      `<p>Self-employed applicants and applicants with non-traditional income may submit a transaction for review. ${CREDIT_DOCUMENTATION_NOTE}</p>`,
+    )
+    .replace(
+      /\b(?:No hard (?:credit )?pull|no credit pull)\b/gi,
+      "Credit review is transaction-specific",
+    )
+    .replace(
+      /\bCredit reports,\s*only when you authorize a credit pull in writing\s*\(not performed for initial pre-approval\)/gi,
+      "Credit reports, when authorized and requested for the specific transaction",
+    )
+    .replace(
+      /\bNo prepayment penalt(?:y|ies)(?: on most (?:loans?|loan products?))?\b/gi,
+      "Written prepayment terms",
+    )
+    .replace(
+      /\bMost (?:of our|Grand Funding) (?:bridge )?loan products? have no prepayment penalty[^.!?<]*/gi,
+      PREPAYMENT_NOTE,
+    )
+    .replace(
+      /\b(?:Arizona )?fix and flip loans carry no prepayment penalty[^.!?<]*/gi,
+      PREPAYMENT_NOTE,
+    )
+    .replace(
+      /\bwithout (?:an? )?(?:additional )?(?:prepayment )?(?:fee|fees|penalty|penalties)\b/gi,
+      "subject to the written prepayment terms",
+    )
+    .replace(/\bwe keep penalties minimal\b/gi, "terms are transaction-specific")
+    .replace(
+      /\bMost of our loan products have Prepayment Terms Disclosed in Writing,[^<]*?before closing\./gi,
+      PREPAYMENT_NOTE,
+    )
+    .replace(
+      /\bpay off the bridge early with no fees\.[^<]*?whole point\./gi,
+      PREPAYMENT_NOTE,
+    )
+    .replace(
+      /\bpay off the loan early without (?:additional )?fees?[^.!?<]*[.!]?/gi,
+      PREPAYMENT_NOTE,
+    )
+    .replace(
+      /\bwe have no seasoning requirement\b/gi,
+      "any seasoning requirement is determined after transaction review",
+    )
+    .replace(
+      /\bGrand Funding(?:'|’|&rsquo;)s seasoning requirement is \d{1,2} months? of ownership for a cash-out refi\.\s*Some lenders require \d{1,2}\.\s*Logan can sometimes go shorter for stabilized rentals\./gi,
+      PREPAYMENT_NOTE,
+    )
+    .replace(
+      /\bSome product variants have a \d{1,2}-month interest minimum\s*[—-]\s*Logan discloses this in the term sheet\./gi,
+      PREPAYMENT_NOTE,
+    )
+    .replace(/\bno prepay(?:ment)? penalty\b/gi, PREPAYMENT_NOTE)
+    .replace(
+      /\bPrepayment Terms Disclosed in Writing on most bridge loans\./gi,
+      PREPAYMENT_NOTE,
+    )
+    .replace(
+      /\bMost Grand Funding bridge loans have Prepayment Terms Disclosed in Writing\./gi,
+      PREPAYMENT_NOTE,
+    )
+    .replace(
+      /\b(?:Arizona )?bridge loans generally have Prepayment Terms Disclosed in Writing\./gi,
+      PREPAYMENT_NOTE,
+    )
+    .replace(
+      /\b(?:Arizona )?fix and flip loans carry Prepayment Terms Disclosed in Writing\./gi,
+      PREPAYMENT_NOTE,
+    )
+    .replace(
+      /\bMost of our loan products have Prepayment Terms Disclosed in Writing\./gi,
+      PREPAYMENT_NOTE,
+    )
+    .replace(
+      /\bPrepayment Terms Disclosed in Writing\b/gi,
+      "Written prepayment terms",
+    )
+    .replace(
+      /\bdocumentation requirements are determined after review:\s*approval\b/gi,
+      "Documentation: determined after transaction review",
+    )
+    .replace(
+      /<li><strong>documentation requirements are determined after review:<\/strong>\s*approval<\/li>/gi,
+      "<li><strong>Documentation:</strong> Determined after transaction review</li>",
+    )
+    .replace(
+      /\bupfront fees charged by lenders,\s*usually points provided after deal review\b/gi,
+      "Upfront charges; any applicable points are provided after deal review",
+    )
+    .replace(
+      /\bUpfront charges\.\s*current point charges are disclosed after deal review\b/gi,
+      "Upfront charges; any applicable points are disclosed after deal review",
+    )
+    .replace(/\bto"bridge"/gi, 'to "bridge"')
+    .replace(/\bthat"bridges"/gi, 'that "bridges"')
+    .replace(
+      /\b(?:Term Length:\s*)?\d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*month terms?\b/gi,
+      "Term length: determined after deal review",
+    )
+    .replace(
+      /(<strong\b[^>]*>\s*(?:Flexible\s+)?Terms?(?:\s+Length)?\s*:\s*<\/strong>\s*)\d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*months?\b/gi,
+      "$1Determined after deal review",
+    )
+    .replace(
+      /\bTerms?:\s*\d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*months?\b/gi,
+      "Terms: determined after deal review",
+    )
+    .replace(
+      /\b\d{1,2}-month term ceiling\b/gi,
+      "Term length determined after deal review",
+    )
+    .replace(
+      /\bTypical loan terms range from \d{1,2}\s*(?:-|–|—|to)\s*\d{1,2} months[^<]*/gi,
+      TERM_NOTE,
+    )
+    .replace(
+      /\bTerms typically range from \d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*months?[^<]*/gi,
+      TERM_NOTE,
+    )
+    .replace(
+      /\bStandard extensions are \d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*months?[^<]*/gi,
+      "An extension is not guaranteed; availability, charges, and other terms are determined for the specific transaction and disclosed in writing.",
+    )
+    .replace(
+      /\b\d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*months\.\s*Most bridge borrowers exit within \d{1,2}\s*months via sale or refinance into long-term DSCR\./gi,
+      TERM_NOTE,
+    )
+    .replace(
+      /\bTypical bridge:\s*\d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*months,\s*interest-only,[^<]*?sale\./gi,
+      "Bridge-loan term, payment structure, leverage, and exit requirements are determined after review of the specific transaction.",
+    )
+    .replace(
+      /\bBridge loans are short-term by design\s*[—-]\s*typically \d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*months\./gi,
+      `Bridge loans are short-term by design. ${TERM_NOTE}`,
+    )
+    .replace(
+      /\bA\s*<strong>bridge loan<\/strong> is short-term capital\s*[—-]\s*typically \d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*months\s*[—-]\s*/gi,
+      "A <strong>bridge loan</strong> is short-term capital that ",
+    )
+    .replace(
+      /\bThe new loan is usually long-term\s*[—-]\s*\d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*months for hard money cash-out, or \d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*years for traditional bank cash-out\./gi,
+      "The replacement financing may have a different term structure; transaction-specific terms are provided after review.",
+    )
+    .replace(
+      /\bMost Arizona flip loans are structured as interest-only during the renovation term \(typically \d{1,2}\s*(?:-|–|—|to)\s*\d{1,2}\s*months\), with a balloon payment when the property sells\./gi,
+      "Payment structure and term length are determined after review of the specific transaction and disclosed in writing.",
+    )
+    .replace(
+      /\bTypical schedule is \d+\s*(?:-|–|—|to)\s*\d+ milestone draws?[^.!?<]*/gi,
+      DRAW_NOTE,
+    )
+    .replace(
+      /\bStandard structure is acquisition funds at close, rehab funds in \d+\s*(?:-|–|—|to)\s*\d+ milestone draws?[^.!?<]*/gi,
+      DRAW_NOTE,
+    )
+    .replace(
+      /\bThe inspection costs? \$[\d,.]+\s*(?:-|–|—|to)\s*\$?[\d,.]+[^.!?<]*/gi,
+      DRAW_NOTE,
+    )
+    .replace(
+      /\bFirst draw at (?:slab(?:\/foundation)?|foundation), subsequent draws?[^.!?<]*/gi,
+      "Draw stages are determined for the specific project and disclosed in writing",
+    )
+    .replace(
+      /<p>Construction loans release funds in stages based on project milestones\.[\s\S]*?completed properly\.<\/p>/gi,
+      `<p>${DRAW_NOTE}</p>`,
+    )
+    .replace(
+      /Funds are released in draws as renovation milestones are completed\./gi,
+      DRAW_NOTE,
+    )
+    .replace(
+      new RegExp(
+        `${DRAW_NOTE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*Draw stages are determined for the specific project and disclosed in writing\\.?`,
+        "gi",
+      ),
+      DRAW_NOTE,
+    )
+    .replace(
+      /<p>We understand construction timelines can shift\.[\s\S]*?Communication is key!<\/p>/gi,
+      "<p>Construction timelines can shift. Contact Grand Funding before the maturity date to discuss the transaction. An extension is not guaranteed; availability, charges, and other terms are determined for the specific transaction and disclosed in writing.</p>",
+    )
+    .replace(
+      /<p>For renovation and construction loans, yes\s*-\s*we need a detailed scope of work and budget from a licensed contractor\.[\s\S]*?market-appropriate\.<\/p>/gi,
+      "<p>A scope of work, budget, contractor information, or other project documentation may be requested. Requirements are determined after review of the specific project.</p>",
+    )
+    .replace(
+      /<p>Absolutely! You're free to use your own contractors or general contractors\.[\s\S]*?previous work\.<\/p>/gi,
+      "<p>Contractor eligibility and any licensing, insurance, reference, or experience requirements are determined after review of the specific project.</p>",
+    )
+    .replace(
+      /\bBridge financing buys you 12-18 months to figure it out\./gi,
+      "Bridge-financing term length is determined after review of the specific transaction and disclosed in writing.",
+    )
+    .replace(
+      /\bleverage determined after review,\s*approval\b/gi,
+      "reviewed for approval",
+    )
+    .replace(/\bApproval on (\$[\d,.]+[KkMm]?)\b/g, "Financing approval on $1")
+    .replace(
+      /\bReviewed and funded on (\$500K(?:\s+Gilbert)? investment property)\b/g,
+      "Financing approval on $1",
+    )
+    .replace(
+      /\bFinancing approval on \$500K Gilbert investment property\b/g,
+      "Gilbert investment property valued at $500K",
+    )
+    .replace(
+      /\bFinancing approval on \$500K investment property\b/g,
+      "Investment property valued at $500K",
+    )
+    .replace(
+      /\bapproval\s*[—-]\s*Documentation After Review,\s*income and documentation requirements determined after review\b/gi,
+      "Approval — documentation requirements determined after review",
+    )
+    .replace(
+      /\bCredit,\s*income,\s*experience,\s*and documentation requirements are determined after review of the specific transaction\.,\s*and documentation requirements are determined after review are required\.[^<]*/gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(/\.\s*approval\b/g, ". Approval")
+    .replace(
+      /\bdocumentation requirements are determined after review\.\s*documentation requirements are determined after review\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bCredit,\s*income,\s*experience,\s*and documentation requirements are determined after review of the specific transaction\.\s*Credit,\s*income,\s*experience,\s*and documentation requirements are determined after review of the specific transaction\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(/\.\s*\./g, ".")
+    .replace(/\bNo hidden fees?\b/gi, "Charges disclosed in writing")
+    .replace(/\bNo hidden anything\b/gi, "Charges disclosed in writing")
+    .replace(/\bNo surprise fees?\b/gi, "Charges disclosed in writing")
+    .replace(/\bNo surprises\b/gi, "Written transaction terms")
+    .replace(/\bNo junk fees?\b/gi, "Charges disclosed in writing");
+}
+
+function neutralizeUnapprovedPolicyElements(html) {
+  let output = html;
+  const blanketPolicy =
+    /\b(?:0 income docs needed|income docs?:\s*none required|we (?:do not|don['’]t) require[^.!?]{0,100}(?:W-?2s?|tax returns?|pay stubs?|bank statements?|income verification)|every product is asset-based|approval is driven by[^.!?]{0,100}(?:property|deal quality)|none of that slows us down|underwrite(?:s|writing)?[^.!?]{0,120}(?:not (?:your )?W-?2|rather than personal income|period)|qualif(?:y|ies) exactly the same way|documentation requirements (?:are )?determined after review(?:\s+or\b|(?:[,.]\s*documentation requirements (?:are )?determined after review)+))\b/i;
+  const prepaymentPolicy =
+    /\b(?:no prepay(?:ment)? penalty|seasoning requirement is \d{1,2} months?|\d{1,2}-month interest minimum|can sometimes go shorter for stabilized rentals)\b/i;
+  const unrestrictedUse =
+    /\b(?:doesn['’]t restrict use of funds|use the funds for anything|no restrictions? on (?:the )?use of funds|funds may be used for any purpose)\b/i;
+  const paymentPolicy =
+    /\b(?:interest-only payments? (?:are standard|during|keep|mean)|interest-only structure|payment structure after review:\s*(?:maximize|improve) cash flow)\b/i;
+  const projectRequirementsPolicy =
+    /\b(?:we require a third-party inspection|yes for ground-up new construction|licensed GC[^.!?]{0,100}(?:required|must|clear exit)|first draw can release|customized payment schedules)\b/i;
+  const fixedTermPolicy =
+    /\bTerm:\s*\d{1,2},\s*\d{1,2},\s*or\s*\d{1,2}\s*months?\b/i;
+  const drawPolicy =
+    /\b(?:typical draw schedule|Draw 1 \(Foundation\)|we finance[^.!?]{0,90}with milestone draws|funds rehab in milestone draws|offer flexible draw schedules|milestone-based draws|Logan structures the draw schedule|first draw can release)\b/i;
+  const propertyEligibilityPolicy =
+    /\b(?:both residential and commercial properties are eligible|both fix\s*(?:&|and)\s*flip and long-term investment properties are eligible|Properties:\s*Eligible real estate in Arizona and California)\b/i;
+
+  for (const tagName of ["p", "li", "dd"]) {
+    ({ output } = replaceSimpleElements(output, tagName, (block) => {
+      const text = compactText(block);
+      if (unrestrictedUse.test(text)) {
+        return replaceElementContent(block, USE_OF_FUNDS_NOTE);
+      }
+      if (prepaymentPolicy.test(text)) {
+        return replaceElementContent(block, PREPAYMENT_NOTE);
+      }
+      if (paymentPolicy.test(text)) {
+        return replaceElementContent(block, PAYMENT_STRUCTURE_NOTE);
+      }
+      if (projectRequirementsPolicy.test(text)) {
+        return replaceElementContent(block, PROJECT_REQUIREMENTS_NOTE);
+      }
+      if (fixedTermPolicy.test(text)) {
+        return replaceElementContent(block, TERM_NOTE);
+      }
+      if (drawPolicy.test(text)) {
+        return replaceElementContent(block, DRAW_NOTE);
+      }
+      if (propertyEligibilityPolicy.test(text)) {
+        return replaceElementContent(block, PROPERTY_ELIGIBILITY_NOTE);
+      }
+      if (text.includes(PREPAYMENT_NOTE) && text !== PREPAYMENT_NOTE) {
+        return replaceElementContent(block, PREPAYMENT_NOTE);
+      }
+      const boundaryCount = (
+        text.match(
+          /Credit, income, experience, and documentation requirements are determined after review of the specific transaction\./gi,
+        ) ?? []
+      ).length;
+      if (blanketPolicy.test(text) || boundaryCount > 1) {
+        const content =
+          /^Income docs?:/i.test(text) || /^Documentation:/i.test(text)
+            ? "Documentation: Determined after deal review"
+            : CREDIT_DOCUMENTATION_NOTE;
+        return replaceElementContent(block, content);
+      }
+      return null;
+    }));
+  }
+
+  return output
+    .replace(
+      /\bDo all Grand Funding products skip income documentation\?/gi,
+      "How are income and documentation reviewed?",
+    )
+    .replace(
+      /\bDocumentation After Review required\b/gi,
+      "Documentation determined after review",
+    )
+    .replace(
+      /\bDocumentation After Review\.\s*Credit,\s*income,\s*experience,\s*and documentation requirements are determined after review of the specific transaction\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bleverage determined after review,\s*Term length:\s*determined after deal review,\s*Any prepayment provision or minimum-interest period is transaction-specific and is disclosed in writing before closing\./gi,
+      `Leverage and term length are determined after review. ${PREPAYMENT_NOTE}`,
+    )
+    .replace(
+      /\bloan sizing determined after review,\s*milestone draws,\s*builder-investor focus\./gi,
+      "Loan sizing and draw structure are determined after review of the specific project.",
+    )
+    .replace(
+      /\bSo on a property with a Project values and requested financing are reviewed individually\./gi,
+      "Project values and requested financing are reviewed individually.",
+    )
+    .replace(
+      /\bWritten prepayment terms in most cases\b/gi,
+      "Prepayment provisions disclosed in writing",
+    )
+    .replace(
+      /\bWritten prepayment terms\b/gi,
+      "Prepayment terms provided in writing",
+    )
+    .replace(
+      /\bGround-up construction and major renovation financing with draw schedules\./gi,
+      "Ground-up construction and major-renovation scenarios with project-specific draw terms.",
+    )
+    .replace(
+      /(<h3\b[^>]*>\s*Prepayment terms provided in writing\s*<\/h3>\s*)<p\b([^>]*)>Sell your flip early[\s\S]*?<\/p>/gi,
+      `$1<p$2>${PREPAYMENT_NOTE}</p>`,
+    );
+}
+
 function neutralizeKnownOfferPhrases(value) {
   return value
     .replace(/\bnationwide\b/gi, "in other states")
@@ -1092,6 +1860,8 @@ function transformHtml(source, { preserveJsonLd = false } = {}) {
   ));
   if (!preserveJsonLd) html = removeLegacyJsonLd(html);
   html = applyExactApprovedWording(html);
+  html = neutralizeUnapprovedPolicyClaims(html);
+  html = neutralizeUnapprovedPolicyElements(html);
   html = neutralizeKnownOfferPhrases(html);
   html = replaceHeadClaims(html);
   html = replaceMetaDescriptions(html);
@@ -1148,6 +1918,12 @@ function transformHtml(source, { preserveJsonLd = false } = {}) {
       tagName,
       (block, opening) => {
         const text = compactText(block);
+        if (
+          /\bDraw 1 \(Foundation\):/i.test(text) &&
+          /\bDraw 2 \(Framing\):/i.test(text)
+        ) {
+          return `${opening}<li>${DRAW_NOTE}</li></${tagName}>`;
+        }
         if (!/\bInterest:\s*\$/i.test(text) || !/\bPoints:\s*\$/i.test(text)) {
           return null;
         }
@@ -1289,13 +2065,14 @@ function transformHtml(source, { preserveJsonLd = false } = {}) {
         : null,
   ));
 
-  return html.replace(/^[\t ]+$/gm, "");
+  return polishNeutralizedWording(html).replace(/^[\t ]+$/gm, "");
 }
 
 function transformText(source) {
   let output = applyExactApprovedWording(source);
+  output = neutralizeUnapprovedPolicyClaims(output);
   output = neutralizeKnownOfferPhrases(output);
-  output = output
+  output = polishNeutralizedWording(output)
     .replace(/\bdeal-specific leverage\b/gi, "leverage determined after review")
     .replace(
       /\bdeal-specific loan sizing\b/gi,
@@ -1318,6 +2095,45 @@ function transformText(source) {
         ),
     )
     .join("\n");
+}
+
+function polishNeutralizedWording(value) {
+  return value
+    .replace(
+      /\bNo obligation,\s*Credit review is transaction-specific\./g,
+      "No obligation. Credit review is transaction-specific.",
+    )
+    .replace(/\banswer is\s*["“]no\.["”]/gi, 'answer is "no."')
+    .replace(/\.\s*reviewed and funded\./gi, ".")
+    .replace(/\bdfpi\.ca\.gov\s+\./gi, "dfpi.ca.gov.")
+    .replace(
+      /\bArizona investor cash-out refinance maximum leverage is determined after deal review \(loan-to-value\) \(LTV\) based on the current appraised value of the investment property\.\s*documentation requirements are determined after review\s*[—-]\s*approval is based on property equity and your exit strategy\./gi,
+      TERMS_NOTE,
+    )
+    .replace(
+      /\bQualifying property types include single-family rentals,\s*multi-family \(2-4 units\),\s*commercial investment properties,\s*and fix-and-flip projects with equity all qualify for Grand Funding's Arizona investor cash-out program\.\s*/gi,
+      `${PROPERTY_ELIGIBILITY_NOTE} `,
+    )
+    .replace(
+      /\bLA is full of entrepreneurs,\s*business owners,\s*and investors who can't document income traditionally\.\s*documentation requirements are determined after review\s*[—-]\s*we lend on the asset\./gi,
+      CREDIT_DOCUMENTATION_NOTE,
+    )
+    .replace(
+      /\bloan sizing determined after review for LA Deals\b/g,
+      "Transaction-specific terms for LA deals",
+    )
+    .replace(
+      />Approval\s*[—-]\s*documentation requirements determined after review</gi,
+      ">Application review and documentation are transaction-specific<",
+    )
+    .replace(
+      />leverage determined after review \(refi\) or leverage determined after review \(second position\)</gi,
+      ">Leverage is determined after review for either option<",
+    )
+    .replace(
+      /\.\s*documentation requirements are determined after review\b/g,
+      ". Documentation requirements are determined after review",
+    );
 }
 
 function transformUntilStable(source, transform, label) {

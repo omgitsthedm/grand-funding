@@ -59,6 +59,7 @@ protected_not_dead:
   - scripts/normalize-built-site.mjs
   - scripts/refine-original-experience.mjs
   - scripts/refine-legacy-runtime.mjs
+  - scripts/optimize-built-site.mjs
 
 removed_generated_noise:
   - scripts/qa-report.json

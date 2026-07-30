@@ -356,6 +356,7 @@ These are decision-owner items, not implied implementation permission:
   - categorical property-eligibility statements.
 - Added frozen evidence inventories for individual funded-deal facts, testimonials, paid referral compensation, and business identity/history claims.
 - Neutralized unsupported long-tail wording across source and generated routes, including glossary and FAQ variants that the client survey did not ask about.
+- Removed every remaining `asset-based` formulation after the final production copy probe found a legacy “Income docs: None” comparison claim; the public-claims policy now rejects any recurrence in source or generated output.
 - Preserved the client-approved timing and aggregate-volume wording without expanding it.
 - Confirmed that current source and generated public output contain no Forward, NMLS, MLO, `2466872`, `1048901`, or Grand Funding licensing assertion.
 
@@ -366,7 +367,7 @@ These are decision-owner items, not implied implementation permission:
 - The final build contains 294 public files and is 18.3 MiB, compared with the 22.1 MiB baseline.
 - Thirteen content-addressed CSS bundles remove 6.2 MiB of repeated generated HTML while preserving route-specific styling.
 - Two consecutive final builds produced the same aggregate SHA-256:
-  `5bc40088cf03d16228d459bdedaaff63ec6f1e58ebfe28626b3a327b29a280c2`.
+  `8af2323876df6cd2d6e4ef857ee9a8ecbdfd9f2bfccbe7c422528dacebd1c6e6`.
 
 ### Experience and accessibility
 

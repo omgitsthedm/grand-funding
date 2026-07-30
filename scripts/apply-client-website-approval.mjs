@@ -2131,6 +2131,60 @@ function polishNeutralizedWording(value) {
       ">Leverage is determined after review for either option<",
     )
     .replace(
+      /\bA hard money loan is a short-term,\s*asset-based loan secured by real (?:estate|property)\./gi,
+      "A hard money loan is short-term real estate financing secured by real property.",
+    )
+    .replace(
+      /\bAn Arizona bridge loan is a short-term,\s*asset-based loan used to\b/gi,
+      "An Arizona bridge loan is short-term real estate financing used to",
+    )
+    .replace(
+      /\bAsset-based lending built for investors\b/gi,
+      "Transaction-specific lending review for investors",
+    )
+    .replace(/\bAsset-Based Lending\b/g, "Transaction-Specific Review")
+    .replace(
+      /\bSecond position loans on investment real estate are asset-based\s*[—-]\s*your property's equity is the collateral,\s*not your business cash flow\./gi,
+      "Second-position loan requirements for investment real estate are determined after review of property value, existing liens, requested financing, and exit strategy.",
+    )
+    .replace(
+      /\bOur underwriting process is asset-based,\s*reviewed transaction by transaction\./gi,
+      "Our underwriting process is transaction-specific.",
+    )
+    .replace(
+      /\bHard money construction underwriting is asset-based,\s*but Scottsdale deals require more than just ["“]good land\.["”]/gi,
+      "Construction-loan underwriting is transaction-specific, and Scottsdale deals require a complete project review.",
+    )
+    .replace(
+      /\bAsset-based means the project is the application\./gi,
+      "Project requirements are determined after review of the specific transaction.",
+    )
+    .replace(
+      /["“]Hard money["”] is the funding mechanism\s*[—-]\s*asset-based,\s*private capital,\s*fast close\./gi,
+      '"Hard money" refers to private real estate financing designed for short-term needs.',
+    )
+    .replace(
+      /\bAsset-based lending means the deal is the application\./gi,
+      "Transaction requirements are determined after review of the specific request.",
+    )
+    .replace(
+      /\(3-5 day close,\s*asset-based,\s*uses a project-specific draw structure disclosed in writing\)/gi,
+      "(3-5 day close, transaction-specific review, and a project-specific draw structure disclosed in writing)",
+    )
+    .replace(
+      /\b24-hour approval,\s*3-5 day close,\s*asset-based\./gi,
+      "24-hour approval, 3-5 day close, transaction-specific review.",
+    )
+    .replace(
+      /\bHard money is the broader category\s*[—-]\s*any short-term,\s*asset-based private loan\./gi,
+      "Hard money is the broader category — short-term private real estate financing.",
+    )
+    .replace(
+      />None\s*[—-]\s*asset-based</gi,
+      ">Determined after review<",
+    )
+    .replace(/\basset-based\b/gi, "transaction-specific")
+    .replace(
       /\.\s*documentation requirements are determined after review\b/g,
       ". Documentation requirements are determined after review",
     );

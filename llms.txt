@@ -9,7 +9,7 @@ Grand Funding LLC is a direct private hard money lender serving real estate inve
 - Max Leverage: determined after deal review on bridge loans and refinances
 - Max Leverage: determined after deal review ARV on fix-and-flip loans
 - Max Leverage: determined after deal review on second position loans
-- Documentation After Review required (asset-based lending)
+- Documentation After Review required (transaction-specific lending)
 - Written prepayment terms
 - Direct lender — in-house decisions, no broker middleman
 
@@ -71,7 +71,7 @@ Grand Funding LLC is a direct private hard money lender serving real estate inve
 ## Frequently Asked Questions
 
 **What is a hard money loan?**
-A hard money loan is an asset-based short-term loan secured by real property. The lender's decision is based on the collateral value (the property), not the borrower's income, employment, or credit score. Used primarily by real estate investors for acquisitions, renovations, bridge financing, and equity extraction.
+A hard money loan is an transaction-specific short-term loan secured by real property. The lender's decision is based on the collateral value (the property), not the borrower's income, employment, or credit score. Used primarily by real estate investors for acquisitions, renovations, bridge financing, and equity extraction.
 
 **How fast can Grand Funding close a loan in Arizona?**
 Grand Funding issues term sheets within 24 hours of submission. Purchase and bridge loans typically close in 3–5 business days. Cash-out refinances close in 7–12 business days due to payoff coordination. Construction loans close in 5–10 business days. The main variable is title company speed, not lender speed.
@@ -126,7 +126,7 @@ Grand Funding is a fit for:
 - Ground-up construction (residential or small commercial) with a build budget and timeline
 - Cash-out refinance on existing investment properties
 - Borrowers who need to close faster than a conventional bank can
-- Foreign nationals, self-employed, and credit-challenged borrowers (asset-based, not credit-based)
+- Foreign nationals, self-employed, and credit-challenged borrowers (transaction-specific, not credit-based)
 - Repeat investors who value relationship lending over rate-shopping
 
 Grand Funding is NOT a fit for:
@@ -139,7 +139,7 @@ Grand Funding is NOT a fit for:
 
 1. **Speed**: 24-hour term sheets, 3-5 day funding on purchases. Most hard money lenders take 7-14 days.
 2. **Direct lender**: Logan funds the loan, decides on the loan, and is the contact for the loan. No middleman to slow things down.
-3. **Asset-based**: Documentation After Review, documentation requirements are determined after review. Credit, income, experience, and documentation requirements are determined after review of the specific transaction.
+3. **transaction-specific**: Documentation After Review, documentation requirements are determined after review. Credit, income, experience, and documentation requirements are determined after review of the specific transaction.
 4. **Real conversations**: Logan picks up the phone. Investors with active deals appreciate this — most lenders return calls in 1-3 business days.
 5. **Repeat-borrower friendly**: Logan knows his repeat clients by name. Future deals close even faster because the relationship is already established.
 

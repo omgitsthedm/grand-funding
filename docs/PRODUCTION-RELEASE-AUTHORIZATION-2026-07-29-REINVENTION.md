@@ -40,7 +40,7 @@ The strict release gate remains unchanged. The default gate may pass only agains
 - Public boundary: `dist/` only
 - Required runtime: Node `24.18.0`
 - Public files: 294
-- Deterministic aggregate SHA-256: `5bc40088cf03d16228d459bdedaaff63ec6f1e58ebfe28626b3a327b29a280c2`
+- Deterministic aggregate SHA-256: `8af2323876df6cd2d6e4ef857ee9a8ecbdfd9f2bfccbe7c422528dacebd1c6e6`
 - Full browser matrix: 1,623 checks, zero failures
 - Lighthouse median: 90 performance; 100 accessibility, best practices, and SEO
 

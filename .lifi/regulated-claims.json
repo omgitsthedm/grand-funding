@@ -226,16 +226,16 @@
     {
       "issueId": "service-area-policy",
       "ruleId": "service-area",
-      "baselineNote": "2026-07-29 removal-only rebaseline records one fewer service-area occurrence after a categorical property-eligibility statement was replaced with transaction-specific review wording. No state or service area was added. Formal licensing and lending-counsel confirmation remains unresolved and release-blocking.",
+      "baselineNote": "2026-07-29 removal-only rebaseline records one fewer service-area occurrence after a categorical property-eligibility statement was replaced with transaction-specific review wording. The later asset-based-language hardening changed only adjacent review wording inside existing service-area matches; the 256 source and 330 generated occurrences, states, and service-area scope are unchanged. No state or service area was added. Formal licensing and lending-counsel confirmation remains unresolved and release-blocking.",
       "source": {
         "matchedFiles": 86,
         "matchCount": 256,
-        "sha256": "87f389ac6b61fe18ae46e6acb0d0be72f5257f2009df8ec5f4dc83924dc41c3c"
+        "sha256": "65c034c0763ba7ae9086ee67ff083fef2c968d1ab75c9fe705abde5f19fb5d51"
       },
       "dist": {
         "matchedFiles": 87,
         "matchCount": 330,
-        "sha256": "f76fd8ad276b428bc5415e38829e5b01bd6143a986bc55127d42936b40f3d5a3"
+        "sha256": "8b90e3d9d27b64607556c52913ea5319b3dcc306a5971abae4dfe6ea8a65acf7"
       }
     },
     {

@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "lastReviewed": "2026-07-29",
+  "scope": "Public visible copy, metadata, generated HTML, llms.txt, and RSS. These controls record website boundaries; they do not provide legal approval.",
+  "hardBlocks": [
+    {
+      "id": "credit-eligibility",
+      "label": "unapproved credit-score or adverse-credit eligibility claim",
+      "pattern": "\\b(?:credit scores? as low as \\d{3}|no minimum (?:credit score|FICO)|bad credit[^.!?]{0,80}\\b(?:qualif(?:y|ies)|yes)|bankruptcies and foreclosures[^.!?]{0,80}(?:disqualif|qualif)|regardless of credit|Grand Funding[^.!?]{0,110}may not qualify for traditional financing|credit pull[^.!?]{0,80}not performed for initial pre-approval|credit reports?[^.!?]{0,80}only when you authorize)\\b",
+      "flags": "gi",
+      "neutralBoundary": "Credit and experience requirements are determined after review of the specific transaction."
+    },
+    {
+      "id": "blanket-documentation",
+      "label": "unapproved blanket income or documentation promise",
+      "pattern": "\\b(?:no income (?:docs?|documentation)(?: required)?|0 income docs needed|income docs?:\\s*none required|no strict income requirements|no W-?2s?|no tax returns?|no pay stubs?|no income verification|we (?:do not|don['’]t) require[^.!?]{0,90}(?:W-?2s?|tax returns?|pay stubs?|bank statements?|income verification)|without income documentation|asset-based approval|approval is asset-based|approval is driven by[^.!?]{0,100}(?:property|deal quality)|experience helps but (?:is not|isn['’]t) required|first-time[^.!?]{0,80}can still qualify|not income-based|Grand Funding is an asset-based (?:direct )?lender|the property and the deal qualify the loan|asset-based underwriting (?:means|only)|asset-based lending means[^.!?]{0,130}not (?:your )?personal income|hard money loans(?: in [a-z ]+)? are asset-based|hard money loans are asset-based, not credit-based|all asset-based|every product is asset-based|rather than (?:the borrower['’]s )?(?:creditworthiness|credit|income|credit profile|income or credit profile)|we evaluate the property\\s*[—-]\\s*not the paperwork|we underwrite deals?,?\\s*not paperwork|underwrite on (?:the )?property[^.!?]{0,100}(?:not W-?2|not tax returns?|period)|underwrite the deal,?\\s*not (?:your )?W-?2|none of that slows us down|qualif(?:y|ies) exactly the same way|focus(?:es)?[^.!?]{0,90}\\s*[—-]\\s*not (?:your )?(?:credit|FICO|tax returns|employment|W-?2s|pay stubs)|approval is based on[^.!?]{0,90}\\s*[—-]\\s*not|not (?:by )?your (?:credit score|income|income history|employment history|tax returns|personal income)|not (?:your )?W-?2s? or tax returns?|not W-?2s or pay stubs|no hard (?:credit )?pull|no credit pull|credit pull is not part of)\\b",
+      "flags": "gi",
+      "neutralBoundary": "Income and documentation requirements are determined after review of the specific transaction."
+    },
+    {
+      "id": "prepayment-policy",
+      "label": "unapproved categorical prepayment or seasoning promise",
+      "pattern": "\\b(?:no prepay(?:ment)? penalty|no prepayment penalt(?:y|ies)|no seasoning requirement|seasoning requirement is \\d{1,2} months?|\\d{1,2}-month interest minimum|can sometimes go shorter for stabilized rentals|without (?:an? )?(?:additional )?(?:prepayment )?(?:fee|fees|penalty|penalties)|penalties minimal|pay off[^.!?]{0,80}\\b(?:no fees|without (?:additional )?fees))\\b",
+      "flags": "gi",
+      "neutralBoundary": "Any prepayment provision, minimum-interest period, or seasoning requirement is transaction-specific and disclosed in writing."
+    },
+    {
+      "id": "fixed-term-range",
+      "label": "unapproved fixed loan-term range",
+      "pattern": "\\b(?:term(?: length|s?)?\\s*(?::|of|from|between|range(?:s)?(?: from)?)?\\s*\\d{1,2}\\s*(?:-|–|—|to)\\s*\\d{1,2}\\s*months?|term:\\s*\\d{1,2},\\s*\\d{1,2},\\s*or\\s*\\d{1,2}\\s*months?|terms? typically range from \\d{1,2}\\s*(?:-|–|—|to)\\s*\\d{1,2}\\s*months?|\\d{1,2}\\s*(?:-|–|—|to)\\s*\\d{1,2}\\s*month terms?|\\d{1,2}-month term ceiling|bridge financing buys you \\d{1,2}\\s*(?:-|–|—|to)\\s*\\d{1,2}\\s*months|bridge loans?[^.!?]{0,60}typically \\d{1,2}\\s*(?:-|–|—|to)\\s*\\d{1,2}\\s*months|hard money cash-out[^.!?]{0,30}\\d{1,2}\\s*(?:-|–|—|to)\\s*\\d{1,2}\\s*months|standard extensions are \\d{1,2}\\s*(?:-|–|—|to)\\s*\\d{1,2}\\s*months)\\b",
+      "flags": "gi",
+      "neutralBoundary": "Term length is determined after review of the specific transaction and disclosed in writing."
+    },
+    {
+      "id": "numeric-draw-policy",
+      "label": "unapproved construction or rehabilitation draw policy",
+      "pattern": "\\b(?:\\d+\\s*(?:-|–|—|to)\\s*\\d+ milestone draws?|inspection costs? \\$[\\d,.]+\\s*(?:-|–|—|to)\\s*\\$?[\\d,.]+|first draw at (?:slab|foundation)|typical draw schedule|Draw 1 \\(Foundation\\)|foundation \\(\\d+%\\)|we finance[^.!?]{0,90}with milestone draws|funds rehab in milestone draws|offer flexible draw schedules|flexible draws?:\\s*customized payment schedules|milestone-based draws|Logan structures the draw schedule|first draw can release)\\b",
+      "flags": "gi",
+      "neutralBoundary": "Draw structure, milestones, inspections, and timing are determined for the specific project and disclosed in writing."
+    },
+    {
+      "id": "categorical-fee-assurance",
+      "label": "unapproved categorical fee assurance",
+      "pattern": "\\b(?:no hidden fees?|no hidden anything|no surprise fees?|no surprises|no junk fees?)\\b",
+      "flags": "gi",
+      "neutralBoundary": "Applicable lender charges and third-party costs are disclosed in writing after review and in final transaction documents."
+    },
+    {
+      "id": "unrestricted-use-of-funds",
+      "label": "unapproved unrestricted use-of-funds promise",
+      "pattern": "\\b(?:Grand Funding doesn['’]t restrict use of funds|use the funds for anything|no restrictions? on (?:the )?use of funds|funds may be used for any purpose)\\b",
+      "flags": "gi",
+      "neutralBoundary": "Permitted uses of funds and exit requirements are determined after review of the specific transaction and disclosed in writing."
+    },
+    {
+      "id": "categorical-payment-structure",
+      "label": "unapproved categorical payment-structure promise",
+      "pattern": "\\b(?:interest-only payments? (?:are standard|during|keep|mean)|interest-only structure|Interest-Only Payments:\\s*(?:Maximize|Improve) cash flow|LLC borrower,\\s*interest-only)\\b",
+      "flags": "gi",
+      "neutralBoundary": "Payment structure is determined after review of the specific transaction and disclosed in writing."
+    },
+    {
+      "id": "categorical-project-requirements",
+      "label": "unapproved categorical contractor, inspection, or project-document requirement",
+      "pattern": "\\b(?:we require a third-party inspection|yes for ground-up new construction|licensed GC[^.!?]{0,100}(?:required|must|clear exit)|first draw can release once permits|customized payment schedules)\\b",
+      "flags": "gi",
+      "neutralBoundary": "Contractor, licensing, experience, inspection, scope-of-work, and other project requirements are determined after review of the specific project."
+    },
+    {
+      "id": "categorical-property-eligibility",
+      "label": "unapproved categorical property-eligibility claim",
+      "pattern": "\\b(?:both residential and commercial properties are eligible|both fix\\s*(?:&|and)\\s*flip and long-term investment properties are eligible|Properties:\\s*Eligible real estate in Arizona and California)\\b",
+      "flags": "gi",
+      "neutralBoundary": "Property type and transaction eligibility are determined after review of the specific request."
+    }
+  ],
+  "evidenceSurfaces": [
+    {
+      "id": "individual-funded-deals",
+      "label": "individual funded-deal amount and closing detail",
+      "pattern": "(?:\\b(?:funded|closed)\\b[^.!?]{0,110}\\$[\\d,.]+\\s*(?:[KkMm]|million|thousand)?|\\$[\\d,.]+\\s*(?:[KkMm]|million|thousand)?[^.!?]{0,110}\\b(?:funded|closed)\\b)",
+      "flags": "gi",
+      "decisionOwner": "Grand Funding record owner and lending counsel",
+      "status": "preserved-pending-documentary-verification",
+      "snapshots": {
+        "source": {
+          "matchedFiles": 18,
+          "matchCount": 77,
+          "sha256": "31116e792c84104b6f5661f7a12c0649e011517b2d90ad246f2f537b56a5ed09"
+        },
+        "dist": {
+          "matchedFiles": 18,
+          "matchCount": 77,
+          "sha256": "31116e792c84104b6f5661f7a12c0649e011517b2d90ad246f2f537b56a5ed09"
+        }
+      }
+    },
+    {
+      "id": "testimonial-provenance",
+      "label": "testimonial or investor-quote surface",
+      "pattern": "\\b(?:What Investors Say|Real deals\\. Real borrowers\\. Real results\\.|Logan picked up on the first ring|Marcus T\\.|Rachel K\\.|Daniel R\\.)\\b",
+      "flags": "gi",
+      "decisionOwner": "Grand Funding record owner and lending counsel",
+      "status": "preserved-pending-provenance",
+      "snapshots": {
+        "source": {
+          "matchedFiles": 5,
+          "matchCount": 11,
+          "sha256": "a0f4a158899a4e5d80a8cb834be7b854f983facb9324e4bc6f529d1bbb747bf6"
+        },
+        "dist": {
+          "matchedFiles": 5,
+          "matchCount": 9,
+          "sha256": "c65277852e37351724a2d42333b4eda00f318ae330bbb79011f9c84dbfdc6d96"
+        }
+      }
+    },
+    {
+      "id": "paid-referral-compensation",
+      "label": "paid referral compensation surface",
+      "pattern": "\\b(?:paid referral|referral (?:fee|program|partner)|earn[^.!?]{0,35}referr)\\b",
+      "flags": "gi",
+      "decisionOwner": "Grand Funding and lending counsel",
+      "status": "preserved-pending-policy-decision",
+      "snapshots": {
+        "source": {
+          "matchedFiles": 1,
+          "matchCount": 4,
+          "sha256": "f3fb83f019793defb333cb20ac9dd651ed58059193d5a2cef9a99f3c3ea125d1"
+        },
+        "dist": {
+          "matchedFiles": 1,
+          "matchCount": 4,
+          "sha256": "f3fb83f019793defb333cb20ac9dd651ed58059193d5a2cef9a99f3c3ea125d1"
+        }
+      }
+    },
+    {
+      "id": "business-identity-and-history",
+      "label": "direct-lender, own-capital, founder, builder, or business-history surface",
+      "pattern": "\\b(?:direct (?:private )?lender|fund our own loans|we(?:['’]re| are) not a broker|Founder(?:\\s*(?:&|and)\\s*Direct Lender)?|40\\+ Years(?: of)?(?: Experience| Lending| in [^.!?]{0,45})?|over 40 years|four decades|former builders?|we(?:['’]ve| have) been builders ourselves|decades of experience)\\b",
+      "flags": "gi",
+      "decisionOwner": "Logan Sullivan and lending counsel",
+      "status": "preserved-pending-role-and-history-evidence-map",
+      "snapshots": {
+        "source": {
+          "matchedFiles": 69,
+          "matchCount": 244,
+          "sha256": "1659536fb918c35205735a17b04a69ba566e40e24dee75c5049b6fd9e5368d03"
+        },
+        "dist": {
+          "matchedFiles": 71,
+          "matchCount": 251,
+          "sha256": "1c283d806501ceb1416f8371b4b3810cf7f6a9cef811aa1406fc08052ba29aa3"
+        }
+      }
+    }
+  ]
+}

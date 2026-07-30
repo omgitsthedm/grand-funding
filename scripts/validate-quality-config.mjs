@@ -11,6 +11,7 @@ const requiredFiles = [
   ".lifi/quality.yml",
   ".lifi/dead-code-candidates.yml",
   ".lifi/debt-and-exceptions.yml",
+  ".lifi/public-claims-policy.json",
   ".lifi/regulated-claims.json",
   ".node-version"
 ];
@@ -24,6 +25,7 @@ const requiredScripts = [
   "test:conversion",
   "test:cross-browser",
   "validate:client-approval",
+  "validate:public-claims",
   "validate:claims",
   "validate:license-separation",
   "verify:netlify-target"
@@ -75,6 +77,7 @@ const expectedComposition = {
     "npm run validate:seo",
     "npm run validate:license-separation",
     "npm run validate:client-approval",
+    "npm run validate:public-claims",
     "npm run validate:claims",
     "npm run validate:quality"
   ],
@@ -214,6 +217,20 @@ assert(
   "regulated claims must retain seven active snapshot categories"
 );
 
+const publicClaims = JSON.parse(read(".lifi/public-claims-policy.json"));
+assert(
+  publicClaims.schemaVersion === 1,
+  "public claims policy schemaVersion must be 1"
+);
+assert(
+  publicClaims.hardBlocks?.length === 10,
+  "public claims policy must retain ten fail-closed categories"
+);
+assert(
+  publicClaims.evidenceSurfaces?.length === 4,
+  "public claims policy must retain four frozen evidence surfaces"
+);
+
 const debt = loadYaml(".lifi/debt-and-exceptions.yml");
 if (debt) {
   assert(debt.version === 1, "debt ledger version must be 1");
@@ -291,5 +308,6 @@ if (errors.length) {
 
 console.log(
   `Quality configuration validated: ${requiredFiles.length} files, ` +
-    `${requiredScripts.length} commands, 7 claim gates, and current dead-code ledger`
+    `${requiredScripts.length} commands, 7 regulated claim gates, ` +
+    `10 fail-closed public claim categories, and current dead-code ledger`
 );

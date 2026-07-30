@@ -92,8 +92,12 @@ function replaceRange(html, range, replacement) {
 function makeHeroIntentClear(hero) {
   hero = hero
     .replace(
+      '<div aria-hidden="true" class="hero-media"><video',
+      '<div aria-hidden="true" class="hero-media"><img class="hero-fallback" src="/images/arizona-hero-poster.webp" alt="" width="1920" height="1080" decoding="async" fetchpriority="high" aria-hidden="true"><video'
+    )
+    .replace(
       "40+ Years of Excellence",
-      "Direct Private Lender · Arizona + California"
+      "Arizona + California Deal Desk"
     )
     .replace(
       "<a class='btn btn-primary btn-lg' href='/apply'>Get Pre-Approved</a>",
@@ -122,16 +126,17 @@ function makeHeroIntentClear(hero) {
     '<div class="stat-number" data-counter-done="1">'
   );
   hero = hero.replace(
-    /<article(\s+aria-label="[^"]+"\s+class="loan-card")>([\s\S]*?)<\/article>/gi,
-    '<a$1 href="/funded-deals" data-cta-intent="funded-proof" data-cta-location="hero-funded-panel">$2</a>'
+    /<article\s+aria-label="[^"]+"\s+(class="loan-card")>([\s\S]*?)<\/article>/gi,
+    '<a $1 href="/funded-deals" data-cta-intent="funded-proof" data-cta-location="hero-funded-panel">$2</a>'
   );
 
   const required = [
-    "Direct Private Lender · Arizona + California",
+    "Arizona + California Deal Desk",
     "Tell Us About Your Deal",
     "Under Contract? Call Logan",
     "Real Deals. Real Timelines.",
     "hero-deadline-note",
+    "hero-fallback",
     'href="/funded-deals"'
   ];
   for (const marker of required) {
@@ -202,7 +207,27 @@ function moveProductsHeroFirst(source) {
   const hero = tagRange(main, "section", "products-hero");
   if (hero.start < quiz.start) return source;
 
-  main = `${main.slice(0, quiz.start)}${hero.html}${quiz.html}${main.slice(
+  const refinedHero = hero.html
+    .replace(
+      "Comprehensive Lending Solutions",
+      "Start With the Deal. Then Choose the Structure.",
+    )
+    .replace(
+      "Flexible financing options designed for real estate investors and builders",
+      "Compare common real estate financing scenarios. Final structure, requirements, and terms follow direct transaction review.",
+    );
+  const refinedQuiz = quiz.html
+    .replace("Loan Finder · 60 Seconds", "Scenario Desk · 60 Seconds")
+    .replace(
+      "Not sure which product fits?",
+      "What does the property need next?",
+    )
+    .replace(
+      "Three quick questions and we'll point you to the right loan. Logan can confirm in a 5-minute call.",
+      "Use three transaction questions to narrow the starting point. Grand Funding confirms the appropriate structure only after reviewing the specific deal.",
+    );
+
+  main = `${main.slice(0, quiz.start)}${refinedHero}${refinedQuiz}${main.slice(
     quiz.end,
     hero.start
   )}${main.slice(hero.end)}`;
@@ -335,9 +360,9 @@ function streamlineApplyFlow(source) {
 function addContextualRouteLinks(source, relativeFile) {
   if (relativeFile === "products.html") {
     const constructionNeedle =
-      "we understand the construction process and offer flexible draw schedules.</p><h3>Key Features</h3>";
+      "Construction and rehabilitation draw structure, milestones, inspections, and timing are determined for the specific project and are disclosed in writing.</p><h3>Key Features</h3>";
     const constructionLinks =
-      'we understand the construction process and offer flexible draw schedules.</p><p class="product-guide-links" data-route-links="construction"><strong>California project guides:</strong> <a href="/construction-loans-los-angeles">Los Angeles construction loans</a> <span aria-hidden="true">·</span> <a href="/construction-loans-san-diego">San Diego construction loans</a></p><h3>Key Features</h3>';
+      'Construction and rehabilitation draw structure, milestones, inspections, and timing are determined for the specific project and are disclosed in writing.</p><p class="product-guide-links" data-route-links="construction"><strong>California project guides:</strong> <a href="/construction-loans-los-angeles">Los Angeles construction loans</a> <span aria-hidden="true">·</span> <a href="/construction-loans-san-diego">San Diego construction loans</a></p><h3>Key Features</h3>';
     const secondPositionNeedle =
       "Perfect when you have favorable first mortgage terms you want to keep.</p><h3>Key Features</h3>";
     const secondPositionLink =

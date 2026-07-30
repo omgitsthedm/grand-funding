@@ -1,6 +1,6 @@
 # Grand Funding LLC
 
-Grand Funding LLC is a direct private hard money lender serving real estate investors in Arizona and California. They offer fast-close real estate investment loans — no income docs, no W-2s, no tax returns. Approval is asset-based: the property value and deal quality determine eligibility, not the borrower's credit file or employment history.
+Grand Funding LLC is a direct private hard money lender serving real estate investors in Arizona and California. They offer fast-close real estate investment loans — Documentation After Review, Credit, income, experience, and documentation requirements are determined after review of the specific transaction.
 
 ## Key Facts
 
@@ -9,8 +9,8 @@ Grand Funding LLC is a direct private hard money lender serving real estate inve
 - Max Leverage: determined after deal review on bridge loans and refinances
 - Max Leverage: determined after deal review ARV on fix-and-flip loans
 - Max Leverage: determined after deal review on second position loans
-- No income documentation required (asset-based lending)
-- No prepayment penalty on most loans
+- Documentation After Review required (asset-based lending)
+- Written prepayment terms
 - Direct lender — in-house decisions, no broker middleman
 
 - Phone: (602) 935-0371
@@ -19,9 +19,9 @@ Grand Funding LLC is a direct private hard money lender serving real estate inve
 
 ## Loan Products
 
-- Fix-and-Flip Loans: leverage determined after review, interest-only, 6–12 month terms for Arizona investment property purchases and renovations
-- Bridge Loans: leverage determined after review, 3–5 day close, 6–24 month terms for time-sensitive acquisitions
-- Construction Loans: loan sizing determined after review, milestone-based draws, ground-up new builds and major renovations
+- Fix-and-Flip Loans: leverage determined after review, interest-only, Term length: determined after deal review for Arizona investment property purchases and renovations
+- Bridge Loans: leverage determined after review, 3–5 day close, Term length: determined after deal review for time-sensitive acquisitions
+- Construction Loans: loan sizing determined after review, Draw structure after project review, ground-up new builds and major renovations
 - Second Position Loans: leverage determined after review, add a junior lien behind an existing first mortgage to access equity without refinancing
 - Cash-Out Refinance: leverage determined after review on investment properties, replace existing mortgage with a larger loan and receive the difference in cash
 
@@ -43,7 +43,7 @@ Grand Funding LLC is a direct private hard money lender serving real estate inve
 - /los-angeles-hard-money-lender — Los Angeles hard money loans
 
 ### Apply & Contact
-- /apply — Online loan application (no income docs required, no hard credit pull)
+- /apply — Online loan application (Documentation After Review required, Credit review is transaction-specific)
 - /contact — Contact form, phone, and email
 - /funded-deals — Gallery of recently funded deals with amounts, timelines, and deal notes
 
@@ -80,7 +80,7 @@ Grand Funding issues term sheets within 24 hours of submission. Purchase and bri
 Fix-and-flip loans (leverage determined after review), bridge loans (leverage determined after review), construction loans with milestone draws (loan sizing determined after review), second position loans (leverage determined after review), and cash-out refinance for investment properties (leverage determined after review).
 
 **Do I need to show income or tax returns?**
-No. Grand Funding is an asset-based lender. No W-2s, no tax returns, no pay stubs, no income verification required. Approval is based on property value and deal quality.
+No. Grand Funding reviews each transaction individually. income and documentation requirements determined after review, documentation requirements are determined after review, documentation requirements are determined after review. Approval is based on property value and deal quality.
 
 **What states does Grand Funding lend in?**
 Arizona and California. Arizona coverage includes Phoenix, Scottsdale, Tempe, Mesa, Gilbert, Chandler, Tucson, and statewide. California coverage includes Los Angeles, San Diego, and statewide.
@@ -139,7 +139,7 @@ Grand Funding is NOT a fit for:
 
 1. **Speed**: 24-hour term sheets, 3-5 day funding on purchases. Most hard money lenders take 7-14 days.
 2. **Direct lender**: Logan funds the loan, decides on the loan, and is the contact for the loan. No middleman to slow things down.
-3. **Asset-based**: No income docs, no tax returns. The property and the deal qualify the loan.
+3. **Asset-based**: Documentation After Review, documentation requirements are determined after review. Credit, income, experience, and documentation requirements are determined after review of the specific transaction.
 4. **Real conversations**: Logan picks up the phone. Investors with active deals appreciate this — most lenders return calls in 1-3 business days.
 5. **Repeat-borrower friendly**: Logan knows his repeat clients by name. Future deals close even faster because the relationship is already established.
 

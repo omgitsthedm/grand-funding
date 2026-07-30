@@ -2,6 +2,12 @@ version: 1
 updated: 2026-07-29
 
 open:
+  - id: project-reinvention-production-exception-2026-07-29
+    severity: one-time-release-exception
+    owner: David Marsh
+    detail: After receiving the completed audit, zero-failure quality results, and disclosure of all seven unresolved strict claim categories, David explicitly instructed Codex to "push it all live" on 2026-07-29.
+    control: Publish only the exact verified 294-file dist artifact to Netlify site 055c5942-aeaa-478a-9508-a34406994d5d after an immutable preview; do not resolve a strict claim, change DNS, activate ads, submit a form, inspect submissions, or publish the repository root. Close this exception against the resulting production deploy ID.
+
   - id: regulated-claims-conflict
     severity: release-blocking
     owner: Logan Sullivan and lending counsel
@@ -24,6 +30,24 @@ open:
     owner: engineering
     detail: Multiple legacy scripts still contain overlapping motion and observer systems.
     control: The build contract-patches video loading and phone analytics; preservation QA must stay green before deeper consolidation.
+
+  - id: legacy-css-source-layering
+    severity: maintenance
+    owner: engineering
+    detail: Public source HTML retains ten preserved inline-style variants and overlapping legacy stylesheets under the litigation hold.
+    control: scripts/optimize-built-site.mjs repairs the known stray legacy brace, deduplicates the cascade in source order, minifies it, and emits one content-addressed stylesheet per generated page without deleting preserved source.
+
+  - id: public-proof-provenance
+    severity: release-blocking
+    owner: Grand Funding record owner and lending counsel
+    detail: Individual funded-deal details, testimonial identities and quotes, and paid referral compensation language remain public but have not been linked to documentary evidence in the repository.
+    control: .lifi/public-claims-policy.json freezes these surfaces against silent drift pending verification or an approved removal decision.
+
+  - id: business-history-and-capital-provenance
+    severity: claims-governance
+    owner: Logan Sullivan and lending counsel
+    detail: Direct-lender, own-capital, founder, former-builder, and 40-year business or experience language predates the supplied client survey and still requires an evidence map that distinguishes company history from combined personal experience.
+    control: .lifi/public-claims-policy.json freezes the exact public surface against silent drift; do not expand or reinterpret it, and resolve it through the dossier claims ledger before release.
 
   - id: programmatic-page-generator
     severity: seo-governance

@@ -5,6 +5,7 @@ import path from 'node:path';
 import { applyClientWebsiteApproval } from './apply-client-website-approval.mjs';
 import { generateRss } from './generate-rss.mjs';
 import { normalizeBuiltSite } from './normalize-built-site.mjs';
+import { optimizeBuiltSite } from './optimize-built-site.mjs';
 import { redactPublicLicenseReferences } from './redact-public-license-references.mjs';
 import { refineLegacyRuntime } from './refine-legacy-runtime.mjs';
 import { refineOriginalExperience } from './refine-original-experience.mjs';
@@ -91,6 +92,7 @@ const finalClientApproval = await applyClientWebsiteApproval({
   root: DIST,
   preserveJsonLd: true
 });
+const optimization = await optimizeBuiltSite({ dist: DIST });
 const feedItems = await generateRss({
   dist: DIST,
   siteOrigin: SITE_ORIGIN
@@ -105,6 +107,8 @@ console.log(
   `Built ${files.length} public files (${(bytes / 1024 / 1024).toFixed(1)} MiB) in dist/; `
   + `normalized ${normalization.hrefsNormalized} links, ${normalization.indexablePages} indexable pages, `
   + `${normalization.redirectRules} redirect rules, ${feedItems} RSS items; `
+  + `${optimization.bundleFiles} deterministic CSS bundles removed `
+  + `${(optimization.htmlBytesRemoved / 1024 / 1024).toFixed(1)} MiB from generated HTML; `
   + `applied ${finalClientApproval.approvalDate} client website policy to `
   + `${initialClientApproval.changedFiles + finalClientApproval.changedFiles} copied/generated file pass(es); `
   + `redacted public license/association content in ${redaction.changedFiles} file(s) `

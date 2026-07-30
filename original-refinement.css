@@ -160,11 +160,13 @@ body[data-route^="/thanks"] .sticky-dual {
 
 .sticky-dual.is-suppressed {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   transform: translate(-50%, 12px);
 }
 
 .sticky-dual {
+  visibility: visible;
   transition:
     opacity 220ms ease,
     transform 220ms ease;
@@ -312,6 +314,25 @@ main[data-original-home-refined] > .hero .hero-grain {
   mix-blend-mode: normal;
 }
 
+main[data-original-home-refined] > .hero .hero-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+main[data-original-home-refined] > .hero .hero-video {
+  z-index: 1 !important;
+}
+
+main[data-original-home-refined] > .hero .hero-overlay,
+main[data-original-home-refined] > .hero .hero-grain {
+  z-index: 2 !important;
+}
+
 main[data-original-home-refined] > .hero .hero-decoration {
   display: none !important;
 }
@@ -352,4 +373,636 @@ main[data-original-home-refined] > .hero .hero-title.gradient-text {
     filter: none !important;
     transform: none !important;
   }
+}
+
+/*
+ * Arizona Night Deal Desk
+ * -----------------------
+ * This final layer is deliberately flat and document-like. The moving Arizona
+ * hero remains the only cinematic surface; the rest of the site uses ink,
+ * graphite, ruled lines, and restrained status accents.
+ */
+:root {
+  --deal-bg: #080a0e;
+  --deal-surface: #10141b;
+  --deal-surface-raised: #151a22;
+  --deal-line: #2a303b;
+  --deal-line-strong: #39424f;
+  --deal-ink: #f4f7ff;
+  --deal-muted: #aeb7c5;
+  --deal-teal: #4fe3d2;
+  --deal-teal-dark: #0e7f76;
+  --deal-ember: #f0b26b;
+  --deal-radius: 12px;
+}
+
+html body {
+  background-color: var(--deal-bg) !important;
+  background-image: none !important;
+}
+
+html body .bg-pattern,
+html body .hero-decoration,
+html body .cta-decoration,
+html body .products-decoration,
+html body .ambient-glow {
+  display: none !important;
+}
+
+html body main > section:not(.hero),
+html body main > .container,
+html body .rate-strip,
+html body .trust-strip,
+html body .footer {
+  background-color: var(--deal-bg) !important;
+  background-image: none !important;
+}
+
+html body main > section:nth-of-type(even):not(.hero) {
+  background-color: #0b0e13 !important;
+}
+
+html body main > section + section::before {
+  width: min(1120px, calc(100% - 2rem)) !important;
+  background: var(--deal-line) !important;
+}
+
+html body .gradient-text,
+html body .white-gradient-text,
+html body .products-hero h1,
+html body [class*="gradient-text"] {
+  color: var(--deal-ink) !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: currentColor !important;
+  text-shadow: none !important;
+  animation: none !important;
+}
+
+html body .btn,
+html body .cta-btn,
+html body button[type="submit"],
+html body .sticky-dual__apply,
+html body .sticky-cta {
+  min-height: 44px;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+html body .btn-primary,
+html body .cta-btn,
+html body button[type="submit"],
+html body .sticky-dual__apply,
+html body .sticky-cta {
+  border: 1px solid var(--deal-teal) !important;
+  background: var(--deal-teal) !important;
+  background-image: none !important;
+  color: #06100f !important;
+}
+
+html body .btn.btn-primary,
+html body .btn-lg.btn-primary,
+html body .btn-primary-large,
+html body .cta-buttons .btn-primary,
+html body .meet-logan__cta .btn-primary,
+html body .contact-form button[type="submit"],
+html body .apply-form button[type="submit"],
+html body .talk-to-logan__call,
+html body .consent-btn--primary,
+html body input[type="submit"] {
+  border: 1px solid var(--deal-teal) !important;
+  background: var(--deal-teal) !important;
+  background-image: none !important;
+  color: #06100f !important;
+}
+
+html body :is(
+    .btn-primary,
+    .btn-primary-large,
+    .cta-btn,
+    .sticky-dual__apply,
+    .talk-to-logan__call,
+    .consent-btn--primary,
+    button[type="submit"],
+    input[type="submit"]
+  )::before,
+html body :is(
+    .btn-primary,
+    .btn-primary-large,
+    .cta-btn,
+    .sticky-dual__apply,
+    .talk-to-logan__call,
+    .consent-btn--primary,
+    button[type="submit"],
+    input[type="submit"]
+  )::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+}
+
+html body .btn-primary:hover,
+html body .cta-btn:hover,
+html body button[type="submit"]:hover,
+html body .sticky-dual__apply:hover,
+html body .sticky-cta:hover {
+  border-color: #7af1e5 !important;
+  background-color: #7af1e5 !important;
+  color: #06100f !important;
+  transform: translateY(-1px);
+}
+
+html body .btn-secondary,
+html body .ghost-btn,
+html body .sticky-dual__call {
+  border: 1px solid var(--deal-line-strong) !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--deal-ink) !important;
+  box-shadow: none !important;
+}
+
+html body .btn-secondary:hover,
+html body .ghost-btn:hover,
+html body .sticky-dual__call:hover {
+  border-color: var(--deal-teal) !important;
+  background-color: rgba(79, 227, 210, 0.08) !important;
+  color: var(--deal-teal) !important;
+}
+
+html body :is(
+    .feature-card,
+    .product-card,
+    .service-card,
+    .value-item,
+    .reason-card,
+    .fun-fact-card,
+    .deal-card,
+    .story-card,
+    .process-step,
+    .contact-card,
+    .testimonial-card,
+    .blog-card,
+    .faq-item,
+    .quiz,
+    .quiz-card,
+    .lp-why-card,
+    .lp-deal-card,
+    .lp-step,
+    .lp-form-card,
+    .lp-faq__item,
+    .deal-clarity__card,
+    .explore-more__card,
+    .hero-loans,
+    .loan-card,
+    .approval-note,
+    .compliance-callout
+  ) {
+  border: 1px solid var(--deal-line) !important;
+  border-radius: var(--deal-radius) !important;
+  background: var(--deal-surface) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html body :is(
+    .feature-card,
+    .product-card,
+    .service-card,
+    .value-item,
+    .reason-card,
+    .fun-fact-card,
+    .deal-card,
+    .story-card,
+    .process-step,
+    .contact-card,
+    .testimonial-card,
+    .blog-card,
+    .lp-why-card,
+    .lp-deal-card,
+    .lp-step,
+    .deal-clarity__card,
+    .explore-more__card
+  ):hover {
+  border-color: var(--deal-line-strong) !important;
+  background-color: var(--deal-surface-raised) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html body :is(
+    .loan-calc__output,
+    .story-left,
+    .compare-table,
+    .contact-form,
+    .apply-proof__item,
+    .apply-card,
+    .talk-to-logan,
+    .investor-proof__card,
+    .engagement-trust__item,
+    .engagement-logan,
+    .engagement-next__card,
+    .cta-card,
+    .product-extra
+  ) {
+  border-color: var(--deal-line) !important;
+  background: var(--deal-surface) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html body main .product-section {
+  background-color: var(--deal-bg) !important;
+  background-image: none !important;
+}
+
+html body :is(
+    .glossary-section,
+    .final-cta,
+    .content-block,
+    .explore-more,
+    .loan-clarity
+  ) {
+  background-color: var(--deal-bg) !important;
+  background-image: none !important;
+}
+
+html body :is(
+    .glossary-panel summary,
+    .loan-clarity details,
+    .deal-clarity__col,
+    .explore-link
+  ) {
+  border-color: var(--deal-line) !important;
+  background: var(--deal-surface) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body :is(.lp-hero__grid, .lp-hero__stats) {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body .lp-hero__title {
+  background: none !important;
+  background-image: none !important;
+  color: var(--deal-ink) !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+html body .chip.is-active {
+  border-color: var(--deal-teal) !important;
+  background: var(--deal-teal) !important;
+  background-image: none !important;
+  color: #06100f !important;
+}
+
+html body .btn-secondary-large {
+  border: 1px solid var(--deal-line-strong) !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: var(--deal-ink) !important;
+}
+
+html body .investor-proof__cta a {
+  background: none !important;
+  background-image: none !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(79, 227, 210, 0.5);
+  text-underline-offset: 0.25em;
+}
+
+html body :is(
+    .stat-number,
+    .meet-logan__title,
+    .loan-calc__output-amount,
+    .engagement-trust__num
+  ) {
+  background: none !important;
+  background-image: none !important;
+  color: var(--deal-teal) !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+html body :is(
+    .story-step-number,
+    .testimonial-avatar,
+    .investor-proof__avatar,
+    .talk-to-logan__avatar,
+    .quiz__option-icon,
+    .engagement-trust__icon
+  ) {
+  border: 1px solid rgba(79, 227, 210, 0.3) !important;
+  background: #10201f !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: var(--deal-teal) !important;
+}
+
+html body :is(
+    .loan-calc__cta,
+    .engagement-logan__call,
+    .btn-primary-large
+  ) {
+  border: 1px solid var(--deal-teal) !important;
+  background: var(--deal-teal) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: #06100f !important;
+}
+
+html body .quiz__progress-bar.active {
+  background: var(--deal-teal) !important;
+  background-image: none !important;
+}
+
+html body :is(
+    .feature-card,
+    .product-card,
+    .service-card,
+    .value-item,
+    .reason-card,
+    .process-step,
+    .contact-card,
+    .blog-card,
+    .lp-why-card,
+    .lp-deal-card,
+    .lp-step,
+    .deal-clarity__card
+  ) {
+  text-align: left !important;
+}
+
+html body :is(
+    .feature-icon,
+    .product-icon,
+    .lp-why-card__icon,
+    .lp-step__num,
+    .deal-clarity__card__icon
+  ) {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  border: 1px solid var(--deal-line-strong) !important;
+  border-radius: 10px !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body .product-card .product-icon,
+html body .lp-why-card .lp-why-card__icon,
+html body .lp-step .lp-step__num {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+html body .section-nav a {
+  border-radius: 8px !important;
+  background-color: var(--deal-surface) !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+html body :is(
+    .trust-badge,
+    .trust-badge--gold,
+    .loan-badge,
+    .lp-deal-card__tag,
+    .pill,
+    .section-kicker,
+    .page-kicker
+  ) {
+  box-shadow: none !important;
+}
+
+html body .hero-badge {
+  border-color: rgba(79, 227, 210, 0.34) !important;
+  background: #10201f !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body .rate-strip,
+html body .trust-strip {
+  border-top: 1px solid var(--deal-line) !important;
+  border-bottom: 1px solid var(--deal-line) !important;
+}
+
+html body .products-hero,
+html body .about-hero,
+html body .contact-hero,
+html body .faq-hero,
+html body .blog-hero,
+html body .lp-hero,
+html body .cta-section,
+html body .lp-cta {
+  border-bottom: 1px solid var(--deal-line) !important;
+  background-color: #0b0e13 !important;
+  background-image: none !important;
+}
+
+html body .scroll-progress__bar {
+  background: var(--deal-teal) !important;
+  background-image: none !important;
+}
+
+html body .consent-banner {
+  border-top: 1px solid var(--deal-line-strong) !important;
+  background: #0d1117 !important;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+@media (max-width: 680px) {
+  html body .consent-inner {
+    gap: 0.75rem !important;
+    padding: 0.85rem 1rem calc(0.85rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  html body .consent-text {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+  }
+
+  html body .consent-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem !important;
+  }
+}
+
+@media (max-width: 820px) {
+  html body main[data-original-home-refined] > .hero .hero-visual {
+    display: none !important;
+  }
+}
+
+/*
+ * Flat-surface guarantee
+ * ----------------------
+ * Legacy route styles used gradients for text, rules, cards, buttons, glows,
+ * and pseudo-elements. Keep the Arizona footage and its subtle grain, but make
+ * every authored UI surface a solid color so new and long-tail routes cannot
+ * silently reintroduce the old treatment.
+ */
+html body *,
+html body *::before,
+html body *::after {
+  background-image: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+html body .hero-grain {
+  background-image: url("/images/noise.webp") !important;
+}
+
+html body :is(
+    .story-highlight li,
+    .meet-logan__credentials li,
+    .product-description ol li
+  )::before {
+  display: grid;
+  place-items: center;
+  background: transparent !important;
+  color: var(--deal-teal) !important;
+  content: "✓";
+  font-size: 0.82em;
+  font-weight: 800;
+  line-height: 1;
+}
+
+html body :is(
+    .blog-callout,
+    .blog-card__image,
+    .blog-post,
+    .cta-box,
+    .highlight-box,
+    .section-cta,
+    .service-icon,
+    .lp-footer,
+    .lp-kicker,
+    .apply-card,
+    .contact-card,
+    .investor-proof__card
+  ) {
+  background-color: var(--deal-surface) !important;
+}
+
+html body div.service-icon,
+html body .service-card .service-icon,
+html body div.blog-callout,
+html body a.blog-callout__link,
+html body div.investor-proof__card::before,
+html body div.deal-card::before,
+html body div.product-card::before,
+html body::before {
+  background-image: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+html body :is(
+    .deals-hero__title,
+    .deals-stat__num,
+    .loan-amount,
+    .lp-h1,
+    .lp-stat__num,
+    .quiz__result-product
+  ) {
+  color: var(--deal-ink) !important;
+  background-clip: border-box !important;
+  -webkit-background-clip: border-box !important;
+}
+
+html body :is(
+    .quiz__result-cta,
+    .blog-callout__link,
+    .brand-kit-btn
+  ) {
+  background-color: var(--deal-teal) !important;
+  color: #06100f !important;
+}
+
+html body :is(
+    .business-card,
+    .logo-card__preview--dark,
+    .stage-card--dark
+  ) {
+  background-color: #0b0d12 !important;
+}
+
+html body :is(
+    .letterhead,
+    .logo-card__preview--light
+  ) {
+  background-color: #f8f2e9 !important;
+}
+
+html body :is(
+    .business-card__line,
+    .letterhead__rule,
+    .swatch-sample,
+    .eyebrow::before
+) {
+  background-color: var(--deal-teal) !important;
+}
+
+html body .hero .loan-card,
+html body .hero .loan-card * {
+  opacity: 1 !important;
+  animation: none !important;
+}
+
+html body .hero .loan-card :is(
+    .loan-location,
+    .loan-badge,
+    .loan-amount
+  ) {
+  color: var(--deal-ink) !important;
+}
+
+html body .hero .loan-card .loan-meta,
+html body .rate-strip__fineprint,
+html body .compliance-contact > p {
+  color: var(--deal-muted) !important;
+}
+
+html body .post-byline [style*="border-radius:50%"] {
+  background: var(--deal-teal) !important;
+  color: #06100f !important;
+}
+
+html body .sticky-dual a.sticky-dual__call {
+  border-color: var(--deal-line-strong) !important;
+  background: var(--deal-ink) !important;
+  color: #10141b !important;
+}
+
+html body .sticky-dual a.sticky-dual__apply {
+  border-color: var(--deal-teal) !important;
+  background: var(--deal-teal) !important;
+  color: #06100f !important;
 }

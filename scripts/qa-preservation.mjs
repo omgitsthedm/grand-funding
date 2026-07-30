@@ -674,15 +674,24 @@ async function inspectRefinedRouteFlow(page, route, width) {
         }
 
         if (viewportWidth <= 820) {
+          const visual = document.querySelector('.hero .hero-visual');
           const panel = document.querySelector('.hero .hero-loans');
           const cards = Array.from(
-            document.querySelectorAll('.hero .loan-card[href]')
+            document.querySelectorAll('.hero .loan-card')
           );
           const visibleCards = cards.filter(visible);
-          if (!visible(panel) || visibleCards.length !== 3) {
+          if (visible(visual) || visible(panel) || visibleCards.length !== 0) {
             issues.push(
-              `mobile hero needs a compact 3-deal proof strip; got panel=${visible(panel)} `
+              `mobile hero must keep unverified deal proof below the fold; got visual=${visible(visual)}, `
+                + `panel=${visible(panel)} `
                 + `and ${visibleCards.length} visible cards`
+            );
+          }
+          const heroHeight =
+            document.querySelector('.hero')?.getBoundingClientRect().height || 0;
+          if (heroHeight > 900) {
+            issues.push(
+              `mobile hero exceeds the compact deal-desk height cap: ${heroHeight.toFixed(1)}px`
             );
           }
         }

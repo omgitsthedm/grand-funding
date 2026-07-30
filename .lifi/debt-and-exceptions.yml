@@ -2,12 +2,6 @@ version: 1
 updated: 2026-07-29
 
 open:
-  - id: project-reinvention-production-exception-2026-07-29
-    severity: one-time-release-exception
-    owner: David Marsh
-    detail: After receiving the completed audit, zero-failure quality results, and disclosure of all seven unresolved strict claim categories, David explicitly instructed Codex to "push it all live" on 2026-07-29.
-    control: Publish only the exact verified 294-file dist artifact to Netlify site 055c5942-aeaa-478a-9508-a34406994d5d after an immutable preview; do not resolve a strict claim, change DNS, activate ads, submit a form, inspect submissions, or publish the repository root. Close this exception against the resulting production deploy ID.
-
   - id: regulated-claims-conflict
     severity: release-blocking
     owner: Logan Sullivan and lending counsel
@@ -67,6 +61,9 @@ open:
     control: Regenerate only through the canonical AI-Ops generator; current STATE and SOURCE_OF_TRUTH supersede the stale command section.
 
 closed:
+  - id: project-reinvention-production-exception-2026-07-29
+    resolution: Closed by final production deploy 6a6acd18828f50c85c77a2e5 from the exact 294-file artifact verified at preview deploy 6a6acad9385847c56c5c2015 and merged to master as b64b409e91e457c99c0b98853be77aae85d495b7. The deployed aggregate SHA-256 is 8af2323876df6cd2d6e4ef857ee9a8ecbdfd9f2bfccbe7c422528dacebd1c6e6. Interim deploy 6a6ac663cc09269d86bad25c was superseded after the focused production copy probe exposed and removed a legacy asset-based formulation. Local, preview, custom-domain, artifact-parity, hero-playback, and reduced-motion checks passed; no DNS, ads, form-submission, submission-review, borrower-record, or strict-claim state was changed. All seven strict claim categories remain unresolved.
+
   - id: client-survey-claims-release-2026-07-29
     resolution: Consumed once by production deploy 6a69f55b47ede5d0a16b98ec after preserved pre-change evidence, a verified immutable preview, full local and live browser QA, and exact remote-asset comparison. It authorized only the website decisions in the supplied July 27 client survey; it did not represent lending-counsel approval, resolve the seven strict blocks, change DNS, activate ads, or restore any licensing or Forward-association content.
 

@@ -4,7 +4,7 @@
 - Canonical repository: `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding`
 - Audit branch: `agent/grand-funding-project-reinvention-20260729`
 - Audit date: 2026-07-29
-- Status: exact local release candidate complete; production release authorized and in progress
+- Status: final hardened production release complete, verified, and recorded
 - Truth model: confirmed facts, client-attested claims, observed implementation, and unresolved decisions are kept separate
 
 ## 1. Authority and boundaries
@@ -46,7 +46,7 @@ This dossier applies the following acceptance contract:
 - `dist/` is the only publish directory.
 - Required Node runtime: `24.18.0`.
 - Netlify project ID: `055c5942-aeaa-478a-9508-a34406994d5d`.
-- The current production release record points to deploy `6a69f55b47ede5d0a16b98ec`.
+- The current production release is deploy `6a6acd18828f50c85c77a2e5`, published from the exact hardened artifact associated with production-source merge `b64b409e91e457c99c0b98853be77aae85d495b7`.
 - The current branch includes the separate hero video/playback repair from commit `57d52307`.
 
 ### Preservation contract
@@ -374,7 +374,7 @@ These are decision-owner items, not implied implementation permission:
 - Applied the flat Arizona Night Deal Desk system across the full route set.
 - Rendered-route inspection found zero visible gradient backgrounds, masks, headings, buttons, glows, or border effects.
 - Kept the Arizona hero video as the sole cinematic layer and added a true static poster behind it.
-- Normal-motion verification: the MP4 resolves, reaches `readyState 4`, and plays.
+- Normal-motion verification: the MP4 resolves, reaches a playable media state, and plays.
 - Reduced-motion verification: the video is hidden, the Arizona poster remains visible, and the MP4 makes zero requests.
 - Removed the unverified funded-deal proof panel from the mobile and tablet hero while keeping the decision path and approved timing signals.
 - Fixed contrast regressions exposed by flattening legacy gradient fills.
@@ -436,4 +436,29 @@ The funded-deal records, testimonial provenance, referral-compensation policy, d
 
 This dossier did not itself authorize deployment. After receiving the completed audit, zero-failure quality results, and disclosure of the remaining client/counsel decisions, David supplied a new release-specific instruction on 2026-07-29: “let's push it all live.”
 
-That instruction authorizes a one-time release of this exact candidate. It does not mark any strict claim resolved, approve a new lending statement, permit a DNS or advertising change, authorize a production form submission or submission review, or permit publication of the repository root.
+That one-time authorization has been consumed and closed.
+
+### Reviewed release chain
+
+- Candidate commit `b6d070970aae69e32ff01d8ef7ad803e0b659a70` passed the independent GitHub gate and merged through [PR #16](https://github.com/omgitsthedm/grand-funding/pull/16) as `f201615d60b6601383f3f9cecae7501240890fb2`.
+- Immutable preview `6a6ac209b9f827221dcca3f5` and interim production deploy `6a6ac663cc09269d86bad25c` passed the full live matrix and artifact-parity checks.
+- The final focused copy probe then found a legacy “Income docs: None — asset-based” formulation that the earlier category expression did not catch. It was removed everywhere, and the public-claims validator was strengthened to reject any asset-based formulation.
+- Hardening commit `28dcfcddcef3075068b721bc8e8f74cac5a6073c` passed the independent GitHub gate and merged through [PR #17](https://github.com/omgitsthedm/grand-funding/pull/17) as `b64b409e91e457c99c0b98853be77aae85d495b7`.
+- Hardened preview `6a6acad9385847c56c5c2015` passed 1,606 live checks with zero failures.
+- The exact unchanged hardened artifact was published as production deploy `6a6acd18828f50c85c77a2e5` at `2026-07-30T04:03:49.811Z`.
+
+### Final production evidence
+
+- Netlify reports deploy `6a6acd18828f50c85c77a2e5` as `ready`, `production`, and current for `https://www.grandfundingllc.com`.
+- Artifact SHA-256: `8af2323876df6cd2d6e4ef857ee9a8ecbdfd9f2bfccbe7c422528dacebd1c6e6`.
+- Local matrix: 1,623 checks, zero failures.
+- Final preview matrix: 1,606 checks, zero failures.
+- Final custom-domain matrix: 1,606 checks, zero failures.
+- Artifact parity passed on both the immutable deploy URL and custom domain: all 294 files accounted for, 205 non-HTML assets byte-identical, 88 HTML documents semantically identical after expected Netlify form normalization, and all 18 form contracts intact.
+- Both deployed surfaces returned zero Forward, NMLS, MLO, sponsored-license identifier, Grand Funding licensing assertion, asset-based, or rejected no-income-document matches.
+- On the custom domain, the desktop hero video returned HTTP `206`, reached `readyState 3`, and played. The hero title and primary action had no gradient; the full visible hero subtree had zero gradient backgrounds or masks; and the measured break before the next section was 20 pixels.
+- In the reduced-motion profile, the video was hidden and paused, no media source was attached, the MP4 made zero requests, and the loaded 1,280-pixel poster remained visible.
+
+No DNS, advertising, environment-variable, production-form, submission-review, borrower-record, analytics-consent, or strict-claim state was changed. No live form was submitted. The seven strict claim categories and named proof-provenance decisions remain unresolved.
+
+Pre-hardening deploys can reintroduce the wording removed in the final pass and are not approved rollback targets. An operational rollback must redeploy this exact hardened artifact or use a later artifact that passes the same claims, parity, and live-browser gates.

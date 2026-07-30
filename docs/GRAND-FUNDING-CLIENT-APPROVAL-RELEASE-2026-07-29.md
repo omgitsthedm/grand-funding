@@ -1,5 +1,7 @@
 # Grand Funding Client-Approval Website Release
 
+> Historical release record. Its identifiers describe this dated release, not current production. Use `SOURCE_OF_TRUTH.md` for current state.
+
 - Date: 2026-07-29
 - Status: executed and production-verified
 - Site: `https://www.grandfundingllc.com`

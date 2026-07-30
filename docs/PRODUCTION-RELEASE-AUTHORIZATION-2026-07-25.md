@@ -1,5 +1,7 @@
 # Grand Funding Production Release Authorization
 
+> Historical release record. Its identifiers describe this dated release, not current production. Use `SOURCE_OF_TRUTH.md` for current state.
+
 Date: 2026-07-25
 Status: executed and closed
 Authorized by: David Marsh

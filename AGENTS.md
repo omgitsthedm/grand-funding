@@ -1,11 +1,14 @@
-# Grand Funding Agent Entry
+# Grand Funding agent entry
 
 Read, in order:
 
 1. `.ai/STATE.md`
 2. `SOURCE_OF_TRUTH.md`
 3. `CLAUDE.md`
-4. `docs/GRAND-FUNDING-CLIENT-INDEPENDENT-ELEVATION-2026-07-25.md`
+4. `SITE-REINVENTION-DOSSIER.md`
+5. `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-29-REINVENTION.md`
+
+The complete local session closeout is `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/SESSION-CLOSEOUT-2026-07-29-WEBSITE-REINVENTION-COMPLIANCE-RELEASE.md`.
 
 Critical: `.ai/RULES.md` was generated on 2026-06-28 and its root-publish, no-build, and Git-push deployment instructions are stale. The updated `.ai/RULES_HEADER.md` is waiting for regeneration through the canonical AI-Ops generator. Until then, the current state and source-of-truth documents above control project commands.
 

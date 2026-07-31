@@ -1,21 +1,29 @@
-# Grand Funding agent entry
+# Grand Funding LLC
 
-Read, in order:
+Production private-lending website with regulated claims and real Netlify forms.
 
-1. `.ai/STATE.md`
-2. `SOURCE_OF_TRUTH.md`
-3. `CLAUDE.md`
-4. `SITE-REINVENTION-DOSSIER.md`
-5. `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-30-QUOTE-LANGUAGE.md`
-6. `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-29-REINVENTION.md`
+## Truth
 
-The complete local session closeout is `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/SESSION-CLOSEOUT-2026-07-29-WEBSITE-REINVENTION-COMPLIANCE-RELEASE.md`.
+- Local: `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding`
+- GitHub: `omgitsthedm/grand-funding`; canonical branch `master`
+- Netlify: `grandfundingllc`, site ID `055c5942-aeaa-478a-9508-a34406994d5d`
+- Live: `https://www.grandfundingllc.com`
+- Production is a manual Netlify release from `dist/`; GitHub pushes do not deploy.
 
-Critical: `.ai/RULES.md` was generated on 2026-06-28 and its root-publish, no-build, and Git-push deployment instructions are stale. The updated `.ai/RULES_HEADER.md` is waiting for regeneration through the canonical AI-Ops generator. Until then, the current state and source-of-truth documents above control project commands.
+## Commands
 
-This is a live regulated-lender site. Build only to `dist/`. Do not publish the repository root, change regulated claims, submit real forms, read secrets, commit, push, deploy, or mutate DNS without the authorization appropriate to that action.
+- Install: `npm ci` (Node `24.18.0`)
+- Fast/full gates: `npm run quality:fast` / `npm run quality:full`
+- Serve artifact: `npm run serve -- --dir dist --port 8888`
+- `npm run quality:release` must remain fail-closed while regulated decisions are unresolved.
 
-Preserve the cinematic desert-night brand, moving Arizona hero, calculator,
-funded-deal proof, public quote language, and internal form contracts. Run
-`npm run quality:full` after implementation. `npm run quality:release` must
-remain blocked until all seven client/legal claim decisions are resolved.
+## Safety
+
+- Never publish the repository root or use `--dir=.`.
+- Do not invent or broaden rates, fees, points, loan amounts, leverage, timing, occupancy, consumer-purpose, licensing, service-area, testimonial, funded-deal, or comparative claims.
+- Never submit production forms or expose credentials or borrower data.
+- Preserve current form contracts and the approved public quote language.
+- Current written client/legal approvals remain in `docs/`; read them only when the task needs claim or release evidence.
+- Read `SOURCE_OF_TRUTH.md` for hosting/release facts only; historical reports are not startup context.
+
+Before edits run `git status --short`; before handoff run proportional quality gates and report Git, Netlify, and live state separately.

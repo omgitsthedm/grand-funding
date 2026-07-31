@@ -9,7 +9,7 @@ Netlify deploy, and custom domain have been reconciled.
 ## Current release
 
 - Production-source merge: `2c5557443e90fc0662a41291d0b04ccc7081a556` through pull request #20
-- Release-record state: pending final synchronization after this verified record merges
+- Release-record merge: `ccfd7e7886d1e3fd0e15fe07681281765bb5493a` through pull request #21
 - Final preview deploy: `6a6c058dcfc9e87fa6da4283`
 - Production deploy: `6a6c09806ddf7952fda85da5`
 - Production state: `ready`

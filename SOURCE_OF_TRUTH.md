@@ -1,6 +1,6 @@
 # Grand Funding source of truth
 
-Last verified: 2026-07-29
+Last verified: 2026-07-30
 
 This document records the current operational state of the Grand Funding website. Dated release records remain historical evidence and do not supersede this file.
 
@@ -10,15 +10,16 @@ This document records the current operational state of the Grand Funding website
 - Resolved Git root: `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding`
 - GitHub repository: `https://github.com/omgitsthedm/grand-funding`
 - Default branch: `master`
-- Production-source merge: `b64b409e91e457c99c0b98853be77aae85d495b7`
-- Production review: pull request #17
-- Release-record merge: `cdc425b3e0d5e70e1cf3b1914a0ba1da52c2af55`
-- Release-record review: pull request #18
+- Production-source merge: `2c5557443e90fc0662a41291d0b04ccc7081a556`
+- Production review: pull request #20
+- Release-record state: pending final synchronization after this verified record merges
 
 The checkout under `~/Code/LiFi NYC/Clients/Grand Funding/Website/grandfundingv12` is archived and out of scope.
 
 ## Current release records
 
+- Quote-language release:
+  `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-30-QUOTE-LANGUAGE.md`
 - Full implementation and audit: `SITE-REINVENTION-DOSSIER.md`
 - Consumed production authorization: `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-29-REINVENTION.md`
 - Client website decisions: `docs/GRAND-FUNDING-CLIENT-WEBSITE-APPROVAL-2026-07-27.md`
@@ -45,10 +46,11 @@ Never publish the repository root or use `--dir=.`.
 - Netlify project: `grandfundingllc`
 - Netlify site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
 - Netlify admin: `https://app.netlify.com/projects/grandfundingllc`
-- Current production deploy: `6a6acd18828f50c85c77a2e5`
+- Current production deploy: `6a6c09806ddf7952fda85da5`
 - Production state: `ready`
-- Published: `2026-07-30T04:03:49.811Z`
-- Verified final preview: `6a6acad9385847c56c5c2015`
+- Published: `2026-07-31T02:34:01.543Z`
+- Verified final preview: `6a6c058dcfc9e87fa6da4283`
+- Superseded reinvention production deploy: `6a6acd18828f50c85c77a2e5`
 - Superseded interim production deploy: `6a6ac663cc09269d86bad25c`
 - Last pre-reinvention production deploy: `6a69f55b47ede5d0a16b98ec`
 
@@ -57,7 +59,7 @@ Deployment is manual. A Git commit or push does not publish the site.
 ## Current production artifact
 
 - 294 public files totaling 18.3 MiB
-- Aggregate SHA-256: `8af2323876df6cd2d6e4ef857ee9a8ecbdfd9f2bfccbe7c422528dacebd1c6e6`
+- Aggregate SHA-256: `04049521ffb9edef7767aca5c2d61bb47cc64205631e2de87a74ea825f3267b0`
 - 88 HTML documents
 - 87 Search Engine Optimization (SEO) validated documents
 - 80 indexable pages
@@ -67,7 +69,13 @@ Deployment is manual. A Git commit or push does not publish the site.
 - 13 deterministic content-addressed CSS bundles
 - 205 non-HTML assets verified byte-for-byte against both production surfaces
 
-The generated artifact and current public source contain no Forward, National Mortgage Licensing System (NMLS), mortgage loan originator (MLO), sponsored-license identifier, Grand Funding licensing assertion, asset-based formulation, or rejected no-income-document comparison.
+The generated artifact and current public source contain no public
+pre-approval wording, Forward, National Mortgage Licensing System (NMLS),
+mortgage loan originator (MLO), sponsored-license identifier, Grand Funding
+licensing assertion, asset-based formulation, or rejected no-income-document
+comparison. Five machine-only `pre-approval` references remain solely as two
+Netlify form names, two hidden form-name values, and one matching JavaScript
+selector.
 
 ## Production verification
 
@@ -76,6 +84,8 @@ The generated artifact and current public source contain no Forward, National Mo
 - Final custom-domain live matrix: 1,606 checks, zero failures
 - Immutable deploy parity: 88 HTML documents, 18 forms, and 205 assets matched
 - Custom-domain parity: 88 HTML documents, 18 forms, and 205 assets matched
+- Homepage, application, and success-route titles and visible messaging use
+  quote language with zero public pre-approval wording
 - Desktop hero: MPEG-4 (MP4) video returned response status `206`, reached playable state, and played
 - Hero styling: zero visible gradients and a 20-pixel gap before the next section
 - Reduced motion: video hidden, zero MP4 requests, and loaded poster visible
@@ -84,9 +94,15 @@ No production form was submitted. Verification blocked third-party telemetry.
 
 ## Release truth
 
-The strict release gate remains blocked by seven unresolved lending-counsel decisions. The July 29 production instruction created a one-time operational exception for the exact reviewed artifact.
+The strict release gate remains blocked by seven unresolved lending-counsel
+decisions. The July 30 production instruction created a new one-time
+operational exception for the exact reviewed quote-language artifact.
 
-That exception was consumed and closed by deploy `6a6acd18828f50c85c77a2e5`. It did not approve a lending claim, resolve a strict issue, change Domain Name System (DNS) records, activate ads, submit a form, inspect submissions, or change borrower records.
+That exception was consumed and closed by deploy
+`6a6c09806ddf7952fda85da5`. It did not approve a lending claim, resolve a
+strict issue, change Domain Name System (DNS) records, activate ads, submit a
+form, inspect submissions, or change borrower records. The July 29 reinvention
+exception remains closed.
 
 Use this sequence for future releases:
 

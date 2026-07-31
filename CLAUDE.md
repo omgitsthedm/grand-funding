@@ -1,6 +1,6 @@
 # Grand Funding working contract
 
-Current as of 2026-07-29. Read `.ai/STATE.md`, `SOURCE_OF_TRUTH.md`, and this file before changing the project.
+Current as of 2026-07-30. Read `.ai/STATE.md`, `SOURCE_OF_TRUTH.md`, and this file before changing the project.
 
 ## Source and release
 
@@ -8,10 +8,9 @@ Current as of 2026-07-29. Read `.ai/STATE.md`, `SOURCE_OF_TRUTH.md`, and this fi
 - Visible client path: `/Users/davidmarsh/Desktop/LiFi NYC/Clients/Grand Funding/grand-funding`
 - Remote: `https://github.com/omgitsthedm/grand-funding.git`
 - Default branch: `master`
-- Production-source merge: `b64b409e91e457c99c0b98853be77aae85d495b7`
-- Production review: pull request #17
-- Release-record merge: `cdc425b3e0d5e70e1cf3b1914a0ba1da52c2af55`
-- Release-record review: pull request #18
+- Production-source merge: `2c5557443e90fc0662a41291d0b04ccc7081a556`
+- Production review: pull request #20
+- Release-record state: pending final synchronization after this verified record merges
 - Required runtime: Node `24.18.0`
 - Netlify publish directory: `dist/`
 
@@ -35,12 +34,12 @@ Never publish the repository root or use `--dir=.`.
 - Live URL: `https://www.grandfundingllc.com`
 - Netlify project: `grandfundingllc`
 - Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
-- Current production deploy: `6a6acd18828f50c85c77a2e5`
+- Current production deploy: `6a6c09806ddf7952fda85da5`
 - State: `ready`
-- Published: `2026-07-30T04:03:49.811Z`
-- Verified preview: `6a6acad9385847c56c5c2015`
+- Published: `2026-07-31T02:34:01.543Z`
+- Verified preview: `6a6c058dcfc9e87fa6da4283`
 - Production artifact: 294 files
-- Aggregate SHA-256: `8af2323876df6cd2d6e4ef857ee9a8ecbdfd9f2bfccbe7c422528dacebd1c6e6`
+- Aggregate SHA-256: `04049521ffb9edef7767aca5c2d61bb47cc64205631e2de87a74ea825f3267b0`
 
 Netlify is not Git-linked. A Git push does not publish this site.
 
@@ -55,6 +54,8 @@ Preserve the flat Arizona Night Deal Desk direction:
 - direct access to Logan
 - project calculator and approved timing context
 - Netlify form names, actions, honeypots, and no-JavaScript fallback
+- public quote language while preserving the private `pre-approval` form
+  identifier
 - static poster and zero MPEG-4 (MP4) video requests under reduced motion
 
 Do not restore the unverified mobile funded-deal hero panel, generic glass effects, ornamental gradients, or unsupported offer claims.
@@ -81,6 +82,7 @@ Google Ads conversion labels remain dormant. Do not submit production forms, ins
 
 Use these records:
 
+- `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-30-QUOTE-LANGUAGE.md`
 - `SITE-REINVENTION-DOSSIER.md`
 - `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-29-REINVENTION.md`
 - `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/SESSION-CLOSEOUT-2026-07-29-WEBSITE-REINVENTION-COMPLIANCE-RELEASE.md`

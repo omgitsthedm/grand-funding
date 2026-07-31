@@ -1,7 +1,7 @@
 # Grand Funding Quote-Language Production Release
 
 - Date: 2026-07-30
-- Status: authorized; release in progress
+- Status: executed, verified, and closed
 - Authorized by: David Marsh
 - Production URL: `https://www.grandfundingllc.com`
 - Netlify project: `grandfundingllc`
@@ -71,4 +71,42 @@ status.
 
 ## Release result
 
-Pending execution.
+- Source commit: `f05b4a6cb1cd6ea70c7111ea10d36e1137adc17d`
+- Production review: pull request #20
+- Production-source merge:
+  `2c5557443e90fc0662a41291d0b04ccc7081a556`
+- GitHub `deployable-artifact` check: passed
+- Verified immutable preview: `6a6c058dcfc9e87fa6da4283`
+- Preview URL:
+  `https://6a6c058dcfc9e87fa6da4283--grandfundingllc.netlify.app`
+- Production deploy: `6a6c09806ddf7952fda85da5`
+- Production state: `ready`
+- Published: `2026-07-31T02:34:01.543Z`
+- Production URL: `https://www.grandfundingllc.com`
+
+The merged `master` build reproduced the reviewed 294-file artifact and
+aggregate SHA-256
+`04049521ffb9edef7767aca5c2d61bb47cc64205631e2de87a74ea825f3267b0`.
+The immutable preview and custom domain each matched all 88 HTML documents
+after expected Netlify form normalization, all 18 form contracts, and all 205
+directly served non-HTML assets byte-for-byte.
+
+Verification passed:
+
+- 1,623 local checks with zero failures;
+- the required GitHub artifact check;
+- 1,606 live-safe preview checks with zero failures;
+- 1,606 live-safe production checks with zero failures;
+- zero public pre-approval wording across text, metadata, accessible
+  attributes, and structured data;
+- zero public Forward, NMLS, MLO, or sponsored-license association; and
+- five intentionally preserved machine-only `pre-approval` references: two
+  form names, two hidden `form-name` values, and one JavaScript selector.
+
+No production form was submitted. Third-party telemetry was blocked during
+verification. No DNS, advertising, environment variable, analytics-consent,
+borrower-record, form-submission, or strict-claim state was changed.
+
+Deploy `6a6c09806ddf7952fda85da5` consumed and closed this one-time operational
+authorization. All seven regulated-claim categories remain unresolved and
+strict-blocking.

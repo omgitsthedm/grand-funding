@@ -1,22 +1,28 @@
 # Grand Funding project status
 
-Updated: 2026-07-29
+Updated: 2026-07-30
 
-The final hardened reinvention is live at `https://www.grandfundingllc.com`. The local checkout, GitHub production source, generated public artifact, immutable Netlify deploy, and custom domain have been reconciled.
+The quote-language release is live at `https://www.grandfundingllc.com`. The
+local checkout, GitHub production source, generated public artifact, immutable
+Netlify deploy, and custom domain have been reconciled.
 
 ## Current release
 
-- Production-source merge: `b64b409e91e457c99c0b98853be77aae85d495b7` through pull request #17
-- Release-record merge: `cdc425b3e0d5e70e1cf3b1914a0ba1da52c2af55` through pull request #18
-- Final preview deploy: `6a6acad9385847c56c5c2015`
-- Production deploy: `6a6acd18828f50c85c77a2e5`
+- Production-source merge: `2c5557443e90fc0662a41291d0b04ccc7081a556` through pull request #20
+- Release-record state: pending final synchronization after this verified record merges
+- Final preview deploy: `6a6c058dcfc9e87fa6da4283`
+- Production deploy: `6a6c09806ddf7952fda85da5`
 - Production state: `ready`
 - Artifact: 294 files, 18.3 MiB
-- Aggregate SHA-256: `8af2323876df6cd2d6e4ef857ee9a8ecbdfd9f2bfccbe7c422528dacebd1c6e6`
+- Aggregate SHA-256: `04049521ffb9edef7767aca5c2d61bb47cc64205631e2de87a74ea825f3267b0`
 
 ## Completed work
 
 - Removed public Forward, National Mortgage Licensing System, mortgage loan originator, sponsored-license, and Grand Funding licensing assertions
+- Replaced every public pre-approved and pre-approval reference with
+  context-appropriate quote language
+- Preserved the five internal Netlify form-routing references so notification
+  and submission history remain connected
 - Implemented every answered website decision from the July 27 client survey
 - Limited public product promotion to the six approved product families
 - Removed numeric rates, points, loan sizing, and leverage claims
@@ -31,6 +37,8 @@ The final hardened reinvention is live at `https://www.grandfundingllc.com`. The
 - Removed the residual asset-based comparison found during the final production probe
 - Preserved litigation-hold source, history, hosting records, forms, and legacy assets
 - Closed the one-time production exception after final verification
+- Added a fail-closed validator preventing public pre-approval wording from
+  returning
 
 ## Verified quality
 
@@ -46,6 +54,8 @@ The final hardened reinvention is live at `https://www.grandfundingllc.com`. The
 - Preview live matrix: 1,606 checks, zero failures
 - Production live matrix: 1,606 checks, zero failures
 - Production parity: 205 byte-identical assets, 88 semantically identical HTML documents, and 18 matching form contracts
+- Public quote-language audit: zero old public wording across visible text,
+  metadata, accessible labels, or structured data
 - Hero playback: response status `206`, playable state, and active playback
 - Reduced motion: zero MPEG-4 (MP4) requests and visible 1,280-pixel poster
 
@@ -79,5 +89,6 @@ Do not restore a pre-hardening deploy as an ordinary rollback. Use the final har
 ## Current records
 
 - `SITE-REINVENTION-DOSSIER.md`
+- `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-30-QUOTE-LANGUAGE.md`
 - `docs/PRODUCTION-RELEASE-AUTHORIZATION-2026-07-29-REINVENTION.md`
 - `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/SESSION-CLOSEOUT-2026-07-29-WEBSITE-REINVENTION-COMPLIANCE-RELEASE.md`

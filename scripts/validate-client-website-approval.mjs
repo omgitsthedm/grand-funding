@@ -222,6 +222,10 @@ for (const suite of suites) {
         "contains a malformed sanitizer fragment",
         /\b(?:amountin|amountThis|reviewin|reviewThis|provided after deal review provided after deal review)\b/i,
       ],
+      [
+        "contains pre-approval wording that must use quote language",
+        /\b(?:pre[- ]?approv(?:al|als|ed)|preapproval)\b/i,
+      ],
     ]) {
       assertAbsent(suite.id, relative, text, label, expression);
     }
@@ -253,6 +257,19 @@ for (const suite of suites) {
   if (!home) {
     errors.push(`[${suite.id}] index.html is missing`);
     continue;
+  }
+  if (!home.text.includes("Get a Quote")) {
+    errors.push(`[${suite.id}] homepage is missing the Get a Quote action`);
+  }
+  const apply = records.find((record) => record.relative === "apply.html");
+  if (!apply || !apply.text.includes("Get a Quote")) {
+    errors.push(`[${suite.id}] apply page is missing Get a Quote language`);
+  }
+  const thanks = records.find((record) => record.relative === "thanks.html");
+  if (!thanks || !thanks.text.includes("Quote Request Received")) {
+    errors.push(
+      `[${suite.id}] application success page is missing Quote Request Received language`,
+    );
   }
   const homeProducts = [
     ...home.raw.matchAll(

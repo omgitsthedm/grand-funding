@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastReviewed": "2026-07-29",
+  "lastReviewed": "2026-07-30",
   "scope": {
     "description": "Fail-closed baseline for public regulated and comparative lending claims. This registry documents current wording; it does not approve or resolve it.",
     "sourceIncludes": ["/*.html", "/posts/**/*.html", "/llms.txt"],
@@ -211,16 +211,16 @@
     {
       "issueId": "timing-taxonomy",
       "ruleId": "timing-taxonomy",
-      "baselineNote": "2026-07-29 removal-only rebaseline after the client-approved timing wording was reduced by neutralizing unsurveyed credit, documentation, payment-structure, draw, and project-requirement promises. No new timing value was introduced. Formal operations and lending-counsel approval remains unrecorded.",
+      "baselineNote": "2026-07-30 removal-only rebaseline after the website owner directed every public pre-approval reference to use quote language. Decision-strength wording was replaced with quote-request and response wording; no timing value was added or expanded. Formal operations and lending-counsel approval remains unrecorded.",
       "source": {
         "matchedFiles": 75,
-        "matchCount": 655,
-        "sha256": "945208ace0bbf54d0b95931718e4a7eecb819d8210ae79040129e9f5bc375179"
+        "matchCount": 646,
+        "sha256": "06a3d81c8f9fc90dd73f1b15529a9c35b1d339615a24f973603d2dc2354cb104"
       },
       "dist": {
         "matchedFiles": 76,
-        "matchCount": 670,
-        "sha256": "2edcfb37f6e50eb561f3872face4e437060ab736d75866d28261fa2cdb6c0bb2"
+        "matchCount": 663,
+        "sha256": "ea2a2edce867af61fb04dd20f264feaa04cb4b6bfe3eaf3db84989e4acc924db"
       }
     },
     {

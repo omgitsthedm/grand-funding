@@ -100,8 +100,8 @@ function makeHeroIntentClear(hero) {
       "Arizona + California Deal Desk"
     )
     .replace(
-      "<a class='btn btn-primary btn-lg' href='/apply'>Get Pre-Approved</a>",
-      "<a class='btn btn-primary btn-lg' href='/apply' data-cta-intent='apply' data-cta-location='hero'>Tell Us About Your Deal</a>"
+      "<a class='btn btn-primary btn-lg' href='/apply'>Get a Quote</a>",
+      "<a class='btn btn-primary btn-lg' href='/apply' data-cta-intent='apply' data-cta-location='hero'>Get a Quote</a>"
     )
     .replace(
       '<a aria-label="Call (602) 935-0371" class="btn btn-secondary btn-lg" href="tel:6029350371">',
@@ -117,8 +117,8 @@ function makeHeroIntentClear(hero) {
       "Explore the financing scenarios behind the numbers."
     )
     .replace(
-      "<a class='btn btn-primary btn-lg' href='/apply'>Get Pre-Approved</a><div class=\"hero-visual-caption\">",
-      "<a class='btn btn-primary btn-lg' href='/apply' data-cta-intent='apply' data-cta-location='hero-funded-panel'>Send Your Deal</a><div class=\"hero-visual-caption\">"
+      "<a class='btn btn-primary btn-lg' href='/apply'>Get a Quote</a><div class=\"hero-visual-caption\">",
+      "<a class='btn btn-primary btn-lg' href='/apply' data-cta-intent='apply' data-cta-location='hero-funded-panel'>Get a Quote</a><div class=\"hero-visual-caption\">"
     );
 
   hero = hero.replace(
@@ -132,7 +132,7 @@ function makeHeroIntentClear(hero) {
 
   const required = [
     "Arizona + California Deal Desk",
-    "Tell Us About Your Deal",
+    "Get a Quote",
     "Under Contract? Call Logan",
     "Real Deals. Real Timelines.",
     "hero-deadline-note",

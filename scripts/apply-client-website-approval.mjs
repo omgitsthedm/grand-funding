@@ -419,6 +419,80 @@ function dedupeListItems(html) {
   );
 }
 
+function replacePreApprovalLanguage(value) {
+  const protectedContracts = [];
+  const protectContract = (match) => {
+    const token = `__GF_PRE_APPROVAL_CONTRACT_${protectedContracts.length}__`;
+    protectedContracts.push(match);
+    return token;
+  };
+
+  let output = String(value).replace(
+    /\b(?:name|value)\s*=\s*(["'])pre-approval\1/gi,
+    protectContract,
+  );
+
+  output = output
+    .replace(
+      /\bCredit reports,\s*only when you authorize a credit pull in writing\s*\(not performed for initial pre-approval\)/gi,
+      "Credit reports, when authorized and requested for the specific transaction",
+    )
+    .replace(
+      /\bContact your lender and get pre-approved\s*[—–-]\s*know what you can borrow and at what rate\b/gi,
+      "Contact your lender and request a quote so transaction-specific loan sizing and rate information can be reviewed",
+    )
+    .replace(
+      /\bA pre-approval letter tells you exactly what you can borrow,\s*at what rate,\s*and with what timeline\./gi,
+      "A quote request starts a transaction-specific review. Loan sizing, rates, and timing are provided in writing after review.",
+    )
+    .replace(
+      /\bGrand Funding issues pre-approvals in 24 hours\./gi,
+      "Grand Funding responds to quote requests within 24 hours.",
+    )
+    .replace(
+      /\bPre-approvals issue in 24 hours\./gi,
+      "Quote requests receive a response within 24 hours.",
+    )
+    .replace(
+      /\bLoan sizing is determined after review\.\s*Pre-approval in 24 hours\./gi,
+      "Loan sizing is determined after review. Quote requests receive a response within 24 hours.",
+    )
+    .replace(
+      />\s*Get Pre-Approved in 24 Hours\s*</gi,
+      ">Request a Quote<",
+    )
+    .replace(/>\s*Pre-Approval\s*</g, ">Quote Request<")
+    .replace(/\bPre-approval callout\b/g, "Quote request callout")
+    .replace(
+      /\bGet pre-approved in 24 hours\b\.?/gi,
+      "Request a quote. A real person responds within 24 hours.",
+    )
+    .replace(/\bSend My Free Pre-Approval\b/gi, "Request My Quote")
+    .replace(/\bSend for Pre-Approval\b/gi, "Request a Quote")
+    .replace(/\bStart Pre-Approval\b/gi, "Request a Quote")
+    .replace(/\brequest pre-approval\b/gi, (match) =>
+      /^[A-Z]/.test(match) ? "Request a Quote" : "request a quote",
+    )
+    .replace(/\bPre-Approval Received\b/gi, "Quote Request Received")
+    .replace(
+      /\bGet Pre-Approved(?:\s+(?:Free|Now))?\b/gi,
+      "Get a Quote",
+    )
+    .replace(/\bpre-approval requests?\b/gi, (match) =>
+      /requests/i.test(match) ? "quote requests" : "quote request",
+    )
+    .replace(/\bpre-approval form\b/gi, "quote request form")
+    .replace(/\bpre-approvals\b/gi, "quote requests")
+    .replace(/\bpre-approval\b/gi, "quote request")
+    .replace(/\bpre-approved\b/gi, "quoted")
+    .replace(/\bpre-approve\b/gi, "request a quote");
+
+  return output.replace(
+    /__GF_PRE_APPROVAL_CONTRACT_(\d+)__/g,
+    (_token, index) => protectedContracts[Number(index)],
+  );
+}
+
 function applyExactApprovedWording(value) {
   const replacements = [
     [
@@ -2065,7 +2139,9 @@ function transformHtml(source, { preserveJsonLd = false } = {}) {
         : null,
   ));
 
-  return polishNeutralizedWording(html).replace(/^[\t ]+$/gm, "");
+  return replacePreApprovalLanguage(
+    polishNeutralizedWording(html).replace(/^[\t ]+$/gm, ""),
+  );
 }
 
 function transformText(source) {
@@ -2082,19 +2158,21 @@ function transformText(source) {
       /\ba deal-specific amount\b/gi,
       "loan sizing determined after review",
     );
-  return output
-    .split(/\r?\n/)
-    .filter(
-      (line) =>
-        !(
-          /\bHonolulu,\s*HI\b/i.test(line) ||
-          (OFFER_NUMBER_PATTERN.test(line) &&
-            !/\b(?:funded|closed|historical|example|market|Federal Reserve|FRED)\b/i.test(
-              line,
-            ))
-        ),
-    )
-    .join("\n");
+  return replacePreApprovalLanguage(
+    output
+      .split(/\r?\n/)
+      .filter(
+        (line) =>
+          !(
+            /\bHonolulu,\s*HI\b/i.test(line) ||
+            (OFFER_NUMBER_PATTERN.test(line) &&
+              !/\b(?:funded|closed|historical|example|market|Federal Reserve|FRED)\b/i.test(
+                line,
+              ))
+          ),
+      )
+      .join("\n"),
+  );
 }
 
 function polishNeutralizedWording(value) {

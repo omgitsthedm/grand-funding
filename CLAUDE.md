@@ -10,7 +10,8 @@ Current as of 2026-07-30. Read `.ai/STATE.md`, `SOURCE_OF_TRUTH.md`, and this fi
 - Default branch: `master`
 - Production-source merge: `2c5557443e90fc0662a41291d0b04ccc7081a556`
 - Production review: pull request #20
-- Release-record state: pending final synchronization after this verified record merges
+- Release-record merge: `ccfd7e7886d1e3fd0e15fe07681281765bb5493a`
+- Release-record review: pull request #21
 - Required runtime: Node `24.18.0`
 - Netlify publish directory: `dist/`
 

@@ -125,7 +125,7 @@ POSTS = {
 <li>Your target close date and construction timeline</li>
 </ul>
 <p>That's enough for us to give you a term sheet. No tax returns. No income verification. Asset-based means the project is the application.</p>
-</div><div class="section" style="padding:28px 0 0"><div class="cta-box" style="text-align:center"><h2 style="margin-top:0">Planning a Scottsdale Build?</h2><p style="margin:10px auto 18px;max-width:56ch">Tell us the project. We'll tell you what we can lend, on what terms, and how fast we can close.</p><div class="cta-row" style="justify-content:center"><a class="cta-btn" data-cta-arrow href="/apply.html">Get Pre-Approved</a><a class="ghost-btn" href="/construction-loans-scottsdale.html">Scottsdale Construction Loans</a></div></div></div></article></div></section></main>"""
+</div><div class="section" style="padding:28px 0 0"><div class="cta-box" style="text-align:center"><h2 style="margin-top:0">Planning a Scottsdale Build?</h2><p style="margin:10px auto 18px;max-width:56ch">Tell us the project. We'll tell you what we can lend, on what terms, and how fast we can close.</p><div class="cta-row" style="justify-content:center"><a class="cta-btn" data-cta-arrow href="/apply.html">Get a Quote</a><a class="ghost-btn" href="/construction-loans-scottsdale.html">Scottsdale Construction Loans</a></div></div></div></article></div></section></main>"""
     },
 
     "second-position-loans-arizona-guide": {
@@ -229,7 +229,7 @@ POSTS = {
 <li>Entity docs if property is held in an LLC</li>
 </ul>
 <p>That's enough for a same-day term sheet. Call us at (602) 935-0371 or submit at the link below.</p>
-</div><div class="section" style="padding:28px 0 0"><div class="cta-box" style="text-align:center"><h2 style="margin-top:0">Have Equity You're Not Using?</h2><p style="margin:10px auto 18px;max-width:56ch">Tell us the property address and what you owe on the first. We'll tell you what's available and on what terms — same day.</p><div class="cta-row" style="justify-content:center"><a class="cta-btn" data-cta-arrow href="/apply.html">Get Pre-Approved</a><a class="ghost-btn" href="/second-position-loans-phoenix.html">Second Position Loans</a></div></div></div></article></div></section></main>"""
+</div><div class="section" style="padding:28px 0 0"><div class="cta-box" style="text-align:center"><h2 style="margin-top:0">Have Equity You're Not Using?</h2><p style="margin:10px auto 18px;max-width:56ch">Tell us the property address and what you owe on the first. We'll tell you what's available and on what terms — same day.</p><div class="cta-row" style="justify-content:center"><a class="cta-btn" data-cta-arrow href="/apply.html">Get a Quote</a><a class="ghost-btn" href="/second-position-loans-phoenix.html">Second Position Loans</a></div></div></div></article></div></section></main>"""
     }
 }
 

@@ -892,7 +892,7 @@ a[href^="tel:"].header-phone{
 }
 
 /* 2026-06-30 fix(header-cta-wrap): force header CTA to a single line on phone/tablet.
-   The mobile override stack was resetting white-space, wrapping "Get Pre-Approved →" to 2 lines. */
+   The mobile override stack was resetting white-space, wrapping "Get a Quote →" to 2 lines. */
 @media (max-width: 768px){
   .header .cta-btn{ white-space: nowrap !important; }
 }

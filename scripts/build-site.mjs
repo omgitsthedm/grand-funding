@@ -4,6 +4,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { applyClientWebsiteApproval } from './apply-client-website-approval.mjs';
 import { generateRss } from './generate-rss.mjs';
+import { injectLifiCareBar } from './inject-lifi-care-bar.mjs';
 import { normalizeBuiltSite } from './normalize-built-site.mjs';
 import { optimizeBuiltSite } from './optimize-built-site.mjs';
 import { redactPublicLicenseReferences } from './redact-public-license-references.mjs';
@@ -25,6 +26,7 @@ const ROOT_ASSETS = [
   'conversion-tools.js',
   'favicon.ico',
   'llms.txt',
+  'lifi-care.css',
   'original-refinement.css',
   'original-refinement.js',
   'premium-motion.css',
@@ -98,6 +100,7 @@ const feedItems = await generateRss({
   siteOrigin: SITE_ORIGIN
 });
 const redaction = await redactPublicLicenseReferences({ dist: DIST });
+const careBar = await injectLifiCareBar({ dist: DIST });
 
 const files = await walk(DIST);
 const bytes = (await Promise.all(files.map(async file => (await fs.stat(file)).size)))
@@ -112,5 +115,6 @@ console.log(
   + `applied ${finalClientApproval.approvalDate} client website policy to `
   + `${initialClientApproval.changedFiles + finalClientApproval.changedFiles} copied/generated file pass(es); `
   + `redacted public license/association content in ${redaction.changedFiles} file(s) `
-  + `(${redaction.removedReferences} restricted token(s))`
+  + `(${redaction.removedReferences} restricted token(s)); `
+  + `installed the Little Fight NYC care bar on ${careBar.pages} page(s)`
 );

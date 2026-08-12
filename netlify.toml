@@ -2,88 +2,9 @@
   publish = "dist"
   command = "npm run quality:fast"
 
-# The apex-host rule and canonical clean-URL rules are generated into
-# dist/_redirects in first-match-safe order. Keep only aliases here.
-[[redirects]]
-  from = "/resources"
-  to = "/blog"
-  status = 301
-
-[[redirects]]
-  from = "/disclosure"
-  to = "/disclosures"
-  status = 301
-
-# Legacy patterns (Wix/blog)
-[[redirects]]
-  from = "/post/*"
-  to = "/blog"
-  status = 301
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    X-XSS-Protection = "0"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), serial=(), bluetooth=(), interest-cohort=(), accelerometer=(), gyroscope=(), magnetometer=()"
-    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://pagead2.googlesyndication.com https://td.doubleclick.net https://www.google.com; frame-src https://www.googletagmanager.com https://td.doubleclick.net https://bid.g.doubleclick.net https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';"
-
-# Cache versioned assets (CSS/JS use ?v= query strings)
-[[headers]]
-  for = "/*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
-
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
-
-[[headers]]
-  for = "/images/*"
-  [headers.values]
-    Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
-
-[[headers]]
-  for = "/*.webmanifest"
-  [headers.values]
-    Content-Type = "application/manifest+json; charset=utf-8"
-    Cache-Control = "public, max-age=86400"
-
-[[headers]]
-  for = "/*.woff2"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-# Block developer/internal files from public access (explicit + glob, belt-and-suspenders)
-[[redirects]]
-  from = "/CLAUDE.md"
-  to = "/404.html"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/AGENTS.md"
-  to = "/404.html"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/.ai/*"
-  to = "/404.html"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/*.md"
-  to = "/404.html"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/root_block.txt"
-  to = "/404.html"
-  status = 404
-  force = true
+# Release-edge rules live in the publish directory, not here:
+# - `_headers` is copied into `dist/_headers` by the build.
+# - canonical, legacy, protected-file, and clean-route rules are generated into
+#   `dist/_redirects` in first-match-safe order.
+# This single source works identically for Git builds and exact Netlify Drop
+# artifacts. Do not duplicate these rules in netlify.toml.

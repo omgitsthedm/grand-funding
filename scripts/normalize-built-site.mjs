@@ -1443,6 +1443,17 @@ async function postFormActionHtmlRoutes(dist, htmlFiles) {
   return protectedRoutes;
 }
 
+const PLATFORM_REDIRECT_RULES = Object.freeze([
+  Object.freeze({ source: '/resources', target: '/blog', status: '301!' }),
+  Object.freeze({ source: '/disclosure', target: '/disclosures', status: '301!' }),
+  Object.freeze({ source: '/post/*', target: '/blog', status: '301!' }),
+  Object.freeze({ source: '/CLAUDE.md', target: '/404.html', status: '404!' }),
+  Object.freeze({ source: '/AGENTS.md', target: '/404.html', status: '404!' }),
+  Object.freeze({ source: '/.ai/*', target: '/404.html', status: '404!' }),
+  Object.freeze({ source: '/*.md', target: '/404.html', status: '404!' }),
+  Object.freeze({ source: '/root_block.txt', target: '/404.html', status: '404!' })
+]);
+
 function validateRedirectRules(content, inventory, protectedPostRoutes) {
   const lines = content
     .split(/\r?\n/)
@@ -1458,7 +1469,8 @@ function validateRedirectRules(content, inventory, protectedPostRoutes) {
   });
 
   const expectedRuleCount =
-    inventory.length * 2 - protectedPostRoutes.size + 1;
+    inventory.length * 2 - protectedPostRoutes.size + 1
+    + PLATFORM_REDIRECT_RULES.length;
   if (rules.length !== expectedRuleCount) {
     throw new Error(
       `_redirects expected ${expectedRuleCount} rules, found ${rules.length}`
@@ -1482,6 +1494,18 @@ function validateRedirectRules(content, inventory, protectedPostRoutes) {
       throw new Error(`_redirects has duplicate source route: ${rule.source}`);
     }
     sourceRules.set(rule.source, rule);
+  }
+
+  for (const expected of PLATFORM_REDIRECT_RULES) {
+    const actual = sourceRules.get(expected.source);
+    if (
+      actual?.target !== expected.target
+      || actual?.status !== expected.status
+    ) {
+      throw new Error(
+        `_redirects missing platform rule ${expected.source} ${expected.target} ${expected.status}`
+      );
+    }
   }
 
   const knownHtmlRoutes = new Set(
@@ -1517,6 +1541,9 @@ function validateRedirectRules(content, inventory, protectedPostRoutes) {
 
   for (const rule of rules) {
     if (rule === hostRule) continue;
+    if (PLATFORM_REDIRECT_RULES.some(expected => expected.source === rule.source)) {
+      continue;
+    }
 
     if (
       /\/404\.html$/i.test(rule.source) ||
@@ -1580,6 +1607,11 @@ async function writeRedirects(dist, htmlFiles) {
     '# Canonical host rule must remain first because Netlify uses first match.',
     'https://grandfundingllc.com/* https://www.grandfundingllc.com/:splat 301!',
     '',
+    '# Platform parity for manual Netlify Drop releases',
+    ...PLATFORM_REDIRECT_RULES.map(
+      rule => `${rule.source} ${rule.target} ${rule.status}`
+    ),
+    '',
     '# Canonical redirects from legacy .html URLs',
     '# POST form action HTML routes are intentionally excluded.',
     ...canonicalRedirects,
@@ -1591,7 +1623,8 @@ async function writeRedirects(dist, htmlFiles) {
 
   validateRedirectRules(content, inventory, protectedPostRoutes);
   await fs.writeFile(path.join(dist, '_redirects'), content, 'utf8');
-  return inventory.length * 2 - protectedPostRoutes.size + 1;
+  return inventory.length * 2 - protectedPostRoutes.size + 1
+    + PLATFORM_REDIRECT_RULES.length;
 }
 
 function escapeXml(value) {

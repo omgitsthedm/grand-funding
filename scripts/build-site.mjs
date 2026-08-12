@@ -17,6 +17,7 @@ const SITE_ORIGIN = 'https://www.grandfundingllc.com';
 const RELEASE_DATE = '2026-07-29';
 
 const ROOT_ASSETS = [
+  '_headers',
   '404.html',
   'apply.css',
   'blog.css',

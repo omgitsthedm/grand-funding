@@ -199,6 +199,29 @@ assert(
   /\[build\][\s\S]*?\bcommand\s*=\s*"npm run quality:fast"/m.test(netlify),
   "netlify.toml build command must run quality:fast"
 );
+assert(
+  !/\[\[headers\]\]|\[\[redirects\]\]/m.test(netlify),
+  "netlify.toml must not duplicate the artifact-owned edge rules"
+);
+
+const staticHeaders = read("_headers");
+for (const requiredHeader of [
+  "Content-Security-Policy:",
+  "Permissions-Policy:",
+  "Referrer-Policy: strict-origin-when-cross-origin",
+  "Strict-Transport-Security:",
+  "X-Content-Type-Options: nosniff",
+  "X-Frame-Options: DENY"
+]) {
+  assert(
+    staticHeaders.includes(requiredHeader),
+    `_headers must retain ${requiredHeader}`
+  );
+}
+assert(
+  fs.existsSync(path.join(root, "dist", "_headers")),
+  "the built artifact must contain _headers for manual Netlify Drop parity"
+);
 
 const ci = read(".github/workflows/ci.yml");
 assert(ci.includes("node-version-file: .node-version"), "CI must use .node-version");

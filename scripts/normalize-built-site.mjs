@@ -1444,6 +1444,13 @@ async function postFormActionHtmlRoutes(dist, htmlFiles) {
 }
 
 const PLATFORM_REDIRECT_RULES = Object.freeze([
+  // Legacy site-builder URLs Google still crawls (GSC "Not found (404)", 2026-08-23).
+  Object.freeze({ source: '/home', target: '/', status: '301!' }),
+  Object.freeze({ source: '/about-us', target: '/about', status: '301!' }),
+  Object.freeze({ source: '/refi-loans', target: '/cash-out-refinance-investors-arizona', status: '301!' }),
+  Object.freeze({ source: '/cash-out-loans', target: '/cash-out-refinance-investors-arizona', status: '301!' }),
+  Object.freeze({ source: '/investment-loans', target: '/arizona-hard-money-lender', status: '301!' }),
+  Object.freeze({ source: '/blank-10-1-1', target: '/', status: '301!' }),
   Object.freeze({ source: '/resources', target: '/blog', status: '301!' }),
   Object.freeze({ source: '/disclosure', target: '/disclosures', status: '301!' }),
   Object.freeze({ source: '/post/*', target: '/blog', status: '301!' }),

@@ -469,7 +469,7 @@ function removeUnconfirmedLeadTracking(html, relativeFile) {
 
   let seenTagManagerFallback = false;
   html = html.replace(
-    /<noscript\b[^>]*>[\s\S]*?googletagmanager\.com\/ns\.html\?id=GTM-M36VM2VG[\s\S]*?<\/noscript>/gi,
+    /<noscript\b[^>]*>[\s\S]*?googletagmanager\.com\/ns\.html\?id=GTM-[A-Z0-9]+[\s\S]*?<\/noscript>/gi,
     block => {
       if (seenTagManagerFallback) return "";
       seenTagManagerFallback = true;

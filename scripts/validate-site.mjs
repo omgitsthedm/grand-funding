@@ -190,7 +190,7 @@ for (const file of htmlFiles) {
     }
     const gtmFallbacks = count(
       html,
-      /<noscript\b[^>]*>[\s\S]*?googletagmanager\.com\/ns\.html\?id=GTM-M36VM2VG[\s\S]*?<\/noscript>/gi
+      /<noscript\b[^>]*>[\s\S]*?googletagmanager\.com\/ns\.html\?id=GTM-[A-Z0-9]+[\s\S]*?<\/noscript>/gi
     );
     if (gtmFallbacks > 1) errors.push(`${name}: duplicate GTM noscript fallbacks (${gtmFallbacks})`);
   }

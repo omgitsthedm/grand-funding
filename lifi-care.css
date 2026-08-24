@@ -15,6 +15,9 @@
   color: inherit;
   /* Host page may set --lfc-size (any length) to scale the whole mark. */
   font-size: var(--lfc-size, 1em);
+  /* Stated, not inherited: several host footers set link weight to 700-800,
+     which would otherwise render "Made by" heavier than the brand name. */
+  font-weight: 400;
   line-height: 1;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;

@@ -30,9 +30,10 @@ const signature = html => [
 
 export function injectCareBar(html, file) {
   if (!/<footer\b/i.test(html)) return null;
-  if ((html.match(/class=["'][^"']*\blfc\b/i) || []).length) {
-    throw new Error(`${file}: duplicate Little Fight credit mark`);
-  }
+  // Standalone pages (brand kit) carry the mark inline and have no slot.
+  const existing = (html.match(/class="lfc"/g) || []).length;
+  if (existing === 1 && !html.includes('data-lfc')) return null;
+  if (existing > 1) throw new Error(`${file}: duplicate Little Fight credit mark`);
   if (!/<\/footer>/i.test(html)) throw new Error(`${file}: unclosed client footer`);
   if (!/<div class="footer-credit" data-lfc><\/div>/.test(html)) {
     throw new Error(`${file}: Little Fight credit slot is missing`);

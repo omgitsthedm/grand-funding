@@ -183,14 +183,14 @@
    Loads last and carries `html body` specificity on purpose: six earlier rule
    sets in the bundle all target .footer-main--clean, and the last of them is
    `html body ... !important` — so the grid declarations here have to match that
-   weight to land. Compact two-column stack on phones, five columns from tablet
-   up, and the Little Fight credit as the closing line.
+   weight to land. Single-column stack through tablet, five columns on wider
+   screens, and the Little Fight credit as the closing line.
    ========================================================================== */
 
 html body .footer .footer-main,
 html body .footer .footer-main--clean {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: minmax(0, 1fr) !important;
   gap: 22px 18px !important;
   align-items: start;
 }
@@ -265,7 +265,7 @@ html body .footer .footer-disclaimer {
   margin: 0 0 12px;
   font-size: .74rem;
   line-height: 1.55;
-  opacity: .68;
+  opacity: 1;
 }
 html body .footer .footer-meta {
   display: flex;
@@ -288,7 +288,7 @@ html body .footer .footer-legal-links a {
 html body .footer .footer-copyright {
   margin: 0;
   font-size: .76rem;
-  opacity: .62;
+  opacity: 1;
 }
 html body .footer .footer-credit,
 html body .lp-footer .footer-credit {
@@ -314,7 +314,7 @@ html body .lp-footer {
   padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important;
 }
 
-@media (min-width: 701px) {
+@media (min-width: 769px) {
   html body .footer .footer-main,
   html body .footer .footer-main--clean {
     grid-template-columns: 1.6fr repeat(4, minmax(0, 1fr)) !important;

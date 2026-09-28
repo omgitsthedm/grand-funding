@@ -328,6 +328,9 @@ function simplifyBlogToolbar(source) {
 }
 
 function streamlineApplyFlow(source) {
+  const proofRange = tagRange(source, "div", "apply-proof");
+  const proofHtml = proofRange.html;
+  source = replaceRange(source, proofRange, "");
   const cardRange = tagRange(source, "div", "apply-card");
   let card = cardRange.html;
   const compactCallout = tagRange(card, "div", "logan-sidebar");
@@ -338,7 +341,7 @@ function streamlineApplyFlow(source) {
   card = replaceRange(card, detailedCallout, "");
 
   const form = tagRange(card, "form", "apply-form");
-  card = `${card.slice(0, form.end)}${detailedHtml}${card.slice(form.end)}`;
+  card = `${card.slice(0, form.end)}${proofHtml}${detailedHtml}${card.slice(form.end)}`;
 
   const titleIndex = card.indexOf("apply-card__title");
   const formIndex = card.indexOf('class="apply-form"');

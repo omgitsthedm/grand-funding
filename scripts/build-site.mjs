@@ -10,6 +10,7 @@ import { optimizeBuiltSite } from './optimize-built-site.mjs';
 import { redactPublicLicenseReferences } from './redact-public-license-references.mjs';
 import { refineLegacyRuntime } from './refine-legacy-runtime.mjs';
 import { refineOriginalExperience } from './refine-original-experience.mjs';
+import { hardenAnalytics } from './harden-analytics.mjs';
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
@@ -95,6 +96,7 @@ const finalClientApproval = await applyClientWebsiteApproval({
   root: DIST,
   preserveJsonLd: true
 });
+await hardenAnalytics({ dist: DIST });
 const optimization = await optimizeBuiltSite({ dist: DIST });
 const feedItems = await generateRss({
   dist: DIST,

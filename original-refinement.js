@@ -16,6 +16,8 @@
       .replace(/^\/+|\/+$/g, "");
     return route || "home";
   };
+  const unconfirmedReceiptMessage =
+    "We couldn't confirm receipt. Your details may still be on the way. Call or email us before retrying to avoid sending twice.";
 
   const visibleInViewport = element => {
     const bounds = element.getBoundingClientRect();
@@ -93,15 +95,6 @@
     });
   };
 
-  const readConsent = () => {
-    try {
-      const saved = JSON.parse(localStorage.getItem("gf_consent_v1"));
-      return saved?.v === 1 ? saved : null;
-    } catch {
-      return null;
-    }
-  };
-
   const trackClassifiedCallsToAction = () => {
     document.addEventListener("click", event => {
       const control = event.target.closest?.("[data-cta-intent]");
@@ -117,18 +110,7 @@
         return;
       }
 
-      if (
-        !["apply", "contact", "funded-proof"].includes(intent) ||
-        !readConsent()?.analytics
-      ) {
-        return;
-      }
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: "cta_click",
-        cta_intent: intent,
-        cta_location: locationName
-      });
+      window.gfTrackCta?.({ intent, location: locationName });
     });
   };
 
@@ -218,8 +200,59 @@
         recoveryTimer = setTimeout(
           () =>
             restore(
-              "Still here? Check your connection, then try sending again."
+              unconfirmedReceiptMessage
             ),
+          12_000
+        );
+      });
+
+      addEventListener("pageshow", event => {
+        if (!event.persisted && form.getAttribute("aria-busy") !== "true") return;
+        restore("");
+      });
+    });
+  };
+
+  const enhanceNativeLeadForms = () => {
+    document.querySelectorAll("form[data-netlify]:not([data-gf-lead-form])").forEach(form => {
+      const button = form.querySelector("button[type='submit']");
+      if (!button) return;
+
+      let status = form.querySelector("[data-form-status]");
+      if (!status) {
+        status = document.createElement("p");
+        status.className = "lp-form__fine";
+        status.dataset.formStatus = "";
+        status.setAttribute("role", "status");
+        status.setAttribute("aria-live", "polite");
+        status.setAttribute("aria-atomic", "true");
+        button.insertAdjacentElement("afterend", status);
+      }
+
+      const defaultLabel = button.textContent.trim() || "Send";
+      let recoveryTimer = 0;
+      const restore = message => {
+        clearTimeout(recoveryTimer);
+        form.removeAttribute("aria-busy");
+        button.removeAttribute("aria-busy");
+        button.disabled = false;
+        button.textContent = defaultLabel;
+        if (message) status.textContent = message;
+      };
+
+      form.addEventListener("submit", event => {
+        if (form.getAttribute("aria-busy") === "true") {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          return;
+        }
+        form.setAttribute("aria-busy", "true");
+        button.setAttribute("aria-busy", "true");
+        button.disabled = true;
+        button.textContent = "Sending securely…";
+        status.textContent = "Sending securely…";
+        recoveryTimer = setTimeout(
+          () => restore(unconfirmedReceiptMessage),
           12_000
         );
       });
@@ -405,6 +438,7 @@
     trackClassifiedCallsToAction();
     synchronizeFaqDisclosures();
     enhanceLeadForms();
+    enhanceNativeLeadForms();
     consumeConfirmedLead();
     improveMobileMenuFocus();
     controlStickyCallToAction();

@@ -8,13 +8,19 @@ Verified: 2026-08-11
 - Netlify site: `grandfundingllc`
 - Site ID: `055c5942-aeaa-478a-9508-a34406994d5d`
 - Production URL: `https://www.grandfundingllc.com`
-- Production source commit: `0e43bc16b8c9356b87fd738d51fd3619a9784f87`
-- Production deploy: `6a7bdfd3e639979f12a74301`
+- Production source commit: `d4ebd0d3aaba1135ddd3f9dc2d3f4c29aa2c4dc6`
+- Production deploy: `6aba1e1d2dcca99d74389056`
 - Rollback deploy: `6a7bd9e3458e4e2c35158cfd`
-- Production artifact SHA-256: `d41bf1d7e802e17364710ad0094627e056229501f3647008dcbb0fbb1bf129ae`
+- Production artifact tree SHA-256: `07155b28f74b51ba09ccb6049bb6855c69d3f50873bd56060452626f2417b75b`
 - Deploy method: manual Netlify Drop from the exact merged-source `dist/` artifact; GitHub is not connected.
 
 The deploy commit is preserved in this history. The superseded `Website/grandfundingv12` checkout is no longer a production source; its stale local Netlify link does not override the deploy and artifact evidence here. The production artifact owns `_headers` and `_redirects`, so manual Drop releases retain the same edge behavior as a configuration-aware deploy. Netlify Forms remains enabled; Netlify's expected form-tag normalization is the only observed HTML transformation between the immutable artifact and production.
+
+## 2026-09-28 — truthful public-claim removal release
+
+- State: source commit `d4ebd0d3aaba1135ddd3f9dc2d3f4c29aa2c4dc6` removes unsupported individual-deal facts, testimonial quotations, referral-compensation language, and unverified founder/direct-lender/own-capital/history/builder assertions. It preserves the approved qualified aggregate statement: `We've funded over 1,500 loans totaling more than $350 million.` The seven strict approval records stay unresolved and fail-closed; no counsel or client approval was created or implied.
+- Local evidence: `npm run quality:fast` passed. `npm run test:browser` completed with 847 checks, zero failures, and zero watchlist findings. The 297-file `dist/` artifact was independently hashed before release.
+- Release: Netlify CLI published the exact-site artifact to `grandfundingllc` (`055c5942-aeaa-478a-9508-a34406994d5d`) as production deploy `6aba1e1d2dcca99d74389056`; immutable URL `https://6aba1e1d2dcca99d74389056--grandfundingllc.netlify.app`. The immutable and canonical home responses matched at SHA-256 `cdb54238d47c27e3511fbdfc6b8e16d280cdce4973adf5b528be632ff00073bf`. No DNS, billing, forms, or approval settings changed.
 
 The 2026-08-11 release changed care/quality infrastructure and did not add or rebaseline a regulated business claim. The strict claims gate remains blocked by seven unresolved counsel/client decisions: occupancy and consumer purpose, rates and points, loan amounts, leverage, timing taxonomy, service area, and volume/comparative proof. Current written approvals remain in `docs/` as on-demand legal/recovery evidence and do not authorize a future claim change. Never restore a pre-hardening artifact as an ordinary rollback.
 

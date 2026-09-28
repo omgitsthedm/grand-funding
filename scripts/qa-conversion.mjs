@@ -9,7 +9,9 @@
  *
  * Safety:
  * - Refuses non-loopback BASE_URL values.
- * - Fulfills analytics/advertising requests locally.
+ * - Fails if a local page attempts analytics/advertising transport; the
+ *   production-host event contract is exercised separately in
+ *   test-analytics-consent.mjs.
  * - Intercepts every same-origin POST. No request can reach Netlify Forms.
  * - Uses synthetic .invalid contact values only.
  */
@@ -150,7 +152,7 @@ async function installDataLayerRecorder(context) {
         'gf_consent_v1',
         JSON.stringify({
           v: 1,
-          ads: true,
+          ads: false,
           analytics: true,
           ts: Date.now()
         })
@@ -244,8 +246,8 @@ async function resetScenarioStorage(page) {
   );
 }
 
-async function fillSyntheticRequiredFields(page) {
-  await page.locator('form[data-gf-lead-form]').evaluate(form => {
+async function fillSyntheticRequiredFields(page, selector = 'form[data-gf-lead-form]') {
+  await page.locator(selector).evaluate(form => {
     const synthetic = {
       email: 'codex-qa@example.invalid',
       phone: '6025550100',
@@ -281,22 +283,9 @@ async function fillSyntheticRequiredFields(page) {
   });
 }
 
-function validateTypedLead(events, scenario, submissionId) {
-  if (events.length !== 1) {
-    return `expected exactly one generate_lead event, received ${events.length}`;
-  }
-  const params = events[0].params;
-  const problems = [];
-  if (params.form_type !== scenario.type) {
-    problems.push(`form_type=${params.form_type ?? 'missing'}`);
-  }
-  if (params.method !== 'web_form') {
-    problems.push(`method=${params.method ?? 'missing'}`);
-  }
-  if (params.submission_id !== submissionId) {
-    problems.push(`submission_id=${params.submission_id ?? 'missing'}`);
-  }
-  return problems.length ? problems.join(', ') : null;
+function validateLocalSuppression(events, scenario) {
+  if (!events.length) return null;
+  return `expected zero generate_lead events on loopback for ${scenario.type}, received ${events.length}`;
 }
 
 async function runDirectThanksScenario(browser, scenario) {
@@ -369,9 +358,9 @@ async function runSeededMarkerScenario(browser, scenario) {
     await page.waitForTimeout(100);
     let events = leadEvents(await readEventLog(page));
     checks += 1;
-    const typedFailure = validateTypedLead(events, scenario, submissionId);
-    if (typedFailure) {
-      addFailure(label, 'one-typed-lead', typedFailure);
+    const suppressionFailure = validateLocalSuppression(events, scenario);
+    if (suppressionFailure) {
+      addFailure(label, 'loopback-suppresses-lead', suppressionFailure);
     }
 
     const storage = await page.evaluate(
@@ -385,19 +374,19 @@ async function runSeededMarkerScenario(browser, scenario) {
       }
     );
     checks += 1;
-    if (storage.pending !== null || storage.guard === null) {
-      addFailure(label, 'consume-and-guard-marker', storage);
+    if (storage.pending === null || storage.guard !== null) {
+      addFailure(label, 'loopback-preserves-local-marker', storage);
     }
 
     await page.reload({ waitUntil: 'load' });
     await page.waitForTimeout(100);
     events = leadEvents(await readEventLog(page));
     checks += 1;
-    if (events.length !== 1) {
+    if (events.length) {
       addFailure(
         label,
-        'refresh-does-not-duplicate',
-        `expected 1 cumulative event, received ${events.length}`
+        'refresh-still-suppresses-lead',
+        `expected zero cumulative events, received ${events.length}`
       );
     }
   } catch (error) {
@@ -443,11 +432,11 @@ async function runPhoneScenario(browser) {
       event => event.params.cta_intent === 'call'
     );
     checks += 1;
-    if (phones.length !== 1) {
+    if (phones.length) {
       addFailure(
         label,
-        'exactly-one-phone-event',
-        `expected 1 phone_click event, received ${phones.length}`
+        'loopback-suppresses-phone-event',
+        `expected zero phone_click events, received ${phones.length}`
       );
     }
     if (callCtas.length) {
@@ -572,6 +561,83 @@ async function runFormRecoveryScenario(browser, scenario) {
   }
 }
 
+async function runLegacyFormFeedbackScenario(browser) {
+  let unexpectedPosts = 0;
+  const context = await browser.newContext({
+    ...withoutDefaultBrowser(devices['Desktop Chrome']),
+    serviceWorkers: 'block'
+  });
+  await installSafetyRails(context, async route => {
+    unexpectedPosts += 1;
+    await route.abort('blockedbyclient');
+  });
+  const page = await context.newPage();
+  const label = 'legacy-form-feedback';
+  const selector = "form[name='arizona-hard-money']";
+
+  try {
+    await page.goto(routeUrl('/arizona-hard-money-lender'), { waitUntil: 'load' });
+    await resetScenarioStorage(page);
+    await fillSyntheticRequiredFields(page, selector);
+    const atSubmit = await page.locator(selector).evaluate(form => {
+      let submitEvents = 0;
+      form.addEventListener('submit', event => {
+        submitEvents += 1;
+        event.preventDefault();
+      });
+      const submit = form.querySelector("button[type='submit']");
+      submit.click();
+      submit.click();
+      const status = form.querySelector('[data-form-status]');
+      return {
+        submitEvents,
+        busy: form.getAttribute('aria-busy'),
+        disabled: Boolean(submit?.disabled),
+        label: submit?.textContent?.trim() || '',
+        status: status?.textContent?.trim() || '',
+        accessibleStatus: status?.getAttribute('role') || ''
+      };
+    });
+    checks += 1;
+    if (
+      atSubmit.submitEvents !== 1
+      || atSubmit.busy !== 'true'
+      || !atSubmit.disabled
+      || !/sending securely/i.test(atSubmit.label)
+      || !/sending securely/i.test(atSubmit.status)
+      || atSubmit.accessibleStatus !== 'status'
+      || unexpectedPosts !== 0
+    ) {
+      addFailure(label, 'busy-status-and-single-submit', atSubmit);
+    }
+
+    await page.waitForTimeout(RECOVERY_WAIT_MS);
+    const recovered = await page.locator(selector).evaluate(form => {
+      const submit = form.querySelector("button[type='submit']");
+      return {
+        busy: form.getAttribute('aria-busy'),
+        disabled: Boolean(submit?.disabled),
+        label: submit?.textContent?.trim() || '',
+        status: form.querySelector('[data-form-status]')?.textContent?.trim() || ''
+      };
+    });
+    checks += 1;
+    if (
+      recovered.busy === 'true'
+      || recovered.disabled
+      || recovered.label !== 'Request My Quote'
+      || !/couldn't confirm receipt|call or email/i.test(recovered.status)
+    ) {
+      addFailure(label, 'truthful-timeout-recovery', recovered);
+    }
+  } catch (error) {
+    addFailure(label, 'exception', error?.stack || error?.message || String(error));
+  } finally {
+    await page.close().catch(() => {});
+    await context.close().catch(() => {});
+  }
+}
+
 async function runInterceptedSuccessScenario(browser, scenario) {
   let scenarioPosts = 0;
   const context = await browser.newContext({
@@ -614,7 +680,6 @@ async function runInterceptedSuccessScenario(browser, scenario) {
     if (!marker?.id) {
       throw new Error('pending lead marker was missing after form submit');
     }
-    const submissionId = marker.id;
     await page.waitForURL(
       url => {
         const clean = url.pathname.replace(/\.html$/i, '');
@@ -626,9 +691,9 @@ async function runInterceptedSuccessScenario(browser, scenario) {
 
     const events = leadEvents(await readEventLog(page));
     checks += 1;
-    const typedFailure = validateTypedLead(events, scenario, submissionId);
-    if (typedFailure) {
-      addFailure(label, 'successful-form-one-typed-lead', typedFailure);
+    const suppressionFailure = validateLocalSuppression(events, scenario);
+    if (suppressionFailure) {
+      addFailure(label, 'successful-form-loopback-suppresses-lead', suppressionFailure);
     }
     if (scenarioPosts !== 1) {
       addFailure(
@@ -639,8 +704,8 @@ async function runInterceptedSuccessScenario(browser, scenario) {
     }
 
     const pending = await page.evaluate(key => sessionStorage.getItem(key), PENDING_KEY);
-    if (pending !== null) {
-      addFailure(label, 'successful-form-consumes-pending', pending);
+    if (pending === null) {
+      addFailure(label, 'successful-form-preserves-pending-on-loopback', pending);
     }
   } catch (error) {
     addFailure(label, 'exception', error?.stack || error?.message || String(error));
@@ -676,6 +741,21 @@ for (const scenario of FORM_SCENARIOS) {
   } finally {
     await recoveryBrowser.close();
   }
+}
+console.log('Checking legacy Netlify form feedback');
+const legacyRecoveryBrowser = await chromium.launch({ headless: true });
+try {
+  await runLegacyFormFeedbackScenario(legacyRecoveryBrowser);
+} finally {
+  await legacyRecoveryBrowser.close();
+}
+
+if (blockedTelemetryRequests) {
+  addFailure(
+    'all-local-scenarios',
+    'zero-telemetry-transport',
+    `expected no telemetry requests from loopback, received ${blockedTelemetryRequests}`
+  );
 }
 
 console.log(

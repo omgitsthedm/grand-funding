@@ -214,13 +214,13 @@
       "baselineNote": "2026-07-30 removal-only rebaseline after the website owner directed every public pre-approval reference to use quote language. Decision-strength wording was replaced with quote-request and response wording; no timing value was added or expanded. Formal operations and lending-counsel approval remains unrecorded.",
       "source": {
         "matchedFiles": 75,
-        "matchCount": 646,
-        "sha256": "06a3d81c8f9fc90dd73f1b15529a9c35b1d339615a24f973603d2dc2354cb104"
+        "matchCount": 486,
+        "sha256": "cff588b581385a8121daf79494645c3125e2a017d6f32ab9b129884b936cef4e"
       },
       "dist": {
         "matchedFiles": 76,
-        "matchCount": 663,
-        "sha256": "ea2a2edce867af61fb04dd20f264feaa04cb4b6bfe3eaf3db84989e4acc924db"
+        "matchCount": 504,
+        "sha256": "d0062e48b652f9f4ab160d90dae7c79190b7e5e9a74e7fb7ec78d04c1a00c7d4"
       }
     },
     {
@@ -229,13 +229,13 @@
       "baselineNote": "2026-07-29 removal-only rebaseline records one fewer service-area occurrence after a categorical property-eligibility statement was replaced with transaction-specific review wording. The later asset-based-language hardening changed only adjacent review wording inside existing service-area matches; the 256 source and 330 generated occurrences, states, and service-area scope are unchanged. No state or service area was added. Formal licensing and lending-counsel confirmation remains unresolved and release-blocking.",
       "source": {
         "matchedFiles": 86,
-        "matchCount": 256,
-        "sha256": "65c034c0763ba7ae9086ee67ff083fef2c968d1ab75c9fe705abde5f19fb5d51"
+        "matchCount": 251,
+        "sha256": "8fd50ce224eb738452d458b05ac6eaf75f0f9d0824515b4844afa10d7d556d87"
       },
       "dist": {
         "matchedFiles": 87,
-        "matchCount": 330,
-        "sha256": "8b90e3d9d27b64607556c52913ea5319b3dcc306a5971abae4dfe6ea8a65acf7"
+        "matchCount": 329,
+        "sha256": "c0fee72c3ed1c7c31ff49b4c0dd159b48db23b14c417cae8806f7c9f723d8d5e"
       }
     },
     {

@@ -72,88 +72,35 @@
       "pattern": "\\b(?:both residential and commercial properties are eligible|both fix\\s*(?:&|and)\\s*flip and long-term investment properties are eligible|Properties:\\s*Eligible real estate in Arizona and California)\\b",
       "flags": "gi",
       "neutralBoundary": "Property type and transaction eligibility are determined after review of the specific request."
-    }
-  ],
-  "evidenceSurfaces": [
+    },
     {
       "id": "individual-funded-deals",
-      "label": "individual funded-deal amount and closing detail",
-      "pattern": "(?:\\b(?:funded|closed)\\b[^.!?]{0,110}\\$[\\d,.]+\\s*(?:[KkMm]|million|thousand)?|\\$[\\d,.]+\\s*(?:[KkMm]|million|thousand)?[^.!?]{0,110}\\b(?:funded|closed)\\b)",
+      "label": "unsupported individual funded-deal amount and closing detail",
+      "pattern": "(?:\\bfunded\\b(?! over 1,500 loans totaling more than \\$350 million\\.)[^.!?]{0,110}\\$[\\d,.]+\\s*(?:[KkMm]|million|thousand)?|\\bclosed\\b[^.!?]{0,110}\\$[\\d,.]+\\s*(?:[KkMm]|million|thousand)?|\\$[\\d,.]+\\s*(?:[KkMm]|million|thousand)?[^.!?]{0,110}\\b(?:funded|closed)\\b)",
       "flags": "gi",
-      "decisionOwner": "Grand Funding record owner and lending counsel",
-      "status": "preserved-pending-documentary-verification",
-      "snapshots": {
-        "source": {
-          "matchedFiles": 18,
-          "matchCount": 77,
-          "sha256": "31116e792c84104b6f5661f7a12c0649e011517b2d90ad246f2f537b56a5ed09"
-        },
-        "dist": {
-          "matchedFiles": 18,
-          "matchCount": 77,
-          "sha256": "31116e792c84104b6f5661f7a12c0649e011517b2d90ad246f2f537b56a5ed09"
-        }
-      }
+      "neutralBoundary": "Use only approved, transaction-specific information supported by the authoritative record."
     },
     {
       "id": "testimonial-provenance",
-      "label": "testimonial or investor-quote surface",
+      "label": "unsupported testimonial or investor-quote surface",
       "pattern": "\\b(?:What Investors Say|Real deals\\. Real borrowers\\. Real results\\.|Logan picked up on the first ring|Marcus T\\.|Rachel K\\.|Daniel R\\.)\\b",
       "flags": "gi",
-      "decisionOwner": "Grand Funding record owner and lending counsel",
-      "status": "preserved-pending-provenance",
-      "snapshots": {
-        "source": {
-          "matchedFiles": 5,
-          "matchCount": 11,
-          "sha256": "a0f4a158899a4e5d80a8cb834be7b854f983facb9324e4bc6f529d1bbb747bf6"
-        },
-        "dist": {
-          "matchedFiles": 5,
-          "matchCount": 9,
-          "sha256": "c65277852e37351724a2d42333b4eda00f318ae330bbb79011f9c84dbfdc6d96"
-        }
-      }
+      "neutralBoundary": "Use only approved, transaction-specific information supported by the authoritative record."
     },
     {
       "id": "paid-referral-compensation",
-      "label": "paid referral compensation surface",
+      "label": "unsupported paid referral compensation surface",
       "pattern": "\\b(?:paid referral|referral (?:fee|program|partner)|earn[^.!?]{0,35}referr)\\b",
       "flags": "gi",
-      "decisionOwner": "Grand Funding and lending counsel",
-      "status": "preserved-pending-policy-decision",
-      "snapshots": {
-        "source": {
-          "matchedFiles": 1,
-          "matchCount": 4,
-          "sha256": "f3fb83f019793defb333cb20ac9dd651ed58059193d5a2cef9a99f3c3ea125d1"
-        },
-        "dist": {
-          "matchedFiles": 1,
-          "matchCount": 4,
-          "sha256": "f3fb83f019793defb333cb20ac9dd651ed58059193d5a2cef9a99f3c3ea125d1"
-        }
-      }
+      "neutralBoundary": "Use only approved, transaction-specific information supported by the authoritative record."
     },
     {
       "id": "business-identity-and-history",
-      "label": "direct-lender, own-capital, founder, builder, or business-history surface",
+      "label": "unsupported direct-lender, own-capital, founder, builder, or business-history surface",
       "pattern": "\\b(?:direct (?:private )?lender|fund our own loans|we(?:['’]re| are) not a broker|Founder(?:\\s*(?:&|and)\\s*Direct Lender)?|40\\+ Years(?: of)?(?: Experience| Lending| in [^.!?]{0,45})?|over 40 years|four decades|former builders?|we(?:['’]ve| have) been builders ourselves|decades of experience)\\b",
       "flags": "gi",
-      "decisionOwner": "Logan Sullivan and lending counsel",
-      "status": "preserved-pending-role-and-history-evidence-map",
-      "snapshots": {
-        "source": {
-          "matchedFiles": 69,
-          "matchCount": 244,
-          "sha256": "1659536fb918c35205735a17b04a69ba566e40e24dee75c5049b6fd9e5368d03"
-        },
-        "dist": {
-          "matchedFiles": 71,
-          "matchCount": 251,
-          "sha256": "1c283d806501ceb1416f8371b4b3810cf7f6a9cef811aa1406fc08052ba29aa3"
-        }
-      }
+      "neutralBoundary": "Use only approved, transaction-specific information supported by the authoritative record."
     }
-  ]
+  ],
+  "evidenceSurfaces": []
 }

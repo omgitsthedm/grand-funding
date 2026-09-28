@@ -18,17 +18,13 @@ const SOCIAL_IMAGE_FAMILIES = Object.freeze({
     path: '/images/social/loan-programs-20260725.jpg',
     alt: 'Grand Funding LLC business-purpose real estate loan programs'
   }),
-  loganDirect: Object.freeze({
-    path: '/images/social/logan-direct-lender-20260727.jpg',
-    alt: 'Logan Sullivan, founder and direct lender at Grand Funding LLC'
-  }),
   marketLending: Object.freeze({
     path: '/images/social/arizona-california-lending-20260725.jpg',
     alt: 'Grand Funding LLC real estate investor lending in Arizona and California'
   })
 });
 const GENERIC_ARIZONA_DESCRIPTION =
-  'Arizona hard money lender. 24-hour approval, 3-5 day funding. Fix & flip, bridge, construction. $70K-$5M. Direct private lender in Phoenix & statewide.';
+  'Private real estate financing for Arizona and California. Loan sizing, timing, and final terms are provided after transaction review.';
 const FORBIDDEN_SCHEMA_TYPES = new Set([
   'AggregateRating',
   'FAQPage',
@@ -703,7 +699,7 @@ function prioritySocialImageForRoute(route) {
     ['/about', '/apply', '/contact', '/partners'].includes(route) ||
     route.startsWith('/thanks')
   ) {
-    return SOCIAL_IMAGE_FAMILIES.loganDirect;
+    return SOCIAL_IMAGE_FAMILIES.marketLending;
   }
 
   if (
@@ -914,8 +910,7 @@ function schemaGraph({
   const visibleText = bodyVisibleText(html, route);
   const hasVisibleLogan = /\bLogan Sullivan\b/.test(visibleText);
   const hasVisibleByline = /\bBy Logan Sullivan\b/i.test(visibleText);
-  const personRelevant =
-    hasVisibleLogan && (route === '/' || route === '/about' || hasVisibleByline);
+  const personRelevant = false;
 
   const organization = {
     '@type': 'Organization',

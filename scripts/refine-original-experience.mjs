@@ -96,7 +96,7 @@ function makeHeroIntentClear(hero) {
       '<div aria-hidden="true" class="hero-media"><img class="hero-fallback" src="/images/arizona-hero-poster.webp" alt="" width="1920" height="1080" decoding="async" fetchpriority="high" aria-hidden="true"><video'
     )
     .replace(
-      "40+ Years of Excellence",
+      "Transaction-Specific Review",
       "Arizona + California Deal Desk"
     )
     .replace(

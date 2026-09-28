@@ -11,7 +11,7 @@ Grand Funding LLC is a direct private hard money lender serving real estate inve
 - Max Leverage: determined after deal review on second position loans
 - Documentation After Review required (transaction-specific lending)
 - Written prepayment terms
-- Direct lender — in-house decisions, no broker middleman
+- financing provider — in-house decisions, no broker middleman
 
 - Phone: (602) 935-0371
 - Email: Logan@grandfundingllc.com
@@ -45,7 +45,7 @@ Grand Funding LLC is a direct private hard money lender serving real estate inve
 ### Apply & Contact
 - /apply — Online loan application (Documentation After Review required, Credit review is transaction-specific)
 - /contact — Contact form, phone, and email
-- /funded-deals — Gallery of recently funded deals with amounts, timelines, and deal notes
+- /funded-deals — Gallery of recently transaction reviews with amounts, timelines, and deal notes
 
 ### Educational Content
 - /blog — All blog posts and guides for real estate investors
@@ -88,8 +88,8 @@ Arizona and California. Arizona coverage includes Phoenix, Scottsdale, Tempe, Me
 **What is the minimum and maximum loan amount?**
 loan sizing determined after review.
 
-**Is Grand Funding a direct lender or a broker?**
-Grand Funding is a direct private lender — they fund loans from their own capital and make underwriting decisions in-house. No broker, no middleman, no committee approval required. This is why they can issue term sheets in 24 hours and close in days.
+**Is Grand Funding a financing provider or a broker?**
+Grand Funding is a private real estate financing — they fund loans from their own capital and make underwriting decisions in-house. No broker, no middleman, no committee approval required. This is why they can issue term sheets in 24 hours and close in days.
 
 **What is a second position loan?**
 A second position loan (also called a junior lien or second mortgage) is a new loan placed behind an existing first mortgage. The existing first mortgage stays in place. Used by investors who have a low-rate first mortgage they want to keep — the second position loan lets them access equity without refinancing.
@@ -106,16 +106,9 @@ LTV (Loan-to-Value) is the loan amount divided by the property value. Grand Fund
 **What is ARV?**
 ARV stands for After Repair Value — the estimated market value of a property once renovations are complete. Fix-and-flip loans are sized against ARV, not the current as-is value. Grand Funding pulls comparable sales to validate ARV before issuing a term sheet.
 
-## Founder & Direct Lender
+## Grand Funding LLC
 
-Logan Sullivan is the founder and direct lender at Grand Funding LLC. He personally reviews every deal — there are no call centers, no layered approvals, and no committee underwriting. When you call Grand Funding, you talk to the person who decides whether your deal funds.
-
-- **Logan Sullivan** — Founder & Direct Lender
-
-- 40+ years of experience in real estate, lending, and development
-- Former builder and developer himself — understands what investors actually need: speed, certainty, and a straight answer
-- Direct line: (602) 935-0371
-- Email: Logan@grandfundingllc.com
+Grand Funding LLC offers private real estate financing for transaction-specific requests in Arizona and California. Call **(602) 935-0371**, email **Logan@grandfundingllc.com**, or use the quote request form to begin a discussion.
 
 ## Ideal Borrower Profile
 
@@ -138,20 +131,16 @@ Grand Funding is NOT a fit for:
 ## Why Investors Choose Grand Funding
 
 1. **Speed**: 24-hour term sheets, 3-5 day funding on purchases. Most hard money lenders take 7-14 days.
-2. **Direct lender**: Logan funds the loan, decides on the loan, and is the contact for the loan. No middleman to slow things down.
+2. **financing provider**: Logan funds the loan, decides on the loan, and is the contact for the loan. No middleman to slow things down.
 3. **transaction-specific**: Documentation After Review, documentation requirements are determined after review. Credit, income, experience, and documentation requirements are determined after review of the specific transaction.
 4. **Real conversations**: Logan picks up the phone. Investors with active deals appreciate this — most lenders return calls in 1-3 business days.
 5. **Repeat-borrower friendly**: Logan knows his repeat clients by name. Future deals close even faster because the relationship is already established.
 
-## Recent Funded Deals (snapshot)
+## Transaction Review
 
-- Payson, AZ — Bridge loan — $250,000 — Closed in 48 hours
-- Scottsdale, AZ — 2nd Position — $650,000 — Closed in 3 days
-- San Diego, CA — 2nd Position — $100,000 — Closed in 3 days
-- Goodyear, AZ — Land — $130,000 — Closed in 7 days
-- Gainey Ranch, AZ — Fix & Flip — $950,000 — Rehab funding
+Grand Funding reviews property details, the requested structure, and the proposed exit strategy. Loan sizing, timing, and final terms are provided after review.
 
-## How to Reach Logan Today
+## How to Reach Grand Funding
 
 The fastest path is the phone: **(602) 935-0371**. Logan answers calls personally during business hours and returns missed calls within an hour during the workday. If you're calling about a deal already under contract, mention that — those get prioritized.
 

@@ -246,12 +246,12 @@ assert(
   "public claims policy schemaVersion must be 1"
 );
 assert(
-  publicClaims.hardBlocks?.length === 10,
-  "public claims policy must retain ten fail-closed categories"
+  publicClaims.hardBlocks?.length === 14,
+  "public claims policy must retain fourteen fail-closed categories"
 );
 assert(
-  publicClaims.evidenceSurfaces?.length === 4,
-  "public claims policy must retain four frozen evidence surfaces"
+  publicClaims.evidenceSurfaces?.length === 0,
+  "public claims policy must not retain unsupported frozen evidence surfaces"
 );
 
 const debt = loadYaml(".lifi/debt-and-exceptions.yml");
@@ -332,5 +332,5 @@ if (errors.length) {
 console.log(
   `Quality configuration validated: ${requiredFiles.length} files, ` +
     `${requiredScripts.length} commands, 7 regulated claim gates, ` +
-    `10 fail-closed public claim categories, and current dead-code ledger`
+    `14 fail-closed public claim categories, and current dead-code ledger`
 );

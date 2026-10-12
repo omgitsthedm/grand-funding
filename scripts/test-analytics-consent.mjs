@@ -5,13 +5,13 @@ import vm from 'node:vm';
 const source = await fs.readFile(new URL('../consent.js', import.meta.url), 'utf8');
 const granted = JSON.stringify({ v: 1, analytics: true, ads: false });
 const storage = map => ({ getItem: key => map.get(key) ?? null, setItem: (key, value) => map.set(key, value) });
-function boot({ url = 'https://www.grandfundingllc.com/contact', robots = 'index,follow', canonical = '/contact', consent = granted, session = new Map(), blockedStorage = false, webdriver = false } = {}) {
+function boot({ url = 'https://www.grandfundingllc.com/contact', robots = 'index,follow', canonical = '/contact', consent = granted, session = new Map(), blockedStorage = false, webdriver = false, gpc = false, src = source } = {}) {
   const scripts = [], actions = {}, local = new Map();
   if (consent) local.set('gf_consent_v1', consent);
   const button = choice => ({ dataset: { consent: choice }, addEventListener: (_, fn) => { actions[choice] = fn; } });
   const banner = { classList: { add() {}, remove() {} }, querySelectorAll: () => [button('all'), button('essential')], querySelector: () => ({ focus() {} }) };
   const sandbox = {
-    location: new URL(url), navigator: { webdriver }, URLSearchParams, console,
+    location: new URL(url), navigator: { webdriver, globalPrivacyControl: gpc }, URLSearchParams, console,
     dispatchEvent() {}, CustomEvent: class {},
     document: {
       readyState: 'complete', referrer: 'https://private.invalid/account?token=NEVER-SEND',
@@ -24,7 +24,7 @@ function boot({ url = 'https://www.grandfundingllc.com/contact', robots = 'index
   Object.defineProperty(sandbox, 'localStorage', { get() { if (blockedStorage) throw new Error('Storage disabled'); return storage(local); } });
   Object.defineProperty(sandbox, 'sessionStorage', { get() { if (blockedStorage) throw new Error('Storage disabled'); return storage(session); } });
   sandbox.window = sandbox;
-  vm.runInNewContext(source, sandbox);
+  vm.runInNewContext(src, sandbox);
   return { sandbox, scripts, actions, session, entries: () => sandbox.dataLayer.map(item => typeof item?.[0] === 'string' ? Array.from(item) : item) };
 }
 const denied = boot({ consent: null });
@@ -74,11 +74,44 @@ assert.equal(receipt.sandbox.gfLeadConversion({ formType: 'contact', submissionI
 assert.equal(JSON.stringify(receipt.entries()).includes('internal-only'), false, 'Deduplication ID remains local');
 const commands = privateQuery.entries();
 assert.ok(commands.filter(e => e[0] === 'consent').every(e => e[2].ad_storage === 'denied' && e[2].ad_user_data === 'denied' && e[2].ad_personalization === 'denied'));
+// Ads off-state: an empty pixel ID means no Meta runtime exists even when granted.
+assert.equal(privateQuery.sandbox.fbq, undefined, 'No pixel ID must mean no fbq stub');
+assert.equal(privateQuery.scripts.length, 1, 'No pixel ID must mean only the GTM transport loads');
+// Ads on-state uses an in-memory stub ID; the shipped source stays empty and no
+// network request is possible inside this sandbox.
+const stubbedSource = source.replace('const META_PIXEL_ID = "";', 'const META_PIXEL_ID = "1234567890";');
+assert.ok(stubbedSource.includes('const META_PIXEL_ID = "1234567890";'), 'Stub ID injection must apply');
+assert.ok(!source.includes('1234567890'), 'Shipped consent.js must not carry a stub pixel ID');
+const adsBoth = JSON.stringify({ v: 1, analytics: true, ads: true });
+const adsOnly = JSON.stringify({ v: 1, analytics: false, ads: true });
+const adsOn = boot({ src: stubbedSource, consent: adsBoth });
+assert.equal(adsOn.scripts.length, 2, 'Ads consent must load the Meta transport alongside GTM');
+assert.ok(JSON.stringify(adsOn.sandbox.fbq.q).includes('1234567890'), 'Pixel must init with the configured ID');
+assert.ok(JSON.stringify(adsOn.sandbox.fbq.q).includes('PageView'), 'Pixel must record a PageView');
+assert.equal(adsOn.sandbox.gfPhoneConversion({}), true, 'Phone conversion stays available');
+assert.ok(JSON.stringify(adsOn.sandbox.fbq.q).includes('Contact'), 'Call tap must translate to Contact');
+const adsDenied = boot({ src: stubbedSource, consent: granted });
+assert.equal(adsDenied.scripts.length, 1, 'Denied ads consent must not load the pixel');
+assert.equal(adsDenied.sandbox.fbq, undefined, 'Denied ads consent must not define fbq');
+const adsSeparate = boot({ src: stubbedSource, consent: adsOnly });
+assert.equal(adsSeparate.scripts.length, 1, 'Ads-only consent loads the pixel without GTM');
+assert.ok(JSON.stringify(adsSeparate.sandbox.fbq.q).includes('PageView'));
+const adsGpc = boot({ src: stubbedSource, consent: adsBoth, gpc: true });
+assert.equal(adsGpc.scripts.length, 1, 'Global Privacy Control must suppress the pixel');
+assert.equal(adsGpc.sandbox.fbq, undefined, 'Global Privacy Control must leave fbq undefined');
+const adsPending = new Map([['gf_pending_lead_v1', JSON.stringify({ v: 1, id: 'ads-receipt-only', type: 'contact', createdAt: Date.now() })]]);
+const adsReceipt = boot({ ...receiptOptions, src: stubbedSource, consent: adsBoth, session: adsPending });
+assert.equal(adsReceipt.sandbox.gfLeadConversion({ formType: 'contact', submissionId: 'ads-receipt-only' }), true);
+assert.ok(JSON.stringify(adsReceipt.sandbox.fbq.q).includes('Lead'), 'Quote submit must translate to Lead');
+assert.ok(JSON.stringify(adsReceipt.sandbox.fbq.q).includes('contact'), 'Lead must carry the form type');
+assert.equal(JSON.stringify(adsReceipt.sandbox.fbq.q).includes('ads-receipt-only'), false, 'Deduplication ID must not reach Meta');
 const dist = new URL('../dist/', import.meta.url);
 const html = await fs.readFile(new URL('index.html', dist), 'utf8');
 assert.equal(/googletagmanager\.com\/(gtm\.js|ns\.html)/.test(html), false, 'No initial Google loader/fallback');
 assert.ok(html.includes('name="gf-analytics-path" content="/"'));
 assert.ok(html.includes('Allow analytics'));
+assert.ok(html.includes('Advertising tracking is off.'), 'Deployed banner keeps the no-ads promise while no pixel ID is configured');
+assert.equal(/connect\.facebook\.net/.test(html), false, 'No Meta transport in published HTML');
 const builtFiles = await fs.readdir(dist, { recursive: true });
 const builtHtml = builtFiles.filter(file => file.endsWith('.html'));
 assert.ok(builtHtml.length > 0, 'Build must include HTML');

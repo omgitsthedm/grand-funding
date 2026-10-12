@@ -517,7 +517,7 @@ async function main() {
   console.log(`  base=${BASE}  pages=${PAGES.length}  breakpoints=${BREAKPOINTS.length}`);
   console.log(`${'═'.repeat(70)}`);
 
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({ channel: 'chrome', headless: true });
   const report = { startedAt: new Date().toISOString(), base: BASE, failures: {}, summary: {} };
   let totalChecks = 0;
   let totalFails = 0;

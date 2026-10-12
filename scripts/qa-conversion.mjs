@@ -715,7 +715,7 @@ async function runInterceptedSuccessScenario(browser, scenario) {
   }
 }
 
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ channel: 'chrome', headless: true });
 
 try {
   for (const scenario of FORM_SCENARIOS) {
@@ -735,7 +735,7 @@ try {
 
 for (const scenario of FORM_SCENARIOS) {
   console.log(`Checking ${scenario.type} form timeout recovery`);
-  const recoveryBrowser = await chromium.launch({ headless: true });
+  const recoveryBrowser = await chromium.launch({ channel: 'chrome', headless: true });
   try {
     await runFormRecoveryScenario(recoveryBrowser, scenario);
   } finally {
@@ -743,7 +743,7 @@ for (const scenario of FORM_SCENARIOS) {
   }
 }
 console.log('Checking legacy Netlify form feedback');
-const legacyRecoveryBrowser = await chromium.launch({ headless: true });
+const legacyRecoveryBrowser = await chromium.launch({ channel: 'chrome', headless: true });
 try {
   await runLegacyFormFeedbackScenario(legacyRecoveryBrowser);
 } finally {

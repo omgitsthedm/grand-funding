@@ -4,11 +4,11 @@ import path from 'node:path';
 const ORGANIZATION_NAME = 'Grand Funding LLC';
 const LANGUAGE = 'en-US';
 const OG_LOCALE = 'en_US';
-const DEFAULT_SOCIAL_IMAGE = '/images/og-grandfunding-v3-20260727.jpg';
+const DEFAULT_SOCIAL_IMAGE = '/images/social/loan-programs-20260725.jpg';
 const SOCIAL_IMAGE_FAMILIES = Object.freeze({
   fundedDeals: Object.freeze({
-    path: '/images/social/funded-deals-20260724.jpg',
-    alt: 'Funded real estate deals — Grand Funding LLC'
+    path: '/images/social/loan-programs-20260725.jpg',
+    alt: 'Explore property and project financing — Grand Funding LLC'
   }),
   investorGuides: Object.freeze({
     path: '/images/social/investor-guides-20260724.jpg',
@@ -270,7 +270,7 @@ function generatedDescription(route, heading) {
     '/cash-out-refinance-investors-arizona':
       'Explore cash-out refinance options for Arizona real estate investors, including property fit, equity review, timing, and direct next steps with Grand Funding.',
     '/funded-deals':
-      'Review selected Grand Funding real estate loans by location, loan type, amount, and closing timeline across Arizona, California, and approved markets.',
+      'Explore property and project questions for fix-and-flip, bridge, construction, second-position, and refinance requests. Examples for discussion with Grand Funding.',
     '/privacy':
       'Read the Grand Funding LLC privacy policy, including how website and loan inquiry information is collected, used, retained, and protected.',
     '/products':
@@ -691,6 +691,7 @@ function isMarketLenderRoute(route) {
 }
 
 function prioritySocialImageForRoute(route) {
+  if (['/', '/index'].includes(route)) return { ...SOCIAL_IMAGE_FAMILIES.fundedDeals, alt: 'Fast Hard Money Loans for Arizona & California Investors' };
   if (route === '/funded-deals') return SOCIAL_IMAGE_FAMILIES.fundedDeals;
   if (isLoanProgramRoute(route)) return SOCIAL_IMAGE_FAMILIES.loanPrograms;
   if (isMarketLenderRoute(route)) return SOCIAL_IMAGE_FAMILIES.marketLending;

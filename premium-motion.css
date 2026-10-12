@@ -213,10 +213,10 @@
 .nav-list a.active::after{transform:scaleX(1)}
 
 /* ──────────────────────────────────────────
-   13. Image reveal — soft fade on lazy-loaded images
+   13. Lazy images remain visible before optional motion scripts run
    ────────────────────────────────────────── */
 img[loading="lazy"]{
-  opacity:0;transition:opacity .55s var(--ease-out-quart);
+  opacity:1;transition:opacity .55s var(--ease-out-quart);
 }
 img[loading="lazy"].is-loaded,
 img[loading="lazy"][data-loaded]{opacity:1}
@@ -304,6 +304,7 @@ input:focus,select:focus,textarea:focus{
     animation:none !important;
   }
   .hero-loans .loan-card{opacity:1 !important;animation:none !important}
+  img[loading="lazy"]{opacity:1 !important;animation:none !important}
 }
 
 /* ──────────────────────────────────────────
@@ -312,3 +313,6 @@ input:focus,select:focus,textarea:focus{
 html.no-anim *,html.no-anim *::before,html.no-anim *::after{
   animation:none !important;transition:none !important;
 }
+
+/* Image content stays visible when motion scripts or animations are skipped. */
+html.no-anim img[loading="lazy"]{opacity:1 !important}

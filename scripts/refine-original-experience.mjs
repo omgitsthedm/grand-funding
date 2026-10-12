@@ -111,10 +111,10 @@ function makeHeroIntentClear(hero) {
       "</svg> (602) 935-0371</a></div><div class=\"hero-stats\">",
       "</svg> Under Contract? Call Logan</a></div><p class=\"hero-deadline-note\"><strong>Have a deadline?</strong> Call Logan directly. Still sizing the deal? Send the basics for real terms.</p><div class=\"hero-stats\">"
     )
-    .replace("Grand Funding in Numbers", "Real Deals. Real Timelines.")
+    .replace("Grand Funding in Numbers", "Explore Loan Scenarios.")
     .replace(
       "A snapshot of speed + flexibility across AZ &amp; CA.",
-      "Explore the financing scenarios behind the numbers."
+      "Compare the property, project, and payoff questions behind each loan type."
     )
     .replace(
       "<a class='btn btn-primary btn-lg' href='/apply'>Get a Quote</a><div class=\"hero-visual-caption\">",
@@ -134,7 +134,7 @@ function makeHeroIntentClear(hero) {
     "Arizona + California Deal Desk",
     "Get a Quote",
     "Under Contract? Call Logan",
-    "Real Deals. Real Timelines.",
+    "Explore Loan Scenarios.",
     "hero-deadline-note",
     "hero-fallback",
     'href="/funded-deals"'
@@ -367,9 +367,9 @@ function addContextualRouteLinks(source, relativeFile) {
     const constructionLinks =
       'Construction and rehabilitation draw structure, milestones, inspections, and timing are determined for the specific project and are disclosed in writing.</p><p class="product-guide-links" data-route-links="construction"><strong>California project guides:</strong> <a href="/construction-loans-los-angeles">Los Angeles construction loans</a> <span aria-hidden="true">·</span> <a href="/construction-loans-san-diego">San Diego construction loans</a></p><h3>Key Features</h3>';
     const secondPositionNeedle =
-      "Perfect when you have favorable first mortgage terms you want to keep.</p><h3>Key Features</h3>";
+      "Ask whether your existing loan allows it, what both loans would cost, and how each would be repaid.</p><h3>Key Features</h3>";
     const secondPositionLink =
-      'Perfect when you have favorable first mortgage terms you want to keep.</p><p class="product-guide-links" data-route-links="second-position"><strong>Local guide:</strong> <a href="/second-position-loans-scottsdale">Scottsdale 2nd position loans</a></p><h3>Key Features</h3>';
+      'Ask whether your existing loan allows it, what both loans would cost, and how each would be repaid.</p><p class="product-guide-links" data-route-links="second-position"><strong>Local guide:</strong> <a href="/second-position-loans-scottsdale">Scottsdale 2nd position loans</a></p><h3>Key Features</h3>';
 
     if (!source.includes('data-route-links="construction"')) {
       if (!source.includes(constructionNeedle)) {

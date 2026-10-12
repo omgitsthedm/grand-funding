@@ -60,7 +60,7 @@ function telemetry(url) {
 const routes = (await htmlRoutes(SITE_DIR))
   .filter(route => !/^\/google[a-z0-9]+\.html$/i.test(route))
   .sort();
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const failures = [];
 let checks = 0;
 let blockedTelemetryRequests = 0;

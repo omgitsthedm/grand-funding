@@ -1,3 +1,4 @@
+# Last updated: 2026-10-08
 # Grand Funding LLC
 
 Grand Funding LLC is a direct private hard money lender serving real estate investors in Arizona and California. They offer fast-close real estate investment loans — Documentation After Review, Credit, income, experience, and documentation requirements are determined after review of the specific transaction.
@@ -45,24 +46,24 @@ Grand Funding LLC is a direct private hard money lender serving real estate inve
 ### Apply & Contact
 - /apply — Online loan application (Documentation After Review required, Credit review is transaction-specific)
 - /contact — Contact form, phone, and email
-- /funded-deals — Gallery of recently transaction reviews with amounts, timelines, and deal notes
+- /funded-deals — Financing questions by loan type and property location. Examples for discussion, not records of completed loans.
 
 ### Educational Content
 - /blog — All blog posts and guides for real estate investors
-- /posts/how-to-fund-a-fix-and-flip-in-arizona — How to structure and fund an Arizona fix-and-flip
-- /posts/arizona-bridge-loan-guide-real-estate-investors — When and how to use a bridge loan in Arizona
-- /posts/cash-out-refi-vs-second-position-loan-arizona — Comparing cash-out refi vs second position loan
-- /posts/how-fast-can-you-close-hard-money-loan-arizona — Realistic closing timelines for Arizona hard money loans
+- /posts/how-to-fund-a-fix-and-flip-in-arizona — Prepare a purchase and repair budget, supported resale estimate, and payoff plan for an Arizona fix-and-flip financing review.
+- /posts/arizona-bridge-loan-guide-real-estate-investors — Review the purpose, repayment plan, existing debt, and closing needs for an Arizona bridge loan. Confirm the terms for the specific property.
+- /posts/cash-out-refi-vs-second-position-loan-arizona — Compare a cash-out refinance with a second-position loan using existing debt, combined payments, fees, and the planned payoff.
+- /posts/how-fast-can-you-close-hard-money-loan-arizona — Review the title work, payoff statements, property details, and open conditions that can affect a hard money loan closing in Arizona.
 
 ### Legacy Blog Posts
-- /posts/benefits-of-real-estate-investing-in-an-llc — Why real estate investors should use an LLC structure
-- /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024 — Top US fix-and-flip markets for 2024
-- /posts/how-to-qualify-for-a-hard-money-loan — Qualification criteria and tips for hard money loan approval
-- /posts/private-lending-exploring-the-impact-on-real-estate-investment — How private lending shapes real estate investment
-- /posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans — Why investors use no-doc mortgage loans
-- /posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams — How second mortgages work for investors
-- /posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding — Introduction to hard money lending
-- /posts/when-rates-decrease-opportunity-increases — How interest rate cuts create real estate investment opportunities
+- /posts/benefits-of-real-estate-investing-in-an-llc — Questions about taxes, ownership, loan documents, and liability to review before buying investment property through an LLC.
+- /posts/embracing-the-real-estate-renaissance-top-fix-and-flip-destinations-of-2024 — Check recent sales, repair costs, permits, and buyer demand before choosing a fix-and-flip market. A city ranking cannot price an individual property.
+- /posts/how-to-qualify-for-a-hard-money-loan — Prepare the property details, budget, existing debt, and payoff plan for a hard money loan review. Requirements depend on the specific deal.
+- /posts/private-lending-exploring-the-impact-on-real-estate-investment — Compare the property review, loan costs, repayment plan, and required documents before choosing private real estate financing.
+- /posts/the-rationale-for-real-estate-investors-consideration-of-no-doc-mortgage-loans — A “no-doc” label does not remove a lender’s review. Learn what to ask about income, credit, property records, and required documents.
+- /posts/understanding-second-mortgages-how-lenders-can-help-you-achieve-your-dreams — A second mortgage adds debt behind an existing loan. Compare combined payments, lien priority, fees, and the payoff plan before deciding.
+- /posts/unveiling-the-world-of-hard-money-lenders-your-gateway-to-quick-funding — Learn how hard money financing relates to the property, project, and repayment plan. Review costs and required documents before choosing a loan.
+- /posts/when-rates-decrease-opportunity-increases — A lower rate is one part of a financing decision. Compare fees, loan length, payments, and payoff costs before choosing a refinance.
 
 ### About & Trust
 - /about — About Logan Sullivan and Grand Funding LLC
@@ -150,7 +151,7 @@ The quote request form at **grandfundingllc.com/apply** takes 60 seconds and tri
 
 ## Recent Blog Posts (2026)
 
-- /posts/how-to-underwrite-phoenix-fix-and-flip-2026 — Step-by-step underwriting walkthrough for Phoenix fix-and-flip deals. Covers ARV math, rehab budgeting, carrying costs, walk-through checklist, and exit-strategy rules. Published May 3, 2026.
-- /posts/bridge-vs-cash-out-refi-when-each-makes-sense — Comparison framework for choosing between bridge loans and cash-out refinances. Decision matrix based on speed needs, existing first mortgage rate, hold timeline, and property cash flow. Published May 3, 2026.
-- /posts/why-banks-say-no-to-fix-and-flip-investors — Explains the five reasons traditional banks reject fix-and-flip loans, and the four alternative financing structures experienced flippers use. Published May 3, 2026.
-- /posts/calculating-arv-step-by-step-phoenix-deal — Seven-step ARV calculation walkthrough using a real anonymized Phoenix deal Grand Funding funded in Q4 2025. Includes comp criteria, adjustments, stress-testing, and full deal math. Published May 3, 2026.
+- /posts/how-to-underwrite-phoenix-fix-and-flip-2026 — Check resale value, repair costs, permits, carrying costs, and the payoff plan before making an offer on a Phoenix fix-and-flip property.
+- /posts/bridge-vs-cash-out-refi-when-each-makes-sense — Compare bridge financing with a cash-out refinance by purpose, existing debt, total cost, and repayment plan. Final structure depends on the deal.
+- /posts/why-banks-say-no-to-fix-and-flip-investors — If a lender declines a fix-and-flip request, ask which property, project, or borrower condition did not fit before comparing other financing.
+- /posts/calculating-arv-step-by-step-phoenix-deal — Estimate after-repair value using comparable sales, property differences, and supported adjustments. Separate the resale estimate from the project budget.

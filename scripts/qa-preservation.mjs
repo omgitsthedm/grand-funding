@@ -1523,7 +1523,7 @@ async function auditPage(context, viewport, route) {
 
 if (SCREENSHOTS) await fs.mkdir(SCREENSHOT_DIR, { recursive: true });
 
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ channel: 'chrome', headless: true });
 
 try {
   for (const viewport of VIEWPORTS) {

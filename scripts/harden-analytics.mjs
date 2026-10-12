@@ -2,6 +2,16 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 export async function hardenAnalytics({ dist }) {
+  // The deployed banner copy must match the configured measurement surface: the
+  // ads toggle only exists when consent.js carries a pixel ID.
+  let adsConfigured = false;
+  try {
+    const consentSource = await fs.readFile(path.join(path.dirname(dist), 'consent.js'), 'utf8');
+    adsConfigured = /const META_PIXEL_ID = "([^"]+)"/.test(consentSource);
+  } catch { adsConfigured = false; }
+  const deployedBannerCopy = adsConfigured
+    ? 'Optional usage analytics stays off until you choose Allow analytics. Advertising tracking is off unless you allow ads measurement. Change your choice at any time through Analytics settings in the footer.'
+    : 'Optional usage analytics stays off until you choose Allow analytics. Advertising tracking is off. Change your choice at any time through Analytics settings in the footer.';
   const walk = async directory => {
     const files = [];
     for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
@@ -29,7 +39,7 @@ export async function hardenAnalytics({ dist }) {
       if (!/^\/[a-z0-9/_-]*$/.test(route)) throw new Error('Unexpected analytics route: ' + route);
       html = html.replace('</head>', '<meta name="gf-analytics-path" content="' + route + '"></head>');
     }
-    html = html.replace('We use cookies to improve your experience and measure marketing performance. Essential cookies are always on. You can accept all cookies or continue with essential only.', 'Optional usage analytics stays off until you choose Allow analytics. Advertising tracking is off. Change your choice at any time through Analytics settings in the footer.');
+    html = html.replace('We use cookies to improve your experience and measure marketing performance. Essential cookies are always on. You can accept all cookies or continue with essential only.', deployedBannerCopy);
     html = html.replace(/(data-consent="all">)Accept all(<\/button>)/g, '$1Allow analytics$2');
     html = html.replace(/(data-consent="essential">)Essential only(<\/button>)/g, '$1Keep analytics off$2');
     await fs.writeFile(file, html);

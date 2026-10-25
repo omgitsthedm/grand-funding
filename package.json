@@ -28,14 +28,17 @@
     "test:premium:watchlist": "WATCHLIST_ONLY=1 node scripts/qa-premium.mjs",
     "test:premium:local": "BASE_URL=http://localhost:8888 node scripts/qa-premium.mjs",
     "test:care-bar": "node scripts/test-lifi-care-bar.mjs",
+    "test:indexnow": "node scripts/test-indexnow.mjs",
     "test:browser": "node scripts/run-site-qa.mjs",
-    "quality:fast": "npm run build && npm run test:analytics-consent && npm run test:care-bar && npm run validate && npm run validate:seo && npm run validate:license-separation && npm run validate:client-approval && npm run validate:public-claims && npm run validate:claims && npm run validate:quality",
+    "quality:fast": "npm run build && npm run test:analytics-consent && npm run test:care-bar && npm run test:indexnow && npm run validate && npm run validate:seo && npm run validate:license-separation && npm run validate:client-approval && npm run validate:public-claims && npm run validate:claims && npm run validate:quality",
     "quality:full": "npm run quality:fast && npm run test:browser",
     "quality:release": "npm run quality:fast && npm run validate:claims:release && npm run test:browser && npm run verify:netlify-target",
     "quality:live": "node scripts/run-site-qa.mjs --live",
     "quality:maintenance": "npm run validate:quality && node scripts/audit-dead-code.mjs",
     "deploy:preview": "npm run quality:release && npx --yes netlify-cli@27.0.0 deploy --dir=dist",
     "deploy:production": "npm run quality:release && npx --yes netlify-cli@27.0.0 deploy --dir=dist --prod",
+    "indexnow": "node scripts/indexnow.mjs",
+    "indexnow:submit": "node scripts/indexnow.mjs --submit",
     "playwright:install": "npx playwright install --with-deps chromium firefox webkit"
   },
   "devDependencies": {

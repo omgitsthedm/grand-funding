@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-10-12
+updated: 2026-10-24
 policy: Characterize, quarantine, verify external contracts, then remove in small reversible batches.
 
 candidates:
@@ -41,10 +41,10 @@ candidates:
     paths:
       - images/
     observed:
-      generated_scan: 99 of 168 files had no repository reference on 2026-10-12
-      exact_candidate_bytes: 6376882
-      approximate_size: 6.08 MiB
-      release_note: The 2026-10-12 local copy review replaced misleading funded-deal preview art with existing loan-program art; all original image files are retained. Survey-approved claim removal and the dormant direct Google Ads tag cleanup changed the reference scan. The 2026-08-24 footer refresh retired images/lifi/mark-orange.svg (a Little Fight agency asset, never a client asset) when the care bar was replaced by the inline credit mark; no client image assets were deleted. Historic externally addressable image paths remain preserved under the litigation hold.
+      generated_scan: 96 of 168 files had no repository reference on 2026-10-24
+      exact_candidate_bytes: 6239679
+      approximate_size: 5.95 MiB
+      release_note: The 2026-10-12 local copy review replaced misleading funded-deal preview art with existing loan-program art; all original image files are retained. Survey-approved claim removal and the dormant direct Google Ads tag cleanup changed the reference scan. The 2026-08-24 footer refresh retired images/lifi/mark-orange.svg (a Little Fight agency asset, never a client asset) when the care bar was replaced by the inline credit mark; no client image assets were deleted. Historic externally addressable image paths remain preserved under the litigation hold. The 2026-10-24 search pass names images/appicon-512.png (already the live web-app manifest icon) as the Organization schema logo; the scan's basename match therefore also counts images/brand/png/appicon-512.png and images/icon-512.png as referenced. No image files changed.
     status: hold
     removal_gate:
       - generate an exact hash and reference report

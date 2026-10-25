@@ -2,6 +2,13 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const ORGANIZATION_NAME = 'Grand Funding LLC';
+// The published square brand mark (also the web-app manifest icon). Search
+// engines need a raster logo of at least 112x112 that reads on white.
+const ORGANIZATION_LOGO = Object.freeze({
+  path: '/images/appicon-512.png',
+  width: 512,
+  height: 512
+});
 const LANGUAGE = 'en-US';
 const OG_LOCALE = 'en_US';
 const DEFAULT_SOCIAL_IMAGE = '/images/social/loan-programs-20260725.jpg';
@@ -904,6 +911,8 @@ function schemaGraph({
   title
 }) {
   const organizationId = `${siteUrl.origin}/#organization`;
+  const logoId = `${siteUrl.origin}/#logo`;
+  const logoUrl = `${siteUrl.origin}${ORGANIZATION_LOGO.path}`;
   const websiteId = `${siteUrl.origin}/#website`;
   const webpageId = `${canonical}#webpage`;
   const imageId = `${canonical}#primaryimage`;
@@ -918,6 +927,16 @@ function schemaGraph({
     '@id': organizationId,
     name: ORGANIZATION_NAME,
     url: `${siteUrl.origin}/`,
+    logo: {
+      '@type': 'ImageObject',
+      '@id': logoId,
+      url: logoUrl,
+      contentUrl: logoUrl,
+      width: ORGANIZATION_LOGO.width,
+      height: ORGANIZATION_LOGO.height,
+      caption: ORGANIZATION_NAME
+    },
+    image: { '@id': logoId },
     telephone: '+1-602-935-0371',
     email: 'Logan@grandfundingllc.com',
     areaServed: [
@@ -1754,6 +1773,21 @@ export async function normalizeBuiltSite({
 
   const files = await builtHtmlFiles(resolvedDist);
   if (!files.length) throw new Error('No built HTML files found to normalize');
+
+  const logoFile = path.join(resolvedDist, ORGANIZATION_LOGO.path.slice(1));
+  if (!(await fileExists(logoFile))) {
+    throw new Error(`Organization logo is missing from dist: ${ORGANIZATION_LOGO.path}`);
+  }
+  const logoSize = await imageDimensions(logoFile);
+  if (
+    logoSize.width !== ORGANIZATION_LOGO.width ||
+    logoSize.height !== ORGANIZATION_LOGO.height
+  ) {
+    throw new Error(
+      `Organization logo must be ${ORGANIZATION_LOGO.width}x${ORGANIZATION_LOGO.height}; `
+      + `found ${logoSize.width}x${logoSize.height}`
+    );
+  }
 
   const summary = {
     analyticsLoadersRemoved: 0,

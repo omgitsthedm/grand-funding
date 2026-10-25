@@ -74,6 +74,8 @@ npm run deploy:production
 
 The wrappers use pinned `netlify-cli@27.0.0`. Never use `netlify deploy --dir=.`.
 
+After a production release is live, ping IndexNow from the same built `dist/`. `npm run indexnow` dry-runs. `npm run indexnow:submit` sends the whole sitemap: use it once, for the first submission. Every later release sends only the URLs it added, changed or removed: `npm run indexnow -- --submit --changed <url> --removed <url>`, repeating each option per URL. A `--changed` URL must be in the built sitemap and a `--removed` URL must no longer be. Never resubmit unchanged URLs.
+
 ## Handoff
 
 See `docs/GRAND-FUNDING-CLIENT-INDEPENDENT-ELEVATION-2026-07-25.md` for completed work, evidence, client/legal blockers, external configuration, and recovery.

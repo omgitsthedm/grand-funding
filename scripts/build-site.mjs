@@ -23,6 +23,8 @@ const ROOT_ASSETS = [
   'apply.css',
   'blog.css',
   'brand-tokens.css',
+  // IndexNow ownership key; scripts/indexnow.mjs holds the matching value.
+  'c4335c28ae36c55515f16d9dcb10e441.txt',
   'consent.js',
   'conversion-tools.css',
   'conversion-tools.js',

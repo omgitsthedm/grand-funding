@@ -1,5 +1,12 @@
 # Grand Funding source of truth
 
+## 2026-10-24 — search corrections release (current production)
+
+- Released: source commit `6752ec7bc0024c3eae69bc5da46d076be98251da`. It reached `master` through [PR #27](https://github.com/omgitsthedm/grand-funding/pull/27), which was fast-forwarded after its required `deployable-artifact` check passed on Node 24.18.0. The production deploy is [`6addb0b1a117f0fe4bfe048c`](https://6addb0b1a117f0fe4bfe048c--grandfundingllc.netlify.app), published `2026-10-25T07:33:12.590Z`. It was an exact-site Netlify CLI upload of the reviewed `dist/` to `055c5942-aeaa-478a-9508-a34406994d5d` and supersedes the 2026-10-12 copy release `6acd5869868fab83b28543d6` (`7efac5a`). The production fields in the dated block below are historical.
+- Scope: the Organization schema gains `logo` and `image` on 80 page graphs, using `/images/appicon-512.png`. The release also adds IndexNow key `c4335c28ae36c55515f16d9dcb10e441.txt`, `scripts/indexnow.mjs` and `test:indexnow`.
+- Regulated content: all 87 pages are byte-identical outside JSON-LD, and `_headers`/`_redirects` are unchanged. The claims registry is untouched. The strict gate stops on the same seven unresolved decisions as before, with no source or dist drift, under the non-claims maintenance path.
+- IndexNow: the one full-sitemap submission (80 URLs) was made at `2026-10-25T07:34:24Z` and returned HTTP 202. Later releases submit only `--changed`/`--removed` URLs.
+
 Verified: 2026-08-11
 
 - Local: `/Users/davidmarsh/Code/LiFi NYC/Clients/Grand Funding/grand-funding`

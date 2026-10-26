@@ -699,6 +699,72 @@ function inspectGeography(document, nodes) {
   }
 }
 
+function validateServiceRelationships(document, nodes) {
+  if (!document.canonical || document.noindex) return;
+  const canonical = document.canonicalRaw || document.canonical;
+  const route = new URL(canonical).pathname;
+  const page = nodes.find(node => node['@id'] === `${canonical}#webpage`);
+  const services = nodes.filter(node => schemaTypes(node).includes('Service'));
+  const fail = message => addIssue('schema/service', document.name, message);
+  const breadcrumbs = nodes.filter(node => schemaTypes(node).includes('BreadcrumbList'));
+  if (route === '/') {
+    if (breadcrumbs.length || page?.breadcrumb) {
+      addIssue('schema/breadcrumb', document.name, 'homepage must omit the synthetic one-item trail');
+    }
+  } else if (breadcrumbs.length !== 1 || (breadcrumbs[0].itemListElement?.length ?? 0) < 2) {
+    addIssue('schema/breadcrumb', document.name, 'expected one breadcrumb trail with at least two items');
+  }
+
+  const family = route.match(/^\/(bridge-loans|cash-out-refinance|construction-loans|fix-and-flip-loans|second-position-loans)-/)?.[1];
+  const sectionByFamily = {
+    'bridge-loans': 'bridge-loans',
+    'cash-out-refinance': 'cash-out-refinance',
+    'construction-loans': 'construction',
+    'fix-and-flip-loans': 'fix-and-flip',
+    'second-position-loans': 'second-mortgage',
+  };
+  const allowedKeys = new Set(['@type', '@id', 'name', 'url', 'provider', 'mainEntityOfPage', 'isRelatedTo']);
+  for (const service of services) {
+    if (service.provider?.['@id'] !== `${SITE_ORIGIN}/#organization`) fail('service provider must be the canonical organization');
+    if (service.mainEntityOfPage?.['@id'] !== page?.['@id']) fail('service must point back to its containing page');
+    if (Object.keys(service).some(key => !allowedKeys.has(key))) fail('service contains fields beyond the reviewed identity relationships');
+  }
+  if (new Set(services.map(service => service['@id'])).size !== services.length) fail('duplicate service identities');
+
+  if (family) {
+    const service = services[0];
+    if (services.length !== 1 || service?.['@id'] !== `${canonical}#service` || service?.url !== canonical) fail('loan page must define exactly one service at its canonical URL');
+    if (page?.mainEntity?.['@id'] !== service?.['@id']) fail('loan page must identify its service as mainEntity');
+    const heading = document.html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || '';
+    const subject = decodeHtml(heading.replace(/<[^>]+>/g, '')).split(/\s+—\s+/)[0];
+    if (!subject || normalizeText(service?.name || '') !== normalizeText(subject)) fail('service name must match the visible loan-page subject without promotional suffix');
+    const relatedId = `${SITE_ORIGIN}/products#service-${sectionByFamily[family]}`;
+    if (service?.isRelatedTo?.['@id'] !== relatedId) fail('loan service must reference the matching program in the directory');
+    const catalogDocument = documents.find(candidate => candidate.canonical === `${SITE_ORIGIN}/products`);
+    const catalogNodes = catalogDocument ? parseSchemas(catalogDocument).flatMap(root => flattenSchemaNodes(root)) : [];
+    if (!catalogNodes.some(node => node['@id'] === relatedId && schemaTypes(node).includes('Service'))) fail('related directory service is missing');
+  } else if (route === '/products') {
+    const sections = [...document.html.matchAll(/<section\b([^>]*)>([\s\S]*?)<\/section>/gi)]
+      .map(match => ({ attributes: parseAttributes(match[1]), content: match[2] }))
+      .filter(({ attributes }) => relTokens(attributes.class).includes('product-section'));
+    const catalog = nodes.find(node => node['@id'] === `${canonical}#products` && schemaTypes(node).includes('ItemList'));
+    if (!sections.length || services.length !== sections.length || catalog?.itemListElement?.length !== sections.length) fail('directory must cover every visible program exactly once');
+    if (page?.mainEntity?.['@id'] !== catalog?.['@id']) fail('directory page must identify its program list');
+    sections.forEach(({ attributes, content }, index) => {
+      const id = `${canonical}#service-${encodeURIComponent(attributes.id)}`;
+      const service = services.find(node => node['@id'] === id);
+      const item = catalog?.itemListElement?.[index];
+      const heading = content.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] || '';
+      const name = decodeHtml(heading.replace(/<[^>]+>/g, ''));
+      const url = `${canonical}#${encodeURIComponent(attributes.id)}`;
+      if (!service || service.url !== url || normalizeText(service.name) !== normalizeText(name)) fail(`directory service does not match visible section ${attributes.id}`);
+      if (item?.position !== index + 1 || item?.item?.['@id'] !== id || item?.url !== url || normalizeText(item?.name || '') !== normalizeText(name)) fail(`directory entry does not identify service ${attributes.id}`);
+    });
+  } else if (services.length) {
+    fail('service identities must stay on the reviewed loan and program routes');
+  }
+}
+
 function parseRobotsGroups(source) {
   const groups = [];
   let current = null;
@@ -1620,6 +1686,7 @@ for (const document of documents) {
 
   assertVisibleSchemaParity(document, nodes);
   inspectGeography(document, nodes);
+  validateServiceRelationships(document, nodes);
 
   const canonicalProblems = new Set();
   for (const node of nodes) {

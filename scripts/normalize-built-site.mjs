@@ -818,6 +818,8 @@ function webPageType(route, isPost) {
 }
 
 function breadcrumbNode({ canonical, route, title, siteUrl }) {
+  // A homepage has no parent trail; a one-item list is not Google-eligible.
+  if (route === '/') return null;
   const items = [
     {
       '@type': 'ListItem',
@@ -872,9 +874,21 @@ function extractProductItemList(html, canonical) {
       '@type': 'ListItem',
       position: index + 1,
       name,
-      url: `${canonical}#${encodeURIComponent(id)}`
+      url: `${canonical}#${encodeURIComponent(id)}`,
+      item: { '@id': `${canonical}#service-${encodeURIComponent(id)}` }
     }))
   };
+}
+
+function loanProgramSection(route) {
+  const programs = [
+    ['bridge-loans', 'bridge-loans'],
+    ['cash-out-refinance', 'cash-out-refinance'],
+    ['construction-loans', 'construction'],
+    ['fix-and-flip-loans', 'fix-and-flip'],
+    ['second-position-loans', 'second-mortgage']
+  ];
+  return programs.find(([prefix]) => route.startsWith(`/${prefix}-`))?.[1];
 }
 
 function findArticleDate(html, property) {
@@ -974,12 +988,13 @@ function schemaGraph({
     description,
     isPartOf: { '@id': websiteId },
     about: { '@id': organizationId },
-    breadcrumb: { '@id': breadcrumb['@id'] },
+    ...(breadcrumb ? { breadcrumb: { '@id': breadcrumb['@id'] } } : {}),
     primaryImageOfPage: { '@id': imageId },
     inLanguage: LANGUAGE
   };
 
-  const graph = [organization, website, imageObject, webpage, breadcrumb];
+  const graph = [organization, website, imageObject, webpage];
+  if (breadcrumb) graph.push(breadcrumb);
 
   if (personRelevant) {
     graph.push({
@@ -998,7 +1013,35 @@ function schemaGraph({
     if (itemList) {
       graph.push(itemList);
       webpage.mainEntity = { '@id': itemList['@id'] };
+      for (const item of itemList.itemListElement) {
+        graph.push({
+          '@type': 'Service',
+          '@id': item.item['@id'],
+          name: item.name,
+          url: item.url,
+          provider: { '@id': organizationId },
+          mainEntityOfPage: { '@id': webpageId }
+        });
+      }
     }
+  }
+
+  const programSection = loanProgramSection(route);
+  if (programSection) {
+    const serviceId = `${canonical}#service`;
+    webpage.mainEntity = { '@id': serviceId };
+    graph.push({
+      '@type': 'Service',
+      '@id': serviceId,
+      // Use the visible subject, excluding the heading's promotional suffix.
+      name: headline.split(/\s+—\s+/)[0],
+      url: canonical,
+      provider: { '@id': organizationId },
+      mainEntityOfPage: { '@id': webpageId },
+      isRelatedTo: {
+        '@id': `${siteUrl.origin}/products#service-${programSection}`
+      }
+    });
   }
 
   if (isPost) {
@@ -1218,7 +1261,10 @@ function validateNormalizedHtml({
     node => node?.['@type'] === 'BreadcrumbList'
   );
   const lastCrumb = breadcrumb?.itemListElement?.at(-1);
-  if (!breadcrumb || lastCrumb?.item !== canonical) {
+  if (route === '/' && breadcrumb) {
+    throw new Error(`${fileLabel}: homepage must not have a synthetic breadcrumb`);
+  }
+  if (route !== '/' && (breadcrumb?.itemListElement?.length < 2 || lastCrumb?.item !== canonical)) {
     throw new Error(`${fileLabel}: breadcrumb does not resolve to canonical self`);
   }
   if (route.startsWith('/posts/') && !types.includes('BlogPosting')) {

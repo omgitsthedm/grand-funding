@@ -65,6 +65,11 @@ const removePartialAccessibleNames = (html) =>
 
 const repairLegacyCss = (css) =>
   css
+    // Older pages inline this shared rule; only kickers may receive badge layout.
+    .replace(
+      /\.lp-hero\s*>\s*\.container\s*>\s*:first-child:not\(h1\):not\(p\)/g,
+      ".lp-hero__kicker",
+    )
     .replace(
       /^(@font-face[^\n]*\n(?:\/\*[^\n]*\*\/\n)?)\}\s*\n/,
       "$1",

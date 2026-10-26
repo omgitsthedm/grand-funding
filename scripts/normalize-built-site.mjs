@@ -1389,7 +1389,7 @@ function normalizeReleaseDate(releaseDate) {
     releaseDate instanceof Date
       ? releaseDate.toISOString().slice(0, 10)
       : String(releaseDate ?? '');
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(Date.parse(value))) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(Date.parse(value)) || new Date(value).toISOString().slice(0, 10) !== value) {
     throw new Error(
       `releaseDate must be a valid YYYY-MM-DD date; received ${String(releaseDate)}`
     );
@@ -1704,7 +1704,7 @@ function escapeXml(value) {
     .replaceAll("'", '&apos;');
 }
 
-function validateSitemap(content, canonicals, releaseDate, siteUrl) {
+function validateSitemap(content, canonicals, lastModified, siteUrl) {
   if (
     !content.includes(
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
@@ -1725,7 +1725,7 @@ function validateSitemap(content, canonicals, releaseDate, siteUrl) {
 
   if (
     locations.length !== canonicals.length ||
-    lastmods.length !== canonicals.length
+    lastmods.length !== lastModified.size
   ) {
     throw new Error(
       `Generated sitemap expected ${canonicals.length} URL records`
@@ -1734,8 +1734,12 @@ function validateSitemap(content, canonicals, releaseDate, siteUrl) {
   if (new Set(locations).size !== locations.length) {
     throw new Error('Generated sitemap contains duplicate canonical URLs');
   }
-  if (lastmods.some(value => value !== releaseDate)) {
-    throw new Error('Generated sitemap contains an inaccurate lastmod');
+  for (const match of content.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+    const location = decodeEntities(match[1].match(/<loc>(.*?)<\/loc>/)?.[1] || '');
+    const date = match[1].match(/<lastmod>(.*?)<\/lastmod>/)?.[1];
+    if (date !== lastModified.get(location)) {
+      throw new Error('Generated sitemap contains an inaccurate lastmod');
+    }
   }
 
   const expected = new Set(canonicals);
@@ -1760,7 +1764,7 @@ function validateSitemap(content, canonicals, releaseDate, siteUrl) {
 async function writeSitemap(
   dist,
   indexableCanonicals,
-  releaseDate,
+  lastModified,
   siteUrl
 ) {
   if (new Set(indexableCanonicals).size !== indexableCanonicals.length) {
@@ -1776,7 +1780,7 @@ async function writeSitemap(
   });
   const records = canonicals.map(
     canonical =>
-      `  <url>\n    <loc>${escapeXml(canonical)}</loc>\n    <lastmod>${releaseDate}</lastmod>\n  </url>`
+      `  <url>\n    <loc>${escapeXml(canonical)}</loc>${lastModified.has(canonical) ? `\n    <lastmod>${lastModified.get(canonical)}</lastmod>` : ''}\n  </url>`
   );
   const content = [
     '<?xml version="1.0" encoding="UTF-8"?>',
@@ -1786,7 +1790,7 @@ async function writeSitemap(
     ''
   ].join('\n');
 
-  validateSitemap(content, canonicals, releaseDate, siteUrl);
+  validateSitemap(content, canonicals, lastModified, siteUrl);
   await fs.writeFile(path.join(dist, 'sitemap.xml'), content, 'utf8');
   return canonicals.length;
 }
@@ -1848,6 +1852,7 @@ export async function normalizeBuiltSite({
     releaseDate: normalizedReleaseDate
   };
   const indexableCanonicals = [];
+  const lastModified = new Map();
 
   for (const relativeFile of files) {
     const filePath = path.join(resolvedDist, relativeFile);
@@ -1880,6 +1885,16 @@ export async function normalizeBuiltSite({
     summary.posts += first.stats.post ? 1 : 0;
     if (first.stats.indexable) {
       indexableCanonicals.push(first.stats.canonical);
+      // Optional, editorially recorded content dates. Never stamp every URL
+      // with the build date or the historical release-date fallback.
+      const contentUpdated = findMetaContent(sourceHtml, 'gf-content-updated');
+      if (contentUpdated) {
+        const date = normalizeReleaseDate(contentUpdated);
+        if (date > new Date().toISOString().slice(0, 10)) {
+          throw new Error(`${relativeFile}: content update date is in the future`);
+        }
+        lastModified.set(first.stats.canonical, date);
+      }
     }
   }
 
@@ -1887,7 +1902,7 @@ export async function normalizeBuiltSite({
   summary.sitemapUrls = await writeSitemap(
     resolvedDist,
     indexableCanonicals,
-    normalizedReleaseDate,
+    lastModified,
     siteUrl
   );
   return summary;

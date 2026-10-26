@@ -31,6 +31,7 @@ const ROOT_ASSETS = [
   'favicon.ico',
   'llms.txt',
   'lifi-care.css',
+  'loan-request-context.js',
   'original-refinement.css',
   'original-refinement.js',
   'premium-motion.css',

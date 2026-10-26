@@ -2,6 +2,7 @@
   "use strict";
   const CONSENT_KEY = "gf_consent_v1";
   const QA_KEY = "gf_analytics_qa_v1";
+  const SOURCE_KEY = "gf_acquisition_v1";
   const MEASUREMENT_ID = "G-K825ENLYS6";
   const CONTAINER_ID = "GTM-NCCHQ32T";
   // Meta Pixel ID for ads measurement. Empty means off: no Meta script loads,
@@ -48,6 +49,51 @@
     return !noindex || confirmedReceipt();
   };
   const allowed = () => runtimeOk() && Boolean(consent?.analytics);
+  // Send fixed channel labels only. Never send a referring URL, arbitrary UTM
+  // value, click ID, or borrower detail. Storage starts only after consent.
+  const sourcePairs = { google: "organic", bing: "organic", instagram: "social", facebook: "social", youtube: "referral", linktree: "referral", "chatgpt.com": "referral", "perplexity.ai": "referral", "claude.ai": "referral", "gemini.google.com": "referral", "copilot.microsoft.com": "referral", "meta.ai": "referral", "muse.ai": "referral" };
+  const campaignNames = ["arizona_fix_flip", "phoenix_fix_flip", "arizona_bridge", "investor_loans"];
+  const inboundSource = () => {
+    const query = new URLSearchParams(location.search);
+    if (["gclid", "gbraid", "wbraid", "msclkid"].some(key => query.has(key))) return false;
+    const source = query.get("utm_source") === "ig" ? "instagram" : query.get("utm_source");
+    // ChatGPT search links may supply only utm_source=chatgpt.com.
+    // Retain that fixed label without retaining a prompt or other URL data.
+    if (source === "chatgpt.com" && [null, "", "referral", "ai-assistant"].includes(query.get("utm_medium"))) {
+      return { source, medium: sourcePairs[source] };
+    }
+    if (["instagram", "facebook", "linktree", "youtube"].includes(source) && query.get("utm_medium") === sourcePairs[source]) {
+      const campaign = query.get("utm_campaign");
+      return { source, medium: sourcePairs[source], ...(campaignNames.includes(campaign) ? { campaign } : {}) };
+    }
+    // An unrecognized campaign or paid-click marker must not become organic.
+    if (["utm_source", "utm_medium"].some(key => query.has(key))) return false;
+    try {
+      const ref = new URL(document.referrer);
+      if (!["https:", "http:"].includes(ref.protocol)) return null;
+      const hosts = { "google.com": "google", "www.google.com": "google", "bing.com": "bing", "www.bing.com": "bing", "instagram.com": "instagram", "www.instagram.com": "instagram", "l.instagram.com": "instagram", "facebook.com": "facebook", "www.facebook.com": "facebook", "m.facebook.com": "facebook", "l.facebook.com": "facebook", "lm.facebook.com": "facebook", "youtube.com": "youtube", "www.youtube.com": "youtube", "linktr.ee": "linktree", "chatgpt.com": "chatgpt.com", "www.chatgpt.com": "chatgpt.com", "chat.openai.com": "chatgpt.com", "perplexity.ai": "perplexity.ai", "www.perplexity.ai": "perplexity.ai", "claude.ai": "claude.ai", "gemini.google.com": "gemini.google.com", "copilot.microsoft.com": "copilot.microsoft.com", "meta.ai": "meta.ai", "www.meta.ai": "meta.ai", "muse.ai": "muse.ai", "www.muse.ai": "muse.ai" };
+      const known = Object.hasOwn(hosts, ref.hostname) ? hosts[ref.hostname] : null;
+      return known ? { source: known, medium: sourcePairs[known] } : null;
+    } catch { return null; }
+  };
+  let acquisition = null;
+  const acquisitionContext = () => {
+    if (!allowed()) return {};
+    try {
+      if (!acquisition) {
+        const saved = JSON.parse(sessionStorage.getItem(SOURCE_KEY));
+        const fresh = saved?.v === 1 && Date.now() - saved.ts >= 0 && Date.now() - saved.ts < 30 * 60 * 1000;
+        const known = fresh && Object.hasOwn(sourcePairs, saved.source) && sourcePairs[saved.source] === saved.medium && (!saved.campaign || campaignNames.includes(saved.campaign));
+        const incoming = inboundSource();
+        if (incoming === false) { sessionStorage.removeItem(SOURCE_KEY); return {}; }
+        const value = incoming || (known ? { source: saved.source, medium: saved.medium, ...(saved.campaign ? { campaign: saved.campaign } : {}) } : null);
+        if (!value) return {};
+        acquisition = { ...value, v: 1, ts: Date.now() };
+        sessionStorage.setItem(SOURCE_KEY, JSON.stringify(acquisition));
+      }
+      return { campaign_source: acquisition.source, campaign_medium: acquisition.medium, ...(acquisition.campaign ? { campaign_name: acquisition.campaign } : {}) };
+    } catch { return {}; }
+  };
   // Ads measurement is a separate opt-in from analytics with its own consent
   // flag. Global Privacy Control opts a visitor out without asking.
   const adsAllowed = () => Boolean(META_PIXEL_ID) && runtimeOk() && consent?.ads === true && navigator.globalPrivacyControl !== true;
@@ -86,6 +132,7 @@
     return true;
   };
   const context = () => ({
+    ...acquisitionContext(),
     page_location: "https://www.grandfundingllc.com" + path(),
     page_path: path(), page_referrer: "", allow_google_signals: false,
     allow_ad_personalization_signals: false,
@@ -97,7 +144,11 @@
     const enabled = allowed();
     window[DISABLE_KEY] = !enabled;
     gtag("consent", "update", { ...denied, analytics_storage: enabled ? "granted" : "denied" });
-    if (!enabled) return;
+    if (!enabled) {
+      acquisition = null;
+      try { sessionStorage.removeItem(SOURCE_KEY); } catch { /* Analytics remains off. */ }
+      return;
+    }
     const safe = context();
     gtag("set", safe);
     window.dataLayer.push({ gf_page_location: safe.page_location, gf_page_path: safe.page_path, gf_page_referrer: "", gf_send_page_view: safe.send_page_view });

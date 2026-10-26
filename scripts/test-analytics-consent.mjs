@@ -4,17 +4,17 @@ import vm from 'node:vm';
 
 const source = await fs.readFile(new URL('../consent.js', import.meta.url), 'utf8');
 const granted = JSON.stringify({ v: 1, analytics: true, ads: false });
-const storage = map => ({ getItem: key => map.get(key) ?? null, setItem: (key, value) => map.set(key, value) });
-function boot({ url = 'https://www.grandfundingllc.com/contact', robots = 'index,follow', canonical = '/contact', consent = granted, session = new Map(), blockedStorage = false, webdriver = false, gpc = false, src = source } = {}) {
+const storage = map => ({ getItem: key => map.get(key) ?? null, setItem: (key, value) => map.set(key, value), removeItem: key => map.delete(key) });
+function boot({ url = 'https://www.grandfundingllc.com/contact', referrer = 'https://private.invalid/account?token=NEVER-SEND', robots = 'index,follow', canonical = '/contact', consent = granted, session = new Map(), blockedStorage = false, webdriver = false, gpc = false, src = source } = {}) {
   const scripts = [], actions = {}, local = new Map();
   if (consent) local.set('gf_consent_v1', consent);
   const button = choice => ({ dataset: { consent: choice }, addEventListener: (_, fn) => { actions[choice] = fn; } });
   const banner = { classList: { add() {}, remove() {} }, querySelectorAll: () => [button('all'), button('essential')], querySelector: () => ({ focus() {} }) };
   const sandbox = {
-    location: new URL(url), navigator: { webdriver, globalPrivacyControl: gpc }, URLSearchParams, console,
+    location: new URL(url), navigator: { webdriver, globalPrivacyControl: gpc }, URL, URLSearchParams, console,
     dispatchEvent() {}, CustomEvent: class {},
     document: {
-      readyState: 'complete', referrer: 'https://private.invalid/account?token=NEVER-SEND',
+      readyState: 'complete', referrer,
       querySelector(selector) { return selector.includes('gf-analytics-path') ? { content: canonical } : selector.includes('robots') ? { content: robots } : { appendChild() {} }; },
       getElementById: () => banner,
       createElement: () => ({ dataset: {}, addEventListener() {} }),
@@ -74,6 +74,65 @@ assert.equal(receipt.sandbox.gfLeadConversion({ formType: 'contact', submissionI
 assert.equal(JSON.stringify(receipt.entries()).includes('internal-only'), false, 'Deduplication ID remains local');
 const commands = privateQuery.entries();
 assert.ok(commands.filter(e => e[0] === 'consent').every(e => e[2].ad_storage === 'denied' && e[2].ad_user_data === 'denied' && e[2].ad_personalization === 'denied'));
+// Channel attribution must survive navigation without leaking URLs or free text.
+const channel = test => test.entries().find(e => e[0] === 'set' && typeof e[1] === 'object')?.[1] || {};
+for (const [host, expectedSource, medium] of [['www.google.com', 'google', 'organic'], ['www.bing.com', 'bing', 'organic'], ['l.instagram.com', 'instagram', 'social'], ['linktr.ee', 'linktree', 'referral'], ['chatgpt.com', 'chatgpt.com', 'referral'], ['chat.openai.com', 'chatgpt.com', 'referral'], ['www.perplexity.ai', 'perplexity.ai', 'referral'], ['claude.ai', 'claude.ai', 'referral'], ['gemini.google.com', 'gemini.google.com', 'referral'], ['copilot.microsoft.com', 'copilot.microsoft.com', 'referral'], ['meta.ai', 'meta.ai', 'referral'], ['muse.ai', 'muse.ai', 'referral']]) {
+  const test = boot({ referrer: `https://${host}/private/NEVER-SEND?token=NEVER-SEND` });
+  assert.equal(channel(test).campaign_source, expectedSource);
+  assert.equal(channel(test).campaign_medium, medium);
+  assert.equal(channel(test).page_referrer, '');
+  assert.equal(JSON.stringify(test.entries()).includes('NEVER-SEND'), false);
+  assert.equal(JSON.stringify([...test.session]).includes('NEVER-SEND'), false);
+}
+for (const referrer of ['https://www.google.com.evil.invalid/NEVER-SEND', 'https://chatgpt.com.evil.invalid/NEVER-SEND', 'https://private.invalid/NEVER-SEND', 'https://constructor/', 'not-a-url']) {
+  assert.equal(channel(boot({ referrer })).campaign_source, undefined);
+}
+for (const query of ['gclid=NEVER-SEND', 'msclkid=NEVER-SEND', 'utm_source=NEVER-SEND&utm_medium=email', 'utm_source=google&utm_medium=cpc', 'utm_source=chatgpt.com&utm_medium=cpc', 'utm_source=chatgpt.com&gclid=NEVER-SEND', 'utm_source=instagram&utm_medium=social&gclid=NEVER-SEND']) {
+  const test = boot({ url: 'https://www.grandfundingllc.com/contact?' + query, referrer: 'https://www.google.com/' });
+  assert.equal(channel(test).campaign_source, undefined, 'Unknown campaigns and paid clicks must not become organic');
+  assert.equal(JSON.stringify(test.entries()).includes('NEVER-SEND'), false);
+}
+const aiSession = new Map();
+const aiArrival = boot({ url: 'https://www.grandfundingllc.com/contact?utm_source=chatgpt.com&utm_campaign=NEVER-SEND&prompt=NEVER-SEND', consent: null, session: aiSession });
+assert.equal(aiSession.has('gf_acquisition_v1'), false, 'AI referral storage also requires consent');
+assert.equal(aiArrival.scripts.length, 0);
+aiArrival.actions.all();
+assert.equal(channel(aiArrival).campaign_source, 'chatgpt.com', 'OpenAI source-only links are recognized');
+assert.equal(channel(aiArrival).campaign_medium, 'referral');
+assert.equal(channel(aiArrival).campaign_name, undefined);
+assert.equal(JSON.stringify(aiArrival.entries()).includes('NEVER-SEND'), false);
+assert.equal(JSON.stringify([...aiSession]).includes('NEVER-SEND'), false);
+assert.equal(channel(boot({ session: aiSession, referrer: 'https://www.grandfundingllc.com/contact' })).campaign_source, 'chatgpt.com');
+aiArrival.actions.essential();
+assert.equal(aiSession.has('gf_acquisition_v1'), false);
+const campaignSession = new Map();
+const campaign = boot({ url: 'https://www.grandfundingllc.com/contact?utm_source=instagram&utm_medium=social&utm_campaign=phoenix_fix_flip&utm_content=NEVER-SEND&email=NEVER-SEND#NEVER-SEND', consent: null, session: campaignSession });
+assert.equal(campaignSession.has('gf_acquisition_v1'), false, 'No source storage before consent');
+assert.equal(campaign.scripts.length, 0);
+campaign.actions.all();
+assert.equal(channel(campaign).campaign_source, 'instagram');
+assert.equal(channel(campaign).campaign_name, 'phoenix_fix_flip');
+assert.equal(JSON.stringify(campaign.entries()).includes('NEVER-SEND'), false);
+const nextPage = boot({ session: campaignSession, referrer: 'https://www.grandfundingllc.com/contact' });
+assert.equal(channel(nextPage).campaign_source, 'instagram', 'Source survives an internal navigation');
+assert.equal(channel(nextPage).campaign_name, 'phoenix_fix_flip');
+nextPage.actions.essential();
+assert.equal(campaignSession.has('gf_acquisition_v1'), false, 'Revoking consent clears local attribution');
+const priorSearch = new Map([['gf_acquisition_v1', JSON.stringify({ v: 1, source: 'google', medium: 'organic', ts: Date.now() })]]);
+assert.equal(channel(boot({ url: 'https://www.grandfundingllc.com/contact?gclid=NEVER-SEND', session: priorSearch })).campaign_source, undefined, 'Paid markers must not reuse a saved organic source');
+const unknownCampaign = boot({ url: 'https://www.grandfundingllc.com/contact?utm_source=ig&utm_medium=social&utm_campaign=NEVER-SEND' });
+assert.equal(channel(unknownCampaign).campaign_source, 'instagram');
+assert.equal(channel(unknownCampaign).campaign_name, undefined);
+assert.equal(JSON.stringify(unknownCampaign.entries()).includes('NEVER-SEND'), false);
+for (const saved of [
+  { v: 1, source: 'NEVER-SEND', medium: 'social', ts: Date.now() },
+  { v: 1, source: 'instagram', medium: 'NEVER-SEND', ts: Date.now() },
+  { v: 1, source: 'instagram', medium: 'social', campaign: 'NEVER-SEND', ts: Date.now() },
+  { v: 1, source: 'instagram', medium: 'social', ts: Date.now() - 31 * 60 * 1000 },
+  { v: 1, source: 'instagram', medium: 'social', ts: Date.now() + 60000 }
+]) {
+  assert.equal(channel(boot({ session: new Map([['gf_acquisition_v1', JSON.stringify(saved)]]) })).campaign_source, undefined, 'Expired or tampered source records are ignored');
+}
 // Ads off-state: an empty pixel ID means no Meta runtime exists even when granted.
 assert.equal(privateQuery.sandbox.fbq, undefined, 'No pixel ID must mean no fbq stub');
 assert.equal(privateQuery.scripts.length, 1, 'No pixel ID must mean only the GTM transport loads');

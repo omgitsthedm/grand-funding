@@ -159,7 +159,7 @@
         button.removeAttribute("aria-busy");
         button.disabled = false;
         button.textContent = defaultLabel;
-        if (message) status.textContent = message;
+        status.textContent = message;
         try {
           sessionStorage.removeItem("gf_pending_lead_v1");
         } catch {
@@ -237,7 +237,7 @@
         button.removeAttribute("aria-busy");
         button.disabled = false;
         button.textContent = defaultLabel;
-        if (message) status.textContent = message;
+        status.textContent = message;
       };
 
       form.addEventListener("submit", event => {

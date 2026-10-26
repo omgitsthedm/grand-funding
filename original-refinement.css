@@ -1007,3 +1007,21 @@ html body .sticky-dual a.sticky-dual__apply {
   background: var(--deal-teal) !important;
   color: #06100f !important;
 }
+
+/* Practical loan guides use the established deal desk colors and typography. */
+.loan-guide{padding:clamp(2rem,5vw,4rem) 0;border-top:1px solid var(--deal-line,rgba(255,255,255,.12));color:var(--deal-ink,#f0f0ec)}
+.loan-guide__eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--deal-teal,#4fe3d2);font-weight:700}
+.loan-guide h2{max-width:28ch;font-size:clamp(1.65rem,3vw,2.35rem);line-height:1.2;margin:.65rem 0 1rem}
+.loan-guide h3{font-size:1.15rem;line-height:1.4;margin:0 0 .8rem}
+.loan-guide p{line-height:1.7;max-width:78ch}
+.loan-guide__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.25rem,3vw,2.5rem);margin:2rem 0}
+.loan-guide__grid article{min-width:0;border-top:2px solid var(--deal-teal,#4fe3d2);padding-top:1.25rem}
+.loan-guide a,.loan-guide__product-links a{color:var(--deal-teal,#4fe3d2);text-decoration:underline;text-underline-offset:.2em;overflow-wrap:anywhere}
+.loan-guide a:focus-visible,.loan-guide__product-links a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.loan-guide__next{padding-top:1rem;border-top:1px solid var(--deal-line,rgba(255,255,255,.12))}
+.loan-guide--compact{padding-top:2rem;padding-bottom:0;margin-top:2rem}
+.loan-guide__links{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+.loan-guide__links li{display:grid;gap:.6rem;min-width:0}
+.loan-guide__links span{line-height:1.6}
+.loan-guide__product-links{line-height:1.8}
+@media(max-width:760px){.loan-guide__grid,.loan-guide__links{grid-template-columns:1fr}}

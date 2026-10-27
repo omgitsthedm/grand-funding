@@ -185,6 +185,10 @@ for (const suite of suites) {
         "contains a removed loan-estimate calculator marker",
         /\bdata-loan-calc\b|data-calc\s*=\s*["']loan-amount["']/i,
       ],
+      [
+        "contains an animated numeric loan limit hidden from text-only checks",
+        /<(?:div|span)\b(?=[^>]*\bdata-counter\b)(?=[^>]*\bdata-to\s*=\s*["']?\d)[^>]*>[\s\S]{0,80}?<\/(?:div|span)>\s*<(?:div|span)\b[^>]*>\s*(?:Max(?:imum)?|Min(?:imum)?)\s+Loan\s+(?:Size|Amount)\b/i,
+      ],
     ]) {
       assertAbsent(suite.id, relative, raw, label, expression);
     }

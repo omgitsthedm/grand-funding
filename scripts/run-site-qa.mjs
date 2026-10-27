@@ -17,13 +17,14 @@ const suites = [
   { label: "preservation", script: "scripts/qa-preservation.mjs" },
   { label: "accessibility", script: "scripts/qa-a11y.mjs" },
   { label: "conversion", script: "scripts/qa-conversion.mjs" },
+  { label: "inquiry paths", script: "scripts/qa-inquiry-paths.mjs" },
   { label: "cross-browser", script: "scripts/qa-cross-browser.mjs" },
   {
     label: "premium watchlist",
     script: "scripts/qa-premium.mjs",
     env: { WATCHLIST_ONLY: "1" }
   }
-].filter(suite => !live || suite.label !== "conversion");
+].filter(suite => !live || !["conversion", "inquiry paths"].includes(suite.label));
 
 const run = ({ label, script, env = {} }) =>
   new Promise((resolve, reject) => {

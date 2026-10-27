@@ -23,6 +23,7 @@
     "test:preservation": "node scripts/qa-preservation.mjs",
     "test:a11y": "node scripts/qa-a11y.mjs",
     "test:conversion": "node scripts/qa-conversion.mjs",
+    "test:inquiry-paths": "node scripts/qa-inquiry-paths.mjs",
     "test:cross-browser": "node scripts/qa-cross-browser.mjs",
     "test:premium": "node scripts/qa-premium.mjs",
     "test:premium:watchlist": "WATCHLIST_ONLY=1 node scripts/qa-premium.mjs",

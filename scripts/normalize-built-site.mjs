@@ -2,6 +2,10 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const ORGANIZATION_NAME = 'Grand Funding LLC';
+// This description is also visible in the About page's introduction. It uses
+// the approved service scope without adding lending terms or credentials.
+const ORGANIZATION_DESCRIPTION =
+  'Grand Funding LLC provides private real estate financing for property purchases, repairs, new builds, and refinancing.';
 // The published square brand mark (also the web-app manifest icon). Search
 // engines need a raster logo of at least 112x112 that reads on white.
 const ORGANIZATION_LOGO = Object.freeze({
@@ -300,6 +304,8 @@ function generatedDescription(route, heading) {
 }
 
 function normalizePageDescription({ current, heading, route }) {
+  const intentDescription = loanPageDescription(route, current);
+  if (intentDescription) return intentDescription;
   const normalized = compactWhitespace(current || '');
   const generic =
     normalizeTextForComparison(normalized) ===
@@ -891,6 +897,67 @@ function loanProgramSection(route) {
   return programs.find(([prefix]) => route.startsWith(`/${prefix}-`))?.[1];
 }
 
+const QUOTE_CONTEXT = Object.freeze({
+  'bridge-loans': 'bridge',
+  'cash-out-refinance': 'cash-out',
+  construction: 'construction',
+  'fix-and-flip': 'fix-flip',
+  'second-mortgage': 'second-position',
+  'land-loans': 'land'
+});
+
+function loanPageDescription(route, current) {
+  if (route === '/products') {
+    return 'Buying, renovating, building, or refinancing in Arizona and California? Compare Grand Funding loan programs and send your property details for review.';
+  }
+  // This existing description contains separately frozen timing language.
+  // Leave it intact until its named policy owner resolves that review.
+  if (route === '/second-position-loans-scottsdale') return null;
+  const section = loanProgramSection(route);
+  if (!section) return null;
+  const location = [
+    ['los-angeles', 'Los Angeles'], ['san-diego', 'San Diego'],
+    ['arizona', 'Arizona'], ['california', 'California'],
+    ['phoenix', 'Phoenix'], ['scottsdale', 'Scottsdale'],
+    ['mesa', 'Mesa'], ['tempe', 'Tempe'], ['tucson', 'Tucson']
+  ].find(([suffix]) => route.endsWith(`-${suffix}`))?.[1];
+  if (!location) return null;
+  const scope = String(current || '').match(/Arizona (?:and|or) California/)?.[0];
+  if (!scope) return null;
+  const descriptions = {
+    'fix-and-flip': `${location} fix-and-flip loans: review purchase, renovation costs, and resale plans with Grand Funding. For ${scope} investors.`,
+    'bridge-loans': `${location} bridge loans: discuss property, existing debt, deadline, and payoff plan with Grand Funding. For ${scope} investors.`,
+    construction: `${location} construction loans: review the lot, plans, permit status, and project budget with Grand Funding. For ${scope} investors.`,
+    'cash-out-refinance': `${location} cash-out refinancing: review existing debt, use of funds, and repayment with Grand Funding. For ${scope} investors.`,
+    'second-mortgage': `${location} second-position loans: review the first mortgage, additional debt, and payoff plan with Grand Funding. For ${scope} investors.`
+  };
+  return descriptions[section];
+}
+
+function withQuoteContext(html, slug) {
+  if (!slug) return html;
+  return html.replace(/<a\b[^>]*>/gi, tag => {
+    const href = getAttribute(tag, 'href');
+    if (!href) return tag;
+    let url;
+    try { url = new URL(href, 'https://www.grandfundingllc.com'); } catch { return tag; }
+    if (url.origin !== 'https://www.grandfundingllc.com' || !/^\/apply(?:\.html)?\/?$/.test(url.pathname)) return tag;
+    url.searchParams.set('loan', slug);
+    const target = /^https?:/i.test(href) ? url.href : `${url.pathname}${url.search}${url.hash}`;
+    return tag.replace(/\bhref\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/i, `href="${escapeAttribute(target)}"`);
+  });
+}
+
+function normalizeQuoteLinks(html, route) {
+  const pageContext = QUOTE_CONTEXT[loanProgramSection(route)];
+  if (pageContext) return withQuoteContext(html, pageContext);
+  if (route !== '/products') return html;
+  // Each program has its own quote action. The umbrella hard-money section
+  // and the site's generic navigation keep the ordinary unselected form.
+  return html.replace(/<section\b(?=[^>]*\bid=(?:"([^"]+)"|'([^']+)'))[^>]*>[\s\S]*?<\/section>/gi,
+    (section, doubleId, singleId) => withQuoteContext(section, QUOTE_CONTEXT[doubleId || singleId]));
+}
+
 function findArticleDate(html, property) {
   const metaDate = findMetaContent(html, property, 'property');
   if (metaDate) return metaDate;
@@ -932,6 +999,9 @@ function schemaGraph({
   const imageId = `${canonical}#primaryimage`;
   const personId = `${siteUrl.origin}/about#logan-sullivan`;
   const visibleText = bodyVisibleText(html, route);
+  if (route === '/about' && !visibleText.includes(ORGANIZATION_DESCRIPTION)) {
+    throw new Error('About page must visibly support the organization description');
+  }
   const hasVisibleLogan = /\bLogan Sullivan\b/.test(visibleText);
   const hasVisibleByline = /\bBy Logan Sullivan\b/i.test(visibleText);
   const personRelevant = false;
@@ -941,6 +1011,7 @@ function schemaGraph({
     '@id': organizationId,
     name: ORGANIZATION_NAME,
     url: `${siteUrl.origin}/`,
+    description: ORGANIZATION_DESCRIPTION,
     logo: {
       '@type': 'ImageObject',
       '@id': logoId,
@@ -953,6 +1024,13 @@ function schemaGraph({
     image: { '@id': logoId },
     telephone: '+1-602-935-0371',
     email: 'Logan@grandfundingllc.com',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'loan inquiries',
+      telephone: '+1-602-935-0371',
+      email: 'Logan@grandfundingllc.com',
+      url: `${siteUrl.origin}/contact`
+    },
     areaServed: [
       { '@type': 'State', name: 'Arizona' },
       { '@type': 'State', name: 'California' }
@@ -995,6 +1073,10 @@ function schemaGraph({
 
   const graph = [organization, website, imageObject, webpage];
   if (breadcrumb) graph.push(breadcrumb);
+  if (route === '/about') {
+    webpage.mainEntity = { '@id': organizationId };
+    organization.mainEntityOfPage = { '@id': webpageId };
+  }
 
   if (personRelevant) {
     graph.push({
@@ -1319,7 +1401,7 @@ async function transformHtml({
   const imageAlt = image.routeAlt || heading || ogTitle;
 
   const hrefResult = normalizeInternalHrefs(html, pageUrl, siteUrl);
-  html = hrefResult.html;
+  html = normalizeQuoteLinks(hrefResult.html, route);
   const analyticsResult = removeExactDuplicateAnalyticsLoaders(html);
   html = analyticsResult.html;
   html = normalizeAppleTouchIcon(html);

@@ -4,12 +4,12 @@
  *
  * Prerequisites:
  *   npm run build
- *   npx playwright install chromium firefox webkit
+ *   Google Chrome installed locally; Firefox/WebKit only when available and authorized.
  *   npm run serve -- --dir dist --port 8888
  *   BASE_URL=http://127.0.0.1:8888 node scripts/qa-cross-browser.mjs
  *
- * Mobile profiles use real Playwright Android Chrome and iPhone Safari device
- * descriptors. Firefox's narrow pass remains honestly labeled as responsive
+ * Device profiles emulate viewport/input settings; they are not physical-device
+ * or actual iOS Safari testing. Firefox's narrow pass remains labeled as responsive
  * desktop Firefox because Playwright does not emulate Firefox for Android.
  *
  * The suite never submits a form. Analytics and advertising requests are
@@ -431,16 +431,22 @@ async function runStaticFallback(profile, browser) {
   }
 }
 
-for (const profile of BROWSER_PROFILES) {
+const requestedEngines = process.env.QA_BROWSER_ENGINES?.split(',').map(value => value.trim()).filter(Boolean);
+if (requestedEngines && (!requestedEngines.length || requestedEngines.some(name => !['chromium', 'firefox', 'webkit'].includes(name)))) {
+  throw new Error('QA_BROWSER_ENGINES must select at least one supported engine.');
+}
+const selectedProfiles = BROWSER_PROFILES.filter(profile => !requestedEngines || requestedEngines.includes(profile.browserName));
+console.log(`Browser coverage: ${selectedProfiles.map(profile => profile.name).join(', ')} (${selectedProfiles.length}/${BROWSER_PROFILES.length} profiles). Device descriptors are emulation.`);
+for (const profile of selectedProfiles) {
   let browser;
   try {
-    browser = await profile.engine.launch({ headless: true });
+    browser = await profile.engine.launch({ headless: true, ...(profile.browserName === 'chromium' ? { channel: 'chrome' } : {}) });
   } catch (error) {
     addFailure(
       profile,
       '(launch)',
       'browser-launch',
-      `${error.message}\nRun: npx playwright install chromium firefox webkit`
+      `${error.message}\nUse the installed Chrome channel; obtain explicit authorization before adding another browser runtime.`
     );
     continue;
   }

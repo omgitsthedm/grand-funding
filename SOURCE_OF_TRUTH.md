@@ -1,5 +1,13 @@
 # Grand Funding source of truth
 
+## Production release — 2026-10-28: hero visibility hotfix
+
+- **Released:** source commit `9b632d84` (branch `hotfix/hero-visibility-20261027`, fast-forwarded to `master`), production deploy [`6ae19cca555ea24ee63535f4`](https://6ae19cca555ea24ee63535f4--grandfundingllc.netlify.app), published `2026-10-28T06:57:42Z` on exact site `055c5942-aeaa-478a-9508-a34406994d5d`. REST zip draft, verified, then published with `/restore`. Artifact `grand-funding-hotfix-9b632d84.zip` sha256 `4450472b03585f44b856040497c21b0c5893676b7d8d65955b485ee1363a2fde`. About 15 deploy credits.
+- **Why:** the flat-surface rule stripped the gradient background while the inline heroes set `color: transparent`, so H1s were invisible on 39 loan pages and a broad selector clipped quote buttons on 37. CSS-only; visible text is unchanged on all 87 pages.
+- **Verified live:** 183 redirect and 6 header rules processed; CSP, HSTS and X-Frame-Options present; six sampled loan pages show a solid-colour H1 and an unclipped quote button at 390 and 1280px.
+- **Rollback:** restore `6addb0b1a117f0fe4bfe048c`.
+- **Next:** step 1 (forms + search listings, `6430fa4e` on `release/gf-step1-forms-search-20261027`) is uploaded as draft deploy `6ae19d0137550afaa69de296`, unpublished until Logan's per-form test submissions reach Logan@grandfundingllc.com (his Oct 27 launch rule). Step 2 (guide sections) waits on his copy approval.
+
 ## 2026-10-24 — search corrections release (current production)
 
 - Released: source commit `6752ec7bc0024c3eae69bc5da46d076be98251da`. It reached `master` through [PR #27](https://github.com/omgitsthedm/grand-funding/pull/27), which was fast-forwarded after its required `deployable-artifact` check passed on Node 24.18.0. The production deploy is [`6addb0b1a117f0fe4bfe048c`](https://6addb0b1a117f0fe4bfe048c--grandfundingllc.netlify.app), published `2026-10-25T07:33:12.590Z`. It was an exact-site Netlify CLI upload of the reviewed `dist/` to `055c5942-aeaa-478a-9508-a34406994d5d` and supersedes the 2026-10-12 copy release `6acd5869868fab83b28543d6` (`7efac5a`). The production fields in the dated block below are historical.

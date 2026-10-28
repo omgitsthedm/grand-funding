@@ -1111,3 +1111,16 @@ html body .nav-list > li > a,
 html body footer li > a { min-width: 44px; justify-content: center; }
 html body footer .footer-links li > a { justify-content: flex-start; }
 html body .consent-btn { min-height: 44px !important; }
+html body select,
+html body input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]) { min-height: 44px; }
+html body .chip,
+html body .lp-phone { display: inline-flex; align-items: center; min-height: 44px; }
+@media (max-width: 480px) {
+  html body main p:not([class]),
+  html body main li:not([class]),
+  html body .hero-deadline-note,
+  html body .explore-more__intro,
+  html body .loan-calc__cta { font-size: max(16px, 1em) !important; }
+  html body .trust-badge,
+  html body .lp-badge { font-size: 14px; }
+}

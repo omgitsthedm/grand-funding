@@ -1124,3 +1124,8 @@ html body .lp-phone { display: inline-flex; align-items: center; min-height: 44p
   html body .trust-badge,
   html body .lp-badge { font-size: 14px; }
 }
+/* Keep the 16px root on the smallest phones (styles-v2 drops it to 15.5px at <=375px). */
+@media (max-width: 375px) { html { font-size: 16px; } }
+/* WebKit draws native selects at a fixed 26px unless they use the button appearance. */
+html body select { -webkit-appearance: menulist-button; }
+html body .loan-guide__product-links a { display: inline-flex; align-items: center; min-height: 44px; }

@@ -656,7 +656,10 @@ html body :is(.lp-hero__grid, .lp-hero__stats) {
   box-shadow: none !important;
 }
 
-html body .lp-hero__title {
+/* The flat-surface rule strips background-image while the inline gradient
+   heroes set color:transparent; force a solid color so headings stay visible. */
+html body .lp-hero__title,
+html body .lp-hero h1 {
   background: none !important;
   background-image: none !important;
   color: var(--deal-ink) !important;

@@ -967,7 +967,7 @@ body:not(.home) main > .hero:first-child h1,
 }
 
 /* ── Premium Kicker — uppercase teal tag ──────────────────────── */
-.lp-hero > .container > :first-child:not(h1):not(p),
+.lp-hero__kicker,
 .lp-kicker, .page-kicker, .interior-kicker, .premium-kicker{
   display: inline-flex;
   align-items: center;

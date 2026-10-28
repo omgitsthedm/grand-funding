@@ -1066,7 +1066,7 @@ html body :is(.footer-tagline, .footer-copyright, .footer-disclaimer, .form-purp
   .loan-calc__fineprint, .rate-strip__fineprint, .lp-form__fine, .lp-footer p, .lp-proof__note,
   .lp-bullets li, .deal-clarity__col li, .meet-logan__credentials li, .product-micro p,
   td.them, .compare-section a, .form-fineprint, .form-label, .lp-form label,
-  .apply-card__subtitle, .apply-form__fineprint) {
+  .apply-card__subtitle, .apply-form__fineprint, .blog-card__excerpt) {
   font-size: 16px !important;
   line-height: 1.55;
 }

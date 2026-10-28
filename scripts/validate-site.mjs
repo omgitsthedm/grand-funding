@@ -73,6 +73,7 @@ for (const forbidden of [
   if (fs.existsSync(path.join(SITE, forbidden))) errors.push(`publish boundary includes forbidden path: ${forbidden}`);
 }
 
+const sharedFormFields = new Map();
 for (const file of htmlFiles) {
   const name = rel(file);
   const html = fs.readFileSync(file, 'utf8');
@@ -138,6 +139,14 @@ for (const file of htmlFiles) {
     }
     if (!/name=["']form-name["']/i.test(body)) errors.push(`${name}: ${attributes.name || 'form'} missing form-name input`);
     if (!/\bnetlify-honeypot=/i.test(open)) errors.push(`${name}: ${attributes.name || 'form'} missing honeypot declaration`);
+    // Netlify registers ONE field list per form name (from one page) and silently drops any other
+    // posted field. Every page that shares a form name must therefore post the same field names.
+    if (attributes.name) {
+      const fieldNames = [...new Set([...body.matchAll(/<(?:input|select|textarea)\b[^>]*\bname=["']([^"']+)["']/gi)].map(field => field[1]))].sort().join(',');
+      const seen = sharedFormFields.get(attributes.name);
+      if (!seen) sharedFormFields.set(attributes.name, { fieldNames, file: name });
+      else if (seen.fieldNames !== fieldNames) errors.push(`${name}: form "${attributes.name}" posts [${fieldNames}] but ${seen.file} posts [${seen.fieldNames}]; Netlify would drop the fields one page adds`);
+    }
     if (['pre-approval', 'contact'].includes(attributes.name)) {
       if (!/\bdata-gf-lead-form(?:\s|>)/i.test(open)) {
         errors.push(`${name}: ${attributes.name} missing resilient lead-form marker`);

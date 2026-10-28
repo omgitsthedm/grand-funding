@@ -656,6 +656,9 @@ html body :is(.lp-hero__grid, .lp-hero__stats) {
   box-shadow: none !important;
 }
 
+/* Keep: the flat-surface guarantee below strips background-image and forces
+   text-fill to currentColor, so the 39 inline `color:transparent` gradient
+   heroes render invisible without this solid color (verified 2026-10-27). */
 html body .lp-hero__title,
 html body .lp-hero h1 {
   background: none !important;
@@ -1025,3 +1028,32 @@ html body .sticky-dual a.sticky-dual__apply {
 .loan-guide__links span{line-height:1.6}
 .loan-guide__product-links{line-height:1.8}
 @media(max-width:760px){.loan-guide__grid,.loan-guide__links{grid-template-columns:1fr}}
+
+/* 2026-10-27 owner directives: business-purpose notice in every form,
+   hypothetical-scenario label, and the Instagram footer link. */
+.form-purpose-note{
+  margin:.25rem 0 .75rem;
+  padding:.6rem .75rem;
+  border-left:2px solid var(--deal-ember);
+  background:rgba(240,178,107,.07);
+  color:var(--deal-ink);
+  font-size:.82rem;
+  line-height:1.5;
+  text-align:left;
+}
+.lp-proof__note{
+  max-width:60ch;
+  margin:0 auto 1rem;
+  color:var(--deal-muted);
+  font-size:.85rem;
+  line-height:1.5;
+  text-align:center;
+}
+/* Instagram glyph: Material Design Icons "instagram" (Pictogrammers, Apache-2.0),
+   the same family as the footer phone and mail glyphs. */
+html body .footer .footer-contact a.footer-social::before,
+.footer-brand .footer-contact a.footer-social::before{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z'/%3E%3C/svg%3E") !important;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z'/%3E%3C/svg%3E") !important;
+}
+.lp-footer .footer-social{color:var(--deal-teal);text-decoration:underline;text-underline-offset:.2em}

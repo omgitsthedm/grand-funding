@@ -11,15 +11,16 @@ const repoRoot = path.resolve(
 
 const APPROVAL_DATE = "2026-07-27";
 const APPROVED_STATES = "Arizona and California";
+// 2026-10-27 owner directive (Logan Sullivan): business-purpose loans only.
 const OCCUPANCY_SHORT =
-  "Owner-occupied and primary-residence eligibility is limited and reviewed case by case.";
+  "Grand Funding does not make owner-occupied, primary-residence, or consumer-purpose loans.";
 const OCCUPANCY_CASE =
-  "Owner-occupied, primary-residence, or consumer-purpose transactions, if available, are considered only in limited, case-specific circumstances and may require additional documentation and review. Contact Grand Funding before applying.";
-const OCCUPANCY_FULL = `Grand Funding primarily offers business-purpose real estate financing. ${OCCUPANCY_CASE}`;
+  "Loans are not available for owner-occupied, primary-residence, or consumer purposes.";
+const OCCUPANCY_FULL = `Grand Funding makes business-purpose loans to real estate investors only. ${OCCUPANCY_CASE}`;
 const TERMS_NOTE =
   "Rates, points, loan sizing, leverage, and final terms are provided only after Grand Funding reviews the specific transaction. This website is not a commitment to lend.";
 const FOOTER_DISCLOSURE =
-  "Grand Funding primarily offers business-purpose real estate financing in Arizona and California. Owner-occupied, primary-residence, or consumer-purpose transactions, if available, are considered only in limited, case-specific circumstances and may require additional documentation and review. This is not a commitment to lend. All financing is subject to transaction-specific review and final documentation.";
+  "Grand Funding lends in Arizona and California. Business-purpose loans for real estate investors only. Not for owner-occupied or consumer purposes. This is not a commitment to lend. All financing is subject to transaction-specific review and final documentation.";
 const CREDIT_DOCUMENTATION_NOTE =
   "Credit, income, experience, and documentation requirements are determined after review of the specific transaction.";
 const PREPAYMENT_NOTE =
@@ -447,15 +448,15 @@ function replacePreApprovalLanguage(value) {
     )
     .replace(
       /\bGrand Funding issues pre-approvals in 24 hours\./gi,
-      "Grand Funding responds to quote requests within 24 hours.",
+      "Logan reviews every quote request personally.",
     )
     .replace(
       /\bPre-approvals issue in 24 hours\./gi,
-      "Quote requests receive a response within 24 hours.",
+      "Logan reviews every quote request personally.",
     )
     .replace(
       /\bLoan sizing is determined after review\.\s*Pre-approval in 24 hours\./gi,
-      "Loan sizing is determined after review. Quote requests receive a response within 24 hours.",
+      "Loan sizing is determined after review. Logan reviews every quote request personally.",
     )
     .replace(
       />\s*Get Pre-Approved in 24 Hours\s*</gi,
@@ -465,7 +466,7 @@ function replacePreApprovalLanguage(value) {
     .replace(/\bPre-approval callout\b/g, "Quote request callout")
     .replace(
       /\bGet pre-approved in 24 hours\b\.?/gi,
-      "Request a quote. A real person responds within 24 hours.",
+      "Request a quote. Call for terms: (602) 935-0371.",
     )
     .replace(/\bSend My Free Pre-Approval\b/gi, "Request My Quote")
     .replace(/\bSend for Pre-Approval\b/gi, "Request a Quote")
@@ -533,7 +534,7 @@ function applyExactApprovedWording(value) {
     ],
     [
       /Grand Funding originates <strong>business-purpose, commercial, and investment-property<\/strong> real estate loans secured by property located in Arizona or California\.\s*We do <strong>not<\/strong> originate loans secured by owner-occupied primary residences and do not offer consumer-purpose mortgage products\./gi,
-      `Grand Funding primarily offers <strong>business-purpose real estate financing</strong> secured by eligible property in Arizona and California. ${OCCUPANCY_CASE}`,
+      "Grand Funding offers <strong>business-purpose real estate financing only</strong>, secured by eligible investment property in Arizona and California. Grand Funding does not make owner-occupied, primary-residence, or consumer-purpose loans.",
     ],
     [
       /Grand Funding primarily offers <strong>business-purpose real estate financing<\/strong> secured by eligible property in Arizona and California\.\s*Grand Funding primarily offers business-purpose real estate financing\.\s*/gi,
@@ -542,7 +543,7 @@ function applyExactApprovedWording(value) {
     [/<li>General investment property loans<\/li>/gi, ""],
     [
       /<li>Cash-out refinance on investment properties<\/li>/gi,
-      "<li>Cash-out refinance (occupancy eligibility reviewed case by case)</li>",
+      "<li>Cash-out refinance (investment property only)</li>",
     ],
     [
       /<li>Land loans<\/li>/gi,
@@ -586,11 +587,11 @@ function applyExactApprovedWording(value) {
     ],
     [
       /Business, Commercial, and Investment Purpose/gi,
-      "Primary Business-Purpose Focus and Case-Specific Occupancy",
+      "Business-Purpose Loans Only",
     ],
     [
       /All Grand Funding loans are originated for <strong>business, commercial, or investment purpose<\/strong>\s*[—-]\s*typically for the acquisition, renovation, construction, or refinance of real estate intended for sale, rent, or other business use\.\s*Grand Funding loans are <strong>not<\/strong> consumer-purpose loans subject to the Truth in Lending Act \(TILA\), Real Estate Settlement Procedures Act \(RESPA\), or similar consumer-lending statutes applicable to owner-occupied primary residences\./gi,
-      `Grand Funding primarily offers financing for <strong>business, commercial, or investment purposes</strong>, including eligible acquisition, renovation, construction, refinance, and land transactions. ${OCCUPANCY_CASE}`,
+      "Grand Funding offers financing only for <strong>business, commercial, or investment purposes</strong>, including eligible acquisition, renovation, construction, refinance, and land transactions. Grand Funding does not make owner-occupied, primary-residence, or consumer-purpose loans.",
     ],
     [
       /Grand Funding primarily offers financing for <strong>business, commercial, or investment purposes<\/strong>, including eligible acquisition, renovation, construction, refinance, and land transactions\.\s*Grand Funding primarily offers business-purpose real estate financing\.\s*/gi,
@@ -629,10 +630,10 @@ function applyExactApprovedWording(value) {
     ],
     [/High-Value Loan Range/gi, "High-Value Deal Review"],
     [/High Loan Amounts/gi, "High-Value Deal Review"],
-    [/Same-day rate quote\./gi, "Same-day deal review."],
+    [/Same-day rate quote\./gi, "Direct deal review."],
     [
       /<li><strong>Properties:<\/strong>\s*Investment real estate in Arizona and California \(non-owner occupied\)<\/li>/gi,
-      "<li><strong>Properties:</strong> Eligible real estate in Arizona and California; occupancy is reviewed case by case</li>",
+      "<li><strong>Properties:</strong> Investment real estate in Arizona and California; business-purpose loans only</li>",
     ],
     [
       /<option>Investment Property<\/option>/gi,
@@ -699,7 +700,7 @@ function applyExactApprovedWording(value) {
       "What should Los Angeles investors look for in a hard money lender?",
     ],
     [/Phoenix's Fastest Hard Money Lender/gi, "Direct Phoenix Deal Review"],
-    [/Get a same-day rate quote/gi, "Request a same-day deal review"],
+    [/Get a same-day rate quote/gi, "Request a direct deal review"],
     [/Get My Phoenix Rate Quote/gi, "Request My Phoenix Deal Review"],
     [/Get My LA Rate Quote/gi, "Request My Los Angeles Deal Review"],
     [/Get My San Diego Rate Quote/gi, "Request My San Diego Deal Review"],
@@ -710,7 +711,7 @@ function applyExactApprovedWording(value) {
     [/Owner-occupied OK/gi, "Case-specific occupancy review"],
     [
       /Owner-Occupied\s*&(?:amp;)?\s*Investment:\s*Both qualify/gi,
-      "Occupancy eligibility: case-specific review",
+      "Loan purpose: business purpose only",
     ],
     [
       /Both investment and owner-occupied properties may qualify depending on the loan type\./gi,
@@ -751,11 +752,11 @@ function applyExactApprovedWording(value) {
     ],
     [
       /Owner-occupied primary residences \(they only lend on investment\s*\/\s*business-purpose property\)/gi,
-      "Owner-occupied or primary-residence transactions without prior case-specific confirmation",
+      "Owner-occupied, primary-residence, or consumer-purpose loans of any kind",
     ],
     [
       /Properties:\s*Investment real estate in Arizona and California \(non-owner occupied\)/gi,
-      `Properties: Eligible real estate in ${APPROVED_STATES}; occupancy is reviewed case by case`,
+      `Properties: Investment real estate in ${APPROVED_STATES}; business-purpose loans only`,
     ],
     [
       /Owner-occupied residential property:\s*We fund investment property only\.\s*Primary residences fall under TRID and QM rules/gi,
@@ -799,7 +800,7 @@ function applyExactApprovedWording(value) {
     ],
     [
       /Owner-Occupied\s*&amp;\s*Investment:\s*Both qualify/gi,
-      "Occupancy eligibility: case-specific review",
+      "Loan purpose: business purpose only",
     ],
     [
       /terms provided after deal review provided after deal review/gi,
@@ -890,7 +891,7 @@ function applyExactApprovedWording(value) {
     ],
     [
       /<strong>Flexible Use:<\/strong>\s*Any legal purpose/gi,
-      "<strong>Eligible use:</strong> Reviewed case by case",
+      "<strong>Eligible use:</strong> Business purpose only",
     ],
     [
       /\bHome improvements and renovations\b/gi,
@@ -1137,7 +1138,7 @@ function neutralizeUnapprovedPolicyClaims(value) {
     )
     .replace(
       /\bProperties:\s*Eligible real estate in Arizona and California;\s*occupancy is reviewed case by case\b/gi,
-      "Properties: reviewed case by case in Arizona and California; occupancy is also reviewed case by case",
+      "Properties: investment real estate in Arizona and California; business-purpose loans only",
     )
     .replace(
       /\bAsset-based lending means income and documentation requirements determined after review\.\s*We evaluate the [^.!?<]+ and your exit strategy\s*[—-]\s*not your personal income\./gi,
@@ -1189,11 +1190,11 @@ function neutralizeUnapprovedPolicyClaims(value) {
     )
     .replace(
       /<p>A California hard money loan is a short-term, asset-based loan secured by the property\s*[—-]\s*not (?:by )?your credit score or income\.[\s\S]*?<\/p>/gi,
-      `<p>A hard money loan is short-term real estate financing secured by real property. ${CREDIT_DOCUMENTATION_NOTE} Grand Funding's published process targets decisions within 24 hours and funding within 3-5 business days after approval; actual timing depends on the transaction.</p>`,
+      `<p>A hard money loan is short-term real estate financing secured by real property. ${CREDIT_DOCUMENTATION_NOTE} Timing depends on the property, title, and documentation.</p>`,
     )
     .replace(
       /\bWe underwrite on the property, not your tax returns, so a serious buyer with equity can close in 3\s*(?:-|–|—)\s*5 business days\./gi,
-      "Grand Funding reviews each transaction individually. The published 3–5 business-day funding target depends on the property, requested financing, title, documentation, and other transaction conditions.",
+      "Grand Funding reviews each transaction individually. Timing depends on the property, requested financing, title, documentation, and other transaction conditions.",
     )
     .replace(
       /\bApproval is based on the property value and deal quality\s*[—-]\s*not your employment history or credit score\./gi,
@@ -2247,11 +2248,11 @@ function polishNeutralizedWording(value) {
     )
     .replace(
       /\(3-5 day close,\s*asset-based,\s*uses a project-specific draw structure disclosed in writing\)/gi,
-      "(3-5 day close, transaction-specific review, and a project-specific draw structure disclosed in writing)",
+      "(transaction-specific review and a project-specific draw structure disclosed in writing)",
     )
     .replace(
       /\b24-hour approval,\s*3-5 day close,\s*asset-based\./gi,
-      "24-hour approval, 3-5 day close, transaction-specific review.",
+      "Business-purpose loans for investors, transaction-specific review. Call for terms: (602) 935-0371.",
     )
     .replace(
       /\bHard money is the broader category\s*[—-]\s*any short-term,\s*asset-based private loan\./gi,

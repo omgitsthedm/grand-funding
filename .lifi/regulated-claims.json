@@ -1,9 +1,13 @@
 {
   "schemaVersion": 1,
-  "lastReviewed": "2026-07-30",
+  "lastReviewed": "2026-10-27",
   "scope": {
     "description": "Fail-closed baseline for public regulated and comparative lending claims. This registry documents current wording; it does not approve or resolve it.",
-    "sourceIncludes": ["/*.html", "/posts/**/*.html", "/llms.txt"],
+    "sourceIncludes": [
+      "/*.html",
+      "/posts/**/*.html",
+      "/llms.txt"
+    ],
     "generatedIncludesWhenPresent": [
       "/dist/**/*.html",
       "/dist/llms.txt",
@@ -60,12 +64,13 @@
       "status": "unresolved",
       "strictBlock": true,
       "decisionOwner": "Logan Sullivan and lending counsel",
-      "summary": "Client-approved public wording now limits owner-occupied, primary-residence, and consumer-purpose eligibility to case-specific review; formal lending-counsel approval remains unrecorded.",
+      "summary": "Owner-directed public wording (2026-10-27) states business-purpose loans for real estate investors only, not for owner-occupied or consumer purposes, on every page and form; formal lending-counsel approval remains unrecorded.",
       "decisionNeeded": "Lending counsel must confirm the authoritative occupancy and consumer-purpose policy, including any product, state, licensing, documentation, or disclosure conditions, before this issue can be marked resolved.",
       "clientDecision": {
-        "approvedAt": "2026-07-27",
-        "source": "docs/GRAND-FUNDING-CLIENT-WEBSITE-APPROVAL-2026-07-27.md",
-        "decision": "Use limited, case-specific wording and remove categorical approvals or denials."
+        "approvedAt": "2026-10-27",
+        "source": "docs/GRAND-FUNDING-OWNER-DIRECTIVES-2026-10-27.md",
+        "decision": "Business-purpose only. Every page and form states it; nothing aimed at homeowners or owner-occupied borrowers.",
+        "supersedes": "2026-07-27 limited, case-specific occupancy wording"
       }
     },
     {
@@ -78,7 +83,9 @@
       "clientDecision": {
         "approvedAt": "2026-07-27",
         "source": "docs/GRAND-FUNDING-CLIENT-WEBSITE-APPROVAL-2026-07-27.md",
-        "decision": "Remove published rates and points for now."
+        "decision": "Remove published rates and points for now.",
+        "reaffirmedAt": "2026-10-27",
+        "reaffirmedSource": "docs/GRAND-FUNDING-OWNER-DIRECTIVES-2026-10-27.md"
       }
     },
     {
@@ -91,7 +98,9 @@
       "clientDecision": {
         "approvedAt": "2026-07-27",
         "source": "docs/GRAND-FUNDING-CLIENT-WEBSITE-APPROVAL-2026-07-27.md",
-        "decision": "Remove published loan limits and ranges for now."
+        "decision": "Remove published loan limits and ranges for now.",
+        "reaffirmedAt": "2026-10-27",
+        "reaffirmedSource": "docs/GRAND-FUNDING-OWNER-DIRECTIVES-2026-10-27.md"
       }
     },
     {
@@ -104,7 +113,9 @@
       "clientDecision": {
         "approvedAt": "2026-07-27",
         "source": "docs/GRAND-FUNDING-CLIENT-WEBSITE-APPROVAL-2026-07-27.md",
-        "decision": "Remove published leverage thresholds for now."
+        "decision": "Remove published leverage thresholds for now.",
+        "reaffirmedAt": "2026-10-27",
+        "reaffirmedSource": "docs/GRAND-FUNDING-OWNER-DIRECTIVES-2026-10-27.md"
       }
     },
     {
@@ -112,12 +123,13 @@
       "status": "unresolved",
       "strictBlock": true,
       "decisionOwner": "Logan Sullivan, operations, and lending counsel",
-      "summary": "The client approved the current public timing language, but formal lending-counsel approval and a durable timing taxonomy remain unrecorded.",
+      "summary": "Owner-directed public copy (2026-10-27) removes every published approval, term-sheet, closing, funding, and response timeline; the only remaining timing match is the legally required CCPA response period. Formal lending-counsel approval remains unrecorded.",
       "decisionNeeded": "Lending counsel and operations must approve separate, qualified definitions or SLAs for decision, term sheet, closing, funding, and response timing before this issue can be marked resolved.",
       "clientDecision": {
-        "approvedAt": "2026-07-27",
-        "source": "docs/GRAND-FUNDING-CLIENT-WEBSITE-APPROVAL-2026-07-27.md",
-        "decision": "Keep the current timing language."
+        "approvedAt": "2026-10-27",
+        "source": "docs/GRAND-FUNDING-OWNER-DIRECTIVES-2026-10-27.md",
+        "decision": "Publish no timelines as promises; use Call for terms with (602) 935-0371 and the quote request form.",
+        "supersedes": "2026-07-27 Keep the current timing language."
       }
     },
     {
@@ -151,16 +163,16 @@
     {
       "issueId": "occupancy-policy",
       "ruleId": "occupancy-and-consumer-purpose",
-      "baselineNote": "2026-07-29 client-survey rebaseline after replacing conflicting categorical occupancy statements with the approved limited, case-specific wording across public pages and footers. This records the website update but does not record lending-counsel approval.",
+      "baselineNote": "2026-10-27 owner-directive rebaseline (Logan Sullivan; docs/GRAND-FUNDING-OWNER-DIRECTIVES-2026-10-27.md): limited, case-specific occupancy wording replaced on every page, form, footer, FAQ, disclosures, terms, and llms.txt with business-purpose-only wording. Remaining matches are prohibitions, not eligibility. Lending-counsel approval remains unrecorded.",
       "source": {
-        "matchedFiles": 84,
-        "matchCount": 187,
-        "sha256": "00e88612982ef9469c8ae99a117f2faad49fc79bc490d0d71773e7976ee9a389"
+        "matchedFiles": 87,
+        "matchCount": 127,
+        "sha256": "4e8bef1259a95b4c05a9a140f8dd113844009ffd97860815b5fbd73d09f805e2"
       },
       "dist": {
-        "matchedFiles": 84,
-        "matchCount": 187,
-        "sha256": "00e88612982ef9469c8ae99a117f2faad49fc79bc490d0d71773e7976ee9a389"
+        "matchedFiles": 88,
+        "matchCount": 128,
+        "sha256": "0153f079f8d6c7f69f6e53ca1f6e115dcaee0a144b0b77e02143aeecd9c39b45"
       }
     },
     {
@@ -211,31 +223,31 @@
     {
       "issueId": "timing-taxonomy",
       "ruleId": "timing-taxonomy",
-      "baselineNote": "2026-07-30 removal-only rebaseline after the website owner directed every public pre-approval reference to use quote language. Decision-strength wording was replaced with quote-request and response wording; no timing value was added or expanded. Formal operations and lending-counsel approval remains unrecorded.",
+      "baselineNote": "2026-10-27 owner-directive removal-only rebaseline (docs/GRAND-FUNDING-OWNER-DIRECTIVES-2026-10-27.md): every published approval, term-sheet, closing, funding, and response timeline was removed and replaced with Call for terms. The single remaining match is the legally required CCPA response period in privacy.html. Formal operations and lending-counsel approval remains unrecorded.",
       "source": {
-        "matchedFiles": 75,
-        "matchCount": 486,
-        "sha256": "cff588b581385a8121daf79494645c3125e2a017d6f32ab9b129884b936cef4e"
+        "matchedFiles": 1,
+        "matchCount": 1,
+        "sha256": "e4e97b0013da884cf9f72b5111a4bd34d3e878159c873864384efe4df7d82198"
       },
       "dist": {
-        "matchedFiles": 76,
-        "matchCount": 504,
-        "sha256": "d0062e48b652f9f4ab160d90dae7c79190b7e5e9a74e7fb7ec78d04c1a00c7d4"
+        "matchedFiles": 1,
+        "matchCount": 1,
+        "sha256": "e4e97b0013da884cf9f72b5111a4bd34d3e878159c873864384efe4df7d82198"
       }
     },
     {
       "issueId": "service-area-policy",
       "ruleId": "service-area",
-      "baselineNote": "2026-07-29 removal-only rebaseline records one fewer service-area occurrence after a categorical property-eligibility statement was replaced with transaction-specific review wording. The later asset-based-language hardening changed only adjacent review wording inside existing service-area matches; the 256 source and 330 generated occurrences, states, and service-area scope are unchanged. No state or service area was added. Formal licensing and lending-counsel confirmation remains unresolved and release-blocking.",
+      "baselineNote": "2026-10-27 rebaseline: the business-purpose footer line adds \"Grand Funding lends in Arizona and California\" to each page, and llms.txt was rewritten. No state or service area was added; Arizona and California only. Formal licensing and lending-counsel confirmation remains unresolved and release-blocking.",
       "source": {
-        "matchedFiles": 86,
-        "matchCount": 251,
-        "sha256": "8fd50ce224eb738452d458b05ac6eaf75f0f9d0824515b4844afa10d7d556d87"
+        "matchedFiles": 87,
+        "matchCount": 257,
+        "sha256": "a36ea972923842054fd88c00e2026376db9037be1415d2e2329e01f3f1edae5a"
       },
       "dist": {
-        "matchedFiles": 87,
-        "matchCount": 329,
-        "sha256": "c0fee72c3ed1c7c31ff49b4c0dd159b48db23b14c417cae8806f7c9f723d8d5e"
+        "matchedFiles": 88,
+        "matchCount": 413,
+        "sha256": "99232a97abd15f9a91343877ab3ac57dfad37fc1b18549c6a9d60eabea9eb9a2"
       }
     },
     {
@@ -256,30 +268,30 @@
   ],
   "occurrences": [
     {
-      "id": "faq-case-specific-occupancy",
+      "id": "faq-business-purpose-only",
       "issueId": "occupancy-policy",
       "ruleId": "occupancy-and-consumer-purpose",
-      "classification": "client-approved-limited-case-review",
+      "classification": "owner-directed-business-purpose-only",
       "path": "faq.html",
-      "phrase": "Grand Funding primarily offers business-purpose real estate financing. Owner-occupied, primary-residence, or consumer-purpose transactions, if available, are considered only in limited, case-specific circumstances and may require additional documentation and review. Contact Grand Funding before applying.",
+      "phrase": "No — business-purpose only. Grand Funding makes business-purpose loans to real estate investors only. Loans are not available for owner-occupied, primary-residence, or consumer purposes.",
       "count": 1
     },
     {
-      "id": "disclosures-case-specific-occupancy",
+      "id": "disclosures-business-purpose-only",
       "issueId": "occupancy-policy",
       "ruleId": "occupancy-and-consumer-purpose",
-      "classification": "client-approved-limited-case-review",
+      "classification": "owner-directed-business-purpose-only",
       "path": "disclosures.html",
-      "phrase": "Owner-occupied, primary-residence, or consumer-purpose transactions, if available, are considered only in limited, case-specific circumstances and may require additional documentation and review. Contact Grand Funding before applying.",
+      "phrase": "Grand Funding does not make owner-occupied, primary-residence, or consumer-purpose loans.",
       "count": 2
     },
     {
-      "id": "terms-case-specific-occupancy",
+      "id": "terms-business-purpose-only",
       "issueId": "occupancy-policy",
       "ruleId": "occupancy-and-consumer-purpose",
-      "classification": "client-approved-limited-case-review",
+      "classification": "owner-directed-business-purpose-only",
       "path": "terms.html",
-      "phrase": "Owner-occupied and primary-residence eligibility is limited and reviewed case by case.",
+      "phrase": "Grand Funding does not make owner-occupied, primary-residence, or consumer-purpose loans.",
       "count": 1
     },
     {
@@ -513,6 +525,39 @@
       "phrase": "Who are the best hard money lenders in Los Angeles?",
       "count": 3,
       "distCount": 2
+    },
+    {
+      "id": "faq-case-specific-occupancy",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "client-approved-limited-case-review",
+      "path": "faq.html",
+      "phrase": "Grand Funding primarily offers business-purpose real estate financing. Owner-occupied, primary-residence, or consumer-purpose transactions, if available, are considered only in limited, case-specific circumstances and may require additional documentation and review. Contact Grand Funding before applying.",
+      "count": 1,
+      "retiredAt": "2026-10-27",
+      "retiredBecause": "Owner directive (Logan Sullivan, 2026-10-27): business-purpose only; limited case-specific occupancy wording removed. See docs/GRAND-FUNDING-OWNER-DIRECTIVES-2026-10-27.md."
+    },
+    {
+      "id": "disclosures-case-specific-occupancy",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "client-approved-limited-case-review",
+      "path": "disclosures.html",
+      "phrase": "Owner-occupied, primary-residence, or consumer-purpose transactions, if available, are considered only in limited, case-specific circumstances and may require additional documentation and review. Contact Grand Funding before applying.",
+      "count": 2,
+      "retiredAt": "2026-10-27",
+      "retiredBecause": "Owner directive (Logan Sullivan, 2026-10-27): business-purpose only; limited case-specific occupancy wording removed. See docs/GRAND-FUNDING-OWNER-DIRECTIVES-2026-10-27.md."
+    },
+    {
+      "id": "terms-case-specific-occupancy",
+      "issueId": "occupancy-policy",
+      "ruleId": "occupancy-and-consumer-purpose",
+      "classification": "client-approved-limited-case-review",
+      "path": "terms.html",
+      "phrase": "Owner-occupied and primary-residence eligibility is limited and reviewed case by case.",
+      "count": 1,
+      "retiredAt": "2026-10-27",
+      "retiredBecause": "Owner directive (Logan Sullivan, 2026-10-27): business-purpose only; limited case-specific occupancy wording removed. See docs/GRAND-FUNDING-OWNER-DIRECTIVES-2026-10-27.md."
     }
   ]
 }

@@ -67,7 +67,7 @@ const htmlFiles = files.filter(file => file.endsWith('.html'));
 
 for (const forbidden of [
   '.ai', '.git', '.github', '.netlify', 'AGENTS.md', 'CLAUDE.md', 'PREMIUM_STANDARDS.md',
-  'PROJECT_STATUS.md', 'SOURCE_OF_TRUTH.md', 'docs', 'generate_pages.py', 'generate_posts.py',
+  'PROJECT_STATUS.md', 'SOURCE_OF_TRUTH.md', 'docs', 'drafts-for-logan-review', 'generate_pages.py', 'generate_posts.py',
   'node_modules', 'package-lock.json', 'package.json', 'scripts'
 ]) {
   if (fs.existsSync(path.join(SITE, forbidden))) errors.push(`publish boundary includes forbidden path: ${forbidden}`);

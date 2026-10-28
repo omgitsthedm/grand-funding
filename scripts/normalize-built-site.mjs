@@ -5,9 +5,11 @@ const ORGANIZATION_NAME = 'Grand Funding LLC';
 // This description is also visible in the About page's introduction. It uses
 // the approved service scope without adding lending terms or credentials.
 const ORGANIZATION_DESCRIPTION =
-  'Grand Funding LLC provides private real estate financing for property purchases, repairs, new builds, and refinancing.';
+  'Grand Funding LLC provides business-purpose real estate loans to investors for property purchases, repairs, new builds, and refinancing in Arizona and California.';
 // The published square brand mark (also the web-app manifest icon). Search
 // engines need a raster logo of at least 112x112 that reads on white.
+// Owner-confirmed 2026-10-27 (Logan Sullivan): the only social profile.
+const ORGANIZATION_SAME_AS = Object.freeze(['https://www.instagram.com/logan.loans/']);
 const ORGANIZATION_LOGO = Object.freeze({
   path: '/images/appicon-512.png',
   width: 512,
@@ -1034,7 +1036,9 @@ function schemaGraph({
     areaServed: [
       { '@type': 'State', name: 'Arizona' },
       { '@type': 'State', name: 'California' }
-    ]
+    ],
+    // Owner-confirmed 2026-10-27: Instagram is the only social profile.
+    sameAs: [...ORGANIZATION_SAME_AS]
   };
   const website = {
     '@type': 'WebSite',
@@ -1329,6 +1333,14 @@ function validateNormalizedHtml({
   for (const required of ['Organization', 'WebSite']) {
     if (!types.includes(required)) {
       throw new Error(`${fileLabel}: missing required ${required} schema node`);
+    }
+  }
+  for (const node of schema['@graph'].filter(item => item?.['@type'] === 'Organization')) {
+    if (JSON.stringify(node.sameAs) !== JSON.stringify(ORGANIZATION_SAME_AS)) {
+      throw new Error(`${fileLabel}: Organization sameAs must be exactly ${ORGANIZATION_SAME_AS.join(', ')}`);
+    }
+    if (node.address !== undefined) {
+      throw new Error(`${fileLabel}: Organization must not publish an address`);
     }
   }
   if (
@@ -1935,6 +1947,7 @@ export async function normalizeBuiltSite({
   };
   const indexableCanonicals = [];
   const lastModified = new Map();
+  const missingContentDates = [];
 
   for (const relativeFile of files) {
     const filePath = path.join(resolvedDist, relativeFile);
@@ -1976,8 +1989,18 @@ export async function normalizeBuiltSite({
           throw new Error(`${relativeFile}: content update date is in the future`);
         }
         lastModified.set(first.stats.canonical, date);
+      } else {
+        // Every indexable URL carries an editorial content date so the sitemap
+        // lists lastmod for all of them (never stamped with the build date).
+        missingContentDates.push(relativeFile);
       }
     }
+  }
+
+  if (missingContentDates.length > 0) {
+    throw new Error(
+      `Indexable pages are missing <meta name="gf-content-updated">: ${missingContentDates.join(', ')}`
+    );
   }
 
   summary.redirectRules = await writeRedirects(resolvedDist, files);

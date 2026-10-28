@@ -246,8 +246,8 @@ assert(
   "public claims policy schemaVersion must be 1"
 );
 assert(
-  publicClaims.hardBlocks?.length === 14,
-  "public claims policy must retain fourteen fail-closed categories"
+  publicClaims.hardBlocks?.length === 21,
+  "public claims policy must retain twenty-one fail-closed categories"
 );
 assert(
   publicClaims.evidenceSurfaces?.length === 0,
@@ -332,5 +332,5 @@ if (errors.length) {
 console.log(
   `Quality configuration validated: ${requiredFiles.length} files, ` +
     `${requiredScripts.length} commands, 7 regulated claim gates, ` +
-    `14 fail-closed public claim categories, and current dead-code ledger`
+    `21 fail-closed public claim categories, and current dead-code ledger`
 );

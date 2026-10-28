@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "lastReviewed": "2026-07-29",
-  "scope": "Public visible copy, metadata, generated HTML, llms.txt, and RSS. These controls record website boundaries; they do not provide legal approval.",
+  "lastReviewed": "2026-10-27",
+  "scope": "Public visible copy, metadata, JSON-LD, generated HTML, and every served .txt/.json/.webmanifest/.xml file (including llms.txt, robots.txt, site.webmanifest, and RSS). These controls record website boundaries; they do not provide legal approval.",
   "hardBlocks": [
     {
       "id": "credit-eligibility",
@@ -100,6 +100,58 @@
       "pattern": "\\b(?:direct (?:private )?lender|fund our own loans|we(?:['’]re| are) not a broker|Founder(?:\\s*(?:&|and)\\s*Direct Lender)?|40\\+ Years(?: of)?(?: Experience| Lending| in [^.!?]{0,45})?|over 40 years|four decades|former builders?|we(?:['’]ve| have) been builders ourselves|decades of experience)\\b",
       "flags": "gi",
       "neutralBoundary": "Use only approved, transaction-specific information supported by the authoritative record."
+    },
+    {
+      "id": "published-timing-promise",
+      "label": "published approval, term-sheet, closing, funding, or response timeline (2026-10-27 owner directive: call for terms)",
+      "pattern": "(?:(?:\\b\\d+(?:\\.\\d+)?(?:\\s*(?:-|–|—|to)\\s*\\d+)?\\+?[ -]?(?:business[ -])?(?:hours?|hrs?|days?|weeks?)\\b|\\b\\d+\\s*hrs?\\b|\\bsame[- ]day\\b|\\bwithin (?:an|one) hour\\b)[^.!?]{0,40}?\\b(?:approv\\w*|decisions?|term[ -]?sheets?|clos(?:e|es|ed|ing)|fund(?:s|ed|ing)?|wires?|turnaround|respon(?:d|ds|se)|quotes?|answers?|follow(?:s)?[ -]up|rate)\\b|\\b(?:approv\\w*|decisions?|term[ -]?sheets?|clos(?:e|es|ed|ing)|fund(?:s|ed|ing)?|wires?|turnaround|respon(?:d|ds|se)|quotes?|answers?|follow(?:s)?[ -]up|rate)\\b[^.!?]{0,40}?(?:\\b\\d+(?:\\.\\d+)?(?:\\s*(?:-|–|—|to)\\s*\\d+)?\\+?[ -]?(?:business[ -])?(?:hours?|hrs?|days?|weeks?)\\b|\\b\\d+\\s*hrs?\\b|\\bsame[- ]day\\b|\\bwithin (?:an|one) hour\\b))",
+      "flags": "gi",
+      "allowedContexts": [
+        "Expected response time: within 45 days of verification"
+      ],
+      "neutralBoundary": "Timing depends on the property, title, and documentation. Call for terms: (602) 935-0371."
+    },
+    {
+      "id": "published-term-length",
+      "label": "published loan term length or amortization (2026-10-27 owner directive)",
+      "pattern": "\\b(?:\\d{1,2}\\s*(?:-|–|—|to)\\s*\\d{1,2}[ -]?months?|(?:within|up to|typically|terms? of)\\s+\\d{1,2}\\s+months|\\d{1,2}[ -]year (?:amortization|term|fixed|loan|DSCR))\\b",
+      "flags": "gi",
+      "neutralBoundary": "Term length is determined after review of the specific transaction and disclosed in writing."
+    },
+    {
+      "id": "published-loan-amount",
+      "label": "published loan amount, range, minimum, maximum, or net-to-borrower figure (2026-10-27 owner directive)",
+      "pattern": "(?:\\$\\s?[\\d,.]+\\s*(?:[KkMm]\\b|million|thousand)\\+?\\s*(?:-|–|—|to)\\s*\\$\\s?[\\d,.]+\\s*(?:[KkMm]\\b|million|thousand)?|\\bloans?\\s+(?:below|above|under|over|from|between|up to|starting at)\\s+\\$|\\b(?:typical deal|loan amounts?|loan sizes?|loan range|minimum loan|maximum loan|net to borrower|borrow up to|lend up to|fund up to)\\b[^.!?]{0,40}?\\$\\s?\\d)",
+      "flags": "gi",
+      "neutralBoundary": "Loan sizing is determined after review. Call for terms: (602) 935-0371."
+    },
+    {
+      "id": "published-credit-score-minimum",
+      "label": "published credit-score minimum or threshold (2026-10-27 owner directive)",
+      "pattern": "\\b(?:(?:credit |FICO )?scores?\\s+(?:as low as|of at least|minimum(?: of)?|above|over|starting at)\\s+\\d{3}|\\d{3}\\+?\\s+(?:credit|FICO)(?: score)?|minimum (?:credit|FICO) score of)\\b",
+      "flags": "gi",
+      "neutralBoundary": "Credit, income, experience, and documentation requirements are determined after review of the specific transaction."
+    },
+    {
+      "id": "published-leverage-or-rate-figure",
+      "label": "published leverage, rate, point, or fee percentage (2026-10-27 owner directive)",
+      "pattern": "(?:\\b(?:LTV|LTC|ARV|CLTV|loan-to-value|loan-to-cost|leverage|rates?|interest|points?|origination|fees?)\\b[^.!?]{0,30}?\\b\\d{1,3}(?:\\.\\d+)?\\s*%|\\b\\d{1,3}(?:\\.\\d+)?\\s*%\\s*(?:of\\s+(?:the\\s+)?(?:purchase|ARV|after[- ]repair|value|cost|rehab)|LTV|LTC|ARV|CLTV|rates?|interest|points?|origination))",
+      "flags": "gi",
+      "neutralBoundary": "Rates, points, fees, and leverage are provided only after review of the specific transaction."
+    },
+    {
+      "id": "non-business-purpose-eligibility",
+      "label": "owner-occupied, primary-residence, or consumer-purpose eligibility wording (2026-10-27 owner directive: business-purpose only)",
+      "pattern": "(?:\\b(?:owner[- ]occupied|primary[- ]residences?|consumer[- ]purpose|occupancy)\\b[^.!?]{0,120}?\\b(?:if available|case[- ]by[- ]case|case[- ]specific|may (?:qualify|be eligible)|limited|considered|eligibility is)\\b|\\b(?:may qualify|case[- ]specific|case[- ]by[- ]case)\\b[^.!?]{0,60}?\\b(?:owner[- ]occupied|primary[- ]residence|occupancy)\\b|\\bprimarily offers business-purpose\\b|\\bdebt consolidation\\b)",
+      "flags": "gi",
+      "neutralBoundary": "Business-purpose loans for real estate investors only. Not for owner-occupied or consumer purposes."
+    },
+    {
+      "id": "unverified-funded-story",
+      "label": "unverified individual funded or closed deal story (2026-10-27 owner directive)",
+      "pattern": "\\b(?:recently funded|recent [\\w-]+ deals|real deals grand funding has closed|we(?:['’]ve| have) closed|has closed|funded dozens|deal we funded|bridge funded in|deal saved|funded before|reviewed and funded|investor closed)\\b",
+      "flags": "gi",
+      "neutralBoundary": "Hypothetical examples to discuss, not records of individual loans or completed closings."
     }
   ],
   "evidenceSurfaces": []

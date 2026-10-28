@@ -12,8 +12,16 @@ const approvalRecord = path.join(
 );
 const surveyHash =
   "d0f6e1bfd394cd28878e80f5303793318d17af598e2d440d0b8c2727ac442bff";
-const occupancySentence =
-  "Owner-occupied, primary-residence, or consumer-purpose transactions, if available, are considered only in limited, case-specific circumstances and may require additional documentation and review.";
+// 2026-10-27 owner directive (Logan Sullivan): business-purpose only. Every
+// page and every form must carry this exact statement.
+const businessPurposeStatement =
+  "Business-purpose loans for real estate investors only. Not for owner-occupied or consumer purposes.";
+const ownerDirectiveRecord = path.join(
+  root,
+  "docs",
+  "GRAND-FUNDING-OWNER-DIRECTIVES-2026-10-27.md",
+);
+const instagramUrl = "https://www.instagram.com/logan.loans/";
 const volumeSentence =
   "We've funded over 1,500 loans totaling more than $350 million.";
 const expectedHomeProducts = [
@@ -58,6 +66,8 @@ const decodeEntities = (value) => {
 const compact = (value) => decodeEntities(value).replace(/\s+/g, " ").trim();
 
 const publicText = (raw) => {
+  // The editorial content date (sitemap lastmod source) is not public copy.
+  raw = raw.replace(/<meta\b[^>]*\bname\s*=\s*["']gf-content-updated["'][^>]*>/gi, " ");
   const metadata = [
     ...raw.matchAll(/<title\b[^>]*>([\s\S]*?)<\/title>/gi),
     ...raw.matchAll(
@@ -186,6 +196,10 @@ for (const suite of suites) {
         /\bdata-loan-calc\b|data-calc\s*=\s*["']loan-amount["']/i,
       ],
       [
+        "contains an animated timing counter hidden from text-only checks (no timelines since 2026-10-27)",
+        /<(?:div|span)\b(?=[^>]*\bdata-counter\b)(?=[^>]*\bdata-suffix\s*=\s*["']\s*(?:hrs?|hours?|days?|weeks?|months?)\s*["'])[^>]*>/i,
+      ],
+      [
         "contains an animated numeric loan limit hidden from text-only checks",
         /<(?:div|span)\b(?=[^>]*\bdata-counter\b)(?=[^>]*\bdata-to\s*=\s*["']?\d)[^>]*>[\s\S]{0,80}?<\/(?:div|span)>\s*<(?:div|span)\b[^>]*>\s*(?:Max(?:imum)?|Min(?:imum)?)\s+Loan\s+(?:Size|Amount)\b/i,
       ],
@@ -203,8 +217,8 @@ for (const suite of suites) {
         /\bnationwide\b|\bHonolulu,\s*HI\b/i,
       ],
       [
-        "contains categorical owner-occupancy or consumer-purpose wording",
-        /\b(?:do not|does not|not)\s+(?:originate|offer|fund)[^.]{0,90}\b(?:owner[- ]occupied|primary residence|consumer-purpose)\b|\b(?:owner[- ]occupied|primary residences?)\b[^.]{0,90}\b(?:are|is)\s+(?:excluded|not eligible)\b/i,
+        "contains owner-occupied, primary-residence, or consumer-purpose eligibility wording (business-purpose only since 2026-10-27)",
+        /\b(?:owner[- ]occupied|primary[- ]residences?|consumer[- ]purpose)\b[^.]{0,120}\b(?:if available|case[- ]by[- ]case|case[- ]specific|may (?:qualify|be eligible)|limited|considered)\b|\bprimarily offers business-purpose\b|\b(?:owner[- ]occupied|primary residences?)\b[^.]{0,40}\b(?:may|can|do|does)\s+qualify\b/i,
       ],
       [
         "contains a published numeric rate, APR, or points claim",
@@ -242,10 +256,27 @@ for (const suite of suites) {
       `[${suite.id}] expected the client-attested volume statement exactly once; found ${volumeCount}`,
     );
   }
-  if (!corpus.includes(occupancySentence)) {
-    errors.push(
-      `[${suite.id}] missing the approved limited, case-specific occupancy wording`,
-    );
+  for (const record of records) {
+    if (!record.text.includes(businessPurposeStatement)) {
+      errors.push(
+        `[${suite.id}] ${record.relative}: missing the business-purpose-only statement: "${businessPurposeStatement}"`,
+      );
+    }
+    if (!record.relative.endsWith(".html")) continue;
+    if (!record.raw.includes(`href="${instagramUrl}"`)) {
+      errors.push(
+        `[${suite.id}] ${record.relative}: missing the visible Instagram footer link ${instagramUrl}`,
+      );
+    }
+    for (const form of record.raw.matchAll(/<form\b[\s\S]*?<\/form>/gi)) {
+      const formText = compact(form[0].replace(/<[^>]+>/g, " "));
+      if (!formText.includes(businessPurposeStatement)) {
+        const name = form[0].match(/\bname=["']([^"']+)["']/)?.[1] ?? "(unnamed)";
+        errors.push(
+          `[${suite.id}] ${record.relative}: form ${name} is missing the business-purpose-only statement`,
+        );
+      }
+    }
   }
   if (
     !/\bStatewide in Arizona and California\b/i.test(corpus) ||
@@ -296,6 +327,23 @@ for (const suite of suites) {
       errors.push(
         `[${suite.id}] homepage project calculator is missing ${marker}`,
       );
+    }
+  }
+}
+
+if (!(await exists(ownerDirectiveRecord))) {
+  errors.push("2026-10-27 owner directive record is missing");
+} else {
+  const record = await fs.readFile(ownerDirectiveRecord, "utf8");
+  for (const marker of [
+    "Logan Sullivan",
+    "business-purpose only",
+    businessPurposeStatement,
+    "Call for terms",
+    "@logan.loans",
+  ]) {
+    if (!record.includes(marker)) {
+      errors.push(`2026-10-27 owner directive record is missing: ${marker}`);
     }
   }
 }

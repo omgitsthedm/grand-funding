@@ -1127,5 +1127,17 @@ html body .lp-phone { display: inline-flex; align-items: center; min-height: 44p
 /* Keep the 16px root on the smallest phones (styles-v2 drops it to 15.5px at <=375px). */
 @media (max-width: 375px) { html { font-size: 16px; } }
 /* WebKit draws native selects at a fixed 26px unless they use the button appearance. */
-html body select { -webkit-appearance: menulist-button; }
+/* WebKit pins native selects to ~26px whatever min-height says; drawing the control
+   ourselves lets the 44px minimum apply. Chevron: Material Design Icons
+   "chevron-down" (Apache-2.0), the icon family already used across this site. */
+html body select {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 44px !important;
+  padding-right: 2.5rem !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c9d1e0' d='M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.85rem center !important;
+  background-size: 18px 18px !important;
+}
 html body .loan-guide__product-links a { display: inline-flex; align-items: center; min-height: 44px; }

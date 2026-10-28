@@ -1057,3 +1057,57 @@ html body .footer .footer-contact a.footer-social::before,
   mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z'/%3E%3C/svg%3E") !important;
 }
 .lp-footer .footer-social{color:var(--deal-teal);text-decoration:underline;text-underline-offset:.2em}
+
+/* ── Release audit 2026-10-27 ─────────────────────────────────────
+   Readable required notices (business-purpose, no-commitment, LP footer),
+   16px running-text floor, 44px standalone tap targets, narrow-phone fit.
+   `html body` + !important outranks the older premium layers. */
+html body :is(.footer-tagline, .footer-copyright, .footer-disclaimer, .form-purpose-note,
+  .loan-calc__fineprint, .rate-strip__fineprint, .lp-form__fine, .lp-footer p, .lp-proof__note,
+  .lp-bullets li, .deal-clarity__col li, .meet-logan__credentials li, .product-micro p,
+  td.them, .compare-section a, .form-fineprint, .form-label, .lp-form label,
+  .apply-card__subtitle, .apply-form__fineprint) {
+  font-size: 16px !important;
+  line-height: 1.55;
+}
+html body .footer-meta .footer-copyright,
+html body .footer-bottom .footer-disclaimer { font-size: 16px !important; }
+html body .lp-footer,
+html body .lp-footer p,
+html body .lp-footer a,
+html body .lp-form__fine { color: rgba(244, 247, 255, 0.78) !important; }
+@media (max-width: 1023px) {
+  html body :is(.section-subtitle, .section-header p, .product-description, .story-card-body,
+    .hero-subtitle, .value-item p, .service-card p, .reason-card p, .apply-note p,
+    .apply-subtitle, .cta-subtitle) {
+    font-size: 16px !important;
+  }
+}
+
+html body footer a:not(.lfc),
+html body .footer-links a,
+html body .footer-contact a,
+html body .lp-footer a,
+html body main li > a:only-child,
+html body nav > p > a,
+html body .eyebrow a,
+html body .nav-list > li > a,
+html body .header-phone,
+html body .brand-lockup,
+html body .product-expand,
+html body .contact-card-link {
+  display: inline-flex !important;
+  align-items: center;
+  min-height: 44px !important;
+}
+html body details > summary { min-height: 44px; box-sizing: border-box; padding-block: 10px; }
+
+@media (max-width: 640px) {
+  html body .deals-section__header { flex-direction: column; align-items: flex-start; }
+  html body .btn,
+  html body .lp-form__btn { white-space: normal; text-align: center; }
+}
+html body .nav-list > li > a,
+html body footer li > a { min-width: 44px; justify-content: center; }
+html body footer .footer-links li > a { justify-content: flex-start; }
+html body .consent-btn { min-height: 44px !important; }

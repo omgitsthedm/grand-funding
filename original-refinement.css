@@ -1141,3 +1141,5 @@ html body select {
   background-size: 18px 18px !important;
 }
 html body .loan-guide__product-links a { display: inline-flex; align-items: center; min-height: 44px; }
+/* The 44px contact-card link is a flex box; let the long email address wrap inside the card. */
+html body .contact-card-link { flex-wrap: wrap; overflow-wrap: anywhere; min-width: 0; max-width: 100%; }

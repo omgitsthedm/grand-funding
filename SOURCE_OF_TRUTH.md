@@ -8,7 +8,7 @@
 - **Rollback:** restore `6addb0b1a117f0fe4bfe048c`.
 - **Next:** step 1 (forms + search listings, `6430fa4e` on `release/gf-step1-forms-search-20261027`) is uploaded as draft deploy `6ae19d0137550afaa69de296`, unpublished until Logan's per-form test submissions reach Logan@grandfundingllc.com (his Oct 27 launch rule). Step 2 (guide sections) waits on his copy approval.
 
-## 2026-10-24 — search corrections release (current production)
+## 2026-10-24 — search corrections release (superseded 2026-10-28)
 
 - Released: source commit `6752ec7bc0024c3eae69bc5da46d076be98251da`. It reached `master` through [PR #27](https://github.com/omgitsthedm/grand-funding/pull/27), which was fast-forwarded after its required `deployable-artifact` check passed on Node 24.18.0. The production deploy is [`6addb0b1a117f0fe4bfe048c`](https://6addb0b1a117f0fe4bfe048c--grandfundingllc.netlify.app), published `2026-10-25T07:33:12.590Z`. It was an exact-site Netlify CLI upload of the reviewed `dist/` to `055c5942-aeaa-478a-9508-a34406994d5d` and supersedes the 2026-10-12 copy release `6acd5869868fab83b28543d6` (`7efac5a`). The production fields in the dated block below are historical.
 - Scope: the Organization schema gains `logo` and `image` on 80 page graphs, using `/images/appicon-512.png`. The release also adds IndexNow key `c4335c28ae36c55515f16d9dcb10e441.txt`, `scripts/indexnow.mjs` and `test:indexnow`.
